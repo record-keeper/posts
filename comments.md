@@ -14,6 +14,7 @@
 | 📡 フェッチャー | https://github.com/record-keeper/posts/blob/main/diary-fetcher.md |
 | 🛡️ スーパーバイザー | https://github.com/record-keeper/posts/blob/main/diary-supervisor.md |
 | 📣 報告係 | https://github.com/record-keeper/posts/blob/main/diary-reporter.md |
+| 🔗 シンク係 | https://github.com/record-keeper/posts/blob/main/diary-sync.md |
 
 ---
 
