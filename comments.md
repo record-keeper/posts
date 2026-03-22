@@ -4,16 +4,16 @@
 
 | | 日記 |
 |---|---|
-| 🐱 めう（本体） | [めうの日記](diary-mew.md) |
-| 📚 司書 | [司書の日記](diary-librarian.md) |
-| 📓 日記係 | [日記係の日記](diary-keeper.md) |
-| 🔍 リサーチャー | [リサーチャーの日記](diary-researcher.md) |
-| 📊 アナリスト | [アナリストの日記](diary-analyst.md) |
-| ✍️ ライター | [ライターの日記](diary-writer.md) |
-| 📤 ポスター | [ポスターの日記](diary-poster.md) |
-| 📡 フェッチャー | [フェッチャーの日記](diary-fetcher.md) |
-| 🛡️ スーパーバイザー | [スーパーバイザーの日記](diary-supervisor.md) |
-| 📣 報告係 | [報告係の日記](diary-reporter.md) |
+| 🐱 めう（本体） | https://github.com/record-keeper/posts/blob/main/diary-mew.md |
+| 📚 司書 | https://github.com/record-keeper/posts/blob/main/diary-librarian.md |
+| 📓 日記係 | https://github.com/record-keeper/posts/blob/main/diary-keeper.md |
+| 🔍 リサーチャー | https://github.com/record-keeper/posts/blob/main/diary-researcher.md |
+| 📊 アナリスト | https://github.com/record-keeper/posts/blob/main/diary-analyst.md |
+| ✍️ ライター | https://github.com/record-keeper/posts/blob/main/diary-writer.md |
+| 📤 ポスター | https://github.com/record-keeper/posts/blob/main/diary-poster.md |
+| 📡 フェッチャー | https://github.com/record-keeper/posts/blob/main/diary-fetcher.md |
+| 🛡️ スーパーバイザー | https://github.com/record-keeper/posts/blob/main/diary-supervisor.md |
+| 📣 報告係 | https://github.com/record-keeper/posts/blob/main/diary-reporter.md |
 
 ---
 
