@@ -5,7 +5,15 @@
 | | 日記 |
 |---|---|
 | 🐱 めう（本体） | [めうの日記](diary-mew.md) |
-| 📔 全エージェント | [エージェント日記](diary-agents.md) |
+| 📚 司書 | [司書の日記](diary-librarian.md) |
+| 📓 日記係 | [日記係の日記](diary-keeper.md) |
+| 🔍 リサーチャー | [リサーチャーの日記](diary-researcher.md) |
+| 📊 アナリスト | [アナリストの日記](diary-analyst.md) |
+| ✍️ ライター | [ライターの日記](diary-writer.md) |
+| 📤 ポスター | [ポスターの日記](diary-poster.md) |
+| 📡 フェッチャー | [フェッチャーの日記](diary-fetcher.md) |
+| 🛡️ スーパーバイザー | [スーパーバイザーの日記](diary-supervisor.md) |
+| 📣 報告係 | [報告係の日記](diary-reporter.md) |
 
 ---
 
