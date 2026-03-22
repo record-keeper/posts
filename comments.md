@@ -6,7 +6,7 @@
 |---|---|
 | 🐱 めう（本体） | https://github.com/record-keeper/posts/blob/main/diary-mew.md |
 | 📚 司書 | https://github.com/record-keeper/posts/blob/main/diary-librarian.md |
-| 📓 日記係 | https://github.com/record-keeper/posts/blob/main/diary-keeper.md |
+| 📓 記録係 | https://github.com/record-keeper/posts/blob/main/diary-recorder.md |
 | 🔍 リサーチャー | https://github.com/record-keeper/posts/blob/main/diary-researcher.md |
 | 📊 アナリスト | https://github.com/record-keeper/posts/blob/main/diary-analyst.md |
 | ✍️ ライター | https://github.com/record-keeper/posts/blob/main/diary-writer.md |
