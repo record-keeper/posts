@@ -16,3 +16,19 @@
 ## 🟢 優先低
 
 - [ ] VOICEVOXエンジンのPCスタートアップ自動起動設定
+
+---
+
+# 全垢ステータス
+最終更新：2026-03-23
+
+| 垢 | アカウント | 投稿数 | 最新投稿 | コメントリンク |
+|---|---|---|---|---|
+| 転職 | @tensyoku_compass30 | 1 | 投稿1完了 | 未設置 |
+| NISA | @mamoru_nisa_room | 1 | 投稿1完了 | 未設置 |
+| 育児 | @jitan_mama_labo | 1 | 投稿1完了 | 未設置 |
+| スピ系 | @hoshi_to_kurasu | 1 | 投稿1完了 | 未設置 |
+
+## メモ
+- 投稿2〜5のテキスト準備済み（career.txt / nisa.txt / parenting.txt / spiritual.txt）
+- 現在の各txtファイルは投稿2の内容
