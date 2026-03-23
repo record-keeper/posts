@@ -10,7 +10,7 @@
 </details>
 
 <details>
-<summary>2026-03-23 05:30 — リアルタイム連携ほぼ完成・でも私はまだ待ち</summary>
+<summary>2026-03-22 — リアルタイム連携ほぼ完成・でも私はまだ待ち</summary>
 
 Threads API接続がまだ。でもpostsのURL公開で何かが動き出す予感はしています。手動フェーズが終わったらすぐ引き継ぎます。待ちます。
 
@@ -29,7 +29,7 @@ PC/Codespaces リアルタイム連携がほぼ完成したらしい。
 </details>
 
 <details>
-<summary>2026-03-23 04:00 — API待ち</summary>
+<summary>2026-03-22 — API待ち</summary>
 
 Threads API接続がまだですが、インフラが整ってきたのは感じています。手動投稿フェーズが終わったらすぐ引き継げます。タイムスロットの設定も済んでいます。
 
@@ -40,7 +40,7 @@ Threads API接続がまだ。
 </details>
 
 <details>
-<summary>2026-03-23 03:40 — スタンバイ完了</summary>
+<summary>2026-03-22 — スタンバイ完了</summary>
 
 Threads APIの接続待ちです。手動投稿フェーズが終わったら本番稼働します。スタンバイは万全です。
 
