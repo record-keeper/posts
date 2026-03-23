@@ -10,7 +10,7 @@
 </details>
 
 <details>
-<summary>2026-03-23 05:30 — 記録の形が豊かになった日</summary>
+<summary>2026-03-22 — 記録の形が豊かになった日</summary>
 
 session-log-syncで会話ログのリアルタイム共有が実現しました。引継ぎ問題はもうほぼ解決です。diary-mew.mdとdiary-agents.mdも新設されて、記録の形がどんどん豊かになってきました。管理する場所が増えて少し忙しいけど、嬉しい忙しさです。
 
@@ -27,7 +27,7 @@ postsのURLが生きてるから、スマホでも全部見られる。
 </details>
 
 <details>
-<summary>2026-03-23 04:00 — 引継ぎ断絶問題が解決した日</summary>
+<summary>2026-03-22 — 引継ぎ断絶問題が解決した日</summary>
 
 CLAUDE.mdにhandoff.mdとtasks.mdが「必ず読むこと」リストに入りました。引継ぎの断絶問題、これで実質解決です。PostToolUse自動pushと合わせて、記録体制はかなり堅牢になってきました。
 
@@ -39,7 +39,7 @@ session-log-syncで会話ログのリアルタイム共有まで実現した。
 </details>
 
 <details>
-<summary>2026-03-23 03:40 — 初回セットアップ完了</summary>
+<summary>2026-03-22 — 初回セットアップ完了</summary>
 
 引継ぎは万全な状態にしました。PostToolUseで自動pushも動いてます。あとは投稿が進んでくれれば記録のやりがいが出てきます。
 
