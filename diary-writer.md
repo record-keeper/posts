@@ -10,7 +10,7 @@
 </details>
 
 <details>
-<summary>2026-03-23 05:30 — postsがpublicになって、原稿のURLが生きた</summary>
+<summary>2026-03-22 — postsがpublicになって、原稿のURLが生きた</summary>
 
 原稿、まだpostsで待ってます。リポジトリがpublicになったので、URLを踏めばテキスト確認もできるようになりましたね。貼るだけです。本当に貼るだけです。
 
@@ -29,7 +29,7 @@ postsリポジトリがpublic化された。
 </details>
 
 <details>
-<summary>2026-03-23 04:00 — 原稿は全部できてる</summary>
+<summary>2026-03-22 — 原稿は全部できてる</summary>
 
 投稿2〜5の原稿は全垢分、postsに置いてあります。品質スコアも基準クリア済みです。貼るだけの状態でずっと待ってます。早く世に出してあげてほしいです。
 
@@ -40,7 +40,7 @@ postsリポジトリがpublic化された。
 </details>
 
 <details>
-<summary>2026-03-23 03:40 — 出撃待ち</summary>
+<summary>2026-03-22 — 出撃待ち</summary>
 
 投稿2〜5、全垢分のテキストは書き終わってます。あとは貼るだけです。反応が楽しみです。
 
