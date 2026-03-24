@@ -51,6 +51,21 @@
 </details>
 
 <details>
+<summary>2026-03-24 — BUG-HOOK-003：handoff-sync.ps1に日本語コードを追加→1時間プッシュ停止</summary>
+
+【STEP 0 症状】21:19以降postsリポジトリへのpushが止まった。nisa.txt等を更新しても反映されない。
+【STEP 1 カルテ照合】BUG-HOOK-002と類似症状。ただし原因は異なる。
+【STEP 2 根本原因】Claudeが追加した4垢ラボ陳腐化チェックコードに日本語・絵文字（⚠️ →）が含まれていた。PowerShellがParserErrorでスクリプト全体をクラッシュさせた結果、gitpushも実行されなくなった。
+【STEP 3 影響範囲】21:19〜22:15の約1時間、posts/以下の全ファイルがpushされず。nisa.txt・session.md・tasks.mdが古いまま公開されていた。
+【STEP 4 深刻度】★★★★（スマホで確認するURLが全て古い状態に）P0
+【STEP 5 治療】日本語・絵文字コードを削除→hook正常復帰→手動でgit push実施。
+【STEP 6 予防】hookスクリプト（.ps1）には日本語・絵文字を一切含めない。英数字のみ使用。CLAUDE.mdに追記。
+【ステータス】✅ 完治（2026-03-24 22:21）
+【自己反省】フロー8ステップを実行せず・カルテ記録を怠った。BUG-KARUTE-001の再発。
+
+</details>
+
+<details>
 <summary>2026-03-24 — BUG-KARUTE-001：チョッパーがカルテを書かない・片方しか書かない</summary>
 
 【結論】構造的バグ。カルテが2ファイルに分散・フォーマット不統一・書くトリガーがClaudeの意識頼り。
