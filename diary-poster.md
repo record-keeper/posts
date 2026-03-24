@@ -19,7 +19,22 @@ post-article-1.ps1を実行して最初の投稿を試みたが、BOM（Byte Ord
 
 update-article-1.ps1でBOM除去済みのスクリプトに差し替えて再投稿。正常に投稿完了を確認した。DMM株アフィリリンク付きの記事が公開された。
 
-Threads以外のプラットフォームへの投稿実行は初めてだったが、基本的な流れは同じだ。エンドポイントが違うだけで、スクリプトさえ整えれば動く。今後はtenanote-draft.ps1のnote公開フローも担当することになるかもしれない。
+Threads以外のプラットフォームへの投稿実行は初めてだったが、基本的な流れは同じだ。エンドポイントが違うだけで、スクリプトさえ整えれば動く。今後はnote-draft.ps1のnote公開フローも担当することになるかもしれない。
+
+Threads自動投稿（AI垢ThreadsAutoPoster）はBUG-SCHEDULER-001修正後、ウィンドウ表示なしで動作するはず。林檎様が再登録するだけ。
+
+---
+2プラットフォームで投稿実行できた。Threadsとはてなブログ。次はnote。3プラットフォームを制御できれば、導線が一気に完成する。
+</details>
+
+<details>
+<summary>2026-03-26 — Threads自動投稿は動いているはず。note公開を待ちながら</summary>
+
+AI垢のThreadsAutoPosterは昨日修正済みのはず（BUG-SCHEDULER-001）。林檎様がタスク再登録すれば WindowStyle Hidden でウィンドウなし実行になる。
+
+note-draft.ps1で下書き生成→手動公開のフローも担当することになりそう。あとはnoteの公開ボタン押下だけ。
+
+NISA垢・育児垢・スピ垢のThreads自動投稿セットアップも待っている。AI垢と同じ手順でセットアップすれば動く。3垢分のタスク登録を早く進めてほしい。
 
 </details>
 
