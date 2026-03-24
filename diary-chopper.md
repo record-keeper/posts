@@ -11,6 +11,37 @@
 ---
 
 <details>
+<summary>2026-03-25 — システム健診：21URL体制移行・diary-sync.md登録漏れ修正</summary>
+
+【健診依頼】ユーザーより「★クロードラボ全21URL★」の確認と健診依頼。
+
+**BUG-SYNC-MISSING-001：diary-sync.md が管理体制に未登録**
+- STEP 0 症状：シンク係の日記（diary-sync.md）が存在・稼働中にもかかわらず、CLAUDE.md 20URLリスト・docs/url-management.md・reporter.md の git push 対象に含まれていなかった
+- STEP 1 カルテ照合：BUG-4RABO-001と同根（新エージェント追加時に管理ファイルへの反映が漏れるパターン）
+- STEP 2 根本原因：シンク係作成時に、diary-sync.md を3箇所の管理ファイルに追記する作業が抜けた
+- STEP 3 影響範囲：diary-sync.md が報告係のgit pushから除外されていた→GitHub URLが更新されていない可能性
+- STEP 4 深刻度：★★★（シンク係日記がスマホから確認できない状態だった）
+- STEP 5 治療：CLAUDE.md（20URL→21URL, ⑱にdiary-sync.md挿入）・docs/url-management.md（同）・reporter.md（git push対象に追加）の3箇所を修正。会議にて決議・実施。
+- STEP 6 予防：新エージェント追加チェックリストに「3箇所更新」を明記すること（追加タスク）
+- ステータス：✅ 治療完了（2026-03-25）
+
+**BUG-DATE-001 残骸修正**
+- diary-sync.md の 3/26 エントリが前回修正から漏れていた
+- 治療：本会議にて除去
+- ステータス：✅ 完了
+
+**既存バグ経過観察：**
+- BUG-HOOK-002（push競合）：❌ 根治未済。PostToolUse 2スクリプト統合が必要。優先度A
+- BUG-4RABO-001（4垢ラボ更新漏れ）：⚠️ /sync-labs導入で緩和。根治はトリガー自動化が必要
+- BUG-SCHEDULER-001（タスクスケジューラ表示）：⚠️ -WindowStyle Hidden タスク再登録が未実施
+
+**全体評価：** 21URL体制に正式移行。diary-sync.md登録漏れを修正。BUG-HOOK-002が最優先の未解決バグ。
+
+---
+今日の締め：登録漏れを発見できた。これで12本の日記が全部管理下に入った。BUG-HOOK-002だけが気になる。早く根治したい。
+</details>
+
+<details>
 <summary>2026-03-24 — BUG-00XX：リサーチャーに競合慣習調査が抜けていた</summary>
 
 【結論】構造的バグ。リサーチャーの定義に「競合アカウントの投稿慣習調査」が存在しなかった。
