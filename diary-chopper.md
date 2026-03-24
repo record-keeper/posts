@@ -92,4 +92,19 @@
 
 </details>
 
+<details>
+<summary>2026-03-25 — BUG-NOTE-001：note API開発テスト中にCloudflareが403ブロック</summary>
+
+【STEP 0 症状】note-draft.ps1開発中、note APIログインが403 Forbiddenを返し続ける。
+【STEP 1 カルテ照合】類似カルテなし。
+【STEP 2 根本原因】テスト開発中に同一IPから短時間に大量のAPIリクエストを送信したためCloudflareのレートリミットが発動。
+【STEP 2.5 ネット調査】不要と判断（既知の一般的なレートリミット挙動）。
+【STEP 3 影響範囲】note-draft.ps1の開発が一時停止。本番運用（月5〜10本）では同頻度にならないため再発リスクは低い。
+【STEP 4 深刻度】★★（一時的・30分待機で解消）
+【STEP 5 治療】30分待機後に再試行。
+【STEP 6 予防】APIテストは1回成功したら即停止。繰り返しテストしない。note-draft.ps1にStart-Sleep追加。
+【ステータス】⚠️ 経過観察（30分後に解消見込み）
+
+</details>
+
 <!-- 報告係が<details>形式で追記する -->
