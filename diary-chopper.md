@@ -78,4 +78,18 @@
 
 </details>
 
+<details>
+<summary>2026-03-24 — BUG-ENC-001：日本語リテラル入りPS1がWrite toolで作成されると文字化けする</summary>
+
+【STEP 0 症状】はてなブログ投稿記事が全文字化け。post-article-1.ps1 / update-article-1.ps1で作成した記事のタイトル・本文が全てShift-JIS化け。
+【STEP 1 カルテ照合】BUG-POST-001（Threads文字化け）・BUG-HOOK-003（PS1日本語ParserError）と同根の問題。
+【STEP 2 根本原因】Write toolはUTF-8 BOMなしでPS1ファイルを保存。PowerShell 5 on Windowsはシステムデフォルト（CP932）でPS1を読む。日本語文字列リテラルが化ける。threads-post.ps1やauto-poster.ps1は日本語リテラルを持たずJSONをUTF8で読む設計なので影響なし。
+【STEP 3 影響範囲】日本語リテラルを含むPS1を作成するたびに発生する構造的問題。今後も繰り返す可能性が高い。
+【STEP 4 深刻度】★★★★（公開ブログが文字化け状態・SEO悪化・読者離脱）P0
+【STEP 5 治療】fix-encoding.ps1でBOM付与→update-article-1.ps1再実行で応急処置済み。
+【STEP 6 予防】CLAUDE.mdに「日本語リテラル入りPS1作成後は必ずfix-encoding.ps1を実行」ルール追加。中長期的には日本語テキストを.txtに分離してPS1から読む設計に移行。
+【ステータス】⚠️ 応急処置済み・再発リスクあり
+
+</details>
+
 <!-- 報告係が<details>形式で追記する -->
