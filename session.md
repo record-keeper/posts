@@ -1,13 +1,13 @@
 # リアルタイム会話ログ
-最終更新：2026-03-24 22:45 [PC]
+最終更新：2026-03-24 22:50 [PC]
 
 ## 直近の要約
-はてなブログ記事1本目公開済み。DMM株もAccessTrade審査中と判明（3社とも審査中）。ブログのアフィリリンクは審査通過待ち。ユーザーlit.link設定中。
+DMM株AccessTrade提携済み確認。ブログ記事にアフィリリンク設置完了。URL: https://mamoru-dpoint-nisa.hatenadiary.jp/entry/2026/03/24/223259 　ユーザーlit.link設定中。
 
 ---
 
-**めう:** AccessTradeからDMM株　マダシンセイチュウダッタ
+**めう:** DMM株提携できてた・リンクコード共有
 
-**Claude:** nisa.txt修正（DMM株も審査中に訂正）。ブログ記事は公開済みのまま→審査通過次第リンク差し替え。
+**Claude:** ブログ記事のAFFILIATE_LINK_HEREを実際のAccessTradeリンクに差し替え完了。nisa.txtも更新。
 
 ---
