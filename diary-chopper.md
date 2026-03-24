@@ -35,4 +35,30 @@
 
 </details>
 
+<details>
+<summary>2026-03-24 — BUG-HOOK-002：PostToolUse 2スクリプト競合によりpushが2時間止まった</summary>
+
+【結論】根治未済。応急処置のみ。
+【根拠】17:51以降commitなし。手動pushで解消。
+【原因】handoff-sync.ps1とsession-log-sync.ps1を同一PostToolUseトリガーに登録→同時git push→.git/index.lock競合でサイレント失敗の可能性。
+【治療】手動pushで応急処置。根治は2スクリプトのpush処理を統合が必要。
+【予防】PostToolUseに複数のgit操作スクリプトを並列登録しない。
+【深刻度】★★★★（GitHubのURLが古いまま→スマホ連携断絶）
+【ステータス】❌ 根治未済
+
+</details>
+
+<details>
+<summary>2026-03-24 — BUG-KARUTE-001：チョッパーがカルテを書かない・片方しか書かない</summary>
+
+【結論】構造的バグ。カルテが2ファイルに分散・フォーマット不統一・書くトリガーがClaudeの意識頼り。
+【根拠】今セッション：バグ診断→diary-chopper.mdだけ書く・chopper.mdに書かない等が複数回発生。
+【原因】chopper.md（エージェント定義内カルテ）とdiary-chopper.md（GitHub公開カルテ）が別管理。どちらに書くかルール未定義。
+【治療】両ファイルにまとめて記録。CLAUDE.mdにカルテ記録ルールを追加予定。
+【予防】バグ診断→即両ファイルにWrite。diary-chopper.mdを正とし、chopper.mdは索引として整理。
+【深刻度】★★★（カルテがないと再発防止できない・負の連鎖）
+【ステータス】⚠️ 経過観察
+
+</details>
+
 <!-- 報告係が<details>形式で追記する -->
