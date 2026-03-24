@@ -149,4 +149,18 @@
 
 </details>
 
+<details>
+<summary>2026-03-25 — BUG-DATE-001：日記ファイルに明日（3/26）の日付エントリが大量に存在</summary>
+
+【STEP 0 症状】diary-mew.md・diary-librarian.md・diary-keeper.md・diary-researcher.md・diary-analyst.md・diary-writer.md・diary-poster.md・diary-fetcher.md・diary-supervisor.md・diary-reporter.md の全ファイルに「2026-03-26」のエントリが存在。今日はまだ2026-03-25（JST）。
+【STEP 1 カルテ照合】BUG-DIARY-001（報告係起動漏れ）の兄弟バグ。報告係が日付変更処理を実施した際に現在の日付を確認せず、3/25→3/26への日付変更処理を先行実行してしまった。
+【STEP 2 根本原因】reporter.mdの日付変更処理が「今日が3/25か3/26か」を確認せずに「翌日（3/26）のエントリを作成」してしまった。日付変更処理は「日付が実際に変わったとき」のみ実行すべきだが、セッション開始時に確認なしで先行実行された。
+【STEP 3 影響範囲】全diary-*.mdに不正な3/26エントリが存在。日記の日付整合性が崩れる。
+【STEP 4 深刻度】★★★（記録の信頼性低下・3/25の残りの出来事が3/26エントリに誤って記録されるリスク）
+【STEP 5 治療】各diary-*.mdの3/26エントリを削除し、内容を3/25エントリに統合する。
+【STEP 6 予防】reporter.mdに「日付変更処理前にJSTの現在日付を必ず確認してから実行」を明記する。`TZ=Asia/Tokyo date +%Y-%m-%d`で確認してから判断する。
+【ステータス】⚠️ 治療中
+
+</details>
+
 <!-- 報告係が<details>形式で追記する -->
