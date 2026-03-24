@@ -154,4 +154,4 @@
 | note（スピ垢） | ✅ 開設済・初回記事原稿作成済・手動公開待ち |
 | はてなブログ（NISA垢） | ✅ 1本目投稿済（DMM株アフィリリンク付き） |
 | note下書き自動化（note-draft.ps1） | ⚠️ 開発中（下書き生成可・公開は手動1クリック） |
-| 公式LINE | ❌ 未作成 |
+| LINE公式（スピ垢） | ✅ 設定済み（Messaging API・broadcast-line.ps1・line-richmenu.ps1作成済み） |
