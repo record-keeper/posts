@@ -41,7 +41,8 @@
 - [x] AI活用垢：投稿1〜5の自動投稿セットアップ完了（ThreadsAutoPoster 稼働中）
 - [x] afb登録 ✅
 - [x] AccessTrade登録 ✅
-- [x] もしもアフィリエイト登録 ✅
+- [x] もしもアフィリエイト登録 ✅（再確認・登録済み）
+- [ ] もしもで楽天証券申請 ← 次
 - [x] **lit.link 作成完了** ✅（lit.link/hoshi_to_kurasu）
 - [x] スピ垢 表示名変更：星読み師◆るな ✅
 - [x] Threads bio・Instagram bio 設定完了 ✅
