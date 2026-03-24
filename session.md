@@ -1,13 +1,13 @@
 # リアルタイム会話ログ
-最終更新：2026-03-24 22:50 [PC]
+最終更新：2026-03-24 22:55 [PC]
 
 ## 直近の要約
-DMM株AccessTrade提携済み確認。ブログ記事にアフィリリンク設置完了。URL: https://mamoru-dpoint-nisa.hatenadiary.jp/entry/2026/03/24/223259 　ユーザーlit.link設定中。
+4垢ラボ更新完了。NISA：DMM株提携済み・ブログ記事リンク設置済み・Threadsプロフにブログ直貼り推奨。育児：もしも楽天提携済み・Amazon申請中。lit.linkは複数リンク揃ってから作成方針。
 
 ---
 
-**めう:** DMM株提携できてた・リンクコード共有
+**めう:** 4垢ラボ更新して
 
-**Claude:** ブログ記事のAFFILIATE_LINK_HEREを実際のAccessTradeリンクに差し替え完了。nisa.txtも更新。
+**Claude:** nisa.txt・parenting.txt更新完了。現在の正確な状態を反映。
 
 ---
