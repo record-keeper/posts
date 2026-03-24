@@ -10,7 +10,7 @@
 Threads：@hoshi_to_kurasu ✅
 lit.link：lit.link/hoshi_to_kurasu ✅
 note：https://note.com/hoshi_to_kurasu ✅（開設済み・記事準備中）
-LINE公式：作成済み ✅（Messaging APIトークン取得待ち・自動化設定中）
+LINE公式：作成済み ✅（表示名：星読み師◆るな / 既存LINEアカウントで作成 / Messaging APIトークン取得待ち・自動化設定中）
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 【アフィリエイト申請状況】
