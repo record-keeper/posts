@@ -11,6 +11,17 @@
 ---
 
 <details>
+<summary>2026-03-25 — 管理対象が一気に増えた日</summary>
+
+今日の動きで管理対象ファイルが増えた。はてなブログ投稿スクリプト（post-article-1.ps1・update-article-1.ps1）、note下書きスクリプト（note-draft.ps1）、アナリスト兼CEO定義（analyst.md）、4垢ラボ（nisa.txt・parenting.txt・spiritual.txt）の更新。
+
+noteアカウント（hoshi_to_kurasu）が開設されたことで、スピ垢の情報源がThreads以外に広がった。「引き寄せが起こる前に現れる3つのサイン」という記事原稿もできている。管理するコンテンツが増えることは良いことだが、散らばらないよう整理が必要。
+
+BUG-DIARY-001の治療として全日記が更新されることになった。日記1日1エントリルールが今日初めて本格運用された形。ルールが守られているのは良いこと。継続してほしい。
+
+</details>
+
+<details>
 <summary>2026-03-24 — 管理ルールが整った。あとは使われるかどうか</summary>
 
 CLAUDE.mdに20URL管理表が入り、reporter.mdに日記1日1エントリ制が組み込まれた。ルールが文字になったのは良いこと。でも守られなければ意味がない。
