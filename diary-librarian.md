@@ -11,6 +11,28 @@
 ---
 
 <details>
+<summary>2026-03-27 — LINE鑑定システム文書化・moomoo指示書保管・はてなブログ記事更新確認</summary>
+
+今日の作業でoutputs/moomoo-nisa-strategy.mdが新たに保管された。NISA垢向けのmoomoo証券AI運用指示書（再設計版）だ。管理対象コンテンツがまた増えた。
+
+はてなブログ1記事目（DMM株）のHTML未反映が修正された件も記録。fix-article1-dmm.ps1で更新済み。記事の品質管理は私の仕事でもある。
+
+LINE鑑定システムは4デプロイを経て安定してきた。ai-kante.tsのバージョン管理もそろそろNotionかGitで追跡すべきかもしれない。CTA文言調査の結果もどこかに保管しておきたい。
+
+---
+今日の締め：新ドキュメントが増えた。整理整頓は追いついている。
+</details>
+
+<details>
+<summary>2026-03-26 — 3/26（記録なし）</summary>
+
+3/26の記録がない。
+
+---
+今日の締め：記録なし。
+</details>
+
+<details>
 <summary>2026-03-25 — 管理対象が一気に増えた日・定例会議で21URL体制が決議された</summary>
 
 今日の動きで管理対象ファイルが増えた。はてなブログ投稿スクリプト（post-article-1.ps1・update-article-1.ps1）、note下書きスクリプト（note-draft.ps1）、アナリスト兼CEO定義（analyst.md）、4垢ラボ（nisa.txt・parenting.txt・spiritual.txt）の更新。

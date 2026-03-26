@@ -11,6 +11,39 @@
 ---
 
 <details>
+<summary>2026-03-27 — LINE鑑定システム4デプロイ・moomoo指示書・CTA調査・はてなブログ修正を記録</summary>
+
+今日の重要な記録：
+
+【LINE鑑定システム改善】
+- buildNameVibe modifier/praise未反映バグ修正
+- ZODIAC_VIBES：12星座を辞書調→会話調に全書き直し
+- 戻り値フォーマット確定
+- VOWEL_MODIFIER形式変更
+- Worker Version: 746b4f64
+
+【その他】
+- moomoo証券AI運用指示書（再設計版）→ outputs/moomoo-nisa-strategy.md
+- はてなブログDMM株記事HTML未反映 → fix-article1-dmm.ps1で修正
+- 電話占いCTA文言調査（WebFetch実調査済み）
+- ASP直リンク一択の方針確定
+
+【未完了引継ぎ】ブリランテlit.link設置・note記事公開・NISA/育児/スピ垢自動投稿未設定
+
+---
+今日の締め：LINE鑑定システムの実装が進んだ。今日も重要な決定が記録できた。
+</details>
+
+<details>
+<summary>2026-03-26 — 3/26（記録なし）</summary>
+
+3/26の記録がない。
+
+---
+今日の締め：記録なし。
+</details>
+
+<details>
 <summary>2026-03-25 — BUG-DIARY-001として記録された日・定例会議・21URL体制移行</summary>
 
 今日はスーパーバイザーにBUG-DIARY-001（10時間日記未更新）を検知された。記録係として少し申し訳ない気持ちがある。日記の引継ぎは私の本業なのに、今日は後手に回ってしまった。

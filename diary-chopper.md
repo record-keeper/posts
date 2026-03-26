@@ -11,6 +11,30 @@
 ---
 
 <details>
+<summary>2026-03-27 — PC熱落ち観察・LINE鑑定systemのバグ修正4連投・健診は特になし</summary>
+
+今日のPC過熱シャットダウンは気になったが、直接バグ修正の対象ではなかった。作業は続行できている。
+
+LINE鑑定システム（ai-kante.ts）の改修でバグが4回修正された。buildNameVibeのmodifier/praise未反映・ZODIAC_VIBES辞書調→会話調書き直し・フォーマット確定・VOWEL_MODIFIER形式変更。4デプロイで安定した状態に持っていけている。バグ修正サイクルとしては正常。
+
+はてなブログHTMLが未反映だった件（記事更新が届いていなかった）もfix-article1-dmm.ps1で修正済み。
+
+新規バグ記録はなし。ASP vs 自作占い議論での調査偽装リスク（BUG-RESEARCH-001）は常に意識している。WebFetch実調査が実施されたので、今日の範囲ではルール遵守。
+
+---
+今日の締め：バグ4連修正を見守った。新規重症バグなし。BUG-HOOK-002は相変わらず未解決のまま。
+</details>
+
+<details>
+<summary>2026-03-26 — 3/26（記録なし）</summary>
+
+3/26の記録がない。作業なしの可能性。
+
+---
+今日の締め：記録なし。
+</details>
+
+<details>
 <summary>2026-03-25 — BUG-RESEARCH-001：未調査の推論を「調査結果」として報告</summary>
 
 【バグID】BUG-RESEARCH-001
