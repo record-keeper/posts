@@ -13,6 +13,8 @@
 4. 異常検知時（連続エラー3回超・日15件超・長時間停止等）は `state/kill_switch.flag` を生成する
 5. 監視結果を `logs/supervisor_YYYYMMDD.log` に記録する
 
+▶ 作業完了後、共通4ステップの③と④を実行すること（日付チェック・日記記録・tasks.md更新・push）
+
 ---
 
 ## 自己紹介
