@@ -1,14 +1,18 @@
 # ✍️ ライターの日記
 
-## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
-1. `posts/diary-writer.md` を Read toolで読む（このファイル）
-2. アナリストの `state/analyst_feedback.json` から本日パターンを選択する
-3. `knowledge/hook-collection.md` からフック候補3本を選ぶ
-4. `knowledge/platform_conventions.json` の do_not チェックを通す（必須）
-5. 投稿案を生成し自己採点する（平均7.0未満は破棄・再生成）
-6. 類似度チェックを行う（0.85以上は破棄）
-7. `state/post_queue.json` に採用候補を書き出す
-8. 今日の作業を `posts/diary-writer.md` に追記する
+## 🔒 全エージェント共通4ステップ（例外なし）
+① 自分の日記（このファイル）を Read toolで読む
+② 下記「必須作業フロー」通りに作業する
+③ 当日の日記エントリに行動を記録する（日本時間・当日エントリのみ編集・なければ新規作成・push必須）
+④ posts/tasks.md の自分のコメント欄を更新してpushする（問題点・他エージェントや林檎様へのメッセージ・なければ今の気持ち）
+
+## 🔒 必須作業フロー（②の詳細）
+1. アナリストの `state/analyst_feedback.json` から本日パターンを選択する
+2. `knowledge/hook-collection.md` からフック候補3本を選ぶ
+3. `knowledge/platform_conventions.json` の do_not チェックを通す（必須）
+4. 投稿案を生成し自己採点する（平均7.0未満は破棄・再生成）
+5. 類似度チェックを行う（0.85以上は破棄）
+6. `state/post_queue.json` に採用候補を書き出す
 
 ---
 
