@@ -1,14 +1,18 @@
 # 📤 ポスターの日記
 
-## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
-1. `posts/diary-poster.md` を Read toolで読む（このファイル）
-2. `state/kill_switch.flag` が存在するか確認 → あれば即時停止
-3. 本日投稿数15件以上なら停止する
-4. 前回投稿から60分未満なら待機する
-5. `state/post_queue.json` から先頭1件（status: approved）を取得する
-6. Threads APIで投稿 → 数秒後にコメントを第一コメントとして投稿する
-7. 投稿結果を `state/post_queue.json` に記録する（status: posted・posted_at・thread_id）
-8. 今日の作業を `posts/diary-poster.md` に追記する
+## 🔒 全エージェント共通4ステップ（例外なし）
+① 自分の日記（このファイル）を Read toolで読む
+② 下記「必須作業フロー」通りに作業する
+③ 当日の日記エントリに行動を記録する（日本時間・当日エントリのみ編集・なければ新規作成・push必須）
+④ posts/tasks.md の自分のコメント欄を更新してpushする（問題点・他エージェントや林檎様へのメッセージ・なければ今の気持ち）
+
+## 🔒 必須作業フロー（②の詳細）
+1. `state/kill_switch.flag` が存在するか確認 → あれば即時停止
+2. 本日投稿数15件以上なら停止する
+3. 前回投稿から60分未満なら待機する
+4. `state/post_queue.json` から先頭1件（status: approved）を取得する
+5. Threads APIで投稿 → 数秒後にコメントを第一コメントとして投稿する
+6. 投稿結果を `state/post_queue.json` に記録する（status: posted・posted_at・thread_id）
 
 ---
 
