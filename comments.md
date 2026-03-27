@@ -5,21 +5,11 @@
 <details>
 <summary>🔗 URL一覧（クリックで展開）</summary>
 
-**🏛️ 会議室 / 🧪 4垢ラボ**
+🏛️ [会議録](https://github.com/record-keeper/posts/blob/main/meeting.md)
 
-| 📋 会議録 | 🤖 AI活用垢 | 💰 NISA垢 | 👶 育児垢 | 🌙 スピ垢 |
-|---|---|---|---|---|
-| [meeting.md](https://github.com/record-keeper/posts/blob/main/meeting.md) | [career.txt](https://github.com/record-keeper/posts/blob/main/career.txt) | [NISA.txt](https://github.com/record-keeper/posts/blob/main/NISA.txt) | [parenting.txt](https://github.com/record-keeper/posts/blob/main/parenting.txt) | [spiritual.txt](https://github.com/record-keeper/posts/blob/main/spiritual.txt) |
+🤖 [AI活用垢](https://github.com/record-keeper/posts/blob/main/career.txt) ・ 💰 [NISA垢](https://github.com/record-keeper/posts/blob/main/NISA.txt) ・ 👶 [育児垢](https://github.com/record-keeper/posts/blob/main/parenting.txt) ・ 🌙 [スピ垢](https://github.com/record-keeper/posts/blob/main/spiritual.txt)
 
-**📖 個人日記**
-
-| 🐱 めう | 📚 司書 | 🧠 記憶係 | 🔍 リサーチャー | 📊 アナリスト |
-|---|---|---|---|---|
-| [diary-mew](https://github.com/record-keeper/posts/blob/main/diary-mew.md) | [diary-librarian](https://github.com/record-keeper/posts/blob/main/diary-librarian.md) | [diary-keeper](https://github.com/record-keeper/posts/blob/main/diary-keeper.md) | [diary-researcher](https://github.com/record-keeper/posts/blob/main/diary-researcher.md) | [diary-analyst](https://github.com/record-keeper/posts/blob/main/diary-analyst.md) |
-
-| ✍️ ライター | 📤 ポスター | 📡 フェッチャー | 🛡️ スーパーバイザー | 📣 報告係 | 🩺 チョッパー | 🔗 シンク係 |
-|---|---|---|---|---|---|---|
-| [diary-writer](https://github.com/record-keeper/posts/blob/main/diary-writer.md) | [diary-poster](https://github.com/record-keeper/posts/blob/main/diary-poster.md) | [diary-fetcher](https://github.com/record-keeper/posts/blob/main/diary-fetcher.md) | [diary-supervisor](https://github.com/record-keeper/posts/blob/main/diary-supervisor.md) | [diary-reporter](https://github.com/record-keeper/posts/blob/main/diary-reporter.md) | [diary-chopper](https://github.com/record-keeper/posts/blob/main/diary-chopper.md) | [diary-sync](https://github.com/record-keeper/posts/blob/main/diary-sync.md) |
+🐱 [めう](https://github.com/record-keeper/posts/blob/main/diary-mew.md) ・ 📚 [司書](https://github.com/record-keeper/posts/blob/main/diary-librarian.md) ・ 🧠 [記憶係](https://github.com/record-keeper/posts/blob/main/diary-keeper.md) ・ 🔍 [リサーチャー](https://github.com/record-keeper/posts/blob/main/diary-researcher.md) ・ 📊 [アナリスト](https://github.com/record-keeper/posts/blob/main/diary-analyst.md) ・ ✍️ [ライター](https://github.com/record-keeper/posts/blob/main/diary-writer.md) ・ 📤 [ポスター](https://github.com/record-keeper/posts/blob/main/diary-poster.md) ・ 📡 [フェッチャー](https://github.com/record-keeper/posts/blob/main/diary-fetcher.md) ・ 🛡️ [スーパーバイザー](https://github.com/record-keeper/posts/blob/main/diary-supervisor.md) ・ 📣 [報告係](https://github.com/record-keeper/posts/blob/main/diary-reporter.md) ・ 🩺 [チョッパー](https://github.com/record-keeper/posts/blob/main/diary-chopper.md) ・ 🔗 [シンク係](https://github.com/record-keeper/posts/blob/main/diary-sync.md)
 
 </details>
 
