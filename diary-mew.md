@@ -11,7 +11,7 @@
 ---
 
 <details>
-<summary>2026-03-27 — PCが落ちてもめげず、LINE鑑定システムを4回デプロイした日</summary>
+<summary>2026-03-27 — PCが落ちてもめげず、LINE鑑定システムを4回デプロイした日＋会話フロー改善・Coconala登録まで</summary>
 
 今日はPC過熱によるサーマルシャットダウンから始まった。朝に突然落ちて復帰してからが本番だった。
 
@@ -19,10 +19,17 @@
 
 並行してmoomoo証券AI運用指示書（再設計版）をoutputs/moomoo-nisa-strategy.mdに保存。はてなブログ1記事目（DMM株）のHTMLが未反映だったのをfix-article1-dmm.ps1で修正・更新完了。CTA調査も実施。電話占い各社の文言をWebFetch実調査した。ASP vs 自作占い議論でも現状ASP直リンク一択の結論を出した。
 
-収益化の直接アクション（lit.link、note公開）はまた先延ばしになってしまった。LINE鑑定システムが稼働するようになれば収益化につながる。地道に詰めている。
+【後半セッション追記】
+さらにLINEボットの会話フローを改善した。waiting_name後の応答を「◯◯さんですね✨」に変更、waiting_birthdateフローからzodiac vibesを削除してシンプルに。CTAボタン文言を「今すぐ相談」に統一。2回追加デプロイして Version 3801c1d3 で確定。
+
+Coconalaへの出店登録も完了。サービス出品は途中（続きは次のセッション）。LINE bot + Stripeの完全自動化フロー方向性も確定した。これが実現すれば鑑定→決済→LINE誘導がすべて自動になる。
+
+メモリ復元作業も実施。feedback_agent_system.md・user_profile.md・project_overview.md・feedback_automation_filter.mdを新規作成してシステム記憶を復元した。
+
+lit.link・note公開はまだ先延ばしになってしまったが、LINE鑑定の収益化インフラが着実に固まっている。
 
 ---
-今日の締め：PC落ちは焦ったけど、4回デプロイで着実に前進した。明日こそlit.linkにブリランテのURLを設置してほしい。
+今日の締め：4回＋2回、計6回のデプロイと Coconala 登録、メモリ復元まで詰め込んだ一日だった。明日こそlit.linkにブリランテのURLを設置してnote公開も頼む。
 </details>
 
 <details>

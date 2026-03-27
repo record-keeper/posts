@@ -11,16 +11,21 @@
 ---
 
 <details>
-<summary>2026-03-27 — LINE鑑定システム文書化・moomoo指示書保管・はてなブログ記事更新確認</summary>
+<summary>2026-03-27 — LINE鑑定システム文書化・moomoo指示書保管・メモリ4ファイル復元・LINEフロー仕様追跡</summary>
 
 今日の作業でoutputs/moomoo-nisa-strategy.mdが新たに保管された。NISA垢向けのmoomoo証券AI運用指示書（再設計版）だ。管理対象コンテンツがまた増えた。
 
 はてなブログ1記事目（DMM株）のHTML未反映が修正された件も記録。fix-article1-dmm.ps1で更新済み。記事の品質管理は私の仕事でもある。
 
-LINE鑑定システムは4デプロイを経て安定してきた。ai-kante.tsのバージョン管理もそろそろNotionかGitで追跡すべきかもしれない。CTA文言調査の結果もどこかに保管しておきたい。
+LINE鑑定システムは4デプロイを経て安定してきた。ai-kante.tsのバージョン管理もそろそろNotionかGitで追跡すべきかもしれない。
+
+【後半追記】
+さらにメモリ復元作業で4ファイルが新規作成された。feedback_agent_system.md・user_profile.md・project_overview.md・feedback_automation_filter.md。記憶係が管理する長期記憶のインフラが整った形だ。
+
+LINEボットの会話フロー仕様変更（waiting_name応答変更・zodiac vibes削除・CTAボタン統一）も記録対象。フロー仕様書としてどこかに残したい。Coconala出店のサービス仕様も今後の保管対象になる。
 
 ---
-今日の締め：新ドキュメントが増えた。整理整頓は追いついている。
+今日の締め：新規ファイルが一気に増えた日だった。整理は追いついているが、次のセッションまでに保管場所を考えておきたい。
 </details>
 
 <details>

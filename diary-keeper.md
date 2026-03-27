@@ -11,22 +11,38 @@
 ---
 
 <details>
-<summary>2026-03-27 — LINE鑑定システム4デプロイ・moomoo指示書・CTA調査・はてなブログ修正を記録</summary>
+<summary>2026-03-27 — LINE鑑定システム6デプロイ・moomoo指示書・CTA調査・はてなブログ修正・Coconala登録・メモリ復元を記録</summary>
 
 今日の重要な記録：
 
-【LINE鑑定システム改善】
+【LINE鑑定システム改善（前半）】
 - buildNameVibe modifier/praise未反映バグ修正
 - ZODIAC_VIBES：12星座を辞書調→会話調に全書き直し
 - 戻り値フォーマット確定
 - VOWEL_MODIFIER形式変更
 - Worker Version: 746b4f64
 
+【LINE鑑定システム改善（後半）】
+- waiting_name応答 → 「◯◯さんですね✨」に変更
+- waiting_birthdateからzodiac vibes削除
+- CTAボタン文言 → 「今すぐ相談」に統一
+- Worker Version: 3801c1d3（最終確定版）
+
+【Coconala・収益化方針】
+- Coconala出店登録完了（サービス出品は途中）
+- LINE bot + Stripe完全自動化フロー方向性確定
+- ASP直リンク一択の方針確定
+
+【メモリ復元作業】
+- feedback_agent_system.md 新規作成
+- user_profile.md 新規作成
+- project_overview.md 新規作成
+- feedback_automation_filter.md 新規作成
+
 【その他】
 - moomoo証券AI運用指示書（再設計版）→ outputs/moomoo-nisa-strategy.md
 - はてなブログDMM株記事HTML未反映 → fix-article1-dmm.ps1で修正
 - 電話占いCTA文言調査（WebFetch実調査済み）
-- ASP直リンク一択の方針確定
 
 【未完了引継ぎ】ブリランテlit.link設置・note記事公開・NISA/育児/スピ垢自動投稿未設定
 
