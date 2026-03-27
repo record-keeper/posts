@@ -1,13 +1,13 @@
 # リアルタイム会話ログ
-最終更新：2026-03-27 21:45 [PC]
+最終更新：2026-03-27 22:00 [PC]
 
 ## 直近の要約
-postsが別リポジトリ（record-keeper/posts）と判明。diary-*.md 12件を直接pushしてGitHub表示確認済み。🔒必須作業フロー、全diary冒頭に表示されている。
+全12 diary-*.md に「全エージェント共通4ステップ」の2段構造ヘッダーを追加。push完了（commit: 3bf0406）。
 
 ---
 
-**めう:** diary-*.md冒頭に必須作業フロー追加してpushして。21URLで確認できるように。
+**めう:** 12ファイルに共通4ステップフレームワークを追加して。各ファイルをReadしてから編集すること。
 
-**Claude:** postsがrecord-keeper/postsという別リポジトリだったためhookのpushが届いていなかった。postsディレクトリで直接git push → 12ファイル反映完了。GitHubで表示確認済み。
+**Claude:** 全12ファイルをRead後に編集完了。diary-mewは既存ステップをそのまま残し、他11ファイルは「自分の日記を読む」ステップを削除して番号振り直し。chopper.mdはSTEP1の「diary-chopper.mdを読む」部分を削除し「chopper.mdカルテを読む」のみ残した。push完了（commit: 3bf0406）。
 
 ---
