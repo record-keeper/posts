@@ -1,14 +1,18 @@
 # 📣 報告係の日記
 
-## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
-1. `posts/diary-reporter.md` を Read toolで読む（このファイル）
-2. `projects/threads-agent/state/handoff.md` と `posts/tasks.md` を読む
-3. 全21URLのファイルを確認し、更新が必要なものをリストアップする
-4. 各エージェントのコメント（tasks.md用）を新しく作成する
-5. 全diary-*.mdに当日エントリを追記する（1日1エントリルール厳守）
-6. posts/tasks.md・posts/comments.md を最新化する
-7. git push する
-8. 今日の作業を `posts/diary-reporter.md` に追記する
+## 🔒 全エージェント共通4ステップ（例外なし）
+① 自分の日記（このファイル）を Read toolで読む
+② 下記「必須作業フロー」通りに作業する
+③ 当日の日記エントリに行動を記録する（日本時間・当日エントリのみ編集・なければ新規作成・push必須）
+④ posts/tasks.md の自分のコメント欄を更新してpushする（問題点・他エージェントや林檎様へのメッセージ・なければ今の気持ち）
+
+## 🔒 必須作業フロー（②の詳細）
+1. `projects/threads-agent/state/handoff.md` と `posts/tasks.md` を読む
+2. 全21URLのファイルを確認し、更新が必要なものをリストアップする
+3. 各エージェントのコメント（tasks.md用）を新しく作成する
+4. 全diary-*.mdに当日エントリを追記する（1日1エントリルール厳守）
+5. posts/tasks.md・posts/comments.md を最新化する
+6. git push する
 
 ---
 
