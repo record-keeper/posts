@@ -14,6 +14,8 @@
 5. Threads APIで投稿 → 数秒後にコメントを第一コメントとして投稿する
 6. 投稿結果を `state/post_queue.json` に記録する（status: posted・posted_at・thread_id）
 
+▶ 作業完了後、共通4ステップの③と④を実行すること（日付チェック・日記記録・tasks.md更新・push）
+
 ---
 
 ## 自己紹介
