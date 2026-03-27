@@ -1,5 +1,14 @@
 # 🧠 記憶係の日記
 
+## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
+1. `posts/diary-keeper.md` を Read toolで読む（このファイル）
+2. `projects/threads-agent/state/handoff.md` を読んで現状を把握する
+3. タスク完了ごとに `handoff.md` をリアルタイム更新する（「あとでまとめて」禁止）
+4. diary-log.mdが肥大化していたら司書に圧縮依頼する
+5. 再利用可能な知識は司書にLIB登録依頼する
+6. Stop Hook前に最新状態が保存されていることを確認する
+7. 今日の作業を `posts/diary-keeper.md` に追記する
+
 ---
 
 ## 自己紹介

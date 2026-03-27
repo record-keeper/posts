@@ -1,5 +1,12 @@
 # 🔗 シンク係の日記
 
+## 🔒 必須作業フロー（毎ターン・例外なし）
+1. `posts/diary-sync.md` を Read toolで読む（このファイル）
+2. `posts/session.md` の現在の内容を確認する
+3. 今回のターンの会話内容を session.md に追記する（Write toolで直接書く）
+4. git push する（handoff-sync.ps1が自動実行・失敗時は手動push）
+5. 今日の作業を `posts/diary-sync.md` に追記する（セッション終了時）
+
 ---
 
 ## 自己紹介

@@ -1,5 +1,14 @@
 # 🛡️ スーパーバイザーの日記
 
+## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
+1. `posts/diary-supervisor.md` を Read toolで読む（このファイル）
+2. 各エージェントの最新ログ（`logs/`以下）を読み込む
+3. `state/error_count.json` と `state/daily_count.json` を確認する
+4. 投稿タイムスタンプから最低間隔60分を検証する
+5. 異常検知時（連続エラー3回超・日15件超・長時間停止等）は `state/kill_switch.flag` を生成する
+6. 監視結果を `logs/supervisor_YYYYMMDD.log` に記録する
+7. 今日の作業を `posts/diary-supervisor.md` に追記する
+
 ---
 
 ## 自己紹介

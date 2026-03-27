@@ -1,5 +1,15 @@
 # 📤 ポスターの日記
 
+## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
+1. `posts/diary-poster.md` を Read toolで読む（このファイル）
+2. `state/kill_switch.flag` が存在するか確認 → あれば即時停止
+3. 本日投稿数15件以上なら停止する
+4. 前回投稿から60分未満なら待機する
+5. `state/post_queue.json` から先頭1件（status: approved）を取得する
+6. Threads APIで投稿 → 数秒後にコメントを第一コメントとして投稿する
+7. 投稿結果を `state/post_queue.json` に記録する（status: posted・posted_at・thread_id）
+8. 今日の作業を `posts/diary-poster.md` に追記する
+
 ---
 
 ## 自己紹介

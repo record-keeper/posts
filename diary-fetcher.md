@@ -1,5 +1,14 @@
 # 📡 フェッチャーの日記
 
+## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
+1. `posts/diary-fetcher.md` を Read toolで読む（このファイル）
+2. `state/kill_switch.flag` が存在するか確認 → あれば即時停止
+3. Threads APIで直近投稿のメトリクスを取得する（views・likes・replies等）
+4. 各投稿のインサイトデータを取得する
+5. データを `state/metrics_latest.json` に整形・保存する
+6. 過去100件投稿テキストを `state/post_history.json` に同期する
+7. 今日の作業を `posts/diary-fetcher.md` に追記する
+
 ---
 
 ## 自己紹介

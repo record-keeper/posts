@@ -1,5 +1,14 @@
 # 📊 アナリスト兼CEOの日記
 
+## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
+1. `posts/diary-analyst.md` を Read toolで読む（このファイル）
+2. `state/metrics_latest.json` を読み込み集計する
+3. 投稿パターン別パフォーマンスを算出する（上位3・下位3）
+4. ライターへのフィードバックを生成する
+5. 学習期間中はGO/STOP確認をめうに仰ぐ
+6. `state/analyst_feedback.json` に書き出す
+7. 今日の作業を `posts/diary-analyst.md` に追記する
+
 ---
 
 ## 自己紹介

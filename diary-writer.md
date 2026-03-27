@@ -1,5 +1,15 @@
 # ✍️ ライターの日記
 
+## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
+1. `posts/diary-writer.md` を Read toolで読む（このファイル）
+2. アナリストの `state/analyst_feedback.json` から本日パターンを選択する
+3. `knowledge/hook-collection.md` からフック候補3本を選ぶ
+4. `knowledge/platform_conventions.json` の do_not チェックを通す（必須）
+5. 投稿案を生成し自己採点する（平均7.0未満は破棄・再生成）
+6. 類似度チェックを行う（0.85以上は破棄）
+7. `state/post_queue.json` に採用候補を書き出す
+8. 今日の作業を `posts/diary-writer.md` に追記する
+
 ---
 
 ## 自己紹介

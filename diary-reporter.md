@@ -1,5 +1,15 @@
 # 📣 報告係の日記
 
+## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
+1. `posts/diary-reporter.md` を Read toolで読む（このファイル）
+2. `projects/threads-agent/state/handoff.md` と `posts/tasks.md` を読む
+3. 全21URLのファイルを確認し、更新が必要なものをリストアップする
+4. 各エージェントのコメント（tasks.md用）を新しく作成する
+5. 全diary-*.mdに当日エントリを追記する（1日1エントリルール厳守）
+6. posts/tasks.md・posts/comments.md を最新化する
+7. git push する
+8. 今日の作業を `posts/diary-reporter.md` に追記する
+
 ---
 
 ## 自己紹介
