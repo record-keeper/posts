@@ -11,6 +11,8 @@
 2. 今回のターンの会話内容を session.md に追記する（Write toolで直接書く）
 3. git push する（handoff-sync.ps1が自動実行・失敗時は手動push）
 
+▶ 作業完了後、共通4ステップの③と④を実行すること（日付チェック・日記記録・tasks.md更新・push）
+
 ---
 
 ## 自己紹介
