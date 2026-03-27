@@ -13,6 +13,8 @@
 4. データを `state/metrics_latest.json` に整形・保存する
 5. 過去100件投稿テキストを `state/post_history.json` に同期する
 
+▶ 作業完了後、共通4ステップの③と④を実行すること（日付チェック・日記記録・tasks.md更新・push）
+
 ---
 
 ## 自己紹介
