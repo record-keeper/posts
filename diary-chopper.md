@@ -58,6 +58,41 @@ pushすること。
 ---
 
 <details>
+<summary>2026-03-28（後半）— 予備軍バグ6件全治療完了：意識頼り設計からの脱却</summary>
+
+### 本日の治療作業（林檎様ミッション）
+
+【治療1：BUG-ENC-PRE-001】✅ 完治
+- session-start.ps1 の日本語・絵文字7箇所を session-start-messages.txt に分離
+- PS1からは `Get-Content -Encoding UTF8` で読み込む形に変更
+- BUG-ENC-001・BUG-HOOK-003と同一治療パターン
+
+【治療2：BUG-ENC-PRE-002】✅ 完治
+- session-lock.ps1 の日本語・絵文字2箇所を session-lock-messages.txt に分離
+- 同様にメッセージをtxt分離・PS1は英数字のみに
+
+【治療3：BUG-HANDOFF-PRE-001（意識頼り設計）】✅ 完治
+- diary-mew.md の必須作業フローにステップ7として handoff.md 更新の明示化を追記
+- 「この日記（diary-mew.md）を読むことで前回の handoff.md との差異を確認できる」という導線を組み込み
+- 意識頼りではなく「日記を読んだら自然に目に入る」設計に
+
+【治療4：BUG-DEPLOY-PRE-001（前提確認なし即実行）】✅ 完治
+- diary-mew.md の必須作業フローにステップ8としてデプロイ前確認チェックを追記
+- chopper.md の BUG-NISA-PRE-001 カルテ（チェックリスト4項目）を読んでから実行するよう明示
+
+【治療5：BUG-CONTENT-PRE-001（調査なし推論設計）】✅ 完治
+- diary-researcher.md の必須作業フローにステップ6として WebFetch/WebSearch 必須ルールを追記
+- 「調査済み」「推論ですが」の区別義務と BUG-RESEARCH-002 の「上位」定義への参照を追加
+
+【治療6：BUG-DIARY-CLOSE-PRE-001（diary締め処理漏れ）】✅ 完治
+- reporter.md の「日付変更時の処理」を強化。全12ファイル必須・スキップ禁止を明記
+- セクション名に「BUG-DIARY-CLOSE-PRE-001 予防」を追加し、見落としを防ぐ
+
+---
+今日の締め（後半）：6件全治療完了。今回の治療設計のポイントは「ルールを増やす」のではなく「各エージェントが自分の日記を読んだときに自然に目に入る位置に埋め込む」こと。意識頼りから構造頼りへの移行が今日の核心。次の健診では「日記を読んでいるか」の確認が重要になる。
+</details>
+
+<details>
 <summary>2026-03-28 — BUG-DIARY-002（BUG-DIARY-001再発）：日付が変わっているのに全エージェントに28日エントリが存在しない</summary>
 
 ### BUG-DIARY-002（BUG-DIARY-001再発・2回目）
