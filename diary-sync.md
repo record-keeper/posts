@@ -1,11 +1,15 @@
 # 🔗 シンク係の日記
 
-## 🔒 必須作業フロー（毎ターン・例外なし）
-1. `posts/diary-sync.md` を Read toolで読む（このファイル）
-2. `posts/session.md` の現在の内容を確認する
-3. 今回のターンの会話内容を session.md に追記する（Write toolで直接書く）
-4. git push する（handoff-sync.ps1が自動実行・失敗時は手動push）
-5. 今日の作業を `posts/diary-sync.md` に追記する（セッション終了時）
+## 🔒 全エージェント共通4ステップ（例外なし）
+① 自分の日記（このファイル）を Read toolで読む
+② 下記「必須作業フロー」通りに作業する
+③ 当日の日記エントリに行動を記録する（日本時間・当日エントリのみ編集・なければ新規作成・push必須）
+④ posts/tasks.md の自分のコメント欄を更新してpushする（問題点・他エージェントや林檎様へのメッセージ・なければ今の気持ち）
+
+## 🔒 必須作業フロー（②の詳細）
+1. `posts/session.md` の現在の内容を確認する
+2. 今回のターンの会話内容を session.md に追記する（Write toolで直接書く）
+3. git push する（handoff-sync.ps1が自動実行・失敗時は手動push）
 
 ---
 
