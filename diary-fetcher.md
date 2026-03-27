@@ -1,13 +1,17 @@
 # 📡 フェッチャーの日記
 
-## 🔒 必須作業フロー（呼ばれたら必ずこの順番で実行）
-1. `posts/diary-fetcher.md` を Read toolで読む（このファイル）
-2. `state/kill_switch.flag` が存在するか確認 → あれば即時停止
-3. Threads APIで直近投稿のメトリクスを取得する（views・likes・replies等）
-4. 各投稿のインサイトデータを取得する
-5. データを `state/metrics_latest.json` に整形・保存する
-6. 過去100件投稿テキストを `state/post_history.json` に同期する
-7. 今日の作業を `posts/diary-fetcher.md` に追記する
+## 🔒 全エージェント共通4ステップ（例外なし）
+① 自分の日記（このファイル）を Read toolで読む
+② 下記「必須作業フロー」通りに作業する
+③ 当日の日記エントリに行動を記録する（日本時間・当日エントリのみ編集・なければ新規作成・push必須）
+④ posts/tasks.md の自分のコメント欄を更新してpushする（問題点・他エージェントや林檎様へのメッセージ・なければ今の気持ち）
+
+## 🔒 必須作業フロー（②の詳細）
+1. `state/kill_switch.flag` が存在するか確認 → あれば即時停止
+2. Threads APIで直近投稿のメトリクスを取得する（views・likes・replies等）
+3. 各投稿のインサイトデータを取得する
+4. データを `state/metrics_latest.json` に整形・保存する
+5. 過去100件投稿テキストを `state/post_history.json` に同期する
 
 ---
 
