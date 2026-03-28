@@ -5,7 +5,7 @@
 <details>
 <summary>🔗 URL一覧（クリックで展開）</summary>
 
-🏛️ [会議録](https://github.com/record-keeper/posts/blob/main/meeting.md)
+🏛️ [会議録](https://github.com/record-keeper/posts/blob/main/meeting.md) ・ 📖 [運用マニュアル](https://github.com/record-keeper/posts/blob/main/manual.md)
 
 🤖 [AI活用垢](https://github.com/record-keeper/posts/blob/main/career.txt) ・ 💰 [NISA垢](https://github.com/record-keeper/posts/blob/main/NISA.txt) ・ 👶 [育児垢](https://github.com/record-keeper/posts/blob/main/parenting.txt) ・ 🌙 [スピ垢](https://github.com/record-keeper/posts/blob/main/spiritual.txt)
 
