@@ -20,6 +20,7 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 【管理URL一覧】（一目で現状把握）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📖 運用マニュアル：https://github.com/record-keeper/posts/blob/main/nisa-manual.md
 Threads：https://www.threads.net/@mamoru_nisa_room
 はてなブログ：https://mamoru-dpoint-nisa.hatenadiary.jp/
   記事1：https://mamoru-dpoint-nisa.hatenadiary.jp/entry/2026/03/24/223259
