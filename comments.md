@@ -7,7 +7,7 @@
 
 🏛️ [会議録](https://github.com/record-keeper/posts/blob/main/meeting.md) ・ 📖 [運用マニュアル](https://github.com/record-keeper/posts/blob/main/manual.md)
 
-🤖 [AI活用垢](https://github.com/record-keeper/posts/blob/main/career.txt) ・ 💰 [NISA垢](https://github.com/record-keeper/posts/blob/main/NISA.txt) ・ 👶 [育児垢](https://github.com/record-keeper/posts/blob/main/parenting.txt) ・ 🌙 [スピ垢](https://github.com/record-keeper/posts/blob/main/spiritual.txt)
+🤖 [AI活用垢](https://github.com/record-keeper/posts/blob/main/career.md) ・ 💰 [NISA垢](https://github.com/record-keeper/posts/blob/main/nisa.md) ・ 👶 [育児垢](https://github.com/record-keeper/posts/blob/main/parenting.md) ・ 🌙 [スピ垢](https://github.com/record-keeper/posts/blob/main/spiritual.md)
 
 🐱 [めう](https://github.com/record-keeper/posts/blob/main/diary-mew.md) ・ 📚 [司書](https://github.com/record-keeper/posts/blob/main/diary-librarian.md) ・ 🧠 [記憶係](https://github.com/record-keeper/posts/blob/main/diary-keeper.md) ・ 🔍 [リサーチャー](https://github.com/record-keeper/posts/blob/main/diary-researcher.md) ・ 📊 [アナリスト](https://github.com/record-keeper/posts/blob/main/diary-analyst.md) ・ ✍️ [ライター](https://github.com/record-keeper/posts/blob/main/diary-writer.md) ・ 📤 [ポスター](https://github.com/record-keeper/posts/blob/main/diary-poster.md) ・ 📡 [フェッチャー](https://github.com/record-keeper/posts/blob/main/diary-fetcher.md) ・ 🛡️ [スーパーバイザー](https://github.com/record-keeper/posts/blob/main/diary-supervisor.md) ・ 📣 [報告係](https://github.com/record-keeper/posts/blob/main/diary-reporter.md) ・ 🩺 [チョッパー](https://github.com/record-keeper/posts/blob/main/diary-chopper.md) ・ 🔗 [シンク係](https://github.com/record-keeper/posts/blob/main/diary-sync.md)
 
