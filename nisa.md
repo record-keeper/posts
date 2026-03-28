@@ -23,12 +23,6 @@
 📖 運用マニュアル：https://github.com/record-keeper/posts/blob/main/nisa-manual.md
 Threads：https://www.threads.net/@mamoru_nisa_room
 はてなブログ：https://mamoru-dpoint-nisa.hatenadiary.jp/
-  記事1：https://mamoru-dpoint-nisa.hatenadiary.jp/entry/2026/03/24/223259
-    タイトル：dポイント持ちがNISAを始めるなら？証券口座の選び方と最初の1口座
-    アフィリ：DMM株（¥4,000）✅設置済み
-  記事2：https://mamoru-dpoint-nisa.hatenadiary.jp/entry/2026/03/25/231929
-    タイトル：NISA積立だけで本当にいい？資産運用の無料相談を使ってみた結果
-    アフィリ：ウェルスコーチ（¥15,000）✅設置済み
 lit.link：未設置（複数リンクが揃ってから作成予定）
 自動投稿：スケジューラ未設定（前提条件確認後に開始）
 
