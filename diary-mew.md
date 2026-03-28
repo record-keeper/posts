@@ -59,7 +59,7 @@ pushすること。
    - `○○いぬ完了` → 4垢ラボの手動投稿セクションを「✅ 完了済み」に更新 → push
    - `○○いぬ保留` → 4垢ラボに「⏳ 保留中」と反映 → push
    - `○○いぬ却下` → 4垢ラボから手動投稿セクションを削除 → push
-   - ※ 合言葉の一覧は各4垢ラボファイル（career.txt / nisa.txt / parenting.txt / spiritual.txt）の冒頭に記載
+   - ※ 合言葉の一覧は各4垢ラボファイル（career.md / nisa.md / parenting.md / spiritual.md）の冒頭に記載
 
 ▶ 作業完了後、共通4ステップの③と④を実行すること（日付チェック・日記記録・tasks.md更新・push）
 
