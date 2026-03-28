@@ -20,6 +20,7 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
 【管理URL一覧】（一目で現状把握）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📖 運用マニュアル：https://github.com/record-keeper/posts/blob/main/manual.md
 Threads：https://www.threads.net/@hoshi_to_kurasu
 lit.link：https://lit.link/hoshi_to_kurasu ✅（設置済み）
 note：https://note.com/hoshi_to_kurasu ✅（開設済み・初回記事公開待ち）
