@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T06:00:01.439977+09:00",
+  "generated_at": "2026-04-15T06:10:01.766240+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,7 +33,7 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1",
       "db_size_mb": 0.56,
-      "db_mtime": "2026-04-15T06:00:02.419496+09:00"
+      "db_mtime": "2026-04-15T06:08:36.295845+09:00"
     },
     "strategies_active": [
       {
@@ -446,6 +446,400 @@
       }
     ],
     "drift_stats_7d": [],
+    "ai_debug_queue": [
+      {
+        "kind": "ROI_CRITICAL",
+        "severity": "CRITICAL",
+        "key": "ROI_CRITICAL|TEST_AUDIT_PHASE2",
+        "count": 1,
+        "last_at": "2026-04-15T06:03:28",
+        "fix_hint": "該当戦略を strategies.json で enabled:false に→N≥300 Wilson下限<1.0確定のため"
+      },
+      {
+        "kind": "ROI_CRITICAL",
+        "severity": "CRITICAL",
+        "key": "ROI_CRITICAL|TEST_AUDIT_IGNORE",
+        "count": 1,
+        "last_at": "2026-04-15T06:01:31",
+        "fix_hint": "該当戦略を strategies.json で enabled:false に→N≥300 Wilson下限<1.0確定のため"
+      },
+      {
+        "kind": "HEALTH_CHECK_FAIL",
+        "severity": "WARN",
+        "key": "HEALTH_CHECK_FAIL",
+        "count": 1,
+        "last_at": "2026-04-15T06:00:02",
+        "fix_hint": "health.py の check 失敗→対応する check 名から該当テーブル/指標を確認"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-13 017R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 024R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 029R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 0411R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 069R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 066R combo=1-4-2 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 103R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 119R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|20260410 117R combo=1-4-3 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 144R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 1410R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 145R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 148R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-13 147R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-13 1411R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 142R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 159R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 155R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-13 154R combo=2 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 206R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 207R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 226R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 233R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 237R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 247R combo=1-4-5 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 247R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S00: n=40 hit%=20.0% hit_CI[Bonf]=[7.8,42.6]% ROI=0.31 ROI_boot95=[0.18,0.68]",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "INSUFFICIENT_SAMPLE",
+        "severity": "INFO",
+        "key": "INSUFFICIENT_SAMPLE|S00: n=40<300 — v17 要件未達、ROI判定保留",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S02: n=129 hit%=6.2% hit_CI[Bonf]=[2.4,15.4]% ROI=0.16 ROI_boot95=[0.06,0.43]",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "INSUFFICIENT_SAMPLE",
+        "severity": "INFO",
+        "key": "INSUFFICIENT_SAMPLE|S02: n=129<300 — v17 要件未達、ROI判定保留",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S03: n=70 hit%=8.6% hit_CI[Bonf]=[2.8,23.1]% ROI=0.18 ROI_boot95=[0.05,0.54]",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "INSUFFICIENT_SAMPLE",
+        "severity": "INFO",
+        "key": "INSUFFICIENT_SAMPLE|S03: n=70<300 — v17 要件未達、ROI判定保留",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S07: n=42 hit%=14.3% hit_CI[Bonf]=[4.8,35.6]% ROI=0.35 ROI_boot95=[0.10,0.96]",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "INSUFFICIENT_SAMPLE",
+        "severity": "INFO",
+        "key": "INSUFFICIENT_SAMPLE|S07: n=42<300 — v17 要件未達、ROI判定保留",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S09: n=40 hit%=17.5% hit_CI[Bonf]=[6.4,39.8]% ROI=0.22 ROI_boot95=[0.14,0.62]",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "INSUFFICIENT_SAMPLE",
+        "severity": "INFO",
+        "key": "INSUFFICIENT_SAMPLE|S09: n=40<300 — v17 要件未達、ROI判定保留",
+        "count": 5,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|s3_3f_target: n=110 hit%=14.5% hit_CI[Bonf]=[7.4,26.7]% ROI=0.72 ROI_boot95=[0.3",
+        "count": 2,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "INSUFFICIENT_SAMPLE",
+        "severity": "INFO",
+        "key": "INSUFFICIENT_SAMPLE|s3_3f_target: n=110<300 — v17 要件未達、ROI判定保留",
+        "count": 2,
+        "last_at": "2026-04-15T05:37:57",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=9 bet=100 odds=34.5 payout=360 ratio=0.10",
+        "count": 3,
+        "last_at": "2026-04-15T05:37:15",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=13 bet=100 odds=94.3 payout=630 ratio=0.07",
+        "count": 3,
+        "last_at": "2026-04-15T05:37:15",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=35 bet=100 odds=36.9 payout=650 ratio=0.18",
+        "count": 3,
+        "last_at": "2026-04-15T05:37:15",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=42 bet=100 odds=66.6 payout=170 ratio=0.03",
+        "count": 3,
+        "last_at": "2026-04-15T05:37:15",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=47 bet=100 odds=57.7 payout=350 ratio=0.06",
+        "count": 3,
+        "last_at": "2026-04-15T05:37:15",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=48 bet=100 odds=497.2 payout=250 ratio=0.01",
+        "count": 3,
+        "last_at": "2026-04-15T05:37:15",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=49 bet=100 odds=88.8 payout=270 ratio=0.03",
+        "count": 3,
+        "last_at": "2026-04-15T05:37:15",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=58 bet=100 odds=33.3 payout=370 ratio=0.11",
+        "count": 3,
+        "last_at": "2026-04-15T05:37:15",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      }
+    ],
     "calibration_coverage": {
       "total": 27,
       "passed": 19,
@@ -481,6 +875,12 @@
         "3t|4",
         "3t|5"
       ]
+    },
+    "pending_vps_sync": {
+      "total": 0,
+      "recent_tail": [],
+      "log_path": "C:/Users/kazuk/OneDrive/デスクトップ/🚢claude専用ボートレース自動投資用/.claude/pending_vps_sync.log",
+      "exists": false
     }
   }
 }
