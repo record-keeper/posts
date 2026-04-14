@@ -1,0 +1,486 @@
+{
+  "generated_at": "2026-04-15T05:46:50.783228+09:00",
+  "sections": {
+    "environment": {
+      "git_sha": "<error: Command '['git', '-C', '/opt/boa",
+      "git_dirty": true,
+      "config_md5": "eb532e851a30cd2f7e69bdf0dfca3f2b",
+      "strategies_md5": "1193885b4bcdeb4c8d16955d7ee412db",
+      "file_lgbm_model_top1.txt": {
+        "exists": true,
+        "md5": "5b55d55bdb59df95ccfd1745d4e9b469",
+        "size": 769682
+      },
+      "file_lgbm_model_top3.txt": {
+        "exists": true,
+        "md5": "d5fd8d8393fd859ed913813abbf60084",
+        "size": 969111
+      },
+      "file_calibration_v7.json": {
+        "exists": true,
+        "md5": "1c04ab3c1a1f074da889e6f5f06adbf3",
+        "size": 1450
+      },
+      "file_pl_corr_v8_final.json": {
+        "exists": true,
+        "md5": "8727224dfcc3d7548845e2e41caef7be",
+        "size": 1209
+      },
+      "version_numpy": "not_installed",
+      "version_lightgbm": "not_installed",
+      "version_scipy": "not_installed",
+      "version_pandas": "not_installed",
+      "calibration_applied": true,
+      "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1",
+      "db_size_mb": 0.56,
+      "db_mtime": "2026-04-15T05:37:57.606149+09:00"
+    },
+    "strategies_active": [
+      {
+        "id": "S00",
+        "trust": "S",
+        "bt": "win",
+        "ev_th": 2.5,
+        "pmin": 0.55,
+        "enabled": true
+      },
+      {
+        "id": "S01",
+        "trust": "A",
+        "bt": "2t",
+        "ev_th": 5.0,
+        "pmin": 0.6,
+        "enabled": true
+      },
+      {
+        "id": "S02",
+        "trust": "S",
+        "bt": "win",
+        "ev_th": 5.0,
+        "pmin": 0.1,
+        "enabled": true
+      },
+      {
+        "id": "S03",
+        "trust": "S",
+        "bt": "win",
+        "ev_th": 5.0,
+        "pmin": 0.2,
+        "enabled": true
+      },
+      {
+        "id": "S04",
+        "trust": "A",
+        "bt": "2t",
+        "ev_th": 5.0,
+        "pmin": 0.55,
+        "enabled": true
+      },
+      {
+        "id": "S05",
+        "trust": "B",
+        "bt": "3t",
+        "ev_th": 10.0,
+        "pmin": 0.4,
+        "enabled": true
+      },
+      {
+        "id": "S06",
+        "trust": "A",
+        "bt": "2t",
+        "ev_th": 5.0,
+        "pmin": 0.5,
+        "enabled": true
+      },
+      {
+        "id": "S07",
+        "trust": "S",
+        "bt": "win",
+        "ev_th": 3.0,
+        "pmin": 0.5,
+        "enabled": true
+      },
+      {
+        "id": "S08",
+        "trust": "B",
+        "bt": "3t",
+        "ev_th": 10.0,
+        "pmin": 0.5,
+        "enabled": true
+      },
+      {
+        "id": "S09",
+        "trust": "S",
+        "bt": "win",
+        "ev_th": 2.5,
+        "pmin": 0.55,
+        "enabled": true
+      },
+      {
+        "id": "S10",
+        "trust": "S",
+        "bt": "win",
+        "ev_th": 2.25,
+        "pmin": 0.6,
+        "enabled": true
+      },
+      {
+        "id": "S11",
+        "trust": "B",
+        "bt": "3t",
+        "ev_th": 10.0,
+        "pmin": 0.2,
+        "enabled": true
+      },
+      {
+        "id": "S12",
+        "trust": "B",
+        "bt": "3t",
+        "ev_th": 10.0,
+        "pmin": 0.4,
+        "enabled": true
+      }
+    ],
+    "webhook_24h": [],
+    "phases_24h": {},
+    "alerts_24h": [],
+    "alert_dispatch_failed": 0,
+    "roi_7d": [
+      {
+        "sid": "S00",
+        "n": 40,
+        "hits": 8,
+        "cost": 10400,
+        "payout": 3270,
+        "roi": 0.314,
+        "pl": -7130
+      },
+      {
+        "sid": "S01",
+        "n": 7,
+        "hits": 0,
+        "cost": 2600,
+        "payout": 0,
+        "roi": 0.0,
+        "pl": -2600
+      },
+      {
+        "sid": "S02",
+        "n": 129,
+        "hits": 8,
+        "cost": 28600,
+        "payout": 4530,
+        "roi": 0.158,
+        "pl": -24070
+      },
+      {
+        "sid": "S03",
+        "n": 70,
+        "hits": 6,
+        "cost": 14800,
+        "payout": 2620,
+        "roi": 0.177,
+        "pl": -12180
+      },
+      {
+        "sid": "S04",
+        "n": 9,
+        "hits": 0,
+        "cost": 3300,
+        "payout": 0,
+        "roi": 0.0,
+        "pl": -3300
+      },
+      {
+        "sid": "S05",
+        "n": 8,
+        "hits": 0,
+        "cost": 1700,
+        "payout": 0,
+        "roi": 0.0,
+        "pl": -1700
+      },
+      {
+        "sid": "S06",
+        "n": 12,
+        "hits": 0,
+        "cost": 3600,
+        "payout": 0,
+        "roi": 0.0,
+        "pl": -3600
+      },
+      {
+        "sid": "S07",
+        "n": 42,
+        "hits": 6,
+        "cost": 10600,
+        "payout": 3700,
+        "roi": 0.349,
+        "pl": -6900
+      },
+      {
+        "sid": "S08",
+        "n": 6,
+        "hits": 0,
+        "cost": 1200,
+        "payout": 0,
+        "roi": 0.0,
+        "pl": -1200
+      },
+      {
+        "sid": "S09",
+        "n": 40,
+        "hits": 7,
+        "cost": 10400,
+        "payout": 2270,
+        "roi": 0.218,
+        "pl": -8130
+      },
+      {
+        "sid": "S10",
+        "n": 26,
+        "hits": 6,
+        "cost": 6200,
+        "payout": 3920,
+        "roi": 0.632,
+        "pl": -2280
+      },
+      {
+        "sid": "S11",
+        "n": 27,
+        "hits": 0,
+        "cost": 4300,
+        "payout": 0,
+        "roi": 0.0,
+        "pl": -4300
+      },
+      {
+        "sid": "S12",
+        "n": 8,
+        "hits": 0,
+        "cost": 1700,
+        "payout": 0,
+        "roi": 0.0,
+        "pl": -1700
+      },
+      {
+        "sid": "s1_3t_bomb",
+        "n": 5,
+        "hits": 1,
+        "cost": 500,
+        "payout": 14200,
+        "roi": 28.4,
+        "pl": 13700
+      },
+      {
+        "sid": "s2_2t_snipe",
+        "n": 17,
+        "hits": 0,
+        "cost": 1700,
+        "payout": 0,
+        "roi": 0.0,
+        "pl": -1700
+      },
+      {
+        "sid": "s3_3f_target",
+        "n": 110,
+        "hits": 16,
+        "cost": 11000,
+        "payout": 7870,
+        "roi": 0.715,
+        "pl": -3130
+      },
+      {
+        "sid": "s4_3t_mid",
+        "n": 28,
+        "hits": 0,
+        "cost": 2800,
+        "payout": 0,
+        "roi": 0.0,
+        "pl": -2800
+      }
+    ],
+    "recent_alerts": [],
+    "races_remaining_today": 0,
+    "recent_send_failures": [],
+    "latest_predictions": [
+      {
+        "strategy_id": "S03",
+        "jcd": "01",
+        "rno": 12,
+        "bet_type": "win",
+        "combo": "2",
+        "ml_prob": 0.19573025405406952,
+        "odds": 32.0,
+        "ev": 6.263368129730225,
+        "bet_amount": 200,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-04-14T20:33:34"
+      },
+      {
+        "strategy_id": "S02",
+        "jcd": "01",
+        "rno": 12,
+        "bet_type": "win",
+        "combo": "2",
+        "ml_prob": 0.19573025405406952,
+        "odds": 32.0,
+        "ev": 6.263368129730225,
+        "bet_amount": 200,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-04-14T20:33:03"
+      },
+      {
+        "strategy_id": "S03",
+        "jcd": "15",
+        "rno": 11,
+        "bet_type": "win",
+        "combo": "4",
+        "ml_prob": 0.17196260392665863,
+        "odds": 34.5,
+        "ev": 5.932709835469723,
+        "bet_amount": 100,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-04-14T20:00:28"
+      },
+      {
+        "strategy_id": "S02",
+        "jcd": "15",
+        "rno": 11,
+        "bet_type": "win",
+        "combo": "4",
+        "ml_prob": 0.17196260392665863,
+        "odds": 34.5,
+        "ev": 5.932709835469723,
+        "bet_amount": 100,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-04-14T20:00:04"
+      },
+      {
+        "strategy_id": "S03",
+        "jcd": "01",
+        "rno": 10,
+        "bet_type": "win",
+        "combo": "6",
+        "ml_prob": 0.11231634765863419,
+        "odds": 70.5,
+        "ev": 7.91830250993371,
+        "bet_amount": 300,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-04-14T19:35:09"
+      },
+      {
+        "strategy_id": "S02",
+        "jcd": "01",
+        "rno": 10,
+        "bet_type": "win",
+        "combo": "6",
+        "ml_prob": 0.11231634765863419,
+        "odds": 70.5,
+        "ev": 7.91830250993371,
+        "bet_amount": 300,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-04-14T19:35:03"
+      },
+      {
+        "strategy_id": "S02",
+        "jcd": "15",
+        "rno": 10,
+        "bet_type": "win",
+        "combo": "6",
+        "ml_prob": 0.08779244124889374,
+        "odds": 87.0,
+        "ev": 7.637942388653755,
+        "bet_amount": 300,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-04-14T19:31:32"
+      },
+      {
+        "strategy_id": "S07",
+        "jcd": "15",
+        "rno": 10,
+        "bet_type": "win",
+        "combo": "3",
+        "ml_prob": 0.22665639221668243,
+        "odds": 24.7,
+        "ev": 5.598412887752056,
+        "bet_amount": 300,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-04-14T19:24:39"
+      },
+      {
+        "strategy_id": "S03",
+        "jcd": "15",
+        "rno": 10,
+        "bet_type": "win",
+        "combo": "3",
+        "ml_prob": 0.22665639221668243,
+        "odds": 24.7,
+        "ev": 5.598412887752056,
+        "bet_amount": 100,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-04-14T19:24:34"
+      },
+      {
+        "strategy_id": "S02",
+        "jcd": "15",
+        "rno": 10,
+        "bet_type": "win",
+        "combo": "3",
+        "ml_prob": 0.22665639221668243,
+        "odds": 24.7,
+        "ev": 5.598412887752056,
+        "bet_amount": 100,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-04-14T19:24:03"
+      }
+    ],
+    "drift_stats_7d": [],
+    "calibration_coverage": {
+      "total": 27,
+      "passed": 19,
+      "failed": 8,
+      "passed_keys": [
+        "2f|1",
+        "2f|2",
+        "2f|3",
+        "2t|1",
+        "2t|2",
+        "2t|3",
+        "2t|4",
+        "2t|5",
+        "2t|6",
+        "3f|1",
+        "3t|2",
+        "3t|3",
+        "3t|6",
+        "win|1",
+        "win|2",
+        "win|3",
+        "win|4",
+        "win|5",
+        "win|6"
+      ],
+      "failed_keys": [
+        "2f|4",
+        "2f|5",
+        "3f|2",
+        "3f|3",
+        "3f|4",
+        "3t|1",
+        "3t|4",
+        "3t|5"
+      ]
+    }
+  }
+}
