@@ -2,7 +2,7 @@
 
 ## 🟢 現状: GREEN
 
-**生成**: 2026-04-15T08:10:02.082139+09:00
+**生成**: 2026-04-15T08:20:01.733643+09:00
 
 ### 次に取るべきアクション
 > 特になし。運用継続。
@@ -102,7 +102,7 @@
 - strategies.json md5: `1193885b4bcdeb4c8d16955d7ee412db`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.58MB / last modified 2026-04-15T08:00:40.799206+09:00
+- DB: 0.58MB / last modified 2026-04-15T08:19:21.381910+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -142,30 +142,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-90 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 08:06:04,790 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 08:06:04,855 [INFO] predictor: Models loaded OK
-2026-04-15 08:06:04,861 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 08:07:05,418 [INFO] run_cycle: === run_cycle 08:07:05 ===
-2026-04-15 08:07:05,418 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 08:07:05,419 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 08:07:05,490 [INFO] predictor: Models loaded OK
-2026-04-15 08:07:05,496 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 08:08:05,447 [INFO] run_cycle: === run_cycle 08:08:05 ===
-2026-04-15 08:08:05,447 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 08:08:05,447 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 08:08:05,490 [INFO] predictor: Models loaded OK
-2026-04-15 08:08:05,496 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 08:09:05,002 [INFO] run_cycle: === run_cycle 08:09:05 ===
-2026-04-15 08:09:05,002 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 08:09:05,002 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 08:09:05,069 [INFO] predictor: Models loaded OK
-2026-04-15 08:09:05,074 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 08:10:07,543 [INFO] run_cycle: === run_cycle 08:10:07 ===
-2026-04-15 08:10:07,543 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 08:10:07,547 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 08:10:07,666 [INFO] predictor: Models loaded OK
-2026-04-15 08:10:07,679 [INFO] run_cycle: run_cycle done: 0 notifications
+ault=100
+2026-04-15 08:18:04,809 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-15 08:18:04,879 [INFO] predictor: Models loaded OK
+2026-04-15 08:18:04,884 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-15 08:19:04,888 [INFO] run_cycle: === run_cycle 08:19:04 ===
+2026-04-15 08:19:04,888 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-15 08:19:04,888 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-15 08:19:04,961 [INFO] predictor: Models loaded OK
+2026-04-15 08:19:17,359 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-15 08:19:18,457 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-15 08:19:19,553 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-15 08:19:19,555 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-15 08:19:20,618 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-15 08:19:20,618 [INFO] scraper: fetch_race 10/1: boats=6 odds=191/191
+2026-04-15 08:19:20,639 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 08:19:20,639 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-15 08:19:20,643 [INFO] run_cycle: fetched 10/1 [scan]: 156 combos
+2026-04-15 08:19:20,649 [INFO] race_id: notif: nid=2026041510010832 sid=S02 phase=scan rank=GREEN
+2026-04-15 08:19:21,043 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 08:19:21,376 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 08:19:21,383 [INFO] run_cycle: SCAN S02 三国1R GREEN
+2026-04-15 08:19:21,471 [INFO] run_cycle: run_cycle done: 1 notifications
+2026-04-15 08:20:07,050 [INFO] run_cycle: === run_cycle 08:20:07 ===
+2026-04-15 08:20:07,050 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-15 08:20:07,050 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-15 08:20:07,136 [INFO] predictor: Models loaded OK
+2026-04-15 08:20:07,331 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -188,11 +191,22 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## Webhook送信 (24h)
 ```
-[]
+[
+  {
+    "target": "mirror",
+    "ok": 1,
+    "c": 1
+  },
+  {
+    "target": "primary",
+    "ok": 1,
+    "c": 1
+  }
+]
 ```
 
 ## Phase別通知記録 (24h)
-{}
+{'scan': 1}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -252,4 +266,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 - 主力グループ状態: ✅ (全12グループ合格)
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-15T08:10:02.082139+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-15T08:20:01.733643+09:00_
