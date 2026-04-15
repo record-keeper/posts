@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T14:50:02.072231+09:00",
+  "generated_at": "2026-04-15T15:00:02.384544+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,8 +33,8 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup",
       "db_size_mb": 0.99,
-      "db_mtime": "2026-04-15T14:45:36.676143+09:00",
-      "log_tail": "parsed\n2026-04-15 14:46:34,871 [INFO] scraper: fetch_race 22/6: boats=6 odds=191/191\n2026-04-15 14:46:34,879 [INFO] predictor: CALIBRATION_MODE=shadow\n2026-04-15 14:46:34,879 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-04-15 14:46:34,887 [INFO] run_cycle: fetched 22/6 [scan]: 156 combos\n2026-04-15 14:46:34,980 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-15 14:47:06,300 [INFO] run_cycle: === run_cycle 14:47:06 ===\n2026-04-15 14:47:06,301 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-15 14:47:06,301 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-15 14:47:06,343 [INFO] predictor: Models loaded OK\n2026-04-15 14:47:06,498 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-15 14:48:06,176 [INFO] run_cycle: === run_cycle 14:48:06 ===\n2026-04-15 14:48:06,178 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-15 14:48:06,178 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-15 14:48:06,240 [INFO] predictor: Models loaded OK\n2026-04-15 14:48:06,367 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-15 14:49:06,250 [INFO] run_cycle: === run_cycle 14:49:06 ===\n2026-04-15 14:49:06,250 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-15 14:49:06,250 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-15 14:49:06,321 [INFO] predictor: Models loaded OK\n2026-04-15 14:49:17,368 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=03&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s\n2026-04-15 14:49:28,403 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=03&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s\n2026-04-15 14:49:41,850 [INFO] scraper: odds3t: 120/120 parsed\n2026-04-15 14:49:42,944 [INFO] scraper: odds3f: 20/20 parsed\n2026-04-15 14:49:44,039 [INFO] scraper: odds2t: 30/30 parsed\n2026-04-15 14:49:44,041 [INFO] scraper: odds2f: 15/15 parsed\n2026-04-15 14:49:45,176 [INFO] scraper: odds_win: 6/6 parsed\n2026-04-15 14:49:45,176 [INFO] scraper: fetch_race 03/9: boats=6 odds=191/191\n2026-04-15 14:49:45,187 [INFO] predictor: CALIBRATION_MODE=shadow\n2026-04-15 14:49:45,187 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-04-15 14:49:45,195 [INFO] run_cycle: fetched 03/9 [final]: 156 combos\n2026-04-15 14:49:45,313 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-15 14:50:08,822 [INFO] run_cycle: === run_cycle 14:50:08 ===\n2026-04-15 14:50:08,824 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-15 14:50:08,824 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n"
+      "db_mtime": "2026-04-15T15:00:03.351507+09:00",
+      "log_tail": "d=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s\n2026-04-15 14:56:30,261 [INFO] scraper: odds3t: 120/120 parsed\n2026-04-15 14:56:31,361 [INFO] scraper: odds3f: 20/20 parsed\n2026-04-15 14:56:32,458 [INFO] scraper: odds2t: 27/30 parsed\n2026-04-15 14:56:32,459 [INFO] scraper: odds2f: 15/15 parsed\n2026-04-15 14:56:33,544 [INFO] scraper: odds_win: 3/6 parsed\n2026-04-15 14:56:33,544 [INFO] scraper: fetch_race 16/9: boats=6 odds=185/191\n2026-04-15 14:56:33,555 [INFO] predictor: CALIBRATION_MODE=shadow\n2026-04-15 14:56:33,556 [INFO] predictor: combos: {'win': 3, '2t': 27, '3t': 120}\n2026-04-15 14:56:33,563 [INFO] run_cycle: fetched 16/9 [scan]: 150 combos\n2026-04-15 14:56:33,657 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-15 14:57:06,925 [INFO] run_cycle: === run_cycle 14:57:06 ===\n2026-04-15 14:57:06,925 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-15 14:57:06,925 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-15 14:57:06,970 [INFO] predictor: Models loaded OK\n2026-04-15 14:57:07,060 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-15 14:58:06,386 [INFO] run_cycle: === run_cycle 14:58:06 ===\n2026-04-15 14:58:06,386 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-15 14:58:06,386 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-15 14:58:06,458 [INFO] predictor: Models loaded OK\n2026-04-15 14:58:06,645 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-15 14:59:06,782 [INFO] run_cycle: === run_cycle 14:59:06 ===\n2026-04-15 14:59:06,782 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-15 14:59:06,782 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-15 14:59:06,826 [INFO] predictor: Models loaded OK\n2026-04-15 14:59:18,320 [INFO] scraper: odds3t: 120/120 parsed\n2026-04-15 14:59:19,408 [INFO] scraper: odds3f: 20/20 parsed\n2026-04-15 14:59:20,513 [INFO] scraper: odds2t: 30/30 parsed\n2026-04-15 14:59:20,514 [INFO] scraper: odds2f: 15/15 parsed\n2026-04-15 14:59:21,580 [INFO] scraper: odds_win: 5/6 parsed\n2026-04-15 14:59:21,580 [INFO] scraper: fetch_race 16/9: boats=6 odds=190/191\n2026-04-15 14:59:21,583 [INFO] predictor: CALIBRATION_MODE=shadow\n2026-04-15 14:59:21,583 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}\n2026-04-15 14:59:21,588 [INFO] run_cycle: fetched 16/9 [scan]: 155 combos\n2026-04-15 14:59:21,689 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-15 15:00:09,758 [INFO] run_cycle: === run_cycle 15:00:09 ===\n2026-04-15 15:00:09,758 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-15 15:00:09,758 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-15 15:00:09,846 [INFO] predictor: Models loaded OK\n"
     },
     "strategies_active": [
       {
@@ -146,17 +146,17 @@
       {
         "target": "mirror",
         "ok": 1,
-        "c": 161
+        "c": 165
       },
       {
         "target": "primary",
         "ok": 1,
-        "c": 161
+        "c": 165
       }
     ],
     "phases_24h": {
-      "final": 83,
-      "scan": 78
+      "final": 84,
+      "scan": 81
     },
     "alerts_24h": [
       {
@@ -340,7 +340,7 @@
         "detected_at": "2026-04-15T12:03:27.288703+09:00"
       }
     ],
-    "races_remaining_today": 60,
+    "races_remaining_today": 58,
     "recent_send_failures": [],
     "latest_predictions": [
       {
@@ -518,403 +518,395 @@
     ],
     "ai_debug_queue": [
       {
-        "kind": "LARGE_ODDS_DRIFT",
-        "severity": "WARN",
-        "key": "LARGE_ODDS_DRIFT|",
-        "count": 3,
-        "last_at": "2026-04-15T14:45:36",
-        "fix_hint": "10%超ドリフト発生→情報として監視、閾値調整は config.json の statistical_tests.drift_alert_pct"
-      },
-      {
         "kind": "HEALTH_CHECK_FAIL",
         "severity": "WARN",
         "key": "HEALTH_CHECK_FAIL",
-        "count": 2,
-        "last_at": "2026-04-15T14:00:02",
+        "count": 1,
+        "last_at": "2026-04-15T15:00:03",
         "fix_hint": "health.py の check 失敗→対応する check 名から該当テーブル/指標を確認"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-13 017R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 024R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 029R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 0411R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 069R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 066R combo=1-4-2 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 103R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 119R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|20260410 117R combo=1-4-3 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 144R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 1410R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 145R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 148R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-13 147R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-13 1411R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 142R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 159R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 155R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-13 154R combo=2 を 5 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 206R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 207R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-14 226R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 233R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-12 237R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 247R combo=1-4-5 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|2026-04-11 247R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|20260415 146R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|20260415 174R combo=1-6-3 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
+      },
+      {
+        "kind": "STRATEGY_COLLAPSE",
+        "severity": "CRITICAL",
+        "key": "STRATEGY_COLLAPSE|20260415 174R combo=1-6-5 を 4 戦略が同時採用 → 分散効果ゼロ",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
       {
         "kind": "ROI_STAT",
         "severity": "INFO",
-        "key": "ROI_STAT|S11: n=32 hit%=0.0% hit_CI[Bonf]=[0.0,20.7]% ROI=0.00 ROI_boot95=[0.00,0.00]",
+        "key": "ROI_STAT|S00: n=42 hit%=45.2% hit_CI[Bonf]=[25.8,66.3]% ROI=0.95 ROI_boot95=[0.61,1.38]",
         "count": 1,
-        "last_at": "2026-04-15T13:53:08",
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "統計サマリ情報。判定ではなく参照用"
       },
       {
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
-        "key": "INSUFFICIENT_SAMPLE|S11: n=32<300 — v17 要件未達、ROI判定保留",
+        "key": "INSUFFICIENT_SAMPLE|S00: n=42<300 — v17 要件未達、ROI判定保留",
         "count": 1,
-        "last_at": "2026-04-15T13:53:08",
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
       {
-        "kind": "ORPHAN_SCAN",
-        "severity": "WARN",
-        "key": "ORPHAN_SCAN|2 件の scan に final/retreat 追従無し",
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S02: n=135 hit%=10.4% hit_CI[Bonf]=[5.0,20.4]% ROI=0.23 ROI_boot95=[0.14,0.54]",
         "count": 1,
-        "last_at": "2026-04-15T13:53:08",
-        "fix_hint": "scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗"
-      },
-      {
-        "kind": "ROI_STAT",
-        "severity": "INFO",
-        "key": "ROI_STAT|S00: n=41 hit%=46.3% hit_CI[Bonf]=[26.5,67.5]% ROI=0.97 ROI_boot95=[0.62,1.41]",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:34",
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "統計サマリ情報。判定ではなく参照用"
       },
       {
-        "kind": "ROI_STAT",
+        "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
-        "key": "ROI_STAT|S02: n=134 hit%=10.4% hit_CI[Bonf]=[5.0,20.5]% ROI=0.23 ROI_boot95=[0.14,0.54]",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:34",
-        "fix_hint": "統計サマリ情報。判定ではなく参照用"
-      },
-      {
-        "kind": "ROI_STAT",
-        "severity": "INFO",
-        "key": "ROI_STAT|S03: n=74 hit%=16.2% hit_CI[Bonf]=[7.4,31.9]% ROI=0.32 ROI_boot95=[0.19,0.76]",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:34",
-        "fix_hint": "統計サマリ情報。判定ではなく参照用"
-      },
-      {
-        "kind": "ROI_STAT",
-        "severity": "INFO",
-        "key": "ROI_STAT|S07: n=43 hit%=39.5% hit_CI[Bonf]=[21.5,61.0]% ROI=0.81 ROI_boot95=[0.54,1.46]",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:34",
-        "fix_hint": "統計サマリ情報。判定ではなく参照用"
-      },
-      {
-        "kind": "ROI_STAT",
-        "severity": "INFO",
-        "key": "ROI_STAT|S09: n=41 hit%=46.3% hit_CI[Bonf]=[26.5,67.5]% ROI=0.97 ROI_boot95=[0.62,1.41]",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:34",
-        "fix_hint": "統計サマリ情報。判定ではなく参照用"
-      },
-      {
-        "kind": "ORPHAN_SCAN",
-        "severity": "WARN",
-        "key": "ORPHAN_SCAN|9 件の scan に final/retreat 追従無し",
+        "key": "INSUFFICIENT_SAMPLE|S02: n=135<300 — v17 要件未達、ROI判定保留",
         "count": 1,
-        "last_at": "2026-04-15T13:50:34",
-        "fix_hint": "scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗"
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S03: n=75 hit%=16.0% hit_CI[Bonf]=[7.3,31.5]% ROI=0.31 ROI_boot95=[0.18,0.74]",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "INSUFFICIENT_SAMPLE",
+        "severity": "INFO",
+        "key": "INSUFFICIENT_SAMPLE|S03: n=75<300 — v17 要件未達、ROI判定保留",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S07: n=44 hit%=38.6% hit_CI[Bonf]=[20.9,60.0]% ROI=0.79 ROI_boot95=[0.53,1.42]",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "INSUFFICIENT_SAMPLE",
+        "severity": "INFO",
+        "key": "INSUFFICIENT_SAMPLE|S07: n=44<300 — v17 要件未達、ROI判定保留",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S09: n=42 hit%=45.2% hit_CI[Bonf]=[25.8,66.3]% ROI=0.95 ROI_boot95=[0.61,1.38]",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "INSUFFICIENT_SAMPLE",
+        "severity": "INFO",
+        "key": "INSUFFICIENT_SAMPLE|S09: n=42<300 — v17 要件未達、ROI判定保留",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
       {
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=418 bet=200 odds=5.6 payout=260 ratio=0.23",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
+        "key": "PAYOUT_RATIO_WEIRD|pid=301 bet=100 odds=5.1 payout=140 ratio=0.27",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=490 bet=300 odds=6.9 payout=420 ratio=0.20",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
+        "key": "PAYOUT_RATIO_WEIRD|pid=302 bet=100 odds=5.1 payout=140 ratio=0.27",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=508 bet=300 odds=8.1 payout=450 ratio=0.19",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
+        "key": "PAYOUT_RATIO_WEIRD|pid=303 bet=100 odds=5.1 payout=140 ratio=0.27",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=556 bet=100 odds=6.7 payout=130 ratio=0.19",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
+        "key": "PAYOUT_RATIO_WEIRD|pid=338 bet=100 odds=12.5 payout=150 ratio=0.12",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=578 bet=500 odds=13.1 payout=1350 ratio=0.21",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
+        "key": "PAYOUT_RATIO_WEIRD|pid=339 bet=100 odds=12.5 payout=150 ratio=0.12",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=595 bet=300 odds=8.2 payout=570 ratio=0.23",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
+        "key": "PAYOUT_RATIO_WEIRD|pid=348 bet=200 odds=16.5 payout=380 ratio=0.12",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=638 bet=500 odds=11.2 payout=1600 ratio=0.29",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
+        "key": "PAYOUT_RATIO_WEIRD|pid=349 bet=200 odds=16.5 payout=380 ratio=0.12",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=670 bet=500 odds=10.2 payout=500 ratio=0.10",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
+        "key": "PAYOUT_RATIO_WEIRD|pid=401 bet=300 odds=8.5 payout=570 ratio=0.22",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=688 bet=500 odds=9.0 payout=500 ratio=0.11",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=530 bet=100 odds=26.0 payout=210 ratio=0.08",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=573 bet=300 odds=50.2 payout=1470 ratio=0.10",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=579 bet=100 odds=13.1 payout=270 ratio=0.21",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=639 bet=100 odds=11.2 payout=320 ratio=0.29",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=671 bet=100 odds=10.2 payout=100 ratio=0.10",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=689 bet=100 odds=9.0 payout=100 ratio=0.11",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=531 bet=100 odds=26.0 payout=210 ratio=0.08",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=575 bet=300 odds=50.2 payout=1470 ratio=0.10",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=580 bet=100 odds=13.1 payout=270 ratio=0.21",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=640 bet=100 odds=11.2 payout=320 ratio=0.29",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=672 bet=100 odds=10.2 payout=100 ratio=0.10",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=690 bet=100 odds=9.0 payout=100 ratio=0.11",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=419 bet=100 odds=5.6 payout=130 ratio=0.23",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=491 bet=200 odds=6.9 payout=280 ratio=0.20",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=509 bet=300 odds=8.1 payout=450 ratio=0.19",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=581 bet=300 odds=13.1 payout=810 ratio=0.21",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=596 bet=200 odds=8.2 payout=380 ratio=0.23",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=641 bet=300 odds=11.2 payout=960 ratio=0.29",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=673 bet=300 odds=10.2 payout=300 ratio=0.10",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=691 bet=300 odds=9.0 payout=300 ratio=0.11",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=420 bet=200 odds=5.6 payout=260 ratio=0.23",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=492 bet=300 odds=6.9 payout=420 ratio=0.20",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=510 bet=300 odds=8.1 payout=450 ratio=0.19",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=557 bet=100 odds=6.7 payout=130 ratio=0.19",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=582 bet=500 odds=13.1 payout=1350 ratio=0.21",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=597 bet=300 odds=8.2 payout=570 ratio=0.23",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=642 bet=500 odds=11.2 payout=1600 ratio=0.29",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=674 bet=500 odds=10.2 payout=500 ratio=0.10",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=684 bet=500 odds=18.0 payout=1000 ratio=0.11",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=692 bet=500 odds=9.0 payout=500 ratio=0.11",
-        "count": 2,
-        "last_at": "2026-04-15T13:50:33",
+        "key": "PAYOUT_RATIO_WEIRD|pid=402 bet=200 odds=8.5 payout=380 ratio=0.22",
+        "count": 1,
+        "last_at": "2026-04-15T14:50:46",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       }
     ],
