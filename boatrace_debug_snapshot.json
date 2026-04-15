@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15T20:30:01.950730+09:00",
+  "generated_at": "2026-04-15T20:40:02.272199+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -364,7 +364,7 @@
         "detected_at": "2026-04-15T12:03:27.288703+09:00"
       }
     ],
-    "races_remaining_today": 2,
+    "races_remaining_today": 1,
     "recent_send_failures": [],
     "latest_predictions": [
       {
