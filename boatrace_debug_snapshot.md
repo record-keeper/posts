@@ -2,97 +2,97 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-15T12:50:02.313339+09:00
+**生成**: 2026-04-15T13:00:01.614740+09:00
 
 ### 次に取るべきアクション
-> RED 優先: CRITICAL_ODDS_COLLAPSE×210 (24h) → 該当ログ確認し原因特定
+> RED 優先: CRITICAL_ODDS_COLLAPSE×238 (24h) → 該当ログ確認し原因特定
 
 ### 検出された問題
-- 🟡 LARGE_ODDS_DRIFT×368 (24h)
-- 🔴 CRITICAL_ODDS_COLLAPSE×210 (24h)
+- 🟡 LARGE_ODDS_DRIFT×480 (24h)
+- 🔴 CRITICAL_ODDS_COLLAPSE×238 (24h)
 
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 HEALTH_CHECK_FAIL  ×2  [2026-04-15T12:30:02]
-- key: `HEALTH_CHECK_FAIL`
-- **FIX**: health.py の check 失敗→対応する check 名から該当テーブル/指標を確認
-
-### 🟡 LARGE_ODDS_DRIFT  ×368  [2026-04-15T12:03:27]
-- key: `LARGE_ODDS_DRIFT|`
-- **FIX**: 10%超ドリフト発生→情報として監視、閾値調整は config.json の statistical_tests.drift_alert_pct
-
-### 🔴 ROI_CRITICAL  ×1  [2026-04-15T06:03:28]
-- key: `ROI_CRITICAL|TEST_AUDIT_PHASE2`
-- **FIX**: 該当戦略を strategies.json で enabled:false に→N≥300 Wilson下限<1.0確定のため
-
-### 🔴 ROI_CRITICAL  ×1  [2026-04-15T06:01:31]
-- key: `ROI_CRITICAL|TEST_AUDIT_IGNORE`
-- **FIX**: 該当戦略を strategies.json で enabled:false に→N≥300 Wilson下限<1.0確定のため
-
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-13 017R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-14 024R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-14 029R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-12 0411R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-11 069R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-12 066R combo=1-4-2 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-14 103R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-11 119R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|20260410 117R combo=1-4-3 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-11 144R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-11 1410R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-12 145R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-12 148R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-13 147R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-13 1411R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
 - key: `STRATEGY_COLLAPSE|2026-04-14 142R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
+- key: `STRATEGY_COLLAPSE|2026-04-11 159R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
+- key: `STRATEGY_COLLAPSE|2026-04-12 155R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
+- key: `STRATEGY_COLLAPSE|2026-04-13 154R combo=2 を 5 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T12:57:06]
+- key: `STRATEGY_COLLAPSE|2026-04-14 206R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
 
@@ -104,7 +104,7 @@
 - strategies.json md5: `1193885b4bcdeb4c8d16955d7ee412db`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.8MB / last modified 2026-04-15T12:49:22.876853+09:00
+- DB: 0.84MB / last modified 2026-04-15T13:00:02.503015+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -140,37 +140,40 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # 0時: 日次集計
 5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1
+0 3 * * * find /opt -maxdepth 1 -name "boatrace_v2.bak_*" -mtime +7 -exec rm -rf {} \; # backup cleanup
 ```
 
 ### 直近 run_cycle ログ (末尾)
 ```
-NFO] notifier: Discord notify OK (status=204)
-2026-04-15 12:48:32,563 [INFO] run_cycle: SCAN S02 福岡2R GREEN
-2026-04-15 12:48:32,567 [INFO] race_id: notif: nid=2026041522021301 sid=S03 phase=scan rank=GREEN
-2026-04-15 12:48:34,125 [INFO] notifier: Discord notify OK (status=204)
-2026-04-15 12:48:34,428 [INFO] notifier: Discord notify OK (status=204)
-2026-04-15 12:48:34,433 [INFO] run_cycle: SCAN S03 福岡2R GREEN
-2026-04-15 12:48:34,519 [INFO] run_cycle: run_cycle done: 2 notifications
-2026-04-15 12:49:05,384 [INFO] run_cycle: === run_cycle 12:49:05 ===
-2026-04-15 12:49:05,384 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 12:49:05,384 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 12:49:05,428 [INFO] predictor: Models loaded OK
-2026-04-15 12:49:16,960 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-15 12:49:18,050 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-15 12:49:19,193 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-15 12:49:19,194 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-15 12:49:20,317 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-15 12:49:20,317 [INFO] scraper: fetch_race 10/10: boats=6 odds=191/191
-2026-04-15 12:49:20,342 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-15 12:49:20,342 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-15 12:49:20,346 [INFO] run_cycle: fetched 10/10 [scan]: 156 combos
-2026-04-15 12:49:22,870 [WARNING] scraper: beforeinfo parse failed: jcd=03 rno=5
-2026-04-15 12:49:22,870 [WARNING] run_cycle: fetch None: 03/5
-2026-04-15 12:49:22,870 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 12:50:08,615 [INFO] run_cycle: === run_cycle 12:50:08 ===
-2026-04-15 12:50:08,615 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 12:50:08,616 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 12:50:08,730 [INFO] predictor: Models loaded OK
+TTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-04-15 12:59:40,972 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-15 12:59:42,058 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-15 12:59:43,170 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-15 12:59:43,171 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-15 12:59:44,249 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-15 12:59:44,249 [INFO] scraper: fetch_race 22/2: boats=6 odds=191/191
+2026-04-15 12:59:44,261 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 12:59:44,262 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-15 12:59:44,269 [INFO] run_cycle: fetched 22/2 [final]: 156 combos
+2026-04-15 12:59:47,666 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-15 12:59:48,759 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-15 12:59:49,867 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-15 12:59:49,868 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-15 12:59:50,954 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-15 12:59:50,954 [INFO] scraper: fetch_race 03/5: boats=6 odds=191/191
+2026-04-15 12:59:50,963 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 12:59:50,963 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-15 12:59:50,971 [INFO] run_cycle: fetched 03/5 [final]: 156 combos
+2026-04-15 12:59:54,578 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-15 12:59:55,669 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-15 12:59:56,804 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-15 12:59:56,806 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-15 12:59:57,938 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-15 12:59:57,939 [INFO] scraper: fetch_race 14/10: boats=6 odds=191/191
+2026-04-15 12:59:57,947 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 12:59:57,947 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-15 12:59:57,955 [INFO] run_cycle: fetched 14/10 [scan]: 156 combos
+2026-04-15 12:59:58,052 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -197,23 +200,23 @@ NFO] notifier: Discord notify OK (status=204)
   {
     "target": "mirror",
     "ok": 1,
-    "c": 96
+    "c": 104
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 96
+    "c": 104
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 50, 'scan': 46}
+{'final': 52, 'scan': 52}
 
 ## アラート件数 (24h・種類別)
 ```
-  LARGE_ODDS_DRIFT: 368
-  CRITICAL_ODDS_COLLAPSE: 210
+  LARGE_ODDS_DRIFT: 480
+  CRITICAL_ODDS_COLLAPSE: 238
 ```
 
 ## 戦略別 ROI (7日)
@@ -232,26 +235,22 @@ NFO] notifier: Discord notify OK (status=204)
 | S10 | 27 | 6 | 6,500 | 3,920 | -2,580 | 0.603 |
 | S11 | 31 | 0 | 4,700 | 0 | -4,700 | 0.0 |
 | S12 | 10 | 0 | 1,900 | 0 | -1,900 | 0.0 |
-| s1_3t_bomb | 3 | 0 | 300 | 0 | -300 | 0.0 |
-| s2_2t_snipe | 14 | 0 | 1,400 | 0 | -1,400 | 0.0 |
-| s3_3f_target | 82 | 13 | 8,200 | 6,230 | -1,970 | 0.76 |
-| s4_3t_mid | 25 | 0 | 2,500 | 0 | -2,500 | 0.0 |
 
 ## 直近アラート (24h・新しい順)
 ```
-[12:49:22] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S12", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
-[12:49:22] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S12", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
-[12:49:22] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S11", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
-[12:49:22] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S11", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
-[12:49:22] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S08", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
-[12:49:22] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S08", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
-[12:49:22] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S05", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
-[12:49:22] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S05", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
-[12:49:22] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[12:49:22] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[12:59:58] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S12", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
+[12:59:58] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S12", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
+[12:59:58] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S11", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
+[12:59:58] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S11", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
+[12:59:58] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S08", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
+[12:59:58] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S08", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
+[12:59:58] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S05", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
+[12:59:58] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S05", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
+[12:59:58] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[12:59:58] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
 ```
 
-## 本日残レース: 90件
+## 本日残レース: 88件
 
 ## 直近送信失敗 (24h)
 ```
@@ -286,4 +285,4 @@ NFO] notifier: Discord notify OK (status=204)
 - 主力グループ状態: ✅ (全12グループ合格)
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-15T12:50:02.313339+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-15T13:00:01.614740+09:00_
