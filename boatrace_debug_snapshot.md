@@ -2,17 +2,22 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-15T12:00:02.071614+09:00
+**生成**: 2026-04-15T12:10:02.193750+09:00
 
 ### 次に取るべきアクション
-> RED 優先: CRITICAL_ODDS_COLLAPSE×114 (24h) → 該当ログ確認し原因特定
+> RED 優先: CRITICAL_ODDS_COLLAPSE×132 (24h) → 該当ログ確認し原因特定
 
 ### 検出された問題
-- 🔴 CRITICAL_ODDS_COLLAPSE×114 (24h)
+- 🔴 CRITICAL_ODDS_COLLAPSE×132 (24h)
+- 🟡 LARGE_ODDS_DRIFT×56 (24h)
 
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
+
+### 🟡 LARGE_ODDS_DRIFT  ×56  [2026-04-15T12:03:27]
+- key: `LARGE_ODDS_DRIFT|`
+- **FIX**: 10%超ドリフト発生→情報として監視、閾値調整は config.json の statistical_tests.drift_alert_pct
 
 ### 🟡 HEALTH_CHECK_FAIL  ×4  [2026-04-15T11:30:02]
 - key: `HEALTH_CHECK_FAIL`
@@ -90,10 +95,6 @@
 - key: `STRATEGY_COLLAPSE|2026-04-14 142R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×5  [2026-04-15T05:37:57]
-- key: `STRATEGY_COLLAPSE|2026-04-11 159R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
-
 
 以下、詳細セクション（通常読み飛ばし可）
 
@@ -103,7 +104,7 @@
 - strategies.json md5: `1193885b4bcdeb4c8d16955d7ee412db`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.67MB / last modified 2026-04-15T12:00:02.955522+09:00
+- DB: 0.69MB / last modified 2026-04-15T12:09:05.697218+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -143,32 +144,32 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-': 100} default=100
-2026-04-15 11:59:05,385 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 11:59:05,442 [INFO] predictor: Models loaded OK
-2026-04-15 11:59:16,498 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=8&jcd=14&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-15 11:59:29,020 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-15 11:59:30,124 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-15 11:59:31,227 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-15 11:59:31,228 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-15 11:59:32,328 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-15 11:59:32,328 [INFO] scraper: fetch_race 14/8: boats=6 odds=191/191
-2026-04-15 11:59:32,350 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-15 11:59:32,350 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-15 11:59:32,354 [INFO] run_cycle: fetched 14/8 [final]: 156 combos
-2026-04-15 11:59:35,799 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-15 11:59:36,914 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-15 11:59:38,019 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-15 11:59:38,020 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-15 11:59:39,121 [INFO] scraper: odds_win: 3/6 parsed
-2026-04-15 11:59:39,121 [INFO] scraper: fetch_race 17/4: boats=6 odds=188/191
-2026-04-15 11:59:39,130 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-15 11:59:39,130 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-04-15 11:59:39,138 [INFO] run_cycle: fetched 17/4 [scan]: 153 combos
-2026-04-15 11:59:39,387 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 12:00:07,766 [INFO] run_cycle: === run_cycle 12:00:07 ===
-2026-04-15 12:00:07,766 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 12:00:07,766 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+s3f: 20/20 parsed
+2026-04-15 12:07:19,647 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-15 12:07:19,648 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-15 12:07:20,773 [INFO] scraper: odds_win: 5/6 parsed
+2026-04-15 12:07:20,773 [INFO] scraper: fetch_race 02/4: boats=6 odds=190/191
+2026-04-15 12:07:20,794 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 12:07:20,794 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-04-15 12:07:20,798 [INFO] run_cycle: fetched 02/4 [scan]: 155 combos
+2026-04-15 12:07:20,831 [INFO] race_id: notif: nid=2026041502041214 sid=S11 phase=scan rank=GREEN
+2026-04-15 12:07:21,138 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 12:07:21,479 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 12:07:21,526 [INFO] run_cycle: SCAN S11 戸田4R GREEN
+2026-04-15 12:07:21,612 [INFO] run_cycle: run_cycle done: 1 notifications
+2026-04-15 12:08:05,932 [INFO] run_cycle: === run_cycle 12:08:05 ===
+2026-04-15 12:08:05,932 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-15 12:08:05,932 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-15 12:08:06,016 [INFO] predictor: Models loaded OK
+2026-04-15 12:08:06,225 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-15 12:09:05,335 [INFO] run_cycle: === run_cycle 12:09:05 ===
+2026-04-15 12:09:05,335 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-15 12:09:05,335 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-15 12:09:05,382 [INFO] predictor: Models loaded OK
+2026-04-15 12:09:05,563 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-15 12:10:08,221 [INFO] run_cycle: === run_cycle 12:10:08 ===
+2026-04-15 12:10:08,221 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-15 12:10:08,221 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 
 ```
 
@@ -195,22 +196,23 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 80
+    "c": 88
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 80
+    "c": 88
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 39, 'scan': 41}
+{'final': 45, 'scan': 43}
 
 ## アラート件数 (24h・種類別)
 ```
-  CRITICAL_ODDS_COLLAPSE: 114
+  CRITICAL_ODDS_COLLAPSE: 132
+  LARGE_ODDS_DRIFT: 56
 ```
 
 ## 戦略別 ROI (7日)
@@ -220,35 +222,35 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | S01 | 7 | 0 | 2,600 | 0 | -2,600 | 0.0 |
 | S02 | 133 | 8 | 29,800 | 4,530 | -25,270 | 0.152 |
 | S03 | 73 | 6 | 15,700 | 2,620 | -13,080 | 0.167 |
-| S04 | 9 | 0 | 3,300 | 0 | -3,300 | 0.0 |
-| S05 | 8 | 0 | 1,700 | 0 | -1,700 | 0.0 |
-| S06 | 12 | 0 | 3,600 | 0 | -3,600 | 0.0 |
+| S04 | 10 | 0 | 3,500 | 0 | -3,500 | 0.0 |
+| S05 | 10 | 0 | 1,900 | 0 | -1,900 | 0.0 |
+| S06 | 13 | 0 | 3,800 | 0 | -3,800 | 0.0 |
 | S07 | 43 | 6 | 10,900 | 3,700 | -7,200 | 0.339 |
-| S08 | 6 | 0 | 1,200 | 0 | -1,200 | 0.0 |
+| S08 | 8 | 0 | 1,400 | 0 | -1,400 | 0.0 |
 | S09 | 41 | 7 | 10,700 | 2,270 | -8,430 | 0.212 |
 | S10 | 27 | 6 | 6,500 | 3,920 | -2,580 | 0.603 |
-| S11 | 27 | 0 | 4,300 | 0 | -4,300 | 0.0 |
-| S12 | 8 | 0 | 1,700 | 0 | -1,700 | 0.0 |
+| S11 | 29 | 0 | 4,500 | 0 | -4,500 | 0.0 |
+| S12 | 10 | 0 | 1,900 | 0 | -1,900 | 0.0 |
 | s1_3t_bomb | 3 | 0 | 300 | 0 | -300 | 0.0 |
 | s2_2t_snipe | 15 | 0 | 1,500 | 0 | -1,500 | 0.0 |
-| s3_3f_target | 90 | 14 | 9,000 | 6,880 | -2,120 | 0.764 |
+| s3_3f_target | 87 | 14 | 8,700 | 6,880 | -1,820 | 0.791 |
 | s4_3t_mid | 25 | 0 | 2,500 | 0 | -2,500 | 0.0 |
 
 ## 直近アラート (24h・新しい順)
 ```
-[11:59:39] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:59:39] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:58:20] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:58:20] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:57:21] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:57:21] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:56:38] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:56:38] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:55:35] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:55:35] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[12:09:05] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S12", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
+[12:09:05] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S12", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
+[12:09:05] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S11", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
+[12:09:05] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S11", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
+[12:09:05] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S08", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
+[12:09:05] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S08", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
+[12:09:05] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S05", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
+[12:09:05] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S05", "race": "174R", "combo": "1-6-3", "scan": 501.1, "final": 672.6, "drift_pct": 34.2}
+[12:09:05] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[12:09:05] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
 ```
 
-## 本日残レース: 103件
+## 本日残レース: 99件
 
 ## 直近送信失敗 (24h)
 ```
@@ -257,21 +259,22 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## 最新 predictions サンプル (計算spot-check用)
 | sid | race | bt | combo | p | odds | ev | bet | at |
 |---|---|---|---|---|---|---|---|---|
-| S03 | 172R | win | 2 | 0.2151 | 25.7 | 5.53 | 300 | scan=72.7 drift=-64.6% | 11:03:21 |
-| S02 | 172R | win | 2 | 0.2151 | 25.7 | 5.53 | 300 | scan=72.7 drift=-64.6% | 11:03:20 |
-| S10 | 146R | win | 1 | 0.4096 | 25.5 | 10.44 | 300 | scan=23.2 drift=+9.9% | 10:54:39 |
-| S09 | 146R | win | 1 | 0.4096 | 25.5 | 10.44 | 300 | scan=23.2 drift=+9.9% | 10:54:37 |
-| S07 | 146R | win | 1 | 0.4096 | 25.5 | 10.44 | 300 | scan=23.2 drift=+9.9% | 10:54:36 |
-| S03 | 146R | win | 1 | 0.4096 | 25.5 | 10.44 | 300 | scan=23.2 drift=+9.9% | 10:54:35 |
-| S02 | 146R | win | 1 | 0.4096 | 25.5 | 10.44 | 300 | scan=23.2 drift=+9.9% | 10:54:32 |
-| S00 | 146R | win | 1 | 0.4096 | 25.5 | 10.44 | 300 | scan=23.2 drift=+9.9% | 10:54:31 |
-| S02 | 171R | win | 2 | 0.1365 | 39.3 | 5.36 | 300 | scan=- drift=- | 10:36:21 |
-| S03 | 105R | win | 2 | 0.2473 | 27.6 | 6.82 | 300 | scan=- drift=- | 10:15:23 |
+| S12 | 174R | 3t | 1-6-5 | 0.0208 | 628.3 | 13.05 | 100 | scan=707.5 drift=-11.2% | 12:03:26 |
+| S12 | 174R | 3t | 1-6-3 | 0.0226 | 672.6 | 15.17 | 100 | scan=501.1 drift=+34.2% | 12:03:26 |
+| S11 | 174R | 3t | 1-6-5 | 0.0208 | 628.3 | 13.05 | 100 | scan=707.5 drift=-11.2% | 12:03:25 |
+| S11 | 174R | 3t | 1-6-3 | 0.0226 | 672.6 | 15.17 | 100 | scan=501.1 drift=+34.2% | 12:03:25 |
+| S08 | 174R | 3t | 1-6-5 | 0.0208 | 628.3 | 13.05 | 100 | scan=707.5 drift=-11.2% | 12:03:23 |
+| S08 | 174R | 3t | 1-6-3 | 0.0226 | 672.6 | 15.17 | 100 | scan=501.1 drift=+34.2% | 12:03:23 |
+| S06 | 174R | 2t | 1-6 | 0.0787 | 94.3 | 7.42 | 200 | scan=- drift=- | 12:03:21 |
+| S05 | 174R | 3t | 1-6-5 | 0.0208 | 628.3 | 13.05 | 100 | scan=707.5 drift=-11.2% | 12:03:20 |
+| S05 | 174R | 3t | 1-6-3 | 0.0226 | 672.6 | 15.17 | 100 | scan=501.1 drift=+34.2% | 12:03:20 |
+| S04 | 174R | 2t | 1-6 | 0.0787 | 94.3 | 7.42 | 200 | scan=- drift=- | 12:03:20 |
 
 ## オッズドリフト統計 (7日)
 
 | bt | n | avg | min | max | down10 | collapse(≤-30%) | any_large(≥10%) |
 |---|---|---|---|---|---|---|---|
+| 3t | 8 | +11.5% | -11.2% | +34.2% | 4 | 0 | 8 |
 | win | 8 | -8.7% | -64.6% | +9.9% | 2 | 2 | 2 |
 
 ## 校正テーブル合格状況
@@ -282,4 +285,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 - 主力グループ状態: ✅ (全12グループ合格)
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-15T12:00:02.071614+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-15T12:10:02.193750+09:00_
