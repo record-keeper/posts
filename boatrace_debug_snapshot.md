@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-15T11:30:01.915705+09:00
+**生成**: 2026-04-15T11:40:01.943507+09:00
 
 ### 次に取るべきアクション
-> RED 優先: CRITICAL_ODDS_COLLAPSE×54 (24h) → 該当ログ確認し原因特定
+> RED 優先: CRITICAL_ODDS_COLLAPSE×74 (24h) → 該当ログ確認し原因特定
 
 ### 検出された問題
-- 🔴 CRITICAL_ODDS_COLLAPSE×54 (24h)
+- 🔴 CRITICAL_ODDS_COLLAPSE×74 (24h)
 
 ---
 
@@ -103,7 +103,7 @@
 - strategies.json md5: `1193885b4bcdeb4c8d16955d7ee412db`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.64MB / last modified 2026-04-15T11:30:02.903168+09:00
+- DB: 0.66MB / last modified 2026-04-15T11:39:21.678122+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -143,33 +143,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-2026-04-15 11:27:30,724 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-15 11:27:30,725 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-15 11:27:31,814 [INFO] scraper: odds_win: 5/6 parsed
-2026-04-15 11:27:31,815 [INFO] scraper: fetch_race 09/3: boats=6 odds=190/191
-2026-04-15 11:27:31,837 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-15 11:27:31,837 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-04-15 11:27:31,841 [INFO] run_cycle: fetched 09/3 [scan]: 155 combos
-2026-04-15 11:27:31,937 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 11:28:05,936 [INFO] run_cycle: === run_cycle 11:28:05 ===
-2026-04-15 11:28:05,936 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 11:28:05,937 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 11:28:05,985 [INFO] predictor: Models loaded OK
-2026-04-15 11:28:18,596 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-15 11:28:19,709 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-15 11:28:20,792 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-15 11:28:20,793 [INFO] scraper: odds2f: 13/15 parsed
-2026-04-15 11:28:21,876 [INFO] scraper: odds_win: 4/6 parsed
-2026-04-15 11:28:21,876 [INFO] scraper: fetch_race 03/2: boats=6 odds=187/191
-2026-04-15 11:28:21,899 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-15 11:28:21,899 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-04-15 11:28:21,903 [INFO] run_cycle: fetched 03/2 [scan]: 154 combos
-2026-04-15 11:28:21,999 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 11:29:05,157 [INFO] run_cycle: === run_cycle 11:29:05 ===
-2026-04-15 11:29:05,158 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 11:29:05,158 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 11:29:05,227 [INFO] predictor: Models loaded OK
-2026-04-15 11:29:05,518 [INFO] run_cycle: run_cycle done: 0 notifications
+/120 parsed
+2026-04-15 11:38:32,042 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-15 11:38:33,213 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-15 11:38:33,214 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-15 11:38:34,321 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-15 11:38:34,321 [INFO] scraper: fetch_race 10/8: boats=6 odds=191/191
+2026-04-15 11:38:34,324 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 11:38:34,324 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-15 11:38:34,328 [INFO] run_cycle: fetched 10/8 [scan]: 156 combos
+2026-04-15 11:38:34,426 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-15 11:39:05,273 [INFO] run_cycle: === run_cycle 11:39:05 ===
+2026-04-15 11:39:05,273 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-15 11:39:05,273 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-15 11:39:05,345 [INFO] predictor: Models loaded OK
+2026-04-15 11:39:17,799 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-15 11:39:18,886 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-15 11:39:20,136 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-15 11:39:20,137 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-15 11:39:21,235 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-15 11:39:21,235 [INFO] scraper: fetch_race 03/2: boats=6 odds=191/191
+2026-04-15 11:39:21,256 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 11:39:21,256 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-15 11:39:21,260 [INFO] run_cycle: fetched 03/2 [final]: 156 combos
+2026-04-15 11:39:21,510 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-15 11:40:08,062 [INFO] run_cycle: === run_cycle 11:40:08 ===
+2026-04-15 11:40:08,062 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-15 11:40:08,062 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-15 11:40:08,189 [INFO] predictor: Models loaded OK
 
 ```
 
@@ -196,22 +197,22 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 70
+    "c": 76
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 70
+    "c": 76
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 33, 'scan': 37}
+{'final': 39, 'scan': 37}
 
 ## アラート件数 (24h・種類別)
 ```
-  CRITICAL_ODDS_COLLAPSE: 54
+  CRITICAL_ODDS_COLLAPSE: 74
 ```
 
 ## 戦略別 ROI (7日)
@@ -237,19 +238,19 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
-[11:29:05] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:29:05] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:28:22] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:28:22] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:27:31] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:27:31] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:26:39] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:26:39] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:25:34] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
-[11:25:34] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[11:39:21] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[11:39:21] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[11:38:34] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[11:38:34] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[11:37:05] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[11:37:05] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[11:36:05] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[11:36:05] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[11:35:27] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S03", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
+[11:35:27] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
 ```
 
-## 本日残レース: 109件
+## 本日残レース: 107件
 
 ## 直近送信失敗 (24h)
 ```
@@ -283,4 +284,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 - 主力グループ状態: ✅ (全12グループ合格)
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-15T11:30:01.915705+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-15T11:40:01.943507+09:00_
