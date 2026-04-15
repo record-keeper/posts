@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-15T13:50:01.598542+09:00
+**生成**: 2026-04-15T14:00:01.995572+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×2 (24h) → ログ/DB確認
@@ -15,85 +15,85 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 LARGE_ODDS_DRIFT  ×360  [2026-04-15T13:03:33]
-- key: `LARGE_ODDS_DRIFT|`
-- **FIX**: 10%超ドリフト発生→情報として監視、閾値調整は config.json の statistical_tests.drift_alert_pct
+### 🟡 HEALTH_CHECK_FAIL  ×1  [2026-04-15T14:00:02]
+- key: `HEALTH_CHECK_FAIL`
+- **FIX**: health.py の check 失敗→対応する check 名から該当テーブル/指標を確認
 
-### 🟡 ORPHAN_SCAN  ×1  [2026-04-15T13:00:27]
-- key: `ORPHAN_SCAN|6 件の scan に final/retreat 追従無し`
+### ℹ️ ROI_STAT  ×1  [2026-04-15T13:53:08]
+- key: `ROI_STAT|S11: n=32 hit%=0.0% hit_CI[Bonf]=[0.0,20.7]% ROI=0.00 ROI_boot95=[0.00,0.00]`
+- **FIX**: 統計サマリ情報。判定ではなく参照用
+
+### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-04-15T13:53:08]
+- key: `INSUFFICIENT_SAMPLE|S11: n=32<300 — v17 要件未達、ROI判定保留`
+- **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
+
+### 🟡 ORPHAN_SCAN  ×1  [2026-04-15T13:53:08]
+- key: `ORPHAN_SCAN|2 件の scan に final/retreat 追従無し`
 - **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-13 017R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### ℹ️ ROI_STAT  ×2  [2026-04-15T13:50:34]
+- key: `ROI_STAT|S00: n=41 hit%=46.3% hit_CI[Bonf]=[26.5,67.5]% ROI=0.97 ROI_boot95=[0.62,1.41]`
+- **FIX**: 統計サマリ情報。判定ではなく参照用
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-14 024R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### ℹ️ ROI_STAT  ×2  [2026-04-15T13:50:34]
+- key: `ROI_STAT|S02: n=134 hit%=10.4% hit_CI[Bonf]=[5.0,20.5]% ROI=0.23 ROI_boot95=[0.14,0.54]`
+- **FIX**: 統計サマリ情報。判定ではなく参照用
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-14 029R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### ℹ️ ROI_STAT  ×2  [2026-04-15T13:50:34]
+- key: `ROI_STAT|S03: n=74 hit%=16.2% hit_CI[Bonf]=[7.4,31.9]% ROI=0.32 ROI_boot95=[0.19,0.76]`
+- **FIX**: 統計サマリ情報。判定ではなく参照用
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-12 0411R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### ℹ️ ROI_STAT  ×2  [2026-04-15T13:50:34]
+- key: `ROI_STAT|S07: n=43 hit%=39.5% hit_CI[Bonf]=[21.5,61.0]% ROI=0.81 ROI_boot95=[0.54,1.46]`
+- **FIX**: 統計サマリ情報。判定ではなく参照用
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-11 069R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### ℹ️ ROI_STAT  ×2  [2026-04-15T13:50:34]
+- key: `ROI_STAT|S09: n=41 hit%=46.3% hit_CI[Bonf]=[26.5,67.5]% ROI=0.97 ROI_boot95=[0.62,1.41]`
+- **FIX**: 統計サマリ情報。判定ではなく参照用
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-12 066R combo=1-4-2 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 ORPHAN_SCAN  ×1  [2026-04-15T13:50:34]
+- key: `ORPHAN_SCAN|9 件の scan に final/retreat 追従無し`
+- **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-14 103R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 PAYOUT_RATIO_WEIRD  ×2  [2026-04-15T13:50:33]
+- key: `PAYOUT_RATIO_WEIRD|pid=418 bet=200 odds=5.6 payout=260 ratio=0.23`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-11 119R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 PAYOUT_RATIO_WEIRD  ×2  [2026-04-15T13:50:33]
+- key: `PAYOUT_RATIO_WEIRD|pid=490 bet=300 odds=6.9 payout=420 ratio=0.20`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|20260410 117R combo=1-4-3 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 PAYOUT_RATIO_WEIRD  ×2  [2026-04-15T13:50:33]
+- key: `PAYOUT_RATIO_WEIRD|pid=508 bet=300 odds=8.1 payout=450 ratio=0.19`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-11 144R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 PAYOUT_RATIO_WEIRD  ×2  [2026-04-15T13:50:33]
+- key: `PAYOUT_RATIO_WEIRD|pid=556 bet=100 odds=6.7 payout=130 ratio=0.19`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-11 1410R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 PAYOUT_RATIO_WEIRD  ×2  [2026-04-15T13:50:33]
+- key: `PAYOUT_RATIO_WEIRD|pid=578 bet=500 odds=13.1 payout=1350 ratio=0.21`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-12 145R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 PAYOUT_RATIO_WEIRD  ×2  [2026-04-15T13:50:33]
+- key: `PAYOUT_RATIO_WEIRD|pid=595 bet=300 odds=8.2 payout=570 ratio=0.23`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-12 148R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 PAYOUT_RATIO_WEIRD  ×2  [2026-04-15T13:50:33]
+- key: `PAYOUT_RATIO_WEIRD|pid=638 bet=500 odds=11.2 payout=1600 ratio=0.29`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-13 147R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 PAYOUT_RATIO_WEIRD  ×2  [2026-04-15T13:50:33]
+- key: `PAYOUT_RATIO_WEIRD|pid=670 bet=500 odds=10.2 payout=500 ratio=0.10`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-13 1411R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 PAYOUT_RATIO_WEIRD  ×2  [2026-04-15T13:50:33]
+- key: `PAYOUT_RATIO_WEIRD|pid=688 bet=500 odds=9.0 payout=500 ratio=0.11`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-14 142R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
-
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-11 159R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
-
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T12:57:06]
-- key: `STRATEGY_COLLAPSE|2026-04-12 155R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+### 🟡 PAYOUT_RATIO_WEIRD  ×2  [2026-04-15T13:50:33]
+- key: `PAYOUT_RATIO_WEIRD|pid=530 bet=100 odds=26.0 payout=210 ratio=0.08`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
 
 以下、詳細セクション（通常読み飛ばし可）
@@ -104,7 +104,7 @@
 - strategies.json md5: `1193885b4bcdeb4c8d16955d7ee412db`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-15T13:48:25.269678+09:00
+- DB: 0.99MB / last modified 2026-04-15T14:00:02.843238+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -145,30 +145,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-parsed
-2026-04-15 13:48:20,845 [INFO] scraper: odds2f: 14/15 parsed
-2026-04-15 13:48:21,912 [INFO] scraper: odds_win: 4/6 parsed
-2026-04-15 13:48:21,912 [INFO] scraper: fetch_race 16/7: boats=6 odds=186/191
-2026-04-15 13:48:21,924 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-15 13:48:21,925 [INFO] predictor: combos: {'win': 4, '2t': 28, '3t': 120}
-2026-04-15 13:48:21,932 [INFO] run_cycle: fetched 16/7 [scan]: 152 combos
-2026-04-15 13:48:22,185 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 13:49:05,937 [INFO] run_cycle: === run_cycle 13:49:05 ===
-2026-04-15 13:49:05,937 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 13:49:05,937 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 13:49:05,978 [INFO] predictor: Models loaded OK
-2026-04-15 13:49:17,088 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=7&jcd=03&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-15 13:49:28,115 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=7&jcd=03&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-04-15 13:49:42,480 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-15 13:49:43,601 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-15 13:49:44,739 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-15 13:49:44,740 [INFO] scraper: odds2f: 13/15 parsed
-2026-04-15 13:49:45,808 [INFO] scraper: odds_win: 4/6 parsed
-2026-04-15 13:49:45,808 [INFO] scraper: fetch_race 03/7: boats=6 odds=187/191
-2026-04-15 13:49:45,821 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-15 13:49:45,821 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-04-15 13:49:45,829 [INFO] run_cycle: fetched 03/7 [scan]: 154 combos
-2026-04-15 13:49:46,001 [INFO] run_cycle: run_cycle done: 0 notifications
+-15 13:58:21,522 [INFO] scraper: fetch_race 17/8: boats=6 odds=189/191
+2026-04-15 13:58:21,534 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 13:58:21,534 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-04-15 13:58:21,541 [INFO] run_cycle: fetched 17/8 [scan]: 154 combos
+2026-04-15 13:58:21,611 [INFO] race_id: notif: nid=2026041517081407 sid=S02 phase=scan rank=GREEN
+2026-04-15 13:58:22,041 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 13:58:22,370 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 13:58:22,385 [INFO] run_cycle: SCAN S02 宮島8R GREEN
+2026-04-15 13:58:22,389 [INFO] race_id: notif: nid=2026041517081407 sid=S03 phase=scan rank=GREEN
+2026-04-15 13:58:22,759 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 13:58:23,099 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 13:58:23,132 [INFO] run_cycle: SCAN S03 宮島8R GREEN
+2026-04-15 13:58:23,282 [INFO] run_cycle: run_cycle done: 2 notifications
+2026-04-15 13:59:06,414 [INFO] run_cycle: === run_cycle 13:59:06 ===
+2026-04-15 13:59:06,414 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-15 13:59:06,414 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-15 13:59:06,472 [INFO] predictor: Models loaded OK
+2026-04-15 13:59:19,080 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-15 13:59:20,193 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-15 13:59:21,309 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-15 13:59:21,310 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-15 13:59:22,408 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-15 13:59:22,408 [INFO] scraper: fetch_race 09/8: boats=6 odds=191/191
+2026-04-15 13:59:22,419 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 13:59:22,420 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-15 13:59:22,427 [INFO] run_cycle: fetched 09/8 [scan]: 156 combos
+2026-04-15 13:59:22,518 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -195,18 +198,18 @@ parsed
   {
     "target": "mirror",
     "ok": 1,
-    "c": 129
+    "c": 140
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 129
+    "c": 140
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 63, 'scan': 66}
+{'final': 72, 'scan': 68}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -218,17 +221,17 @@ parsed
 | sid | n | hits | cost | payout | PL | ROI |
 |---|---|---|---|---|---|---|
 | S00 | 41 | 19 | 10,700 | 10,420 | -280 | 0.974 |
-| S01 | 7 | 0 | 2,600 | 0 | -2,600 | 0.0 |
+| S01 | 8 | 0 | 2,800 | 0 | -2,800 | 0.0 |
 | S02 | 134 | 14 | 30,100 | 7,000 | -23,100 | 0.233 |
 | S03 | 74 | 12 | 16,000 | 5,090 | -10,910 | 0.318 |
-| S04 | 11 | 0 | 3,700 | 0 | -3,700 | 0.0 |
+| S04 | 12 | 0 | 3,900 | 0 | -3,900 | 0.0 |
 | S05 | 10 | 0 | 1,900 | 0 | -1,900 | 0.0 |
-| S06 | 14 | 0 | 4,000 | 0 | -4,000 | 0.0 |
+| S06 | 15 | 0 | 4,200 | 0 | -4,200 | 0.0 |
 | S07 | 43 | 17 | 10,900 | 8,860 | -2,040 | 0.813 |
 | S08 | 8 | 0 | 1,400 | 0 | -1,400 | 0.0 |
 | S09 | 41 | 19 | 10,700 | 10,420 | -280 | 0.974 |
 | S10 | 27 | 15 | 6,500 | 7,420 | +920 | 1.142 |
-| S11 | 31 | 0 | 4,700 | 0 | -4,700 | 0.0 |
+| S11 | 32 | 0 | 4,800 | 0 | -4,800 | 0.0 |
 | S12 | 10 | 0 | 1,900 | 0 | -1,900 | 0.0 |
 
 ## 直近アラート (24h・新しい順)
@@ -245,7 +248,7 @@ parsed
 [11:03:29] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
 ```
 
-## 本日残レース: 74件
+## 本日残レース: 71件
 
 ## 直近送信失敗 (24h)
 ```
@@ -254,22 +257,22 @@ parsed
 ## 最新 predictions サンプル (計算spot-check用)
 | sid | race | bt | combo | p | odds | ev | bet | at |
 |---|---|---|---|---|---|---|---|---|
+| S11 | 167R | 3t | 4-1-3 | 0.0357 | 312.5 | 11.17 | 100 | scan=- drift=- | 13:52:34 |
+| S06 | 167R | 2t | 1-4 | 0.1341 | 66.9 | 8.97 | 200 | scan=71.5 drift=-6.4% | 13:52:33 |
+| S04 | 167R | 2t | 1-4 | 0.1341 | 66.9 | 8.97 | 200 | scan=71.5 drift=-6.4% | 13:52:31 |
+| S01 | 167R | 2t | 1-4 | 0.1341 | 66.9 | 8.97 | 200 | scan=71.5 drift=-6.4% | 13:52:30 |
 | S06 | 176R | 2t | 1-5 | 0.1223 | 44.3 | 5.42 | 200 | scan=48.7 drift=-9.0% | 13:03:21 |
 | S04 | 176R | 2t | 1-5 | 0.1223 | 44.3 | 5.42 | 200 | scan=48.7 drift=-9.0% | 13:03:20 |
 | S03 | 164R | win | 3 | 0.1414 | 36.0 | 5.09 | 300 | scan=- drift=- | 12:27:21 |
 | S02 | 164R | win | 3 | 0.1414 | 36.0 | 5.09 | 300 | scan=- drift=- | 12:27:20 |
 | S11 | 109R | 3t | 1-6-4 | 0.0515 | 213.6 | 11.01 | 100 | scan=209.1 drift=+2.2% | 12:22:21 |
 | S11 | 024R | 3t | 4-1-2 | 0.0568 | 193.8 | 11.01 | 100 | scan=180.5 drift=+7.4% | 12:11:21 |
-| S12 | 174R | 3t | 1-6-5 | 0.0208 | 628.3 | 13.05 | 100 | scan=707.5 drift=-11.2% | 12:03:26 |
-| S12 | 174R | 3t | 1-6-3 | 0.0226 | 672.6 | 15.17 | 100 | scan=501.1 drift=+34.2% | 12:03:26 |
-| S11 | 174R | 3t | 1-6-5 | 0.0208 | 628.3 | 13.05 | 100 | scan=707.5 drift=-11.2% | 12:03:25 |
-| S11 | 174R | 3t | 1-6-3 | 0.0226 | 672.6 | 15.17 | 100 | scan=501.1 drift=+34.2% | 12:03:25 |
 
 ## オッズドリフト統計 (7日)
 
 | bt | n | avg | min | max | down10 | collapse(≤-30%) | any_large(≥10%) |
 |---|---|---|---|---|---|---|---|
-| 2t | 2 | -9.0% | -9.0% | -9.0% | 0 | 0 | 0 |
+| 2t | 5 | -7.5% | -9.0% | -6.4% | 0 | 0 | 0 |
 | 3t | 10 | +10.2% | -11.2% | +34.2% | 4 | 0 | 8 |
 | win | 8 | -8.7% | -64.6% | +9.9% | 2 | 2 | 2 |
 
@@ -281,4 +284,4 @@ parsed
 - 主力グループ状態: ✅ (全12グループ合格)
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-15T13:50:01.598542+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-15T14:00:01.995572+09:00_
