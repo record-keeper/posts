@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-16T06:00:02.116339+09:00
+**生成**: 2026-04-16T06:10:01.263914+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×2 (24h) → ログ/DB確認
@@ -15,84 +15,84 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 HEALTH_CHECK_FAIL  ×1  [2026-04-16T06:00:02]
-- key: `HEALTH_CHECK_FAIL`
-- **FIX**: health.py の check 失敗→対応する check 名から該当テーブル/指標を確認
-
-### ℹ️ ROI_STAT  ×2  [2026-04-15T15:17:09]
-- key: `ROI_STAT|S11: n=32 hit%=0.0% hit_CI[Bonf]=[0.0,20.7]% ROI=0.00 ROI_boot95=[0.00,0.00]`
-- **FIX**: 統計サマリ情報。判定ではなく参照用
-
-### ℹ️ INSUFFICIENT_SAMPLE  ×2  [2026-04-15T15:17:09]
-- key: `INSUFFICIENT_SAMPLE|S11: n=32<300 — v17 要件未達、ROI判定保留`
-- **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
-
-### ℹ️ ROI_STAT  ×2  [2026-04-15T15:17:09]
-- key: `ROI_STAT|S02: n=137 hit%=10.2% hit_CI[Bonf]=[4.9,20.1]% ROI=0.23 ROI_boot95=[0.14,0.52]`
-- **FIX**: 統計サマリ情報。判定ではなく参照用
-
-### ℹ️ INSUFFICIENT_SAMPLE  ×2  [2026-04-15T15:17:09]
-- key: `INSUFFICIENT_SAMPLE|S02: n=137<300 — v17 要件未達、ROI判定保留`
-- **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
-
-### 🟡 ORPHAN_SCAN  ×2  [2026-04-15T15:17:09]
-- key: `ORPHAN_SCAN|3 件の scan に final/retreat 追従無し`
-- **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
-
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-13 017R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-14 024R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-14 029R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-12 0411R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-11 069R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-12 066R combo=1-4-2 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-14 103R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-11 119R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|20260410 117R combo=1-4-3 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-11 144R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-11 1410R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-12 145R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-12 148R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
 - key: `STRATEGY_COLLAPSE|2026-04-13 147R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+- key: `STRATEGY_COLLAPSE|2026-04-13 1411R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+- key: `STRATEGY_COLLAPSE|2026-04-14 142R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+- key: `STRATEGY_COLLAPSE|2026-04-11 159R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+- key: `STRATEGY_COLLAPSE|2026-04-12 155R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+- key: `STRATEGY_COLLAPSE|2026-04-13 154R combo=2 を 5 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+- key: `STRATEGY_COLLAPSE|2026-04-14 206R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
 
@@ -104,7 +104,7 @@
 - strategies.json md5: `4188887370d24d5615d79ab97a20c75c`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-16T06:00:02.688290+09:00
+- DB: 0.99MB / last modified 2026-04-16T06:00:09.590345+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -316,4 +316,4 @@ SyntaxError: invalid character '🎯' (U+1F3AF)
 - 主力グループ状態: ✅ (全12グループ合格)
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-16T06:00:02.116339+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-16T06:10:01.263914+09:00_
