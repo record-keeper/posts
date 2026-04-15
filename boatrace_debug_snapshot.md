@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-15T15:10:02.216670+09:00
+**生成**: 2026-04-15T15:20:02.092239+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×2 (24h) → ログ/DB確認
@@ -15,84 +15,84 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
+### ℹ️ ROI_STAT  ×1  [2026-04-15T15:17:09]
+- key: `ROI_STAT|S11: n=32 hit%=0.0% hit_CI[Bonf]=[0.0,20.7]% ROI=0.00 ROI_boot95=[0.00,0.00]`
+- **FIX**: 統計サマリ情報。判定ではなく参照用
+
+### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-04-15T15:17:09]
+- key: `INSUFFICIENT_SAMPLE|S11: n=32<300 — v17 要件未達、ROI判定保留`
+- **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
+
+### ℹ️ ROI_STAT  ×1  [2026-04-15T15:17:09]
+- key: `ROI_STAT|S02: n=137 hit%=10.2% hit_CI[Bonf]=[4.9,20.1]% ROI=0.23 ROI_boot95=[0.14,0.52]`
+- **FIX**: 統計サマリ情報。判定ではなく参照用
+
+### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-04-15T15:17:09]
+- key: `INSUFFICIENT_SAMPLE|S02: n=137<300 — v17 要件未達、ROI判定保留`
+- **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
+
+### 🟡 ORPHAN_SCAN  ×1  [2026-04-15T15:17:09]
+- key: `ORPHAN_SCAN|3 件の scan に final/retreat 追従無し`
+- **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
+
 ### 🟡 HEALTH_CHECK_FAIL  ×1  [2026-04-15T15:00:03]
 - key: `HEALTH_CHECK_FAIL`
 - **FIX**: health.py の check 失敗→対応する check 名から該当テーブル/指標を確認
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-13 017R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-14 024R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-14 029R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-12 0411R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-11 069R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-12 066R combo=1-4-2 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-14 103R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-11 119R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|20260410 117R combo=1-4-3 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-11 144R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-11 1410R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-12 145R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-12 148R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-13 147R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
-
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
-- key: `STRATEGY_COLLAPSE|2026-04-13 1411R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
-
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
-- key: `STRATEGY_COLLAPSE|2026-04-14 142R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
-
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
-- key: `STRATEGY_COLLAPSE|2026-04-11 159R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
-
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
-- key: `STRATEGY_COLLAPSE|2026-04-12 155R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
-- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
-
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-15T14:50:46]
-- key: `STRATEGY_COLLAPSE|2026-04-13 154R combo=2 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
 
@@ -104,7 +104,7 @@
 - strategies.json md5: `1193885b4bcdeb4c8d16955d7ee412db`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-15T15:08:32.228984+09:00
+- DB: 0.99MB / last modified 2026-04-15T15:17:24.313511+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -145,25 +145,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-S03 phase=scan rank=SSS
-2026-04-15 15:08:31,857 [INFO] notifier: Discord notify OK (status=204)
-2026-04-15 15:08:32,224 [INFO] notifier: Discord notify OK (status=204)
-2026-04-15 15:08:32,230 [INFO] run_cycle: SCAN S03 福岡7R SSS
-2026-04-15 15:08:32,330 [INFO] run_cycle: run_cycle done: 3 notifications
-2026-04-15 15:09:05,863 [INFO] run_cycle: === run_cycle 15:09:05 ===
-2026-04-15 15:09:05,864 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 15:09:05,864 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 15:09:05,932 [INFO] predictor: Models loaded OK
-2026-04-15 15:09:17,590 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=03&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-15 15:09:28,623 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=03&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-04-15 15:09:41,658 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=03&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
-2026-04-15 15:09:41,658 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=03&hd=20260415
-2026-04-15 15:09:41,658 [ERROR] scraper: racelist fetch failed: jcd=03 rno=10
-2026-04-15 15:09:41,658 [WARNING] run_cycle: fetch None: 03/10
-2026-04-15 15:09:41,658 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 15:10:08,932 [INFO] run_cycle: === run_cycle 15:10:08 ===
-2026-04-15 15:10:08,932 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 15:10:08,932 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+o=1&jcd=01&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-04-15 15:17:29,475 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=01&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-04-15 15:17:42,511 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=01&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
+2026-04-15 15:17:42,511 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=01&hd=20260415
+2026-04-15 15:17:42,511 [ERROR] scraper: racelist fetch failed: jcd=01 rno=1
+2026-04-15 15:17:42,512 [WARNING] run_cycle: fetch None: 01/1
+2026-04-15 15:17:55,003 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-15 15:17:56,112 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-15 15:17:57,220 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-15 15:17:57,221 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-15 15:17:58,322 [INFO] scraper: odds_win: 5/6 parsed
+2026-04-15 15:17:58,323 [INFO] scraper: fetch_race 17/10: boats=6 odds=190/191
+2026-04-15 15:17:58,335 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 15:17:58,335 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-04-15 15:17:58,342 [INFO] run_cycle: fetched 17/10 [scan]: 155 combos
+2026-04-15 15:17:58,439 [INFO] run_cycle: run_cycle done: 0 notifications
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
 
 ```
 
@@ -190,18 +199,18 @@ S03 phase=scan rank=SSS
   {
     "target": "mirror",
     "ok": 1,
-    "c": 171
+    "c": 173
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 171
+    "c": 173
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 87, 'scan': 84}
+{'final': 88, 'scan': 85}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -214,7 +223,7 @@ S03 phase=scan rank=SSS
 |---|---|---|---|---|---|---|
 | S00 | 42 | 19 | 11,000 | 10,420 | -580 | 0.947 |
 | S01 | 8 | 0 | 2,800 | 0 | -2,800 | 0.0 |
-| S02 | 135 | 14 | 30,400 | 7,000 | -23,400 | 0.23 |
+| S02 | 137 | 14 | 31,000 | 7,000 | -24,000 | 0.226 |
 | S03 | 75 | 12 | 16,300 | 5,090 | -11,210 | 0.312 |
 | S04 | 12 | 0 | 3,900 | 0 | -3,900 | 0.0 |
 | S05 | 10 | 0 | 1,900 | 0 | -1,900 | 0.0 |
@@ -240,7 +249,7 @@ S03 phase=scan rank=SSS
 [12:03:27] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S05", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
 ```
 
-## 本日残レース: 57件
+## 本日残レース: 53件
 
 ## 直近送信失敗 (24h)
 ```
@@ -249,6 +258,8 @@ S03 phase=scan rank=SSS
 ## 最新 predictions サンプル (計算spot-check用)
 | sid | race | bt | combo | p | odds | ev | bet | at |
 |---|---|---|---|---|---|---|---|---|
+| S02 | 201R | win | 4 | 0.1360 | 76.5 | 10.40 | 300 | scan=73.1 drift=+4.7% | 15:16:21 |
+| S02 | 201R | win | 3 | 0.1161 | 153.0 | 17.77 | 300 | scan=- drift=- | 15:16:21 |
 | S09 | 029R | win | 1 | 0.5650 | 7.6 | 4.29 | 300 | scan=6.5 drift=+16.9% | 14:45:35 |
 | S07 | 029R | win | 1 | 0.5650 | 7.6 | 4.29 | 300 | scan=6.5 drift=+16.9% | 14:45:34 |
 | S00 | 029R | win | 1 | 0.5650 | 7.6 | 4.29 | 300 | scan=6.5 drift=+16.9% | 14:45:34 |
@@ -257,8 +268,6 @@ S03 phase=scan rank=SSS
 | S11 | 167R | 3t | 4-1-3 | 0.0357 | 312.5 | 11.17 | 100 | scan=- drift=- | 13:52:34 |
 | S06 | 167R | 2t | 1-4 | 0.1341 | 66.9 | 8.97 | 200 | scan=71.5 drift=-6.4% | 13:52:33 |
 | S04 | 167R | 2t | 1-4 | 0.1341 | 66.9 | 8.97 | 200 | scan=71.5 drift=-6.4% | 13:52:31 |
-| S01 | 167R | 2t | 1-4 | 0.1341 | 66.9 | 8.97 | 200 | scan=71.5 drift=-6.4% | 13:52:30 |
-| S06 | 176R | 2t | 1-5 | 0.1223 | 44.3 | 5.42 | 200 | scan=48.7 drift=-9.0% | 13:03:21 |
 
 ## オッズドリフト統計 (7日)
 
@@ -266,7 +275,7 @@ S03 phase=scan rank=SSS
 |---|---|---|---|---|---|---|---|
 | 2t | 5 | -7.5% | -9.0% | -6.4% | 0 | 0 | 0 |
 | 3t | 10 | +10.2% | -11.2% | +34.2% | 4 | 0 | 8 |
-| win | 13 | -0.5% | -64.6% | +16.9% | 2 | 2 | 5 |
+| win | 14 | -0.2% | -64.6% | +16.9% | 2 | 2 | 5 |
 
 ## 校正テーブル合格状況
 
@@ -276,4 +285,4 @@ S03 phase=scan rank=SSS
 - 主力グループ状態: ✅ (全12グループ合格)
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-15T15:10:02.216670+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-15T15:20:02.092239+09:00_
