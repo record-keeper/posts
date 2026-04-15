@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-15T14:30:01.711359+09:00
+**生成**: 2026-04-15T14:40:01.630196+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×2 (24h) → ログ/DB確認
@@ -104,7 +104,7 @@
 - strategies.json md5: `1193885b4bcdeb4c8d16955d7ee412db`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-15T14:30:02.605350+09:00
+- DB: 0.99MB / last modified 2026-04-15T14:39:34.637377+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -145,33 +145,35 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-15 14:28:06,118 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-15 14:29:06,122 [INFO] run_cycle: === run_cycle 14:29:06 ===
-2026-04-15 14:29:06,123 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-15 14:29:06,123 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-15 14:29:06,167 [INFO] predictor: Models loaded OK
-2026-04-15 14:29:18,573 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-15 14:29:19,668 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-15 14:29:20,771 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-15 14:29:20,772 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-15 14:29:21,872 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-15 14:29:21,873 [INFO] scraper: fetch_race 09/9: boats=6 odds=191/191
-2026-04-15 14:29:21,883 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-15 14:29:21,883 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-15 14:29:21,890 [INFO] run_cycle: fetched 09/9 [scan]: 156 combos
-2026-04-15 14:29:21,904 [INFO] race_id: notif: nid=2026041509091442 sid=S01 phase=scan rank=GREEN
-2026-04-15 14:29:22,307 [INFO] notifier: Discord notify OK (status=204)
-2026-04-15 14:29:22,616 [INFO] notifier: Discord notify OK (status=204)
-2026-04-15 14:29:22,620 [INFO] run_cycle: SCAN S01 津9R GREEN
-2026-04-15 14:29:22,626 [INFO] race_id: notif: nid=2026041509091442 sid=S04 phase=scan rank=GREEN
-2026-04-15 14:29:23,011 [INFO] notifier: Discord notify OK (status=204)
-2026-04-15 14:29:23,433 [INFO] notifier: Discord notify OK (status=204)
-2026-04-15 14:29:23,437 [INFO] run_cycle: SCAN S04 津9R GREEN
-2026-04-15 14:29:23,442 [INFO] race_id: notif: nid=2026041509091442 sid=S06 phase=scan rank=GREEN
-2026-04-15 14:29:23,864 [INFO] notifier: Discord notify OK (status=204)
-2026-04-15 14:29:24,227 [INFO] notifier: Discord notify OK (status=204)
-2026-04-15 14:29:24,232 [INFO] run_cycle: SCAN S06 津9R GREEN
-2026-04-15 14:29:24,320 [INFO] run_cycle: run_cycle done: 3 notifications
+ parsed
+2026-04-15 14:39:31,333 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-15 14:39:32,472 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-15 14:39:32,472 [INFO] scraper: fetch_race 09/9: boats=6 odds=191/191
+2026-04-15 14:39:32,485 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 14:39:32,485 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-15 14:39:32,493 [INFO] run_cycle: fetched 09/9 [final]: 156 combos
+2026-04-15 14:39:32,499 [INFO] race_id: notif: nid=2026041509091442 sid=S01 phase=final rank=
+2026-04-15 14:39:32,785 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 14:39:33,227 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 14:39:33,232 [INFO] run_cycle: RETREAT S01 津9R
+2026-04-15 14:39:33,238 [INFO] race_id: notif: nid=2026041509091442 sid=S04 phase=final rank=
+2026-04-15 14:39:33,624 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 14:39:33,945 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 14:39:33,998 [INFO] run_cycle: RETREAT S04 津9R
+2026-04-15 14:39:34,008 [INFO] race_id: notif: nid=2026041509091442 sid=S06 phase=final rank=
+2026-04-15 14:39:34,341 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 14:39:34,633 [INFO] notifier: Discord notify OK (status=204)
+2026-04-15 14:39:34,638 [INFO] run_cycle: RETREAT S06 津9R
+2026-04-15 14:39:38,230 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-15 14:39:39,339 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-15 14:39:40,443 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-15 14:39:40,444 [INFO] scraper: odds2f: 13/15 parsed
+2026-04-15 14:39:41,529 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-15 14:39:41,529 [INFO] scraper: fetch_race 03/9: boats=6 odds=189/191
+2026-04-15 14:39:41,537 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-15 14:39:41,537 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-15 14:39:41,545 [INFO] run_cycle: fetched 03/9 [scan]: 156 combos
+2026-04-15 14:39:41,644 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -198,18 +200,18 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 150
+    "c": 157
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 150
+    "c": 157
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 76, 'scan': 74}
+{'final': 80, 'scan': 77}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -248,7 +250,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [11:03:29] CRITICAL_ODDS_COLLAPSE: {"kind": "CRITICAL_ODDS_COLLAPSE", "sid": "S02", "race": "172R", "combo": "2", "scan": 72.7, "final": 25.7, "drift_pct": -64.6}
 ```
 
-## 本日残レース: 64件
+## 本日残レース: 62件
 
 ## 直近送信失敗 (24h)
 ```
@@ -284,4 +286,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 - 主力グループ状態: ✅ (全12グループ合格)
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-15T14:30:01.711359+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-15T14:40:01.630196+09:00_
