@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-15T15:20:02.092239+09:00
+**生成**: 2026-04-15T15:30:02.108621+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×2 (24h) → ログ/DB確認
@@ -15,83 +15,83 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### ℹ️ ROI_STAT  ×1  [2026-04-15T15:17:09]
+### ℹ️ ROI_STAT  ×2  [2026-04-15T15:17:09]
 - key: `ROI_STAT|S11: n=32 hit%=0.0% hit_CI[Bonf]=[0.0,20.7]% ROI=0.00 ROI_boot95=[0.00,0.00]`
 - **FIX**: 統計サマリ情報。判定ではなく参照用
 
-### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-04-15T15:17:09]
+### ℹ️ INSUFFICIENT_SAMPLE  ×2  [2026-04-15T15:17:09]
 - key: `INSUFFICIENT_SAMPLE|S11: n=32<300 — v17 要件未達、ROI判定保留`
 - **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
 
-### ℹ️ ROI_STAT  ×1  [2026-04-15T15:17:09]
+### ℹ️ ROI_STAT  ×2  [2026-04-15T15:17:09]
 - key: `ROI_STAT|S02: n=137 hit%=10.2% hit_CI[Bonf]=[4.9,20.1]% ROI=0.23 ROI_boot95=[0.14,0.52]`
 - **FIX**: 統計サマリ情報。判定ではなく参照用
 
-### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-04-15T15:17:09]
+### ℹ️ INSUFFICIENT_SAMPLE  ×2  [2026-04-15T15:17:09]
 - key: `INSUFFICIENT_SAMPLE|S02: n=137<300 — v17 要件未達、ROI判定保留`
 - **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
 
-### 🟡 ORPHAN_SCAN  ×1  [2026-04-15T15:17:09]
+### 🟡 ORPHAN_SCAN  ×2  [2026-04-15T15:17:09]
 - key: `ORPHAN_SCAN|3 件の scan に final/retreat 追従無し`
 - **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
 
-### 🟡 HEALTH_CHECK_FAIL  ×1  [2026-04-15T15:00:03]
+### 🟡 HEALTH_CHECK_FAIL  ×2  [2026-04-15T15:00:03]
 - key: `HEALTH_CHECK_FAIL`
 - **FIX**: health.py の check 失敗→対応する check 名から該当テーブル/指標を確認
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-13 017R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-14 024R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-14 029R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-12 0411R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-11 069R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-12 066R combo=1-4-2 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-14 103R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-11 119R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|20260410 117R combo=1-4-3 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-11 144R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-11 1410R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-12 145R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-12 148R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-15T14:50:46]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-15T14:50:46]
 - key: `STRATEGY_COLLAPSE|2026-04-13 147R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
@@ -101,10 +101,10 @@
 ## 環境・コード状態
 - git_sha: `<error: Command '['git', '-C', '/opt/boa` dirty=True
 - config.json md5: `eb532e851a30cd2f7e69bdf0dfca3f2b`
-- strategies.json md5: `1193885b4bcdeb4c8d16955d7ee412db`
+- strategies.json md5: `6046a4e92992820e93994d337c8d7ea1`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-15T15:17:24.313511+09:00
+- DB: 0.99MB / last modified 2026-04-15T15:30:02.764345+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -145,22 +145,48 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-o=1&jcd=01&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-15 15:17:29,475 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=01&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-04-15 15:17:42,511 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=01&hd=20260415: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
-2026-04-15 15:17:42,511 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=01&hd=20260415
-2026-04-15 15:17:42,511 [ERROR] scraper: racelist fetch failed: jcd=01 rno=1
-2026-04-15 15:17:42,512 [WARNING] run_cycle: fetch None: 01/1
-2026-04-15 15:17:55,003 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-15 15:17:56,112 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-15 15:17:57,220 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-15 15:17:57,221 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-15 15:17:58,322 [INFO] scraper: odds_win: 5/6 parsed
-2026-04-15 15:17:58,323 [INFO] scraper: fetch_race 17/10: boats=6 odds=190/191
-2026-04-15 15:17:58,335 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-15 15:17:58,335 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-04-15 15:17:58,342 [INFO] run_cycle: fetched 17/10 [scan]: 155 combos
+ed 17/10 [scan]: 155 combos
 2026-04-15 15:17:58,439 [INFO] run_cycle: run_cycle done: 0 notifications
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
+  File "/opt/boatrace_v2/run_cycle.py", line 159
+    形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
+        ^
+SyntaxError: invalid character '🎯' (U+1F3AF)
   File "/opt/boatrace_v2/run_cycle.py", line 159
     形式: 🎯 **世界観セリフっ…！** 実データ（ROI/n）+ 行動指針
         ^
@@ -179,16 +205,16 @@ SyntaxError: invalid character '🎯' (U+1F3AF)
 ## 戦略有効/無効一覧
 | id | trust | bt | ev_th | pmin | enabled |
 |---|---|---|---|---|---|
-| S00 | S | win | 2.5 | 0.55 | True |
+| S00 | S | win | 2.5 | 0.55 | False |
 | S01 | A | 2t | 5.0 | 0.6 | True |
-| S02 | S | win | 5.0 | 0.1 | True |
-| S03 | S | win | 5.0 | 0.2 | True |
+| S02 | S | win | 5.0 | 0.1 | False |
+| S03 | S | win | 5.0 | 0.2 | False |
 | S04 | A | 2t | 5.0 | 0.55 | True |
 | S05 | B | 3t | 10.0 | 0.4 | True |
 | S06 | A | 2t | 5.0 | 0.5 | True |
-| S07 | S | win | 3.0 | 0.5 | True |
+| S07 | S | win | 3.0 | 0.5 | False |
 | S08 | B | 3t | 10.0 | 0.5 | True |
-| S09 | S | win | 2.5 | 0.55 | True |
+| S09 | S | win | 2.5 | 0.55 | False |
 | S10 | S | win | 2.25 | 0.6 | True |
 | S11 | B | 3t | 10.0 | 0.2 | True |
 | S12 | B | 3t | 10.0 | 0.4 | True |
@@ -249,7 +275,7 @@ SyntaxError: invalid character '🎯' (U+1F3AF)
 [12:03:27] LARGE_ODDS_DRIFT: {"kind": "LARGE_ODDS_DRIFT", "sid": "S05", "race": "174R", "combo": "1-6-5", "scan": 707.5, "final": 628.3, "drift_pct": -11.2}
 ```
 
-## 本日残レース: 53件
+## 本日残レース: 49件
 
 ## 直近送信失敗 (24h)
 ```
@@ -285,4 +311,4 @@ SyntaxError: invalid character '🎯' (U+1F3AF)
 - 主力グループ状態: ✅ (全12グループ合格)
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-15T15:20:02.092239+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-15T15:30:02.108621+09:00_
