@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-04-15T16:00:02.158477+09:00",
+  "generated_at": "2026-04-15T16:10:01.871534+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
       "git_dirty": true,
       "config_md5": "eb532e851a30cd2f7e69bdf0dfca3f2b",
-      "strategies_md5": "a3a56fc40d4bb344b80273f7a84aa9db",
+      "strategies_md5": "26ca783f15bc04553b4809276c45b5cb",
       "file_lgbm_model_top1.txt": {
         "exists": true,
         "md5": "5b55d55bdb59df95ccfd1745d4e9b469",
@@ -41,8 +41,8 @@
         "id": "S00",
         "trust": "S",
         "bt": "win",
-        "ev_th": 2.5,
-        "pmin": 0.55,
+        "ev_th": 2.25,
+        "pmin": 0.6,
         "enabled": true
       },
       {
@@ -121,8 +121,8 @@
         "id": "S10",
         "trust": "S",
         "bt": "win",
-        "ev_th": 2.25,
-        "pmin": 0.6,
+        "ev_th": 2.5,
+        "pmin": 0.55,
         "enabled": true
       },
       {
@@ -340,7 +340,7 @@
         "detected_at": "2026-04-15T12:03:27.288703+09:00"
       }
     ],
-    "races_remaining_today": 40,
+    "races_remaining_today": 38,
     "recent_send_failures": [],
     "latest_predictions": [
       {
