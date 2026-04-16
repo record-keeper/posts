@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-17T03:30:01.512164+09:00",
+  "generated_at": "2026-04-17T03:40:01.826221+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,7 +33,7 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup",
       "db_size_mb": 0.99,
-      "db_mtime": "2026-04-17T03:30:02.025623+09:00",
+      "db_mtime": "2026-04-17T03:31:07.594418+09:00",
       "log_tail": "2026-04-16 23:52:07,303 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:53:06,682 [INFO] run_cycle: === run_cycle 23:53:06 ===\n2026-04-16 23:53:06,682 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:53:06,682 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:53:06,768 [INFO] predictor: Models loaded OK\n2026-04-16 23:53:06,774 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:54:06,504 [INFO] run_cycle: === run_cycle 23:54:06 ===\n2026-04-16 23:54:06,504 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:54:06,504 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:54:06,610 [INFO] predictor: Models loaded OK\n2026-04-16 23:54:06,618 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:55:06,652 [INFO] run_cycle: === run_cycle 23:55:06 ===\n2026-04-16 23:55:06,652 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:55:06,653 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:55:06,744 [INFO] predictor: Models loaded OK\n2026-04-16 23:55:06,752 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:56:06,097 [INFO] run_cycle: === run_cycle 23:56:06 ===\n2026-04-16 23:56:06,100 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:56:06,100 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:56:06,203 [INFO] predictor: Models loaded OK\n2026-04-16 23:56:06,216 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:57:07,105 [INFO] run_cycle: === run_cycle 23:57:07 ===\n2026-04-16 23:57:07,105 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:57:07,105 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:57:07,172 [INFO] predictor: Models loaded OK\n2026-04-16 23:57:07,174 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:58:06,423 [INFO] run_cycle: === run_cycle 23:58:06 ===\n2026-04-16 23:58:06,423 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:58:06,424 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:58:06,485 [INFO] predictor: Models loaded OK\n2026-04-16 23:58:06,488 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:59:06,567 [INFO] run_cycle: === run_cycle 23:59:06 ===\n2026-04-16 23:59:06,567 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:59:06,567 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:59:06,656 [INFO] predictor: Models loaded OK\n2026-04-16 23:59:06,661 [INFO] run_cycle: run_cycle done: 0 notifications\n"
     },
     "strategies_active": [
@@ -97,11 +97,11 @@
     "alerts_24h": [
       {
         "kind": "CALIBRATION_DRIFT",
-        "c": 14
+        "c": 20
       },
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
-        "c": 3
+        "c": 12
       }
     ],
     "alert_dispatch_failed": 0,
@@ -228,52 +228,52 @@
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
         "detail": "{\"kind\": \"CIRCUIT_BREAKER_TRIP\", \"sid\": \"S11\", \"n\": 32, \"roi_7d\": 0.0, \"cost\": 4800, \"payout\": 0}",
-        "detected_at": "2026-04-17T03:29:02.523266+09:00"
+        "detected_at": "2026-04-17T03:31:06.103053+09:00"
       },
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
         "detail": "{\"kind\": \"CIRCUIT_BREAKER_TRIP\", \"sid\": \"S03\", \"n\": 75, \"roi_7d\": 0.312, \"cost\": 16300, \"payout\": 5090}",
-        "detected_at": "2026-04-17T03:29:02.523241+09:00"
+        "detected_at": "2026-04-17T03:31:06.103035+09:00"
       },
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
         "detail": "{\"kind\": \"CIRCUIT_BREAKER_TRIP\", \"sid\": \"S02\", \"n\": 137, \"roi_7d\": 0.226, \"cost\": 31000, \"payout\": 7000}",
-        "detected_at": "2026-04-17T03:29:02.523222+09:00"
+        "detected_at": "2026-04-17T03:31:06.103014+09:00"
       },
       {
         "kind": "CALIBRATION_DRIFT",
         "detail": "{\"kind\": \"CALIBRATION_DRIFT\", \"bt\": \"3t\", \"n\": 60, \"avg_pred\": 0.0776, \"avg_actual\": 0, \"overconf_pct\": 100.0}",
-        "detected_at": "2026-04-17T03:29:02.522432+09:00"
+        "detected_at": "2026-04-17T03:31:06.101440+09:00"
       },
       {
         "kind": "CALIBRATION_DRIFT",
         "detail": "{\"kind\": \"CALIBRATION_DRIFT\", \"bt\": \"2t\", \"n\": 35, \"avg_pred\": 0.1817, \"avg_actual\": 0, \"overconf_pct\": 100.0}",
-        "detected_at": "2026-04-17T03:29:02.522336+09:00"
+        "detected_at": "2026-04-17T03:31:06.101377+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_TRIP",
+        "detail": "{\"kind\": \"CIRCUIT_BREAKER_TRIP\", \"sid\": \"S11\", \"n\": 32, \"roi_7d\": 0.0, \"cost\": 4800, \"payout\": 0}",
+        "detected_at": "2026-04-17T03:31:05.049383+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_TRIP",
+        "detail": "{\"kind\": \"CIRCUIT_BREAKER_TRIP\", \"sid\": \"S03\", \"n\": 75, \"roi_7d\": 0.312, \"cost\": 16300, \"payout\": 5090}",
+        "detected_at": "2026-04-17T03:31:05.049363+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_TRIP",
+        "detail": "{\"kind\": \"CIRCUIT_BREAKER_TRIP\", \"sid\": \"S02\", \"n\": 137, \"roi_7d\": 0.226, \"cost\": 31000, \"payout\": 7000}",
+        "detected_at": "2026-04-17T03:31:05.049343+09:00"
       },
       {
         "kind": "CALIBRATION_DRIFT",
         "detail": "{\"kind\": \"CALIBRATION_DRIFT\", \"bt\": \"3t\", \"n\": 60, \"avg_pred\": 0.0776, \"avg_actual\": 0, \"overconf_pct\": 100.0}",
-        "detected_at": "2026-04-17T03:17:14.203580+09:00"
+        "detected_at": "2026-04-17T03:31:05.048543+09:00"
       },
       {
         "kind": "CALIBRATION_DRIFT",
         "detail": "{\"kind\": \"CALIBRATION_DRIFT\", \"bt\": \"2t\", \"n\": 35, \"avg_pred\": 0.1817, \"avg_actual\": 0, \"overconf_pct\": 100.0}",
-        "detected_at": "2026-04-17T03:17:14.203519+09:00"
-      },
-      {
-        "kind": "CALIBRATION_DRIFT",
-        "detail": "{\"kind\": \"CALIBRATION_DRIFT\", \"bt\": \"3t\", \"n\": 60, \"avg_pred\": 0.0776, \"avg_actual\": 0, \"overconf_pct\": 100.0}",
-        "detected_at": "2026-04-17T03:17:13.070993+09:00"
-      },
-      {
-        "kind": "CALIBRATION_DRIFT",
-        "detail": "{\"kind\": \"CALIBRATION_DRIFT\", \"bt\": \"2t\", \"n\": 35, \"avg_pred\": 0.1817, \"avg_actual\": 0, \"overconf_pct\": 100.0}",
-        "detected_at": "2026-04-17T03:17:13.070929+09:00"
-      },
-      {
-        "kind": "CALIBRATION_DRIFT",
-        "detail": "{\"kind\": \"CALIBRATION_DRIFT\", \"bt\": \"3t\", \"n\": 60, \"avg_pred\": 0.0776, \"avg_actual\": 0, \"overconf_pct\": 100.0}",
-        "detected_at": "2026-04-17T03:14:50.340373+09:00"
+        "detected_at": "2026-04-17T03:31:05.048486+09:00"
       }
     ],
     "races_remaining_today": 0,
@@ -465,7 +465,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-13 017R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -473,7 +473,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-14 024R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -481,7 +481,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-14 029R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -489,7 +489,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-12 0411R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -497,7 +497,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-11 069R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -505,7 +505,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-12 066R combo=1-4-2 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -513,7 +513,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-14 103R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -521,7 +521,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-11 119R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -529,7 +529,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|20260410 117R combo=1-4-3 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -537,7 +537,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-11 144R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -545,7 +545,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-11 1410R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -553,7 +553,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-12 145R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -561,7 +561,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-12 148R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -569,7 +569,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-13 147R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -577,7 +577,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-13 1411R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -585,7 +585,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-14 142R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -593,7 +593,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-11 159R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -601,7 +601,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-12 155R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -609,7 +609,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-13 154R combo=2 を 5 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -617,7 +617,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-14 206R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -625,7 +625,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-14 207R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -633,7 +633,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-14 226R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -641,7 +641,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-11 233R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -649,7 +649,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-12 237R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -657,7 +657,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-11 247R combo=1-4-5 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -665,7 +665,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|2026-04-11 247R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -673,7 +673,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|20260415 146R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -681,7 +681,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|20260415 174R combo=1-6-3 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -689,7 +689,7 @@
         "kind": "STRATEGY_COLLAPSE",
         "severity": "CRITICAL",
         "key": "STRATEGY_COLLAPSE|20260415 174R combo=1-6-5 を 4 戦略が同時採用 → 分散効果ゼロ",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御"
       },
@@ -697,7 +697,7 @@
         "kind": "ROI_STAT",
         "severity": "INFO",
         "key": "ROI_STAT|S11: n=32 hit%=0.0% hit_CI[Bonf]=[0.0,20.7]% ROI=0.00 ROI_boot95=[0.00,0.00]",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "統計サマリ情報。判定ではなく参照用"
       },
@@ -705,7 +705,7 @@
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
         "key": "INSUFFICIENT_SAMPLE|S11: n=32<300 — v17 要件未達、ROI判定保留",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
@@ -713,7 +713,7 @@
         "kind": "ROI_STAT",
         "severity": "INFO",
         "key": "ROI_STAT|S00: n=42 hit%=45.2% hit_CI[Bonf]=[25.8,66.3]% ROI=0.95 ROI_boot95=[0.61,1.38]",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "統計サマリ情報。判定ではなく参照用"
       },
@@ -721,7 +721,7 @@
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
         "key": "INSUFFICIENT_SAMPLE|S00: n=42<300 — v17 要件未達、ROI判定保留",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
@@ -729,7 +729,7 @@
         "kind": "ROI_STAT",
         "severity": "INFO",
         "key": "ROI_STAT|S03: n=75 hit%=16.0% hit_CI[Bonf]=[7.3,31.5]% ROI=0.31 ROI_boot95=[0.18,0.74]",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "統計サマリ情報。判定ではなく参照用"
       },
@@ -737,7 +737,7 @@
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
         "key": "INSUFFICIENT_SAMPLE|S03: n=75<300 — v17 要件未達、ROI判定保留",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
@@ -745,7 +745,7 @@
         "kind": "ROI_STAT",
         "severity": "INFO",
         "key": "ROI_STAT|S07: n=44 hit%=38.6% hit_CI[Bonf]=[20.9,60.0]% ROI=0.79 ROI_boot95=[0.53,1.42]",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "統計サマリ情報。判定ではなく参照用"
       },
@@ -753,7 +753,7 @@
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
         "key": "INSUFFICIENT_SAMPLE|S07: n=44<300 — v17 要件未達、ROI判定保留",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
@@ -761,7 +761,7 @@
         "kind": "ROI_STAT",
         "severity": "INFO",
         "key": "ROI_STAT|S09: n=42 hit%=45.2% hit_CI[Bonf]=[25.8,66.3]% ROI=0.95 ROI_boot95=[0.61,1.38]",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "統計サマリ情報。判定ではなく参照用"
       },
@@ -769,7 +769,7 @@
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
         "key": "INSUFFICIENT_SAMPLE|S09: n=42<300 — v17 要件未達、ROI判定保留",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
@@ -777,7 +777,7 @@
         "kind": "ROI_STAT",
         "severity": "INFO",
         "key": "ROI_STAT|S02: n=137 hit%=10.2% hit_CI[Bonf]=[4.9,20.1]% ROI=0.23 ROI_boot95=[0.14,0.52]",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "統計サマリ情報。判定ではなく参照用"
       },
@@ -785,7 +785,7 @@
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
         "key": "INSUFFICIENT_SAMPLE|S02: n=137<300 — v17 要件未達、ROI判定保留",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
@@ -793,7 +793,7 @@
         "kind": "ORPHAN_SCAN",
         "severity": "WARN",
         "key": "ORPHAN_SCAN|3 件の scan に final/retreat 追従無し",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗"
       },
@@ -801,7 +801,7 @@
         "kind": "CALIBRATION_LIVE",
         "severity": "INFO",
         "key": "CALIBRATION_LIVE|bt=2t: n=35 pred=0.1817 actual=0.0000 error=+0.1817 (+100%) brier=0.0447 [OVERCO",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
       },
@@ -809,7 +809,7 @@
         "kind": "CALIBRATION_LIVE",
         "severity": "INFO",
         "key": "CALIBRATION_LIVE|bt=3t: n=60 pred=0.0776 actual=0.0000 error=+0.0776 (+100%) brier=0.0093 [OVERCO",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
       },
@@ -817,7 +817,7 @@
         "kind": "CALIBRATION_DRIFT",
         "severity": "CRITICAL",
         "key": "CALIBRATION_DRIFT|bt=3t: pred=0.0776 actual=0.0000 (+100% overconfident, n=60). EV = p * odds is i",
-        "count": 2,
+        "count": 3,
         "last_at": "2026-04-17T03:11:49",
         "fix_hint": "予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中"
       }

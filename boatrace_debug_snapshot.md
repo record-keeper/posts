@@ -2,14 +2,14 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-17T03:30:01.512164+09:00
+**生成**: 2026-04-17T03:40:01.826221+09:00
 
 ### 次に取るべきアクション
-> RED最優先: CALIBRATION_DRIFT×14 (24h) → ログ/DB確認
+> RED最優先: CALIBRATION_DRIFT×20 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🔴 CALIBRATION_DRIFT×14 (24h)
-- 🔴 CIRCUIT_BREAKER_TRIP×3 (24h)
+- 🔴 CALIBRATION_DRIFT×20 (24h)
+- 🔴 CIRCUIT_BREAKER_TRIP×12 (24h)
 
 ---
 
@@ -19,79 +19,79 @@
 - key: `HEALTH_CHECK_FAIL`
 - **FIX**: health.py の check 失敗→対応する check 名から該当テーブル/指標を確認
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-13 017R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-14 024R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-14 029R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-12 0411R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-11 069R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-12 066R combo=1-4-2 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-14 103R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-11 119R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|20260410 117R combo=1-4-3 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-11 144R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-11 1410R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-12 145R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-12 148R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-13 147R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-13 1411R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-14 142R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-11 159R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-12 155R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+### 🔴 STRATEGY_COLLAPSE  ×3  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-13 154R combo=2 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
@@ -104,7 +104,7 @@
 - strategies.json md5: `ca7bbffaef096056f38d7a15bb3862a1`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-17T03:30:02.025623+09:00
+- DB: 0.99MB / last modified 2026-04-17T03:31:07.594418+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -202,8 +202,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  CALIBRATION_DRIFT: 14
-  CIRCUIT_BREAKER_TRIP: 3
+  CALIBRATION_DRIFT: 20
+  CIRCUIT_BREAKER_TRIP: 12
 ```
 
 ## 戦略別 ROI (7日)
@@ -225,16 +225,16 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
-[03:29:02] CIRCUIT_BREAKER_TRIP: {"kind": "CIRCUIT_BREAKER_TRIP", "sid": "S11", "n": 32, "roi_7d": 0.0, "cost": 4800, "payout": 0}
-[03:29:02] CIRCUIT_BREAKER_TRIP: {"kind": "CIRCUIT_BREAKER_TRIP", "sid": "S03", "n": 75, "roi_7d": 0.312, "cost": 16300, "payout": 5090}
-[03:29:02] CIRCUIT_BREAKER_TRIP: {"kind": "CIRCUIT_BREAKER_TRIP", "sid": "S02", "n": 137, "roi_7d": 0.226, "cost": 31000, "payout": 7000}
-[03:29:02] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
-[03:29:02] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "2t", "n": 35, "avg_pred": 0.1817, "avg_actual": 0, "overconf_pct": 100.0}
-[03:17:14] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
-[03:17:14] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "2t", "n": 35, "avg_pred": 0.1817, "avg_actual": 0, "overconf_pct": 100.0}
-[03:17:13] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
-[03:17:13] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "2t", "n": 35, "avg_pred": 0.1817, "avg_actual": 0, "overconf_pct": 100.0}
-[03:14:50] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
+[03:31:06] CIRCUIT_BREAKER_TRIP: {"kind": "CIRCUIT_BREAKER_TRIP", "sid": "S11", "n": 32, "roi_7d": 0.0, "cost": 4800, "payout": 0}
+[03:31:06] CIRCUIT_BREAKER_TRIP: {"kind": "CIRCUIT_BREAKER_TRIP", "sid": "S03", "n": 75, "roi_7d": 0.312, "cost": 16300, "payout": 5090}
+[03:31:06] CIRCUIT_BREAKER_TRIP: {"kind": "CIRCUIT_BREAKER_TRIP", "sid": "S02", "n": 137, "roi_7d": 0.226, "cost": 31000, "payout": 7000}
+[03:31:06] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
+[03:31:06] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "2t", "n": 35, "avg_pred": 0.1817, "avg_actual": 0, "overconf_pct": 100.0}
+[03:31:05] CIRCUIT_BREAKER_TRIP: {"kind": "CIRCUIT_BREAKER_TRIP", "sid": "S11", "n": 32, "roi_7d": 0.0, "cost": 4800, "payout": 0}
+[03:31:05] CIRCUIT_BREAKER_TRIP: {"kind": "CIRCUIT_BREAKER_TRIP", "sid": "S03", "n": 75, "roi_7d": 0.312, "cost": 16300, "payout": 5090}
+[03:31:05] CIRCUIT_BREAKER_TRIP: {"kind": "CIRCUIT_BREAKER_TRIP", "sid": "S02", "n": 137, "roi_7d": 0.226, "cost": 31000, "payout": 7000}
+[03:31:05] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
+[03:31:05] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "2t", "n": 35, "avg_pred": 0.1817, "avg_actual": 0, "overconf_pct": 100.0}
 ```
 
 ## 本日残レース: 0件
@@ -340,4 +340,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-17T03:30:01.512164+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-17T03:40:01.826221+09:00_
