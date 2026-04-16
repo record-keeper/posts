@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-17T04:30:01.932482+09:00",
+  "generated_at": "2026-04-17T04:40:01.335589+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,7 +33,7 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup",
       "db_size_mb": 0.99,
-      "db_mtime": "2026-04-17T04:30:02.604243+09:00",
+      "db_mtime": "2026-04-17T04:32:35.255135+09:00",
       "log_tail": "2026-04-16 23:52:07,303 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:53:06,682 [INFO] run_cycle: === run_cycle 23:53:06 ===\n2026-04-16 23:53:06,682 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:53:06,682 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:53:06,768 [INFO] predictor: Models loaded OK\n2026-04-16 23:53:06,774 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:54:06,504 [INFO] run_cycle: === run_cycle 23:54:06 ===\n2026-04-16 23:54:06,504 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:54:06,504 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:54:06,610 [INFO] predictor: Models loaded OK\n2026-04-16 23:54:06,618 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:55:06,652 [INFO] run_cycle: === run_cycle 23:55:06 ===\n2026-04-16 23:55:06,652 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:55:06,653 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:55:06,744 [INFO] predictor: Models loaded OK\n2026-04-16 23:55:06,752 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:56:06,097 [INFO] run_cycle: === run_cycle 23:56:06 ===\n2026-04-16 23:56:06,100 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:56:06,100 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:56:06,203 [INFO] predictor: Models loaded OK\n2026-04-16 23:56:06,216 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:57:07,105 [INFO] run_cycle: === run_cycle 23:57:07 ===\n2026-04-16 23:57:07,105 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:57:07,105 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:57:07,172 [INFO] predictor: Models loaded OK\n2026-04-16 23:57:07,174 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:58:06,423 [INFO] run_cycle: === run_cycle 23:58:06 ===\n2026-04-16 23:58:06,423 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:58:06,424 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:58:06,485 [INFO] predictor: Models loaded OK\n2026-04-16 23:58:06,488 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-16 23:59:06,567 [INFO] run_cycle: === run_cycle 23:59:06 ===\n2026-04-16 23:59:06,567 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-16 23:59:06,567 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-16 23:59:06,656 [INFO] predictor: Models loaded OK\n2026-04-16 23:59:06,661 [INFO] run_cycle: run_cycle done: 0 notifications\n"
     },
     "strategies_active": [
@@ -58,10 +58,7 @@
         "c": 4
       }
     ],
-    "phases_24h": {
-      "final": 2,
-      "scan": 2
-    },
+    "phases_24h": {},
     "alerts_24h": [
       {
         "kind": "CALIBRATION_DRIFT",
@@ -73,125 +70,7 @@
       }
     ],
     "alert_dispatch_failed": 0,
-    "roi_7d": [
-      {
-        "sid": "S00",
-        "n": 42,
-        "hits": 19,
-        "cost": 11000,
-        "payout": 10420,
-        "roi": 0.947,
-        "pl": -580
-      },
-      {
-        "sid": "S01",
-        "n": 8,
-        "hits": 0,
-        "cost": 2800,
-        "payout": 0,
-        "roi": 0.0,
-        "pl": -2800
-      },
-      {
-        "sid": "S02",
-        "n": 137,
-        "hits": 14,
-        "cost": 31000,
-        "payout": 7000,
-        "roi": 0.226,
-        "pl": -24000
-      },
-      {
-        "sid": "S03",
-        "n": 75,
-        "hits": 12,
-        "cost": 16300,
-        "payout": 5090,
-        "roi": 0.312,
-        "pl": -11210
-      },
-      {
-        "sid": "S04",
-        "n": 12,
-        "hits": 0,
-        "cost": 3900,
-        "payout": 0,
-        "roi": 0.0,
-        "pl": -3900
-      },
-      {
-        "sid": "S05",
-        "n": 10,
-        "hits": 0,
-        "cost": 1900,
-        "payout": 0,
-        "roi": 0.0,
-        "pl": -1900
-      },
-      {
-        "sid": "S06",
-        "n": 15,
-        "hits": 0,
-        "cost": 4200,
-        "payout": 0,
-        "roi": 0.0,
-        "pl": -4200
-      },
-      {
-        "sid": "S07",
-        "n": 44,
-        "hits": 17,
-        "cost": 11200,
-        "payout": 8860,
-        "roi": 0.791,
-        "pl": -2340
-      },
-      {
-        "sid": "S08",
-        "n": 8,
-        "hits": 0,
-        "cost": 1400,
-        "payout": 0,
-        "roi": 0.0,
-        "pl": -1400
-      },
-      {
-        "sid": "S09",
-        "n": 42,
-        "hits": 19,
-        "cost": 11000,
-        "payout": 10420,
-        "roi": 0.947,
-        "pl": -580
-      },
-      {
-        "sid": "S10",
-        "n": 27,
-        "hits": 15,
-        "cost": 6500,
-        "payout": 7420,
-        "roi": 1.142,
-        "pl": 920
-      },
-      {
-        "sid": "S11",
-        "n": 32,
-        "hits": 0,
-        "cost": 4800,
-        "payout": 0,
-        "roi": 0.0,
-        "pl": -4800
-      },
-      {
-        "sid": "S12",
-        "n": 10,
-        "hits": 0,
-        "cost": 1900,
-        "payout": 0,
-        "roi": 0.0,
-        "pl": -1900
-      }
-    ],
+    "roi_7d": [],
     "recent_alerts": [
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
@@ -246,180 +125,8 @@
     ],
     "races_remaining_today": 0,
     "recent_send_failures": [],
-    "latest_predictions": [
-      {
-        "strategy_id": "S02",
-        "jcd": "20",
-        "rno": 1,
-        "bet_type": "win",
-        "combo": "4",
-        "ml_prob": 0.13597255945205688,
-        "odds": 76.5,
-        "ev": 10.401901245117188,
-        "bet_amount": 300,
-        "scan_odds": 73.1,
-        "odds_drift": 0.04651162790697683,
-        "notified_at": "2026-04-15T15:16:21.700278+09:00"
-      },
-      {
-        "strategy_id": "S02",
-        "jcd": "20",
-        "rno": 1,
-        "bet_type": "win",
-        "combo": "3",
-        "ml_prob": 0.11611322313547134,
-        "odds": 153.0,
-        "ev": 17.765323638916016,
-        "bet_amount": 300,
-        "scan_odds": null,
-        "odds_drift": null,
-        "notified_at": "2026-04-15T15:16:21.700155+09:00"
-      },
-      {
-        "strategy_id": "S09",
-        "jcd": "02",
-        "rno": 9,
-        "bet_type": "win",
-        "combo": "1",
-        "ml_prob": 0.5650456547737122,
-        "odds": 7.6,
-        "ev": 4.294346809387207,
-        "bet_amount": 300,
-        "scan_odds": 6.5,
-        "odds_drift": 0.16923076923076907,
-        "notified_at": "2026-04-15T14:45:35.643120+09:00"
-      },
-      {
-        "strategy_id": "S07",
-        "jcd": "02",
-        "rno": 9,
-        "bet_type": "win",
-        "combo": "1",
-        "ml_prob": 0.5650456547737122,
-        "odds": 7.6,
-        "ev": 4.294346809387207,
-        "bet_amount": 300,
-        "scan_odds": 6.5,
-        "odds_drift": 0.16923076923076907,
-        "notified_at": "2026-04-15T14:45:34.998725+09:00"
-      },
-      {
-        "strategy_id": "S00",
-        "jcd": "02",
-        "rno": 9,
-        "bet_type": "win",
-        "combo": "1",
-        "ml_prob": 0.5650456547737122,
-        "odds": 7.6,
-        "ev": 4.294346809387207,
-        "bet_amount": 300,
-        "scan_odds": 6.5,
-        "odds_drift": 0.16923076923076907,
-        "notified_at": "2026-04-15T14:45:34.305886+09:00"
-      },
-      {
-        "strategy_id": "S03",
-        "jcd": "17",
-        "rno": 8,
-        "bet_type": "win",
-        "combo": "2",
-        "ml_prob": 0.21176022291183472,
-        "odds": 31.8,
-        "ev": 6.733974933624268,
-        "bet_amount": 300,
-        "scan_odds": 30.0,
-        "odds_drift": 0.06000000000000005,
-        "notified_at": "2026-04-15T14:04:24.075281+09:00"
-      },
-      {
-        "strategy_id": "S02",
-        "jcd": "17",
-        "rno": 8,
-        "bet_type": "win",
-        "combo": "2",
-        "ml_prob": 0.21176022291183472,
-        "odds": 31.8,
-        "ev": 6.733974933624268,
-        "bet_amount": 300,
-        "scan_odds": 30.0,
-        "odds_drift": 0.06000000000000005,
-        "notified_at": "2026-04-15T14:04:22.343817+09:00"
-      },
-      {
-        "strategy_id": "S11",
-        "jcd": "16",
-        "rno": 7,
-        "bet_type": "3t",
-        "combo": "4-1-3",
-        "ml_prob": 0.035745419561862946,
-        "odds": 312.5,
-        "ev": 11.170443534851074,
-        "bet_amount": 100,
-        "scan_odds": null,
-        "odds_drift": null,
-        "notified_at": "2026-04-15T13:52:34.905941+09:00"
-      },
-      {
-        "strategy_id": "S06",
-        "jcd": "16",
-        "rno": 7,
-        "bet_type": "2t",
-        "combo": "1-4",
-        "ml_prob": 0.1341247409582138,
-        "odds": 66.9,
-        "ev": 8.972945213317871,
-        "bet_amount": 200,
-        "scan_odds": 71.5,
-        "odds_drift": -0.06433566433566429,
-        "notified_at": "2026-04-15T13:52:33.459275+09:00"
-      },
-      {
-        "strategy_id": "S04",
-        "jcd": "16",
-        "rno": 7,
-        "bet_type": "2t",
-        "combo": "1-4",
-        "ml_prob": 0.1341247409582138,
-        "odds": 66.9,
-        "ev": 8.972945213317871,
-        "bet_amount": 200,
-        "scan_odds": 71.5,
-        "odds_drift": -0.06433566433566429,
-        "notified_at": "2026-04-15T13:52:31.926851+09:00"
-      }
-    ],
-    "drift_stats_7d": [
-      {
-        "bet_type": "2t",
-        "n": 5,
-        "avg_drift": -0.07474102899154236,
-        "min_drift": -0.09034907597535946,
-        "max_drift": -0.06433566433566429,
-        "n_down10": 0,
-        "n_collapse": 0,
-        "n_large": 0
-      },
-      {
-        "bet_type": "3t",
-        "n": 10,
-        "avg_drift": 0.10164193882825516,
-        "min_drift": -0.11194346289752655,
-        "max_drift": 0.3422470564757534,
-        "n_down10": 4,
-        "n_collapse": 0,
-        "n_large": 8
-      },
-      {
-        "bet_type": "win",
-        "n": 14,
-        "avg_drift": -0.001710953394272566,
-        "min_drift": -0.6464924346629987,
-        "max_drift": 0.16923076923076907,
-        "n_down10": 2,
-        "n_collapse": 2,
-        "n_large": 5
-      }
-    ],
+    "latest_predictions": [],
+    "drift_stats_7d": [],
     "ai_debug_queue": [
       {
         "kind": "HEALTH_CHECK_FAIL",
@@ -791,9 +498,9 @@
       }
     ],
     "golden_signals": {
-      "latency_avg_sec": 600.4,
-      "latency_max_sec": 600.5,
-      "traffic_24h": 4,
+      "latency_avg_sec": 0,
+      "latency_max_sec": 0,
+      "traffic_24h": 0,
       "error_rate_24h": 0.0,
       "saturation": []
     },
@@ -834,203 +541,14 @@
       ]
     },
     "credibility_metrics": {
-      "per_bt": [
-        {
-          "bt": "2t",
-          "n": 35,
-          "avg_pred": 0.1817,
-          "avg_actual": 0,
-          "cal_error": 0.1817,
-          "overconf_pct": 100.0,
-          "brier": 0.0447
-        },
-        {
-          "bt": "3t",
-          "n": 60,
-          "avg_pred": 0.0776,
-          "avg_actual": 0,
-          "cal_error": 0.0776,
-          "overconf_pct": 100.0,
-          "brier": 0.0093
-        },
-        {
-          "bt": "win",
-          "n": 367,
-          "avg_pred": 0.3529,
-          "avg_actual": 0.2616,
-          "cal_error": 0.0913,
-          "overconf_pct": 25.9,
-          "brier": 0.1631
-        }
-      ],
-      "per_strategy": [
-        {
-          "sid": "S00",
-          "bt": "win",
-          "n": 42,
-          "avg_pred": 0.5039,
-          "avg_actual": 0.4524,
-          "brier": 0.2379,
-          "bss": 0.04,
-          "roi": 0.947
-        },
-        {
-          "sid": "S02",
-          "bt": "win",
-          "n": 137,
-          "avg_pred": 0.217,
-          "avg_actual": 0.1022,
-          "brier": 0.0936,
-          "bss": -0.02,
-          "roi": 0.226
-        },
-        {
-          "sid": "S03",
-          "bt": "win",
-          "n": 75,
-          "avg_pred": 0.2941,
-          "avg_actual": 0.16,
-          "brier": 0.1378,
-          "bss": -0.03,
-          "roi": 0.312
-        },
-        {
-          "sid": "S04",
-          "bt": "2t",
-          "n": 12,
-          "avg_pred": 0.176,
-          "avg_actual": 0,
-          "brier": 0.0424,
-          "bss": -3.24,
-          "roi": 0.0
-        },
-        {
-          "sid": "S05",
-          "bt": "3t",
-          "n": 10,
-          "avg_pred": 0.0899,
-          "avg_actual": 0,
-          "brier": 0.0121,
-          "bss": -0.21,
-          "roi": 0.0
-        },
-        {
-          "sid": "S06",
-          "bt": "2t",
-          "n": 15,
-          "avg_pred": 0.1793,
-          "avg_actual": 0,
-          "brier": 0.0422,
-          "bss": -3.22,
-          "roi": 0.0
-        },
-        {
-          "sid": "S07",
-          "bt": "win",
-          "n": 44,
-          "avg_pred": 0.4759,
-          "avg_actual": 0.3864,
-          "brier": 0.2215,
-          "bss": 0.07,
-          "roi": 0.791
-        },
-        {
-          "sid": "S09",
-          "bt": "win",
-          "n": 42,
-          "avg_pred": 0.5039,
-          "avg_actual": 0.4524,
-          "brier": 0.2379,
-          "bss": 0.04,
-          "roi": 0.947
-        },
-        {
-          "sid": "S10",
-          "bt": "win",
-          "n": 27,
-          "avg_pred": 0.5351,
-          "avg_actual": 0.5556,
-          "brier": 0.2588,
-          "bss": -0.05,
-          "roi": 1.142
-        },
-        {
-          "sid": "S11",
-          "bt": "3t",
-          "n": 32,
-          "avg_pred": 0.0628,
-          "avg_actual": 0,
-          "brier": 0.0061,
-          "bss": 0.39,
-          "roi": 0.0
-        },
-        {
-          "sid": "S12",
-          "bt": "3t",
-          "n": 10,
-          "avg_pred": 0.0899,
-          "avg_actual": 0,
-          "brier": 0.0121,
-          "bss": -0.21,
-          "roi": 0.0
-        }
-      ],
-      "decile": [
-        {
-          "bin": "0.00-0.05",
-          "n": 28,
-          "pred": 0.0288,
-          "actual": 0.0,
-          "gap": 0.0288
-        },
-        {
-          "bin": "0.05-0.10",
-          "n": 28,
-          "pred": 0.077,
-          "actual": 0.0,
-          "gap": 0.077
-        },
-        {
-          "bin": "0.10-0.15",
-          "n": 83,
-          "pred": 0.1252,
-          "actual": 0.0241,
-          "gap": 0.1011
-        },
-        {
-          "bin": "0.15-0.20",
-          "n": 64,
-          "pred": 0.1785,
-          "actual": 0.0625,
-          "gap": 0.116
-        },
-        {
-          "bin": "0.20-0.30",
-          "n": 49,
-          "pred": 0.2378,
-          "actual": 0.0,
-          "gap": 0.2378
-        },
-        {
-          "bin": "0.30-0.50",
-          "n": 95,
-          "pred": 0.4144,
-          "actual": 0.3474,
-          "gap": 0.067
-        },
-        {
-          "bin": "0.50+",
-          "n": 115,
-          "pred": 0.5629,
-          "actual": 0.4957,
-          "gap": 0.0672
-        }
-      ]
+      "per_bt": [],
+      "per_strategy": [],
+      "decile": []
     },
     "settlement_coverage": {
-      "learned_bands": 2,
-      "fallback_bands": 15,
-      "total_bands": 17,
+      "learned_bands": 0,
+      "fallback_bands": 16,
+      "total_bands": 16,
       "details": [
         {
           "bt": "win",
@@ -1043,35 +561,28 @@
           "bt": "win",
           "band": 5.0,
           "source": "fallback",
-          "n": 5,
+          "n": 0,
           "ratio": 0.35
         },
         {
           "bt": "win",
           "band": 10.0,
-          "source": "learned",
-          "n": 51,
-          "ratio": 0.323
+          "source": "fallback",
+          "n": 0,
+          "ratio": 0.32
         },
         {
           "bt": "win",
           "band": 20.0,
-          "source": "learned",
-          "n": 32,
-          "ratio": 0.213
+          "source": "fallback",
+          "n": 0,
+          "ratio": 0.22
         },
         {
           "bt": "win",
           "band": 50.0,
           "source": "fallback",
-          "n": 5,
-          "ratio": 0.1
-        },
-        {
-          "bt": "win",
-          "band": 200.0,
-          "source": "fallback",
-          "n": 3,
+          "n": 0,
           "ratio": 0.1
         },
         {
