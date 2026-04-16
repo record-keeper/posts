@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-04-17T05:30:01.345517+09:00",
+  "generated_at": "2026-04-17T05:40:01.963305+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
       "git_dirty": true,
       "config_md5": "eb532e851a30cd2f7e69bdf0dfca3f2b",
-      "strategies_md5": "56321dcca01e8aa31742bfdfcbcd0558",
+      "strategies_md5": "777bf7c3988c696875e9617122bf1c91",
       "file_lgbm_model_top1.txt": {
         "exists": true,
         "md5": "5b55d55bdb59df95ccfd1745d4e9b469",
@@ -41,7 +41,7 @@
         "id": "S00",
         "trust": "S",
         "bt": "win",
-        "ev_th": 3.0,
+        "ev_th": 4.0,
         "pmin": 0.0,
         "enabled": true
       }
