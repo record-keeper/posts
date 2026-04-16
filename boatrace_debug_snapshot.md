@@ -2,7 +2,7 @@
 
 ## 🟢 現状: GREEN
 
-**生成**: 2026-04-17T03:10:01.958015+09:00
+**生成**: 2026-04-17T03:20:02.132332+09:00
 
 ### 次に取るべきアクション
 > 特になし。運用継続。
@@ -13,84 +13,84 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 HEALTH_CHECK_FAIL  ×3  [2026-04-17T02:00:02]
-- key: `HEALTH_CHECK_FAIL`
-- **FIX**: health.py の check 失敗→対応する check 名から該当テーブル/指標を確認
-
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-13 017R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-14 024R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-14 029R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-12 0411R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-11 069R combo=1-5-4 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-12 066R combo=1-4-2 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-14 103R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-11 119R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|20260410 117R combo=1-4-3 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-11 144R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-11 1410R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-12 145R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-12 148R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-13 147R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-13 1411R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-14 142R combo=1 を 5 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-11 159R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-12 155R combo=1 を 4 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
-### 🔴 STRATEGY_COLLAPSE  ×1  [2026-04-16T06:00:06]
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
 - key: `STRATEGY_COLLAPSE|2026-04-13 154R combo=2 を 5 戦略が同時採用 → 分散効果ゼロ`
+- **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
+
+### 🔴 STRATEGY_COLLAPSE  ×2  [2026-04-17T03:11:49]
+- key: `STRATEGY_COLLAPSE|2026-04-14 206R combo=1 を 6 戦略が同時採用 → 分散効果ゼロ`
 - **FIX**: 4戦略以上が同 combo を採用。v18 仕様的には許容。気になれば資金配分で分散制御
 
 
@@ -99,10 +99,10 @@
 ## 環境・コード状態
 - git_sha: `<error: Command '['git', '-C', '/opt/boa` dirty=True
 - config.json md5: `eb532e851a30cd2f7e69bdf0dfca3f2b`
-- strategies.json md5: `e706660949a5b860f28393ca053bb1dd`
+- strategies.json md5: `ca7bbffaef096056f38d7a15bb3862a1`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-17T03:00:02.274940+09:00
+- DB: 0.99MB / last modified 2026-04-17T03:17:15.842198+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -173,19 +173,11 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## 戦略有効/無効一覧
 | id | trust | bt | ev_th | pmin | enabled |
 |---|---|---|---|---|---|
-| S00 | S | win | 2.5 | 0.55 | True |
-| S01 | A | 2t | 5.0 | 0.6 | True |
-| S02 | S | win | 5.0 | 0.1 | False |
-| S03 | S | win | 5.0 | 0.2 | False |
-| S04 | A | 2t | 5.0 | 0.55 | True |
-| S05 | B | 3t | 10.0 | 0.4 | True |
-| S06 | A | 2t | 5.0 | 0.5 | True |
-| S07 | S | win | 3.0 | 0.5 | True |
-| S08 | B | 3t | 10.0 | 0.5 | True |
-| S09 | S | win | 2.5 | 0.55 | False |
-| S10 | S | win | 2.25 | 0.6 | True |
-| S11 | B | 3t | 10.0 | 0.2 | False |
-| S12 | B | 3t | 10.0 | 0.4 | False |
+| S00 | S | win | 3.0 | 0.6 | True |
+| S01 | S | win | 3.0 | 0.5 | True |
+| S02 | S | win | 3.0 | 0.4 | True |
+| S03 | S | win | 2.0 | 0.7 | True |
+| S04 | S | win | 2.0 | 0.6 | True |
 
 ## Webhook送信 (24h)
 ```
@@ -208,7 +200,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  (なし)
+  CALIBRATION_DRIFT: 12
 ```
 
 ## 戦略別 ROI (7日)
@@ -230,6 +222,16 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[03:17:14] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
+[03:17:14] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "2t", "n": 35, "avg_pred": 0.1817, "avg_actual": 0, "overconf_pct": 100.0}
+[03:17:13] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
+[03:17:13] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "2t", "n": 35, "avg_pred": 0.1817, "avg_actual": 0, "overconf_pct": 100.0}
+[03:14:50] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
+[03:14:50] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "2t", "n": 35, "avg_pred": 0.1817, "avg_actual": 0, "overconf_pct": 100.0}
+[03:14:40] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
+[03:14:40] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "2t", "n": 35, "avg_pred": 0.1817, "avg_actual": 0, "overconf_pct": 100.0}
+[03:11:50] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "3t", "n": 60, "avg_pred": 0.0776, "avg_actual": 0, "overconf_pct": 100.0}
+[03:11:50] CALIBRATION_DRIFT: {"kind": "CALIBRATION_DRIFT", "bt": "2t", "n": 35, "avg_pred": 0.1817, "avg_actual": 0, "overconf_pct": 100.0}
 ```
 
 ## 本日残レース: 0件
@@ -326,4 +328,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-17T03:10:01.958015+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-17T03:20:02.132332+09:00_
