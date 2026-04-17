@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-17T14:10:01.398537+09:00
+**生成**: 2026-04-17T14:20:01.386916+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CALIBRATION_DRIFT×20 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×26 (24h)
+- 🟡 FINAL_MISSING×36 (24h)
 - 🔴 CALIBRATION_DRIFT×20 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×12 (24h)
 
@@ -16,7 +16,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 FINAL_MISSING  ×26  [2026-04-17T13:44:22]
+### 🟡 FINAL_MISSING  ×36  [2026-04-17T13:44:22]
 - key: `FINAL_MISSING|`
 - **FIX**: record_results.py の実行ログ確認→scraper が結果取得できてない可能性
 
@@ -105,7 +105,7 @@
 - strategies.json md5: `657711d6153ff6f442c9436df8dd5201`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-17T14:09:40.318264+09:00
+- DB: 0.99MB / last modified 2026-04-17T14:19:22.125348+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -146,32 +146,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-1,169 [INFO] run_cycle: fetched 23/12 [scan]: 156 combos
-2026-04-17 14:08:21,436 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-17 14:09:05,626 [INFO] run_cycle: === run_cycle 14:09:05 ===
-2026-04-17 14:09:05,626 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-17 14:09:05,626 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-17 14:09:05,674 [INFO] predictor: Models loaded OK
-2026-04-17 14:09:16,732 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=08&hd=20260417: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-17 14:09:29,456 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-17 14:09:30,739 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-17 14:09:31,858 [INFO] scraper: odds2t: 28/30 parsed
-2026-04-17 14:09:31,859 [INFO] scraper: odds2f: 12/15 parsed
-2026-04-17 14:09:33,001 [INFO] scraper: odds_win: 2/6 parsed
-2026-04-17 14:09:33,001 [INFO] scraper: fetch_race 08/9: boats=6 odds=182/191
-2026-04-17 14:09:33,013 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-17 14:09:33,013 [INFO] predictor: combos: {'win': 2, '2t': 28, '3t': 120}
-2026-04-17 14:09:33,021 [INFO] run_cycle: fetched 08/9 [final]: 150 combos
-2026-04-17 14:09:36,590 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-17 14:09:37,733 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-17 14:09:38,919 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-17 14:09:38,920 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-17 14:09:39,994 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-17 14:09:39,994 [INFO] scraper: fetch_race 02/8: boats=6 odds=191/191
-2026-04-17 14:09:40,004 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-17 14:09:40,004 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-17 14:09:40,012 [INFO] run_cycle: fetched 02/8 [scan]: 156 combos
-2026-04-17 14:09:40,191 [INFO] run_cycle: run_cycle done: 0 notifications
+17 14:18:39,429 [INFO] scraper: fetch_race 21/12: boats=6 odds=188/191
+2026-04-17 14:18:39,440 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-17 14:18:39,440 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
+2026-04-17 14:18:39,449 [INFO] run_cycle: fetched 21/12 [scan]: 153 combos
+2026-04-17 14:18:42,890 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-17 14:18:44,012 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-17 14:18:45,121 [INFO] scraper: odds2t: 26/30 parsed
+2026-04-17 14:18:45,122 [INFO] scraper: odds2f: 11/15 parsed
+2026-04-17 14:18:46,323 [INFO] scraper: odds_win: 4/6 parsed
+2026-04-17 14:18:46,323 [INFO] scraper: fetch_race 16/8: boats=6 odds=181/191
+2026-04-17 14:18:46,332 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-17 14:18:46,332 [INFO] predictor: combos: {'win': 4, '2t': 26, '3t': 120}
+2026-04-17 14:18:46,340 [INFO] run_cycle: fetched 16/8 [scan]: 150 combos
+2026-04-17 14:18:46,434 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-17 14:19:05,939 [INFO] run_cycle: === run_cycle 14:19:05 ===
+2026-04-17 14:19:05,939 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-17 14:19:05,939 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-17 14:19:05,981 [INFO] predictor: Models loaded OK
+2026-04-17 14:19:18,434 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-17 14:19:19,562 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-17 14:19:20,694 [INFO] scraper: odds2t: 27/30 parsed
+2026-04-17 14:19:20,695 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-17 14:19:21,797 [INFO] scraper: odds_win: 4/6 parsed
+2026-04-17 14:19:21,797 [INFO] scraper: fetch_race 03/8: boats=6 odds=186/191
+2026-04-17 14:19:21,809 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-17 14:19:21,809 [INFO] predictor: combos: {'win': 4, '2t': 27, '3t': 120}
+2026-04-17 14:19:21,817 [INFO] run_cycle: fetched 03/8 [scan]: 151 combos
+2026-04-17 14:19:22,074 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -201,7 +203,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  FINAL_MISSING: 26
+  FINAL_MISSING: 36
   CALIBRATION_DRIFT: 20
   CIRCUIT_BREAKER_TRIP: 12
 ```
@@ -213,19 +215,19 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
-[14:09:40] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
-[14:08:21] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
-[14:07:27] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
-[14:06:28] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
-[14:05:27] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
-[14:04:05] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
-[14:03:21] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
-[14:02:29] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
-[14:01:52] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
-[14:00:34] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
+[14:19:22] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
+[14:18:46] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
+[14:17:20] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
+[14:16:21] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
+[14:15:22] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
+[14:14:22] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
+[14:13:30] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
+[14:12:34] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
+[14:11:23] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
+[14:10:31] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
 ```
 
-## 本日残レース: 66件
+## 本日残レース: 62件
 
 ## 直近送信失敗 (24h)
 ```
@@ -276,4 +278,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-17T14:10:01.398537+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-17T14:20:01.386916+09:00_
