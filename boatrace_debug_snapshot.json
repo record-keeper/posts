@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T03:30:01.999385+09:00",
+  "generated_at": "2026-04-18T03:40:01.784340+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -66,14 +66,6 @@
       {
         "kind": "FINAL_MISSING",
         "c": 615
-      },
-      {
-        "kind": "CIRCUIT_BREAKER_TRIP",
-        "c": 9
-      },
-      {
-        "kind": "CALIBRATION_DRIFT",
-        "c": 6
       }
     ],
     "alert_dispatch_failed": 0,
