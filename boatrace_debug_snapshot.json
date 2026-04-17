@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T02:50:01.561210+09:00",
+  "generated_at": "2026-04-18T03:00:01.330261+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,7 +33,7 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup",
       "db_size_mb": 0.99,
-      "db_mtime": "2026-04-18T02:30:02.325274+09:00",
+      "db_mtime": "2026-04-18T03:00:01.801599+09:00",
       "log_tail": "2026-04-17 23:52:05,860 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-17 23:53:06,083 [INFO] run_cycle: === run_cycle 23:53:06 ===\n2026-04-17 23:53:06,083 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-17 23:53:06,083 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-17 23:53:06,139 [INFO] predictor: Models loaded OK\n2026-04-17 23:53:06,143 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-17 23:54:06,111 [INFO] run_cycle: === run_cycle 23:54:06 ===\n2026-04-17 23:54:06,111 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-17 23:54:06,111 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-17 23:54:06,189 [INFO] predictor: Models loaded OK\n2026-04-17 23:54:06,197 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-17 23:55:05,545 [INFO] run_cycle: === run_cycle 23:55:05 ===\n2026-04-17 23:55:05,545 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-17 23:55:05,546 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-17 23:55:05,596 [INFO] predictor: Models loaded OK\n2026-04-17 23:55:05,600 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-17 23:56:05,450 [INFO] run_cycle: === run_cycle 23:56:05 ===\n2026-04-17 23:56:05,450 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-17 23:56:05,451 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-17 23:56:05,497 [INFO] predictor: Models loaded OK\n2026-04-17 23:56:05,502 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-17 23:57:05,810 [INFO] run_cycle: === run_cycle 23:57:05 ===\n2026-04-17 23:57:05,810 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-17 23:57:05,810 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-17 23:57:05,854 [INFO] predictor: Models loaded OK\n2026-04-17 23:57:05,858 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-17 23:58:05,172 [INFO] run_cycle: === run_cycle 23:58:05 ===\n2026-04-17 23:58:05,173 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-17 23:58:05,173 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-17 23:58:05,215 [INFO] predictor: Models loaded OK\n2026-04-17 23:58:05,219 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-17 23:59:05,117 [INFO] run_cycle: === run_cycle 23:59:05 ===\n2026-04-17 23:59:05,117 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-17 23:59:05,117 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-17 23:59:05,167 [INFO] predictor: Models loaded OK\n2026-04-17 23:59:05,172 [INFO] run_cycle: run_cycle done: 0 notifications\n"
     },
     "strategies_active": [
@@ -164,8 +164,8 @@
         "kind": "HEALTH_CHECK_FAIL",
         "severity": "WARN",
         "key": "HEALTH_CHECK_FAIL",
-        "count": 3,
-        "last_at": "2026-04-18T01:30:02",
+        "count": 1,
+        "last_at": "2026-04-18T03:00:01",
         "fix_hint": "health.py の check 失敗→対応する check 名から該当テーブル/指標を確認"
       },
       {
