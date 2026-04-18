@@ -1,14 +1,15 @@
 # ClaudeDebug スナップショット
 
-## 🟡 現状: YELLOW
+## 🔴 現状: RED
 
-**生成**: 2026-04-18T16:00:01.725347+09:00
+**生成**: 2026-04-18T16:10:01.902421+09:00
 
 ### 次に取るべきアクション
-> YELLOW監視: FINAL_MISSING×480 (24h)
+> RED最優先: ⚠️ DB更新が10分前（run_cycle停止疑い・今レース時間帯） → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×480 (24h)
+- 🔴 ⚠️ DB更新が10分前（run_cycle停止疑い・今レース時間帯）
+- 🟡 FINAL_MISSING×470 (24h)
 
 ---
 
@@ -76,26 +77,36 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-7 [INFO] run_cycle: === run_cycle 15:59:05 ===
-2026-04-18 15:59:05,768 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-18 15:59:05,768 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-18 15:59:05,823 [INFO] predictor: Models loaded OK
-2026-04-18 15:59:16,880 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=08&hd=20260418: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-18 15:59:27,937 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=08&hd=20260418: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-04-18 15:59:40,998 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=08&hd=20260418: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
-2026-04-18 15:59:40,998 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=08&hd=20260418
-2026-04-18 15:59:40,998 [ERROR] scraper: racelist fetch failed: jcd=08 rno=12
-2026-04-18 15:59:40,998 [WARNING] run_cycle: fetch None: 08/12
-2026-04-18 15:59:53,423 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-18 15:59:54,520 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-18 15:59:55,626 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-18 15:59:55,627 [INFO] scraper: odds2f: 14/15 parsed
-2026-04-18 15:59:56,723 [INFO] scraper: odds_win: 4/6 parsed
-2026-04-18 15:59:56,723 [INFO] scraper: fetch_race 13/12: boats=6 odds=188/191
-2026-04-18 15:59:56,736 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-18 15:59:56,736 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-04-18 15:59:56,744 [INFO] run_cycle: fetched 13/12 [scan]: 154 combos
-2026-04-18 15:59:56,858 [INFO] run_cycle: run_cycle done: 0 notifications
+5000, 'A': 6000, 'B': 1500} default=5000
+2026-04-18 16:09:05,420 [INFO] predictor: Models loaded OK
+2026-04-18 16:09:17,825 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-18 16:09:18,898 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-18 16:09:19,987 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-18 16:09:19,988 [INFO] scraper: odds2f: 14/15 parsed
+2026-04-18 16:09:21,099 [INFO] scraper: odds_win: 5/6 parsed
+2026-04-18 16:09:21,099 [INFO] scraper: fetch_race 13/12: boats=6 odds=189/191
+2026-04-18 16:09:21,111 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-18 16:09:21,111 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-04-18 16:09:21,118 [INFO] run_cycle: fetched 13/12 [final]: 155 combos
+2026-04-18 16:09:24,588 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-18 16:09:25,701 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-18 16:09:26,794 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-18 16:09:26,795 [INFO] scraper: odds2f: 14/15 parsed
+2026-04-18 16:09:27,868 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-18 16:09:27,868 [INFO] scraper: fetch_race 07/3: boats=6 odds=190/191
+2026-04-18 16:09:27,877 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-18 16:09:27,877 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-18 16:09:27,887 [INFO] run_cycle: fetched 07/3 [scan]: 156 combos
+2026-04-18 16:09:31,328 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-18 16:09:32,428 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-18 16:09:33,564 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-18 16:09:33,565 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-18 16:09:34,674 [INFO] scraper: odds_win: 2/6 parsed
+2026-04-18 16:09:34,674 [INFO] scraper: fetch_race 05/10: boats=6 odds=187/191
+2026-04-18 16:09:34,683 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-18 16:09:34,683 [INFO] predictor: combos: {'win': 2, '2t': 30, '3t': 120}
+2026-04-18 16:09:34,691 [INFO] run_cycle: fetched 05/10 [scan]: 152 combos
+2026-04-18 16:09:34,850 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -125,7 +136,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  FINAL_MISSING: 480
+  FINAL_MISSING: 470
 ```
 
 ## 戦略別 ROI (7日)
@@ -147,7 +158,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:50:08] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026041702061314", "sid": "S00", "deadline": "2026-04-17T13:14:00+09:00"}
 ```
 
-## 本日残レース: 58件
+## 本日残レース: 56件
 
 ## 直近送信失敗 (24h)
 ```
@@ -199,4 +210,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-18T16:00:01.725347+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-18T16:10:01.902421+09:00_
