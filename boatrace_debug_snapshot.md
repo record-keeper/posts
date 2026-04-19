@@ -2,7 +2,7 @@
 
 ## 🟢 現状: GREEN
 
-**生成**: 2026-04-19T22:10:01.525892+09:00
+**生成**: 2026-04-19T22:20:02.013576+09:00
 
 ### 次に取るべきアクション
 > 特になし。運用継続。
@@ -13,7 +13,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 GRID_STRATEGY_NO_BETS  ×8  [2026-04-19T22:02:06]
+### 🟡 GRID_STRATEGY_NO_BETS  ×18  [2026-04-19T22:02:06]
 - key: `GRID_STRATEGY_NO_BETS|`
 - **FIX**: grid戦略が有効なのに当日ベット0件→filter_combosのml_shadow参照やcombo一致を確認
 
@@ -34,7 +34,7 @@
 - strategies.json md5: `657711d6153ff6f442c9436df8dd5201`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-19T22:09:05.848826+09:00
+- DB: 0.99MB / last modified 2026-04-19T22:19:05.960069+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -75,30 +75,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-27 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-19 22:05:05,627 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-19 22:05:05,672 [INFO] predictor: Models loaded OK
-2026-04-19 22:05:05,676 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-19 22:06:05,658 [INFO] run_cycle: === run_cycle 22:06:05 ===
-2026-04-19 22:06:05,658 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-19 22:06:05,658 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-19 22:06:05,704 [INFO] predictor: Models loaded OK
-2026-04-19 22:06:05,708 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-19 22:07:05,737 [INFO] run_cycle: === run_cycle 22:07:05 ===
-2026-04-19 22:07:05,737 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-19 22:07:05,737 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-19 22:07:05,807 [INFO] predictor: Models loaded OK
-2026-04-19 22:07:05,811 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-19 22:08:05,484 [INFO] run_cycle: === run_cycle 22:08:05 ===
-2026-04-19 22:08:05,484 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-19 22:08:05,485 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-19 22:08:05,539 [INFO] predictor: Models loaded OK
-2026-04-19 22:08:05,544 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-19 22:09:05,734 [INFO] run_cycle: === run_cycle 22:09:05 ===
-2026-04-19 22:09:05,734 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-19 22:09:05,734 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-19 22:09:05,783 [INFO] predictor: Models loaded OK
-2026-04-19 22:09:05,785 [INFO] run_cycle: run_cycle done: 0 notifications
+26 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-19 22:15:05,827 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-19 22:15:05,905 [INFO] predictor: Models loaded OK
+2026-04-19 22:15:05,912 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-19 22:16:05,277 [INFO] run_cycle: === run_cycle 22:16:05 ===
+2026-04-19 22:16:05,277 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-19 22:16:05,277 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-19 22:16:05,321 [INFO] predictor: Models loaded OK
+2026-04-19 22:16:05,325 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-19 22:17:05,513 [INFO] run_cycle: === run_cycle 22:17:05 ===
+2026-04-19 22:17:05,513 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-19 22:17:05,514 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-19 22:17:05,561 [INFO] predictor: Models loaded OK
+2026-04-19 22:17:05,567 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-19 22:18:05,354 [INFO] run_cycle: === run_cycle 22:18:05 ===
+2026-04-19 22:18:05,354 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-19 22:18:05,354 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-19 22:18:05,398 [INFO] predictor: Models loaded OK
+2026-04-19 22:18:05,402 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-19 22:19:05,861 [INFO] run_cycle: === run_cycle 22:19:05 ===
+2026-04-19 22:19:05,862 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-19 22:19:05,862 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-19 22:19:05,906 [INFO] predictor: Models loaded OK
+2026-04-19 22:19:05,911 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -117,7 +117,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  GRID_STRATEGY_NO_BETS: 249
+  GRID_STRATEGY_NO_BETS: 259
 ```
 
 ## 戦略別 ROI (7日)
@@ -127,16 +127,16 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
-[22:09:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[22:08:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[22:07:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[22:06:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[22:05:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[22:04:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[22:03:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[22:02:06] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[22:01:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[22:00:08] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[22:19:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[22:18:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[22:17:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[22:16:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[22:15:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[22:14:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[22:13:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[22:12:06] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[22:11:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[22:10:07] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
 ```
 
 ## 本日残レース: 0件
@@ -190,4 +190,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-19T22:10:01.525892+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-19T22:20:02.013576+09:00_
