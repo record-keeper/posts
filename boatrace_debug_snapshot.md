@@ -2,7 +2,7 @@
 
 ## 🟢 現状: GREEN
 
-**生成**: 2026-04-19T19:30:01.491960+09:00
+**生成**: 2026-04-19T19:40:01.683824+09:00
 
 ### 次に取るべきアクション
 > 特になし。運用継続。
@@ -13,7 +13,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 GRID_STRATEGY_NO_BETS  ×30  [2026-04-19T19:00:44]
+### 🟡 GRID_STRATEGY_NO_BETS  ×40  [2026-04-19T19:00:44]
 - key: `GRID_STRATEGY_NO_BETS|`
 - **FIX**: grid戦略が有効なのに当日ベット0件→filter_combosのml_shadow参照やcombo一致を確認
 
@@ -34,7 +34,7 @@
 - strategies.json md5: `657711d6153ff6f442c9436df8dd5201`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-19T19:30:02.593062+09:00
+- DB: 0.99MB / last modified 2026-04-19T19:39:28.546159+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -75,32 +75,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
- 19:28:40,917 [WARNING] run_cycle: fetch None: 07/10
-2026-04-19 19:28:40,917 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-19 19:29:05,268 [INFO] run_cycle: === run_cycle 19:29:05 ===
-2026-04-19 19:29:05,268 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-19 19:29:05,268 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-19 19:29:05,311 [INFO] predictor: Models loaded OK
-2026-04-19 19:29:16,369 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=07&hd=20260419: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-19 19:29:28,027 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-19 19:29:29,133 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-19 19:29:30,256 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-19 19:29:30,257 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-19 19:29:31,393 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-19 19:29:31,393 [INFO] scraper: fetch_race 07/10: boats=6 odds=191/191
-2026-04-19 19:29:31,406 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-19 19:29:31,406 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-19 19:29:31,415 [INFO] run_cycle: fetched 07/10 [scan]: 156 combos
-2026-04-19 19:29:34,967 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-19 19:29:36,244 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-19 19:29:37,382 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-19 19:29:37,383 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-19 19:29:38,486 [INFO] scraper: odds_win: 5/6 parsed
-2026-04-19 19:29:38,487 [INFO] scraper: fetch_race 12/10: boats=6 odds=190/191
-2026-04-19 19:29:38,490 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-19 19:29:38,490 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-04-19 19:29:38,494 [INFO] run_cycle: fetched 12/10 [scan]: 155 combos
-2026-04-19 19:29:38,606 [INFO] run_cycle: run_cycle done: 0 notifications
+ 19:38:05 ===
+2026-04-19 19:38:05,598 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-19 19:38:05,598 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-19 19:38:05,642 [INFO] predictor: Models loaded OK
+2026-04-19 19:38:05,717 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-19 19:39:05,100 [INFO] run_cycle: === run_cycle 19:39:05 ===
+2026-04-19 19:39:05,100 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-19 19:39:05,100 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-19 19:39:05,167 [INFO] predictor: Models loaded OK
+2026-04-19 19:39:17,784 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-19 19:39:18,934 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-19 19:39:20,055 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-19 19:39:20,056 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-19 19:39:21,180 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-19 19:39:21,180 [INFO] scraper: fetch_race 12/10: boats=6 odds=191/191
+2026-04-19 19:39:21,192 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-19 19:39:21,192 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-19 19:39:21,200 [INFO] run_cycle: fetched 12/10 [final]: 156 combos
+2026-04-19 19:39:24,998 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-19 19:39:26,073 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-19 19:39:27,272 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-19 19:39:27,275 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-19 19:39:28,381 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-19 19:39:28,381 [INFO] scraper: fetch_race 15/10: boats=6 odds=191/191
+2026-04-19 19:39:28,390 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-19 19:39:28,392 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-19 19:39:28,398 [INFO] run_cycle: fetched 15/10 [scan]: 156 combos
+2026-04-19 19:39:28,532 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -119,7 +121,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  GRID_STRATEGY_NO_BETS: 90
+  GRID_STRATEGY_NO_BETS: 100
 ```
 
 ## 戦略別 ROI (7日)
@@ -129,19 +131,19 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
-[19:29:38] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[19:28:40] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[19:27:21] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[19:26:21] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[19:25:21] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[19:24:21] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[19:23:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[19:22:21] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[19:21:20] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
-[19:20:41] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[19:39:28] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[19:38:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[19:37:06] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[19:36:27] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[19:35:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[19:34:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[19:33:32] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[19:32:56] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[19:31:05] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
+[19:30:08] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
 ```
 
-## 本日残レース: 13件
+## 本日残レース: 12件
 
 ## 直近送信失敗 (24h)
 ```
@@ -192,4 +194,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-19T19:30:01.491960+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-19T19:40:01.683824+09:00_
