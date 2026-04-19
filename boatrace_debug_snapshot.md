@@ -1,20 +1,19 @@
 # ClaudeDebug スナップショット
 
-## 🔴 現状: RED
+## 🟢 現状: GREEN
 
-**生成**: 2026-04-19T13:50:01.666119+09:00
+**生成**: 2026-04-19T14:00:02.076698+09:00
 
 ### 次に取るべきアクション
-> RED最優先: ⚠️ DB更新が20分前（run_cycle停止疑い・今レース時間帯） → ログ/DB確認
+> 特になし。運用継続。
 
-### 検出された問題
-- 🔴 ⚠️ DB更新が20分前（run_cycle停止疑い・今レース時間帯）
+### 問題なし、運用継続してOK。
 
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 HEALTH_CHECK_FAIL  ×1  [2026-04-19T13:30:02]
+### 🟡 HEALTH_CHECK_FAIL  ×2  [2026-04-19T13:30:02]
 - key: `HEALTH_CHECK_FAIL`
 - **FIX**: health.py の check 失敗→対応する check 名から該当テーブル/指標を確認
 
@@ -31,7 +30,7 @@
 - strategies.json md5: `657711d6153ff6f442c9436df8dd5201`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-19T13:30:02.697855+09:00
+- DB: 0.99MB / last modified 2026-04-19T14:00:02.909059+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -72,34 +71,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-4-19 13:48:43,449 [INFO] scraper: fetch_race 06/6: boats=6 odds=190/191
-2026-04-19 13:48:43,462 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-19 13:48:43,462 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-04-19 13:48:43,470 [INFO] run_cycle: fetched 06/6 [scan]: 155 combos
-2026-04-19 13:48:46,895 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-19 13:48:48,087 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-19 13:48:49,215 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-19 13:48:49,216 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-19 13:48:50,311 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-19 13:48:50,311 [INFO] scraper: fetch_race 13/8: boats=6 odds=191/191
-2026-04-19 13:48:50,319 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-19 13:48:50,319 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-19 13:48:50,327 [INFO] run_cycle: fetched 13/8 [scan]: 156 combos
-2026-04-19 13:48:53,849 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-19 13:48:54,942 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-19 13:48:56,045 [INFO] scraper: odds2t: 29/30 parsed
-2026-04-19 13:48:56,046 [INFO] scraper: odds2f: 13/15 parsed
-2026-04-19 13:48:57,151 [INFO] scraper: odds_win: 4/6 parsed
-2026-04-19 13:48:57,151 [INFO] scraper: fetch_race 05/6: boats=6 odds=186/191
-2026-04-19 13:48:57,161 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-19 13:48:57,161 [INFO] predictor: combos: {'win': 4, '2t': 29, '3t': 120}
-2026-04-19 13:48:57,169 [INFO] run_cycle: fetched 05/6 [scan]: 153 combos
-2026-04-19 13:48:57,276 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-19 13:49:05,700 [INFO] run_cycle: === run_cycle 13:49:05 ===
-2026-04-19 13:49:05,700 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-19 13:49:05,700 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-19 13:49:05,745 [INFO] predictor: Models loaded OK
-2026-04-19 13:49:05,941 [INFO] run_cycle: run_cycle done: 0 notifications
+9 13:58:27,813 [INFO] scraper: fetch_race 09/8: boats=6 odds=191/191
+2026-04-19 13:58:27,822 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-19 13:58:27,824 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-19 13:58:27,832 [INFO] run_cycle: fetched 09/8 [scan]: 156 combos
+2026-04-19 13:58:27,924 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-19 13:59:05,663 [INFO] run_cycle: === run_cycle 13:59:05 ===
+2026-04-19 13:59:05,663 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-19 13:59:05,663 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-19 13:59:05,705 [INFO] predictor: Models loaded OK
+2026-04-19 13:59:17,179 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-19 13:59:18,298 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-19 13:59:19,403 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-19 13:59:19,405 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-19 13:59:20,505 [INFO] scraper: odds_win: 5/6 parsed
+2026-04-19 13:59:20,505 [INFO] scraper: fetch_race 05/6: boats=6 odds=190/191
+2026-04-19 13:59:20,518 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-19 13:59:20,518 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-04-19 13:59:20,525 [INFO] run_cycle: fetched 05/6 [final]: 155 combos
+2026-04-19 13:59:23,994 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-19 13:59:25,105 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-19 13:59:26,274 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-19 13:59:26,275 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-19 13:59:27,399 [INFO] scraper: odds_win: 2/6 parsed
+2026-04-19 13:59:27,399 [INFO] scraper: fetch_race 23/12: boats=6 odds=187/191
+2026-04-19 13:59:27,408 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-19 13:59:27,408 [INFO] predictor: combos: {'win': 2, '2t': 30, '3t': 120}
+2026-04-19 13:59:27,416 [INFO] run_cycle: fetched 23/12 [scan]: 152 combos
+2026-04-19 13:59:27,586 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -130,7 +129,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ```
 ```
 
-## 本日残レース: 96件
+## 本日残レース: 94件
 
 ## 直近送信失敗 (24h)
 ```
@@ -181,4 +180,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-19T13:50:01.666119+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-19T14:00:02.076698+09:00_
