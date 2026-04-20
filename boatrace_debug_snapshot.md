@@ -1,20 +1,19 @@
 # ClaudeDebug スナップショット
 
-## 🔴 現状: RED
+## 🟢 現状: GREEN
 
-**生成**: 2026-04-20T10:50:02.045206+09:00
+**生成**: 2026-04-20T11:00:02.022628+09:00
 
 ### 次に取るべきアクション
-> RED最優先: ⚠️ DB更新が20分前（run_cycle停止疑い・今レース時間帯） → ログ/DB確認
+> 特になし。運用継続。
 
-### 検出された問題
-- 🔴 ⚠️ DB更新が20分前（run_cycle停止疑い・今レース時間帯）
+### 問題なし、運用継続してOK。
 
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 HEALTH_CHECK_FAIL  ×1  [2026-04-20T10:30:02]
+### 🟡 HEALTH_CHECK_FAIL  ×2  [2026-04-20T10:30:02]
 - key: `HEALTH_CHECK_FAIL`
 - **FIX**: health.py の check 失敗→対応する check 名から該当テーブル/指標を確認
 
@@ -35,7 +34,7 @@
 - strategies.json md5: `657711d6153ff6f442c9436df8dd5201`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 0.99MB / last modified 2026-04-20T10:30:02.900652+09:00
+- DB: 0.99MB / last modified 2026-04-20T11:00:02.926786+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -76,34 +75,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-04-20 10:48:38,442 [INFO] scraper: fetch_race 18/6: boats=6 odds=188/191
-2026-04-20 10:48:38,453 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-20 10:48:38,453 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-04-20 10:48:38,461 [INFO] run_cycle: fetched 18/6 [scan]: 154 combos
-2026-04-20 10:48:42,008 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-20 10:48:43,272 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-20 10:48:44,352 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-20 10:48:44,353 [INFO] scraper: odds2f: 9/15 parsed
-2026-04-20 10:48:45,460 [INFO] scraper: odds_win: 3/6 parsed
-2026-04-20 10:48:45,460 [INFO] scraper: fetch_race 13/2: boats=6 odds=182/191
-2026-04-20 10:48:45,470 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-20 10:48:45,470 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-04-20 10:48:45,478 [INFO] run_cycle: fetched 13/2 [scan]: 153 combos
-2026-04-20 10:48:45,579 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-20 10:49:05,831 [INFO] run_cycle: === run_cycle 10:49:05 ===
-2026-04-20 10:49:05,831 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-20 10:49:05,831 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-20 10:49:05,908 [INFO] predictor: Models loaded OK
-2026-04-20 10:49:18,612 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-20 10:49:19,719 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-20 10:49:20,826 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-20 10:49:20,827 [INFO] scraper: odds2f: 14/15 parsed
-2026-04-20 10:49:21,899 [INFO] scraper: odds_win: 5/6 parsed
-2026-04-20 10:49:21,899 [INFO] scraper: fetch_race 21/6: boats=6 odds=189/191
-2026-04-20 10:49:21,911 [INFO] predictor: CALIBRATION_MODE=shadow
-2026-04-20 10:49:21,911 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-04-20 10:49:21,918 [INFO] run_cycle: fetched 21/6 [scan]: 155 combos
-2026-04-20 10:49:22,020 [INFO] run_cycle: run_cycle done: 0 notifications
+retry in 9s
+2026-04-20 10:58:41,212 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=13&hd=20260420
+2026-04-20 10:58:41,212 [ERROR] scraper: racelist fetch failed: jcd=13 rno=2
+2026-04-20 10:58:41,212 [WARNING] run_cycle: fetch None: 13/2
+2026-04-20 10:58:41,385 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-20 10:59:05,770 [INFO] run_cycle: === run_cycle 10:59:05 ===
+2026-04-20 10:59:05,770 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-20 10:59:05,770 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-20 10:59:05,815 [INFO] predictor: Models loaded OK
+2026-04-20 10:59:17,305 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-20 10:59:18,395 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-20 10:59:19,578 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-20 10:59:19,579 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-20 10:59:20,828 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-20 10:59:20,828 [INFO] scraper: fetch_race 21/6: boats=6 odds=191/191
+2026-04-20 10:59:20,842 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-20 10:59:20,842 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-20 10:59:20,849 [INFO] run_cycle: fetched 21/6 [final]: 156 combos
+2026-04-20 10:59:24,342 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-20 10:59:25,507 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-20 10:59:26,598 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-20 10:59:26,599 [INFO] scraper: odds2f: 14/15 parsed
+2026-04-20 10:59:27,714 [INFO] scraper: odds_win: 2/6 parsed
+2026-04-20 10:59:27,714 [INFO] scraper: fetch_race 11/2: boats=6 odds=186/191
+2026-04-20 10:59:27,724 [INFO] predictor: CALIBRATION_MODE=shadow
+2026-04-20 10:59:27,724 [INFO] predictor: combos: {'win': 2, '2t': 30, '3t': 120}
+2026-04-20 10:59:27,732 [INFO] run_cycle: fetched 11/2 [scan]: 152 combos
+2026-04-20 10:59:27,934 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -114,11 +113,22 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## Webhook送信 (24h)
 ```
-[]
+[
+  {
+    "target": "mirror",
+    "ok": 1,
+    "c": 1
+  },
+  {
+    "target": "primary",
+    "ok": 1,
+    "c": 1
+  }
+]
 ```
 
 ## Phase別通知記録 (24h)
-{}
+{'final': 1}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -128,7 +138,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## 戦略別 ROI (7日)
 | sid | n | hits | cost | payout | PL | ROI |
 |---|---|---|---|---|---|---|
-| S00 | 2 | 0 | 600 | 0 | -600 | 0.0 |
+| S00 | 3 | 0 | 900 | 0 | -900 | 0.0 |
 
 ## 直近アラート (24h・新しい順)
 ```
@@ -144,7 +154,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:50:08] GRID_STRATEGY_NO_BETS: {"kind": "GRID_STRATEGY_NO_BETS", "date": "20260419", "n_grid_strats": 1}
 ```
 
-## 本日残レース: 148件
+## 本日残レース: 145件
 
 ## 直近送信失敗 (24h)
 ```
@@ -153,6 +163,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## 最新 predictions サンプル (計算spot-check用)
 | sid | race | bt | combo | p | odds | ev | bet | at |
 |---|---|---|---|---|---|---|---|---|
+| S00 | 186R | win | 1 | 0.5364 | 5.1 | 2.74 | 300 | scan=- drift=- | 10:53:20 |
 | S00 | 094R | win | 1 | 0.4781 | 9.0 | 4.30 | 300 | scan=- drift=- | 12:07:21 |
 | S00 | 092R | win | 1 | 0.4219 | 7.7 | 3.25 | 300 | scan=- drift=- | 11:05:20 |
 
@@ -169,8 +180,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 |---|---|
 | **Latency** (scan→final avg) | 0s |
 | **Latency** (scan→final max) | 0s |
-| **Traffic** (notifications 24h) | 0 |
+| **Traffic** (notifications 24h) | 1 |
 | **Errors** (send fail rate) | ✅ 0.0% |
+| **Saturation** (S00) | 300円 used |
 
 ## Settlement Ratio データ品質
 
@@ -195,4 +207,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-20T10:50:02.045206+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-20T11:00:02.022628+09:00_
