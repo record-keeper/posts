@@ -2,7 +2,7 @@
 
 ## 🟡 現状: YELLOW
 
-**生成**: 2026-04-21T12:35:45.808513+09:00
+**生成**: 2026-04-21T12:37:17.242487+09:00
 
 ### 次に取るべきアクション
 > YELLOW監視: FINAL_MISSING×1 (24h)
@@ -14,7 +14,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 HEALTH_CHECK_FAIL  ×3  [2026-04-21T12:00:02]
+### 🟡 HEALTH_CHECK_FAIL  ×4  [2026-04-21T12:00:02]
 - key: `HEALTH_CHECK_FAIL`
 - **FIX**: health.py の check 失敗→対応する check 名から該当テーブル/指標を確認
 
@@ -35,7 +35,7 @@
 - strategies.json md5: `657711d6153ff6f442c9436df8dd5201`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.09MB / last modified 2026-04-21T12:35:23.024239+09:00
+- DB: 1.09MB / last modified 2026-04-21T12:37:17.198591+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -76,33 +76,29 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-k failed: cannot access local variable '_os' where it is not associated with a value
-2026-04-21 12:35:05,237 [INFO] run_cycle: === run_cycle 12:35:05 ===
-2026-04-21 12:35:05,237 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-21 12:35:05,237 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-21 12:35:05,280 [INFO] predictor: Models loaded OK
-2026-04-21 12:35:16,672 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-21 12:35:17,765 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-21 12:35:18,873 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-21 12:35:18,874 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-21 12:35:19,963 [INFO] scraper: odds_win: 3/6 parsed
-2026-04-21 12:35:19,963 [INFO] scraper: fetch_race 21/9: boats=6 odds=188/191
-2026-04-21 12:35:19,976 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-21 12:35:19,976 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-04-21 12:35:19,984 [INFO] run_cycle: fetched 21/9 [final]: 153 combos
-2026-04-21 12:35:22,313 [WARNING] scraper: beforeinfo parse failed: jcd=08 rno=6
-2026-04-21 12:35:22,313 [WARNING] run_cycle: fetch None: 08/6
-2026-04-21 12:35:25,629 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-21 12:35:26,702 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-21 12:35:27,786 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-21 12:35:27,787 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-21 12:35:28,850 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-21 12:35:28,850 [INFO] scraper: fetch_race 17/5: boats=6 odds=191/191
-2026-04-21 12:35:28,858 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-21 12:35:28,858 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-21 12:35:28,866 [INFO] run_cycle: fetched 17/5 [scan]: 156 combos
-2026-04-21 12:35:28,952 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 12:35:28,959 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+2026-04-21 12:36:05,152 [INFO] run_cycle: === run_cycle 12:36:05 ===
+2026-04-21 12:36:05,152 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-21 12:36:05,152 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-21 12:36:05,214 [INFO] predictor: Models loaded OK
+2026-04-21 12:36:17,643 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-21 12:36:18,756 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-21 12:36:19,875 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-21 12:36:19,876 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-21 12:36:20,941 [INFO] scraper: odds_win: 3/6 parsed
+2026-04-21 12:36:20,941 [INFO] scraper: fetch_race 21/9: boats=6 odds=188/191
+2026-04-21 12:36:20,952 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-21 12:36:20,953 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
+2026-04-21 12:36:20,960 [INFO] run_cycle: fetched 21/9 [final]: 153 combos
+2026-04-21 12:36:23,295 [WARNING] scraper: beforeinfo parse failed: jcd=08 rno=6
+2026-04-21 12:36:23,295 [WARNING] run_cycle: fetch None: 08/6
+2026-04-21 12:36:23,428 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-21 12:36:23,435 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+2026-04-21 12:37:05,725 [INFO] run_cycle: === run_cycle 12:37:05 ===
+2026-04-21 12:37:05,725 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-21 12:37:05,725 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-21 12:37:05,777 [INFO] predictor: Models loaded OK
+2026-04-21 12:37:16,836 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=6&jcd=08&hd=20260421: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 
 ```
 
@@ -209,4 +205,4 @@ k failed: cannot access local variable '_os' where it is not associated with a v
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-21T12:35:45.808513+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-21T12:37:17.242487+09:00_
