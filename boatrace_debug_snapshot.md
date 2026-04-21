@@ -1,17 +1,22 @@
 # ClaudeDebug スナップショット
 
-## 🟢 現状: GREEN
+## 🔴 現状: RED
 
-**生成**: 2026-04-21T21:50:01.668220+09:00
+**生成**: 2026-04-21T21:51:39.746858+09:00
 
 ### 次に取るべきアクション
-> 特になし。運用継続。
+> RED最優先: Discord送信失敗 5+件 → ログ/DB確認
 
-### 問題なし、運用継続してOK。
+### 検出された問題
+- 🔴 Discord送信失敗 5+件
 
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
+
+### 🟡 ANOMALY_BET_VOLUME_SPIKE  ×1  [2026-04-21T21:51:05]
+- key: `ANOMALY_BET_VOLUME_SPIKE|`
+- **FIX**: 本日のbet数が2σ急増。filter logic緩み・戦略追加・race_schedule異常
 
 ### ℹ️ CODE_AUDIT_RANK_ARROW_INCONSISTENT_HISTORICAL  ×2  [2026-04-21T21:00:03]
 - key: `CODE_AUDIT_RANK_ARROW_INCONSISTENT_HISTORICAL|scan title に 🆙 ある件 7件（履歴、修正前分）`
@@ -30,7 +35,7 @@
 - strategies.json md5: `657711d6153ff6f442c9436df8dd5201`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.09MB / last modified 2026-04-21T21:30:03.158552+09:00
+- DB: 1.09MB / last modified 2026-04-21T21:51:39.697897+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -73,17 +78,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-02 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-21 21:45:06,002 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-21 21:45:06,049 [INFO] predictor: Models loaded OK
-2026-04-21 21:45:06,053 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 21:46:05,066 [INFO] run_cycle: === run_cycle 21:46:05 ===
-2026-04-21 21:46:05,066 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-21 21:46:05,066 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-21 21:46:05,146 [INFO] predictor: Models loaded OK
-2026-04-21 21:46:05,150 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 21:47:06,060 [INFO] run_cycle: === run_cycle 21:47:06 ===
-2026-04-21 21:47:06,061 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+61 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
 2026-04-21 21:47:06,061 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 2026-04-21 21:47:06,110 [INFO] predictor: Models loaded OK
 2026-04-21 21:47:06,112 [INFO] run_cycle: run_cycle done: 0 notifications
@@ -97,6 +92,16 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 2026-04-21 21:49:05,694 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 2026-04-21 21:49:05,746 [INFO] predictor: Models loaded OK
 2026-04-21 21:49:05,750 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-21 21:50:08,256 [INFO] run_cycle: === run_cycle 21:50:08 ===
+2026-04-21 21:50:08,256 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-21 21:50:08,256 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-21 21:50:08,387 [INFO] predictor: Models loaded OK
+2026-04-21 21:50:08,393 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-21 21:51:05,529 [INFO] run_cycle: === run_cycle 21:51:05 ===
+2026-04-21 21:51:05,529 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-21 21:51:05,529 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-21 21:51:05,625 [INFO] predictor: Models loaded OK
+2026-04-21 21:51:05,634 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -115,6 +120,11 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   },
   {
     "target": "primary",
+    "ok": 0,
+    "c": 20
+  },
+  {
+    "target": "primary",
     "ok": 1,
     "c": 29
   }
@@ -126,7 +136,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  (なし)
+  ANOMALY_BET_VOLUME_SPIKE: 1
 ```
 
 ## 戦略別 ROI (7日)
@@ -136,6 +146,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[21:50:51] ANOMALY_BET_VOLUME_SPIKE: {"baseline_mean": 2, "baseline_n_days": 3, "baseline_stdev": 1.7, "hour": 21, "kind": "ANOMALY_BET_VOLUME_SPIKE", "today_so_far": 6, "z_score": 2.31}
 [23:59:06] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
 ```
 
@@ -150,6 +161,11 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近送信失敗 (24h)
 ```
+[21:51:39] nid=INJECT_TEST_19 sid=S00 phase=scan status=500
+[21:51:39] nid=INJECT_TEST_18 sid=S00 phase=scan status=500
+[21:51:39] nid=INJECT_TEST_17 sid=S00 phase=scan status=500
+[21:51:39] nid=INJECT_TEST_16 sid=S00 phase=scan status=500
+[21:51:39] nid=INJECT_TEST_15 sid=S00 phase=scan status=500
 ```
 
 ## 最新 predictions サンプル (計算spot-check用)
@@ -186,7 +202,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | **Latency** (scan→final avg) | 442.7s |
 | **Latency** (scan→final max) | 622.3s |
 | **Traffic** (notifications 24h) | 29 |
-| **Errors** (send fail rate) | ✅ 0.0% |
+| **Errors** (send fail rate) | 🔴 25.6% |
 | **Saturation** (S00) | 1,800円 used |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
@@ -230,4 +246,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-21T21:50:01.668220+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-21T21:51:39.746858+09:00_
