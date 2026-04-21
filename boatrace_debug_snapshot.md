@@ -1,14 +1,13 @@
 # ClaudeDebug スナップショット
 
-## 🔴 現状: RED
+## 🟡 現状: YELLOW
 
-**生成**: 2026-04-21T13:50:01.608171+09:00
+**生成**: 2026-04-21T13:56:51.180309+09:00
 
 ### 次に取るべきアクション
-> RED最優先: ⚠️ DB更新が8分前（run_cycle停止疑い・今レース時間帯） → ログ/DB確認
+> YELLOW監視: FINAL_MISSING×1 (24h)
 
 ### 検出された問題
-- 🔴 ⚠️ DB更新が8分前（run_cycle停止疑い・今レース時間帯）
 - 🟡 FINAL_MISSING×1 (24h)
 
 ---
@@ -36,7 +35,7 @@
 - strategies.json md5: `657711d6153ff6f442c9436df8dd5201`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.09MB / last modified 2026-04-21T13:42:25.347544+09:00
+- DB: 1.09MB / last modified 2026-04-21T13:54:09.238900+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -77,33 +76,32 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
- combos
-2026-04-21 13:48:24,470 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-21 13:48:25,538 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-21 13:48:26,646 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-21 13:48:26,647 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-21 13:48:27,722 [INFO] scraper: odds_win: 4/6 parsed
-2026-04-21 13:48:27,722 [INFO] scraper: fetch_race 05/6: boats=6 odds=189/191
-2026-04-21 13:48:27,731 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-21 13:48:27,733 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-04-21 13:48:27,739 [INFO] run_cycle: fetched 05/6 [scan]: 154 combos
-2026-04-21 13:48:27,831 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 13:48:27,838 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
-2026-04-21 13:49:05,709 [INFO] run_cycle: === run_cycle 13:49:05 ===
-2026-04-21 13:49:05,709 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-21 13:49:05,709 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-21 13:49:05,778 [INFO] predictor: Models loaded OK
-2026-04-21 13:49:18,321 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-21 13:49:19,392 [INFO] scraper: odds3f: 19/20 parsed
-2026-04-21 13:49:20,512 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-21 13:49:20,513 [INFO] scraper: odds2f: 13/15 parsed
-2026-04-21 13:49:21,576 [INFO] scraper: odds_win: 5/6 parsed
-2026-04-21 13:49:21,576 [INFO] scraper: fetch_race 22/4: boats=6 odds=187/191
-2026-04-21 13:49:21,587 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-21 13:49:21,588 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-04-21 13:49:21,595 [INFO] run_cycle: fetched 22/4 [scan]: 155 combos
-2026-04-21 13:49:21,754 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 13:49:21,761 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+3:55:40,101 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-21 13:55:40,103 [INFO] scraper: odds2f: 13/15 parsed
+2026-04-21 13:55:41,171 [INFO] scraper: odds_win: 4/6 parsed
+2026-04-21 13:55:41,171 [INFO] scraper: fetch_race 11/8: boats=6 odds=187/191
+2026-04-21 13:55:41,181 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-21 13:55:41,181 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-04-21 13:55:41,189 [INFO] run_cycle: fetched 11/8 [scan]: 154 combos
+2026-04-21 13:55:41,328 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-21 13:55:41,336 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+2026-04-21 13:56:05,120 [INFO] run_cycle: === run_cycle 13:56:05 ===
+2026-04-21 13:56:05,120 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-21 13:56:05,120 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-21 13:56:05,166 [INFO] predictor: Models loaded OK
+2026-04-21 13:56:17,539 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-21 13:56:18,649 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-21 13:56:19,752 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-21 13:56:19,753 [INFO] scraper: odds2f: 14/15 parsed
+2026-04-21 13:56:20,852 [INFO] scraper: odds_win: 5/6 parsed
+2026-04-21 13:56:20,852 [INFO] scraper: fetch_race 22/4: boats=6 odds=189/191
+2026-04-21 13:56:20,864 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-21 13:56:20,864 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-04-21 13:56:20,872 [INFO] run_cycle: fetched 22/4 [final]: 155 combos
+2026-04-21 13:56:23,327 [WARNING] scraper: beforeinfo parse failed: jcd=08 rno=9
+2026-04-21 13:56:23,327 [WARNING] run_cycle: fetch None: 08/9
+2026-04-21 13:56:23,441 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-21 13:56:23,448 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
 
 ```
 
@@ -118,18 +116,18 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 8
+    "c": 15
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 8
+    "c": 15
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 4, 'result': 2, 'scan': 2}
+{'final': 4, 'result': 8, 'scan': 3}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -146,11 +144,11 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:59:06] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
 ```
 
-## 本日残レース: 92件
+## 本日残レース: 91件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 64件 締切済
-- 通知発射: scan=0 nid / final=2 nid / result=2 nid
+- race_schedule: 156件 登録 / 65件 締切済
+- 通知発射: scan=1 nid / final=2 nid / result=2 nid
 - predictions: 2 / うち結果DB記録済: 2
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - ✅ scan後final無しのまま締切: 0件（FINAL_MISSING の温床）
@@ -190,7 +188,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 |---|---|
 | **Latency** (scan→final avg) | 313.6s |
 | **Latency** (scan→final max) | 313.6s |
-| **Traffic** (notifications 24h) | 8 |
+| **Traffic** (notifications 24h) | 15 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 600円 used |
 
@@ -217,4 +215,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-21T13:50:01.608171+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-21T13:56:51.180309+09:00_
