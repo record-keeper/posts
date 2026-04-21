@@ -1,14 +1,13 @@
 # ClaudeDebug スナップショット
 
-## 🔴 現状: RED
+## 🟢 現状: GREEN
 
-**生成**: 2026-04-21T14:50:01.401069+09:00
+**生成**: 2026-04-21T15:00:01.748099+09:00
 
 ### 次に取るべきアクション
-> RED最優先: ⚠️ DB更新が20分前（run_cycle停止疑い・今レース時間帯） → ログ/DB確認
+> 特になし。運用継続。
 
-### 検出された問題
-- 🔴 ⚠️ DB更新が20分前（run_cycle停止疑い・今レース時間帯）
+### 問題なし、運用継続してOK。
 
 ---
 
@@ -20,7 +19,7 @@
 - strategies.json md5: `657711d6153ff6f442c9436df8dd5201`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.09MB / last modified 2026-04-21T14:30:25.112641+09:00
+- DB: 1.09MB / last modified 2026-04-21T14:55:13.020330+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -61,29 +60,29 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-nPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-04-21 14:48:40,643 [WARNING] scraper: beforeinfo parse failed: jcd=22 rno=6
-2026-04-21 14:48:40,644 [WARNING] run_cycle: fetch None: 22/6
-2026-04-21 14:48:40,824 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 14:48:40,840 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
-2026-04-21 14:49:05,346 [INFO] run_cycle: === run_cycle 14:49:05 ===
-2026-04-21 14:49:05,346 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-21 14:49:05,346 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-21 14:49:05,390 [INFO] predictor: Models loaded OK
-2026-04-21 14:49:16,457 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=17&hd=20260421: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-21 14:49:27,820 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-21 14:49:28,932 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-21 14:49:30,017 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-21 14:49:30,018 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-21 14:49:31,127 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-21 14:49:31,127 [INFO] scraper: fetch_race 17/9: boats=6 odds=191/191
-2026-04-21 14:49:31,140 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-21 14:49:31,140 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-21 14:49:31,147 [INFO] run_cycle: fetched 17/9 [final]: 156 combos
-2026-04-21 14:49:33,495 [WARNING] scraper: beforeinfo parse failed: jcd=22 rno=6
-2026-04-21 14:49:33,495 [WARNING] run_cycle: fetch None: 22/6
-2026-04-21 14:49:33,578 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 14:49:33,585 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+rd: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+2026-04-21 14:59:05,659 [INFO] run_cycle: === run_cycle 14:59:05 ===
+2026-04-21 14:59:05,659 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-21 14:59:05,659 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-21 14:59:05,705 [INFO] predictor: Models loaded OK
+2026-04-21 14:59:16,776 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=13&hd=20260421: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-04-21 14:59:29,212 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-21 14:59:30,309 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-21 14:59:31,461 [INFO] scraper: odds2t: 29/30 parsed
+2026-04-21 14:59:31,462 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-21 14:59:32,565 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-21 14:59:32,565 [INFO] scraper: fetch_race 13/10: boats=6 odds=190/191
+2026-04-21 14:59:32,576 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-21 14:59:32,577 [INFO] predictor: combos: {'win': 6, '2t': 29, '3t': 120}
+2026-04-21 14:59:32,584 [INFO] run_cycle: fetched 13/10 [scan]: 155 combos
+2026-04-21 14:59:34,951 [WARNING] scraper: beforeinfo parse failed: jcd=08 rno=11
+2026-04-21 14:59:34,952 [WARNING] run_cycle: fetch None: 08/11
+2026-04-21 14:59:34,952 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-21 14:59:34,962 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+2026-04-21 15:00:07,550 [INFO] run_cycle: === run_cycle 15:00:07 ===
+2026-04-21 15:00:07,550 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-21 15:00:07,550 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-21 15:00:07,640 [INFO] predictor: Models loaded OK
 
 ```
 
@@ -126,12 +125,12 @@ nPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retr
 [23:59:06] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
 ```
 
-## 本日残レース: 77件
+## 本日残レース: 74件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 79件 締切済
+- race_schedule: 156件 登録 / 82件 締切済
 - 通知発射: scan=2 nid / final=4 nid / result=2 nid
-- predictions: 4 / うち結果DB記録済: 3
+- predictions: 4 / うち結果DB記録済: 4
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - ✅ scan後final無しのまま締切: 0件（FINAL_MISSING の温床）
 
@@ -176,6 +175,23 @@ nPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retr
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 1,200円 used |
 
+## 信ぴょう性メトリクス（予測精度の証拠）
+
+### bt別: 予測確率 vs 実的中率
+| bt | n | 予測avg | 実的中率 | 校正誤差 | 過信度 | Brier |
+|---|---|---|---|---|---|---|
+| win | 10 | 0.4552 | 0.1000 | +0.3552 | 🔴+78% | 0.2108 |
+
+### 戦略別: 校正精度 + Brier Skill Score
+| sid | bt | n | pred | actual | Brier | BSS | ROI |
+|---|---|---|---|---|---|---|---|
+| S00 | win | 10 | 0.4552 | 0.1000 | 0.2108 | 🔴-1.34 | 0.38 |
+
+### 確率デシル別: 校正カーブ
+| 確率帯 | n | 予測avg | 実的中率 | gap |
+|---|---|---|---|---|
+| 0.50+ | 5 | 0.5330 | 0.2000 | 🔴+0.3330 |
+
 ## Settlement Ratio データ品質
 
 - 学習済み: 0バンド / fallback: 16バンド
@@ -199,4 +215,4 @@ nPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retr
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-21T14:50:01.401069+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-21T15:00:01.748099+09:00_
