@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-21T13:00:02.360073+09:00
+**生成**: 2026-04-21T13:10:01.874370+09:00
 
 ### 次に取るべきアクション
-> RED最優先: ⚠️ DB更新が23分前（run_cycle停止疑い・今レース時間帯） → ログ/DB確認
+> RED最優先: ⚠️ DB更新が33分前（run_cycle停止疑い・今レース時間帯） → ログ/DB確認
 
 ### 検出された問題
-- 🔴 ⚠️ DB更新が23分前（run_cycle停止疑い・今レース時間帯）
+- 🔴 ⚠️ DB更新が33分前（run_cycle停止疑い・今レース時間帯）
 - 🟡 FINAL_MISSING×1 (24h)
 
 ---
@@ -77,33 +77,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-failed: cannot access local variable '_os' where it is not associated with a value
-2026-04-21 12:59:05,840 [INFO] run_cycle: === run_cycle 12:59:05 ===
-2026-04-21 12:59:05,840 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-21 12:59:05,840 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-21 12:59:05,900 [INFO] predictor: Models loaded OK
-2026-04-21 12:59:17,264 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-21 12:59:18,367 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-21 12:59:19,484 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-21 12:59:19,485 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-21 12:59:20,550 [INFO] scraper: odds_win: 5/6 parsed
-2026-04-21 12:59:20,550 [INFO] scraper: fetch_race 22/2: boats=6 odds=190/191
-2026-04-21 12:59:20,561 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-21 12:59:20,562 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-04-21 12:59:20,568 [INFO] run_cycle: fetched 22/2 [final]: 155 combos
-2026-04-21 12:59:22,915 [WARNING] scraper: beforeinfo parse failed: jcd=08 rno=7
-2026-04-21 12:59:22,915 [WARNING] run_cycle: fetch None: 08/7
-2026-04-21 12:59:26,290 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-21 12:59:27,363 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-21 12:59:28,448 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-21 12:59:28,449 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-21 12:59:29,517 [INFO] scraper: odds_win: 3/6 parsed
-2026-04-21 12:59:29,517 [INFO] scraper: fetch_race 21/10: boats=6 odds=188/191
-2026-04-21 12:59:29,527 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-21 12:59:29,527 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-04-21 12:59:29,535 [INFO] run_cycle: fetched 21/10 [scan]: 153 combos
-2026-04-21 12:59:29,627 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 12:59:29,635 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+08/7
+2026-04-21 13:08:15,966 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-21 13:08:15,974 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+2026-04-21 13:09:05,942 [INFO] run_cycle: === run_cycle 13:09:05 ===
+2026-04-21 13:09:05,942 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-21 13:09:05,942 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-21 13:09:06,036 [INFO] predictor: Models loaded OK
+2026-04-21 13:09:18,420 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-21 13:09:19,500 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-21 13:09:20,572 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-21 13:09:20,573 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-21 13:09:21,651 [INFO] scraper: odds_win: 4/6 parsed
+2026-04-21 13:09:21,651 [INFO] scraper: fetch_race 21/10: boats=6 odds=189/191
+2026-04-21 13:09:21,664 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-21 13:09:21,664 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-04-21 13:09:21,672 [INFO] run_cycle: fetched 21/10 [final]: 154 combos
+2026-04-21 13:09:25,134 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-21 13:09:26,206 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-21 13:09:27,312 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-21 13:09:27,314 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-21 13:09:28,394 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-21 13:09:28,394 [INFO] scraper: fetch_race 06/5: boats=6 odds=191/191
+2026-04-21 13:09:28,404 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-21 13:09:28,406 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-21 13:09:28,412 [INFO] run_cycle: fetched 06/5 [scan]: 156 combos
+2026-04-21 13:09:28,519 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-21 13:09:28,526 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
 
 ```
 
@@ -146,7 +146,7 @@ failed: cannot access local variable '_os' where it is not associated with a val
 [23:59:06] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
 ```
 
-## 本日残レース: 106件
+## 本日残レース: 103件
 
 ## 直近送信失敗 (24h)
 ```
@@ -210,4 +210,4 @@ failed: cannot access local variable '_os' where it is not associated with a val
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-21T13:00:02.360073+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-21T13:10:01.874370+09:00_
