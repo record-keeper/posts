@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T14:08:21.000083+09:00",
+  "generated_at": "2026-04-21T14:08:59.634618+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -63,12 +63,7 @@
       "result": 8,
       "scan": 3
     },
-    "alerts_24h": [
-      {
-        "kind": "FINAL_MISSING",
-        "c": 1
-      }
-    ],
+    "alerts_24h": [],
     "alert_dispatch_failed": 0,
     "roi_7d": [
       {
