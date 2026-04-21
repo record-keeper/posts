@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T14:20:02.245898+09:00",
+  "generated_at": "2026-04-21T14:30:02.391590+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,8 +33,8 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup",
       "db_size_mb": 1.09,
-      "db_mtime": "2026-04-21T14:19:28.919223+09:00",
-      "log_tail": "'win': 6, '2t': 30, '3t': 120}\n2026-04-21 14:18:32,583 [INFO] run_cycle: fetched 17/8 [final]: 156 combos\n2026-04-21 14:18:32,902 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-21 14:18:32,910 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value\n2026-04-21 14:19:05,314 [INFO] run_cycle: === run_cycle 14:19:05 ===\n2026-04-21 14:19:05,314 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-21 14:19:05,314 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-21 14:19:05,365 [INFO] predictor: Models loaded OK\n2026-04-21 14:19:17,930 [INFO] scraper: odds3t: 120/120 parsed\n2026-04-21 14:19:19,044 [INFO] scraper: odds3f: 20/20 parsed\n2026-04-21 14:19:20,154 [INFO] scraper: odds2t: 30/30 parsed\n2026-04-21 14:19:20,155 [INFO] scraper: odds2f: 15/15 parsed\n2026-04-21 14:19:21,235 [INFO] scraper: odds_win: 6/6 parsed\n2026-04-21 14:19:21,236 [INFO] scraper: fetch_race 17/8: boats=6 odds=191/191\n2026-04-21 14:19:21,245 [INFO] predictor: CALIBRATION_MODE=on\n2026-04-21 14:19:21,246 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-04-21 14:19:21,253 [INFO] run_cycle: fetched 17/8 [final]: 156 combos\n2026-04-21 14:19:24,656 [INFO] scraper: odds3t: 120/120 parsed\n2026-04-21 14:19:25,769 [INFO] scraper: odds3f: 18/20 parsed\n2026-04-21 14:19:26,891 [INFO] scraper: odds2t: 30/30 parsed\n2026-04-21 14:19:26,892 [INFO] scraper: odds2f: 14/15 parsed\n2026-04-21 14:19:27,974 [INFO] scraper: odds_win: 5/6 parsed\n2026-04-21 14:19:27,974 [INFO] scraper: fetch_race 22/5: boats=6 odds=187/191\n2026-04-21 14:19:27,983 [INFO] predictor: CALIBRATION_MODE=on\n2026-04-21 14:19:27,983 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}\n2026-04-21 14:19:27,994 [INFO] run_cycle: fetched 22/5 [scan]: 155 combos\n2026-04-21 14:19:28,052 [INFO] race_id: notif: nid=2026042122051425 sid=S00 phase=scan rank=SS\n2026-04-21 14:19:28,419 [INFO] notifier: Discord notify OK (status=204)\n2026-04-21 14:19:28,893 [INFO] notifier: Discord notify OK (status=204)\n2026-04-21 14:19:28,954 [INFO] run_cycle: SCAN S00 福岡5R SS\n2026-04-21 14:19:32,473 [INFO] scraper: odds3t: 120/120 parsed\n2026-04-21 14:19:33,596 [INFO] scraper: odds3f: 20/20 parsed\n2026-04-21 14:19:34,850 [INFO] scraper: odds2t: 30/30 parsed\n2026-04-21 14:19:34,851 [INFO] scraper: odds2f: 15/15 parsed\n2026-04-21 14:19:35,920 [INFO] scraper: odds_win: 3/6 parsed\n2026-04-21 14:19:35,920 [INFO] scraper: fetch_race 05/7: boats=6 odds=188/191\n2026-04-21 14:19:35,929 [INFO] predictor: CALIBRATION_MODE=on\n2026-04-21 14:19:35,929 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}\n2026-04-21 14:19:35,937 [INFO] run_cycle: fetched 05/7 [scan]: 153 combos\n2026-04-21 14:19:36,031 [INFO] run_cycle: run_cycle done: 1 notifications\n2026-04-21 14:19:36,038 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value\n"
+      "db_mtime": "2026-04-21T14:22:22.558143+09:00",
+      "log_tail": "run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-21 14:28:05,292 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-21 14:28:05,368 [INFO] predictor: Models loaded OK\n2026-04-21 14:28:16,655 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=08&hd=20260421: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s\n2026-04-21 14:28:27,955 [WARNING] scraper: beforeinfo parse failed: jcd=08 rno=10\n2026-04-21 14:28:27,955 [WARNING] run_cycle: fetch None: 08/10\n2026-04-21 14:28:28,038 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-21 14:28:28,046 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value\n2026-04-21 14:29:05,277 [INFO] run_cycle: === run_cycle 14:29:05 ===\n2026-04-21 14:29:05,277 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-04-21 14:29:05,277 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-04-21 14:29:05,341 [INFO] predictor: Models loaded OK\n2026-04-21 14:29:16,409 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=7&jcd=05&hd=20260421: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s\n2026-04-21 14:29:27,891 [INFO] scraper: odds3t: 120/120 parsed\n2026-04-21 14:29:29,008 [INFO] scraper: odds3f: 20/20 parsed\n2026-04-21 14:29:30,107 [INFO] scraper: odds2t: 30/30 parsed\n2026-04-21 14:29:30,108 [INFO] scraper: odds2f: 15/15 parsed\n2026-04-21 14:29:31,217 [INFO] scraper: odds_win: 6/6 parsed\n2026-04-21 14:29:31,217 [INFO] scraper: fetch_race 05/7: boats=6 odds=191/191\n2026-04-21 14:29:31,230 [INFO] predictor: CALIBRATION_MODE=on\n2026-04-21 14:29:31,230 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-04-21 14:29:31,237 [INFO] run_cycle: fetched 05/7 [final]: 156 combos\n2026-04-21 14:29:33,669 [WARNING] scraper: beforeinfo parse failed: jcd=08 rno=10\n2026-04-21 14:29:33,669 [WARNING] run_cycle: fetch None: 08/10\n2026-04-21 14:29:37,036 [INFO] scraper: odds3t: 120/120 parsed\n2026-04-21 14:29:38,106 [INFO] scraper: odds3f: 20/20 parsed\n2026-04-21 14:29:39,388 [INFO] scraper: odds2t: 29/30 parsed\n2026-04-21 14:29:39,389 [INFO] scraper: odds2f: 12/15 parsed\n2026-04-21 14:29:40,531 [INFO] scraper: odds_win: 4/6 parsed\n2026-04-21 14:29:40,532 [INFO] scraper: fetch_race 11/9: boats=6 odds=185/191\n2026-04-21 14:29:40,539 [INFO] predictor: CALIBRATION_MODE=on\n2026-04-21 14:29:40,539 [INFO] predictor: combos: {'win': 4, '2t': 29, '3t': 120}\n2026-04-21 14:29:40,547 [INFO] run_cycle: fetched 11/9 [scan]: 153 combos\n2026-04-21 14:29:40,642 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-04-21 14:29:40,650 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value\n"
     },
     "strategies_active": [
       {
@@ -50,16 +50,16 @@
       {
         "target": "mirror",
         "ok": 1,
-        "c": 16
+        "c": 17
       },
       {
         "target": "primary",
         "ok": 1,
-        "c": 16
+        "c": 17
       }
     ],
     "phases_24h": {
-      "final": 5,
+      "final": 6,
       "result": 8,
       "scan": 3
     },
@@ -68,12 +68,12 @@
     "roi_7d": [
       {
         "sid": "S00",
-        "n": 9,
+        "n": 10,
         "hits": 1,
-        "cost": 2700,
+        "cost": 3000,
         "payout": 1140,
-        "roi": 0.422,
-        "pl": -1560
+        "roi": 0.38,
+        "pl": -1860
       }
     ],
     "recent_alerts": [
@@ -83,20 +83,34 @@
         "detected_at": "2026-04-20T23:59:06.342733+09:00"
       }
     ],
-    "races_remaining_today": 85,
+    "races_remaining_today": 81,
     "nid_ledger_today": {
       "scheduled_total": 156,
-      "scheduled_deadline_passed": 71,
+      "scheduled_deadline_passed": 75,
       "scan_unique_nids": 2,
-      "final_unique_nids": 3,
+      "final_unique_nids": 4,
       "result_unique_nids": 2,
-      "predictions": 3,
+      "predictions": 4,
       "predictions_with_results": 2,
       "missing_result_notif": 0,
       "orphan_scan_no_final": 0
     },
     "recent_send_failures": [],
     "latest_predictions": [
+      {
+        "strategy_id": "S00",
+        "jcd": "22",
+        "rno": 5,
+        "bet_type": "win",
+        "combo": "1",
+        "ml_prob": 0.571934163570404,
+        "odds": 8.5,
+        "ev": 4.861440181732178,
+        "bet_amount": 300,
+        "scan_odds": 7.5,
+        "odds_drift": 0.1333333333333333,
+        "notified_at": "2026-04-21T14:22:21.599667+09:00"
+      },
       {
         "strategy_id": "S00",
         "jcd": "05",
@@ -227,25 +241,25 @@
     "drift_stats_7d": [
       {
         "bet_type": "win",
-        "n": 3,
-        "avg_drift": 0.13645036037200967,
+        "n": 4,
+        "avg_drift": 0.13567110361234058,
         "min_drift": -0.015151515151515138,
         "max_drift": 0.30188679245283034,
         "n_down10": 0,
         "n_collapse": 0,
-        "n_large": 2
+        "n_large": 3
       }
     ],
     "ai_debug_queue": [],
     "golden_signals": {
-      "latency_avg_sec": 363.1,
+      "latency_avg_sec": 299.9,
       "latency_max_sec": 412.6,
-      "traffic_24h": 16,
+      "traffic_24h": 17,
       "error_rate_24h": 0.0,
       "saturation": [
         {
           "sid": "S00",
-          "used": 900
+          "used": 1200
         }
       ]
     },
