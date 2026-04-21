@@ -2,13 +2,13 @@
 
 ## 🟡 現状: YELLOW
 
-**生成**: 2026-04-21T12:34:58.304732+09:00
+**生成**: 2026-04-21T12:35:45.808513+09:00
 
 ### 次に取るべきアクション
-> YELLOW監視: FINAL_MISSING×540 (24h)
+> YELLOW監視: FINAL_MISSING×1 (24h)
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×540 (24h)
+- 🟡 FINAL_MISSING×1 (24h)
 
 ---
 
@@ -35,7 +35,7 @@
 - strategies.json md5: `657711d6153ff6f442c9436df8dd5201`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.09MB / last modified 2026-04-21T12:34:58.237946+09:00
+- DB: 1.09MB / last modified 2026-04-21T12:35:23.024239+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -76,27 +76,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-21 12:32:30,385 [INFO] run_cycle: fetched 17/5 [scan]: 156 combos
-2026-04-21 12:32:30,483 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 12:32:30,490 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
-2026-04-21 12:33:05,487 [INFO] run_cycle: === run_cycle 12:33:05 ===
-2026-04-21 12:33:05,487 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-21 12:33:05,487 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-21 12:33:05,553 [INFO] predictor: Models loaded OK
-2026-04-21 12:33:15,859 [WARNING] scraper: beforeinfo parse failed: jcd=08 rno=6
-2026-04-21 12:33:15,859 [WARNING] run_cycle: fetch None: 08/6
-2026-04-21 12:33:15,986 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 12:33:15,993 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
-2026-04-21 12:34:05,884 [INFO] run_cycle: === run_cycle 12:34:05 ===
-2026-04-21 12:34:05,884 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-21 12:34:05,884 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-21 12:34:05,931 [INFO] predictor: Models loaded OK
-2026-04-21 12:34:16,990 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=6&jcd=08&hd=20260421: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-21 12:34:27,257 [WARNING] scraper: beforeinfo parse failed: jcd=08 rno=6
-2026-04-21 12:34:27,257 [WARNING] run_cycle: fetch None: 08/6
-2026-04-21 12:34:27,333 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-21 12:34:27,341 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
+k failed: cannot access local variable '_os' where it is not associated with a value
+2026-04-21 12:35:05,237 [INFO] run_cycle: === run_cycle 12:35:05 ===
+2026-04-21 12:35:05,237 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-21 12:35:05,237 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-21 12:35:05,280 [INFO] predictor: Models loaded OK
+2026-04-21 12:35:16,672 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-21 12:35:17,765 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-21 12:35:18,873 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-21 12:35:18,874 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-21 12:35:19,963 [INFO] scraper: odds_win: 3/6 parsed
+2026-04-21 12:35:19,963 [INFO] scraper: fetch_race 21/9: boats=6 odds=188/191
+2026-04-21 12:35:19,976 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-21 12:35:19,976 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
+2026-04-21 12:35:19,984 [INFO] run_cycle: fetched 21/9 [final]: 153 combos
+2026-04-21 12:35:22,313 [WARNING] scraper: beforeinfo parse failed: jcd=08 rno=6
+2026-04-21 12:35:22,313 [WARNING] run_cycle: fetch None: 08/6
+2026-04-21 12:35:25,629 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-21 12:35:26,702 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-21 12:35:27,786 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-21 12:35:27,787 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-21 12:35:28,850 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-21 12:35:28,850 [INFO] scraper: fetch_race 17/5: boats=6 odds=191/191
+2026-04-21 12:35:28,858 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-21 12:35:28,858 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-21 12:35:28,866 [INFO] run_cycle: fetched 17/5 [scan]: 156 combos
+2026-04-21 12:35:28,952 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-21 12:35:28,959 [WARNING] debug_guard: model hash check failed: cannot access local variable '_os' where it is not associated with a value
 
 ```
 
@@ -126,7 +132,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  FINAL_MISSING: 540
+  FINAL_MISSING: 1
 ```
 
 ## 戦略別 ROI (7日)
@@ -137,15 +143,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## 直近アラート (24h・新しい順)
 ```
 [23:59:06] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
-[23:58:05] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
-[23:57:06] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
-[23:56:05] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
-[23:55:06] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
-[23:54:05] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
-[23:53:05] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
-[23:52:06] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
-[23:51:06] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
-[23:50:09] FINAL_MISSING: {"kind": "FINAL_MISSING", "nid": "2026042022051425", "sid": "S00", "deadline": "2026-04-20T14:25:00+09:00"}
 ```
 
 ## 本日残レース: 113件
@@ -212,4 +209,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-21T12:34:58.304732+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-21T12:35:45.808513+09:00_
