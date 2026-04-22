@@ -2,19 +2,19 @@
 
 ## 🟡 現状: YELLOW
 
-**生成**: 2026-04-22T11:40:02.211293+09:00
+**生成**: 2026-04-22T11:50:01.588356+09:00
 
 ### 次に取るべきアクション
-> YELLOW監視: FINAL_MISSING×1 (24h)
+> YELLOW監視: FINAL_MISSING×2 (24h)
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×1 (24h)
+- 🟡 FINAL_MISSING×2 (24h)
 
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×34  [2026-04-22T11:06:32]
+### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×44  [2026-04-22T11:06:32]
 - key: `ANOMALY_SCAN_FINAL_RATIO|`
 - **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
 
@@ -51,7 +51,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.09MB / last modified 2026-04-22T11:39:05.977659+09:00
+- DB: 1.09MB / last modified 2026-04-22T11:49:27.821963+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -94,32 +94,35 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-e.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-22 11:38:27,510 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=3&jcd=17&hd=20260422: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-04-22 11:38:40,910 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-22 11:38:41,999 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-22 11:38:43,130 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-22 11:38:43,131 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-22 11:38:44,265 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-22 11:38:44,265 [INFO] scraper: fetch_race 17/3: boats=6 odds=191/191
-2026-04-22 11:38:44,269 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-22 11:38:44,269 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-22 11:38:44,273 [INFO] run_cycle: fetched 17/3 [final]: 156 combos
-2026-04-22 11:38:47,817 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-22 11:38:48,899 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-22 11:38:50,150 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-22 11:38:50,152 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-22 11:38:51,264 [INFO] scraper: odds_win: 3/6 parsed
-2026-04-22 11:38:51,264 [INFO] scraper: fetch_race 18/8: boats=6 odds=188/191
-2026-04-22 11:38:51,267 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-22 11:38:51,267 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-04-22 11:38:51,271 [INFO] run_cycle: fetched 18/8 [scan]: 153 combos
-2026-04-22 11:38:51,363 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-22 11:39:05,606 [INFO] run_cycle: === run_cycle 11:39:05 ===
-2026-04-22 11:39:05,606 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-22 11:39:05,606 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-22 11:39:05,649 [INFO] predictor: Models loaded OK
-2026-04-22 11:39:05,806 [INFO] run_cycle: run_cycle done: 0 notifications
+rsed
+2026-04-22 11:48:34,621 [INFO] scraper: fetch_race 11/4: boats=6 odds=188/191
+2026-04-22 11:48:34,629 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-22 11:48:34,629 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-04-22 11:48:34,637 [INFO] run_cycle: fetched 11/4 [scan]: 154 combos
+2026-04-22 11:48:34,732 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-22 11:49:05,591 [INFO] run_cycle: === run_cycle 11:49:05 ===
+2026-04-22 11:49:05,591 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-22 11:49:05,591 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-22 11:49:05,659 [INFO] predictor: Models loaded OK
+2026-04-22 11:49:17,119 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-22 11:49:18,239 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-22 11:49:19,389 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-22 11:49:19,390 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-22 11:49:20,506 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-22 11:49:20,507 [INFO] scraper: fetch_race 18/8: boats=6 odds=191/191
+2026-04-22 11:49:20,511 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-22 11:49:20,511 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-22 11:49:20,516 [INFO] run_cycle: fetched 18/8 [final]: 156 combos
+2026-04-22 11:49:24,350 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-22 11:49:25,470 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-22 11:49:26,555 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-22 11:49:26,556 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-22 11:49:27,672 [INFO] scraper: odds_win: 5/6 parsed
+2026-04-22 11:49:27,672 [INFO] scraper: fetch_race 14/8: boats=6 odds=190/191
+2026-04-22 11:49:27,675 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-22 11:49:27,675 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-04-22 11:49:27,679 [INFO] run_cycle: fetched 14/8 [scan]: 155 combos
+2026-04-22 11:49:27,770 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -134,25 +137,25 @@ e.jp', port=443): Read timed out. (read timeout=10), retry in 1s
   {
     "target": "mirror",
     "ok": 1,
-    "c": 35
+    "c": 37
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 35
+    "c": 37
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 11, 'result': 13, 'scan': 11}
+{'final': 11, 'result': 13, 'scan': 13}
 
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 18
+  ANOMALY_SCAN_FINAL_RATIO: 5
   ANOMALY_BET_VOLUME_SPIKE: 3
-  ANOMALY_SCAN_FINAL_RATIO: 3
-  FINAL_MISSING: 1
+  FINAL_MISSING: 2
 ```
 
 ## 戦略別 ROI (7日)
@@ -162,6 +165,9 @@ e.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 
 ## 直近アラート (24h・新しい順)
 ```
+[11:48:34] FINAL_MISSING: {"deadline": "2026-04-22T10:17:00+09:00", "kind": "FINAL_MISSING", "nid": "2026042218051017", "sid": "S00"}
+[11:45:35] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": 0.583, "baseline_mean": 0.917, "baseline_stdev": 0.144, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 0.333, "today_scan_count": 6, "z_score": -4.04}
+[11:42:21] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": 0.517, "baseline_mean": 0.917, "baseline_stdev": 0.144, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 0.4, "today_scan_count": 5, "z_score": -3.58}
 [11:24:35] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": 0.417, "baseline_mean": 0.917, "baseline_stdev": 0.144, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 0.5, "today_scan_count": 4, "z_score": -2.89}
 [11:16:21] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": 0.25, "baseline_mean": 0.917, "baseline_stdev": 0.144, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 0.667, "today_scan_count": 3, "z_score": -1.73}
 [11:06:32] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": 0.583, "baseline_mean": 0.917, "baseline_stdev": 0.144, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 0.333, "today_scan_count": 3, "z_score": -4.04}
@@ -169,16 +175,13 @@ e.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 [09:31:05] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 512}
 [09:30:24] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 507}
 [09:28:05] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 522}
-[09:26:05] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 524}
-[09:24:06] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 519}
-[09:23:31] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 525}
 ```
 
-## 本日残レース: 119件
+## 本日残レース: 118件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 25件 締切済
-- 通知発射: scan=4 nid / final=3 nid / result=1 nid
+- race_schedule: 144件 登録 / 26件 締切済
+- 通知発射: scan=6 nid / final=3 nid / result=1 nid
 - predictions: 1 / うち結果DB記録済: 1
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - 🔴 scan後final無しのまま締切: 2件（FINAL_MISSING の温床）
@@ -220,7 +223,7 @@ e.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 |---|---|
 | **Latency** (scan→final avg) | 428.6s |
 | **Latency** (scan→final max) | 622.3s |
-| **Traffic** (notifications 24h) | 35 |
+| **Traffic** (notifications 24h) | 37 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 300円 used |
 
@@ -265,4 +268,4 @@ e.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-22T11:40:02.211293+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-22T11:50:01.588356+09:00_
