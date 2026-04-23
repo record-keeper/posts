@@ -2,7 +2,7 @@
 
 ## 🟡 現状: YELLOW
 
-**生成**: 2026-04-23T21:50:01.500156+09:00
+**生成**: 2026-04-23T22:00:02.195184+09:00
 
 ### 次に取るべきアクション
 > YELLOW監視: FINAL_MISSING×60 (24h)
@@ -67,7 +67,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.09MB / last modified 2026-04-23T21:49:06.141426+09:00
+- DB: 1.09MB / last modified 2026-04-23T22:00:03.568643+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -110,30 +110,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-28 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-23 21:45:05,528 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-23 21:45:05,587 [INFO] predictor: Models loaded OK
-2026-04-23 21:45:05,593 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-23 21:46:05,660 [INFO] run_cycle: === run_cycle 21:46:05 ===
-2026-04-23 21:46:05,660 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-23 21:46:05,660 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-23 21:46:05,703 [INFO] predictor: Models loaded OK
-2026-04-23 21:46:05,707 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-23 21:47:06,219 [INFO] run_cycle: === run_cycle 21:47:06 ===
-2026-04-23 21:47:06,219 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-23 21:47:06,219 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-23 21:47:06,264 [INFO] predictor: Models loaded OK
-2026-04-23 21:47:06,268 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-23 21:48:05,644 [INFO] run_cycle: === run_cycle 21:48:05 ===
-2026-04-23 21:48:05,644 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-23 21:48:05,644 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-23 21:48:05,695 [INFO] predictor: Models loaded OK
-2026-04-23 21:48:05,699 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-23 21:49:06,057 [INFO] run_cycle: === run_cycle 21:49:06 ===
-2026-04-23 21:49:06,058 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-23 21:49:06,058 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-23 21:49:06,107 [INFO] predictor: Models loaded OK
-2026-04-23 21:49:06,111 [INFO] run_cycle: run_cycle done: 0 notifications
+67 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-23 21:55:06,367 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-23 21:55:06,419 [INFO] predictor: Models loaded OK
+2026-04-23 21:55:06,423 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-23 21:56:05,455 [INFO] run_cycle: === run_cycle 21:56:05 ===
+2026-04-23 21:56:05,456 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-23 21:56:05,456 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-23 21:56:05,537 [INFO] predictor: Models loaded OK
+2026-04-23 21:56:05,541 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-23 21:57:06,414 [INFO] run_cycle: === run_cycle 21:57:06 ===
+2026-04-23 21:57:06,414 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-23 21:57:06,414 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-23 21:57:06,487 [INFO] predictor: Models loaded OK
+2026-04-23 21:57:06,493 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-23 21:58:05,878 [INFO] run_cycle: === run_cycle 21:58:05 ===
+2026-04-23 21:58:05,878 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-23 21:58:05,879 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-23 21:58:05,949 [INFO] predictor: Models loaded OK
+2026-04-23 21:58:05,957 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-23 21:59:05,965 [INFO] run_cycle: === run_cycle 21:59:05 ===
+2026-04-23 21:59:05,965 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-23 21:59:05,966 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-23 21:59:06,035 [INFO] predictor: Models loaded OK
+2026-04-23 21:59:06,039 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -177,6 +177,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[21:56:05] FINAL_MISSING: {"deadline": "2026-04-23T16:24:00+09:00", "kind": "FINAL_MISSING", "nid": "2026042312031624", "sid": "S00"}
 [21:46:05] FINAL_MISSING: {"deadline": "2026-04-23T13:12:00+09:00", "kind": "FINAL_MISSING", "nid": "2026042314101312", "sid": "S00"}
 [21:37:05] FINAL_MISSING: {"deadline": "2026-04-23T14:01:00+09:00", "kind": "FINAL_MISSING", "nid": "2026042305061401", "sid": "S00"}
 [21:28:06] FINAL_MISSING: {"deadline": "2026-04-23T16:54:00+09:00", "kind": "FINAL_MISSING", "nid": "2026042322101654", "sid": "S00"}
@@ -186,7 +187,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [20:36:21] FINAL_MISSING: {"deadline": "2026-04-23T14:01:00+09:00", "kind": "FINAL_MISSING", "nid": "2026042305061401", "sid": "S00"}
 [20:27:27] FINAL_MISSING: {"deadline": "2026-04-23T16:54:00+09:00", "kind": "FINAL_MISSING", "nid": "2026042322101654", "sid": "S00"}
 [20:04:06] FINAL_MISSING: {"deadline": "2026-04-23T13:29:00+09:00", "kind": "FINAL_MISSING", "nid": "2026042322031329", "sid": "S00"}
-[19:55:33] FINAL_MISSING: {"deadline": "2026-04-23T16:24:00+09:00", "kind": "FINAL_MISSING", "nid": "2026042312031624", "sid": "S00"}
 ```
 
 ## 本日残レース: 0件
@@ -280,4 +280,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-23T21:50:01.500156+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-23T22:00:02.195184+09:00_
