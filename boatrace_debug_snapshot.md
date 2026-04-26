@@ -2,7 +2,7 @@
 
 ## 🟡 現状: YELLOW
 
-**生成**: 2026-04-26T12:50:01.573114+09:00
+**生成**: 2026-04-26T13:00:02.062955+09:00
 
 ### 次に取るべきアクション
 > YELLOW監視: FINAL_MISSING×103 (24h)
@@ -80,7 +80,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.25MB / last modified 2026-04-26T12:49:36.938687+09:00
+- DB: 1.25MB / last modified 2026-04-26T13:00:02.939358+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -123,36 +123,24 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-y_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-26 12:49:06,163 [INFO] predictor: Models loaded OK
-2026-04-26 12:49:18,844 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-26 12:49:20,029 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-26 12:49:21,125 [INFO] scraper: odds2t: 29/30 parsed
-2026-04-26 12:49:21,127 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-26 12:49:22,234 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-26 12:49:22,234 [INFO] scraper: fetch_race 16/5: boats=6 odds=190/191
-2026-04-26 12:49:22,255 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-26 12:49:22,255 [INFO] predictor: combos: {'win': 6, '2t': 29, '3t': 120}
-2026-04-26 12:49:22,266 [INFO] run_cycle: fetched 16/5 [final]: 155 combos
-2026-04-26 12:49:25,835 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-26 12:49:26,990 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-26 12:49:28,124 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-26 12:49:28,125 [INFO] scraper: odds2f: 13/15 parsed
-2026-04-26 12:49:29,227 [INFO] scraper: odds_win: 4/6 parsed
-2026-04-26 12:49:29,228 [INFO] scraper: fetch_race 04/5: boats=6 odds=187/191
-2026-04-26 12:49:29,236 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-26 12:49:29,236 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-04-26 12:49:29,244 [INFO] run_cycle: fetched 04/5 [final]: 154 combos
-2026-04-26 12:49:33,335 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-26 12:49:34,494 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-26 12:49:35,636 [INFO] scraper: odds2t: 29/30 parsed
-2026-04-26 12:49:35,637 [INFO] scraper: odds2f: 14/15 parsed
-2026-04-26 12:49:36,810 [INFO] scraper: odds_win: 5/6 parsed
-2026-04-26 12:49:36,810 [INFO] scraper: fetch_race 03/5: boats=6 odds=188/191
-2026-04-26 12:49:36,820 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-26 12:49:36,820 [INFO] predictor: combos: {'win': 5, '2t': 29, '3t': 120}
-2026-04-26 12:49:36,828 [INFO] run_cycle: fetched 03/5 [scan]: 154 combos
-2026-04-26 12:49:36,920 [INFO] run_cycle: run_cycle done: 0 notifications
+=188/191
+2026-04-26 12:58:35,088 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-26 12:58:35,088 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-04-26 12:58:35,096 [INFO] run_cycle: fetched 06/4 [scan]: 155 combos
+2026-04-26 12:58:35,191 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-04-26 12:59:05,379 [INFO] run_cycle: === run_cycle 12:59:05 ===
+2026-04-26 12:59:05,379 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-26 12:59:05,379 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-26 12:59:05,448 [INFO] predictor: Models loaded OK
+2026-04-26 12:59:16,510 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=23&hd=20260426: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-04-26 12:59:27,559 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=23&hd=20260426: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-04-26 12:59:40,611 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=23&hd=20260426: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
+2026-04-26 12:59:40,611 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=23&hd=20260426
+2026-04-26 12:59:40,611 [ERROR] scraper: racelist fetch failed: jcd=23 rno=10
+2026-04-26 12:59:40,611 [WARNING] run_cycle: fetch None: 23/10
+2026-04-26 12:59:51,662 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=5&jcd=03&hd=20260426: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-04-26 13:00:03,798 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-26 13:00:05,006 [INFO] scraper: odds3f: 20/20 parsed
 
 ```
 
@@ -182,7 +170,7 @@ y_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 180
+  ANOMALY_SCRAPER_FAILURE_BURST: 178
   FINAL_MISSING: 103
   ANOMALY_SCAN_FINAL_RATIO: 4
   ANOMALY_BET_VOLUME_DROP: 1
@@ -192,7 +180,7 @@ y_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 ## 戦略別 ROI (7日)
 | sid | n | hits | cost | payout | PL | ROI |
 |---|---|---|---|---|---|---|
-| S00 | 50 | 13 | 15,000 | 14,550 | -450 | 0.97 |
+| S00 | 50 | 14 | 15,000 | 14,940 | -60 | 0.996 |
 
 ## 直近アラート (24h・新しい順)
 ```
@@ -208,12 +196,12 @@ y_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 [12:18:21] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 4, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1222}
 ```
 
-## 本日残レース: 126件
+## 本日残レース: 123件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 180件 登録 / 54件 締切済
-- 通知発射: scan=6 nid / final=6 nid / result=2 nid
-- predictions: 5 / うち結果DB記録済: 2
+- race_schedule: 180件 登録 / 57件 締切済
+- 通知発射: scan=6 nid / final=6 nid / result=4 nid
+- predictions: 5 / うち結果DB記録済: 4
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - 🔴 scan後final無しのまま締切: 2件（FINAL_MISSING の温床）
 
@@ -263,18 +251,18 @@ y_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 ### bt別: 予測確率 vs 実的中率
 | bt | n | 予測avg | 実的中率 | 校正誤差 | 過信度 | Brier |
 |---|---|---|---|---|---|---|
-| win | 49 | 0.4367 | 0.2653 | +0.1714 | 🟡+39% | 0.2343 |
+| win | 51 | 0.4394 | 0.2745 | +0.1649 | 🟡+38% | 0.2346 |
 
 ### 戦略別: 校正精度 + Brier Skill Score
 | sid | bt | n | pred | actual | Brier | BSS | ROI |
 |---|---|---|---|---|---|---|---|
-| S00 | win | 49 | 0.4367 | 0.2653 | 0.2343 | 🔴-0.20 | 0.99 |
+| S00 | win | 51 | 0.4394 | 0.2745 | 0.2346 | 🔴-0.18 | 0.976 |
 
 ### 確率デシル別: 校正カーブ
 | 確率帯 | n | 予測avg | 実的中率 | gap |
 |---|---|---|---|---|
-| 0.30-0.50 | 22 | 0.4339 | 0.2727 | 🔴+0.1612 |
-| 0.50+ | 21 | 0.5318 | 0.2857 | 🔴+0.2461 |
+| 0.30-0.50 | 23 | 0.4367 | 0.2609 | 🔴+0.1758 |
+| 0.50+ | 22 | 0.5310 | 0.3182 | 🔴+0.2128 |
 
 ## Settlement Ratio データ品質
 
@@ -283,7 +271,7 @@ y_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 |---|---|---|---|---|
 | win | <3.0 | ⚠️fallback | 0 | 0.4 |
 | win | <5.0 | ⚠️fallback | 4 | 0.35 |
-| win | <10.0 | ⚠️fallback | 7 | 0.32 |
+| win | <10.0 | ⚠️fallback | 8 | 0.32 |
 | win | <20.0 | ⚠️fallback | 2 | 0.22 |
 | win | <50.0 | ⚠️fallback | 0 | 0.1 |
 | win | ∞ | ⚠️fallback | 0 | 0.1 |
@@ -299,4 +287,4 @@ y_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-26T12:50:01.573114+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-26T13:00:02.062955+09:00_
