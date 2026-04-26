@@ -2,7 +2,7 @@
 
 ## 🟡 現状: YELLOW
 
-**生成**: 2026-04-27T06:00:01.744814+09:00
+**生成**: 2026-04-27T06:10:01.496824+09:00
 
 ### 次に取るべきアクション
 > YELLOW監視: FINAL_MISSING×60 (24h)
@@ -14,6 +14,54 @@
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
+
+### ℹ️ ROI_STAT  ×1  [2026-04-27T06:00:08]
+- key: `ROI_STAT|S00: n=54 hit%=25.9% hit_CI[Bonf]=[12.8,45.5]% ROI=0.92 ROI_boot95=[0.44,1.43]`
+- **FIX**: 統計サマリ情報。判定ではなく参照用
+
+### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-04-27T06:00:08]
+- key: `INSUFFICIENT_SAMPLE|S00: n=54<300 — v17 要件未達、ROI判定保留`
+- **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
+
+### 🟡 ORPHAN_SCAN  ×1  [2026-04-27T06:00:08]
+- key: `ORPHAN_SCAN|45 件の scan に final/retreat 追従無し`
+- **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-04-27T06:00:08]
+- key: `CALIBRATION_LIVE|bt=win: n=54 pred=0.4397 actual=0.2593 error=+0.1805 (+41%) brier=0.2339 [OVERCO`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-04-27T06:00:08]
+- key: `CALIBRATION_LIVE|S00(win): n=54 pred=0.4397 hit=0.2593 cal_err=+0.1805 brier=0.2339 BSS=-0.22 ROI`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-04-27T06:00:08]
+- key: `CALIBRATION_LIVE|decile 0.40-0.50: n=21 pred=0.4462 actual=0.2857 gap=+0.1605`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-04-27T06:00:08]
+- key: `CALIBRATION_LIVE|decile 0.50+: n=24 pred=0.5328 actual=0.2917 gap=+0.2412`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### 🟡 PAYOUT_RATIO_WEIRD  ×1  [2026-04-27T06:00:06]
+- key: `PAYOUT_RATIO_WEIRD|pid=759 bet=300 odds=4.0 payout=1980 ratio=1.65`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
+
+### 🟡 PAYOUT_RATIO_WEIRD  ×1  [2026-04-27T06:00:06]
+- key: `PAYOUT_RATIO_WEIRD|pid=881 bet=300 odds=12.7 payout=900 ratio=0.24`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
+
+### 🟡 PAYOUT_RATIO_WEIRD  ×1  [2026-04-27T06:00:06]
+- key: `PAYOUT_RATIO_WEIRD|pid=906 bet=300 odds=14.2 payout=360 ratio=0.08`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
+
+### 🟡 PAYOUT_RATIO_WEIRD  ×1  [2026-04-27T06:00:06]
+- key: `PAYOUT_RATIO_WEIRD|pid=913 bet=300 odds=4.6 payout=2550 ratio=1.85`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
+
+### 🟡 PAYOUT_RATIO_WEIRD  ×1  [2026-04-27T06:00:06]
+- key: `PAYOUT_RATIO_WEIRD|pid=917 bet=300 odds=6.2 payout=390 ratio=0.21`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
 ### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×45  [2026-04-26T15:43:56]
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
@@ -27,50 +75,6 @@
 - key: `ANOMALY_BET_VOLUME_DROP|`
 - **FIX**: 本日のbet数が7日baselineから2σ低下。戦略filter/ scan fix/run_cycle停止を疑え
 
-### ℹ️ ROI_STAT  ×1  [2026-04-26T06:00:08]
-- key: `ROI_STAT|S00: n=47 hit%=25.5% hit_CI[Bonf]=[11.9,46.5]% ROI=0.98 ROI_boot95=[0.46,1.54]`
-- **FIX**: 統計サマリ情報。判定ではなく参照用
-
-### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-04-26T06:00:08]
-- key: `INSUFFICIENT_SAMPLE|S00: n=47<300 — v17 要件未達、ROI判定保留`
-- **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
-
-### 🟡 ORPHAN_SCAN  ×1  [2026-04-26T06:00:08]
-- key: `ORPHAN_SCAN|39 件の scan に final/retreat 追従無し`
-- **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
-
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-04-26T06:00:08]
-- key: `CALIBRATION_LIVE|bt=win: n=47 pred=0.4333 actual=0.2553 error=+0.1780 (+41%) brier=0.2336 [OVERCO`
-- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
-
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-04-26T06:00:08]
-- key: `CALIBRATION_LIVE|S00(win): n=47 pred=0.4333 hit=0.2553 cal_err=+0.1780 brier=0.2336 BSS=-0.23 ROI`
-- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
-
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-04-26T06:00:08]
-- key: `CALIBRATION_LIVE|decile 0.40-0.50: n=20 pred=0.4436 actual=0.3000 gap=+0.1436`
-- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
-
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-04-26T06:00:08]
-- key: `CALIBRATION_LIVE|decile 0.50+: n=19 pred=0.5334 actual=0.2632 gap=+0.2702`
-- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
-
-### 🟡 PAYOUT_RATIO_WEIRD  ×1  [2026-04-26T06:00:06]
-- key: `PAYOUT_RATIO_WEIRD|pid=759 bet=300 odds=4.0 payout=1980 ratio=1.65`
-- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
-
-### 🟡 PAYOUT_RATIO_WEIRD  ×1  [2026-04-26T06:00:06]
-- key: `PAYOUT_RATIO_WEIRD|pid=881 bet=300 odds=12.7 payout=900 ratio=0.24`
-- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
-
-### 🟡 PAYOUT_RATIO_WEIRD  ×1  [2026-04-26T06:00:06]
-- key: `PAYOUT_RATIO_WEIRD|pid=906 bet=300 odds=14.2 payout=360 ratio=0.08`
-- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
-
-### 🟡 PAYOUT_RATIO_WEIRD  ×1  [2026-04-26T06:00:06]
-- key: `PAYOUT_RATIO_WEIRD|pid=913 bet=300 odds=4.6 payout=2550 ratio=1.85`
-- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
-
 
 以下、詳細セクション（通常読み飛ばし可）
 
@@ -80,7 +84,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.26MB / last modified 2026-04-27T06:00:02.837657+09:00
+- DB: 1.26MB / last modified 2026-04-27T06:00:10.271730+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -292,4 +296,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-27T06:00:01.744814+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-27T06:10:01.496824+09:00_
