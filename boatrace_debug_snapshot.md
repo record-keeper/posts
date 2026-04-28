@@ -2,7 +2,7 @@
 
 ## 🟡 現状: YELLOW
 
-**生成**: 2026-04-28T17:30:01.847152+09:00
+**生成**: 2026-04-28T17:40:01.878112+09:00
 
 ### 次に取るべきアクション
 > YELLOW監視: FINAL_MISSING×43 (24h)
@@ -84,7 +84,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.34MB / last modified 2026-04-28T17:30:03.411907+09:00
+- DB: 1.34MB / last modified 2026-04-28T17:39:57.205870+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -127,34 +127,26 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-= run_cycle 17:28:05 ===
-2026-04-28 17:28:05,279 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-28 17:28:05,279 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-28 17:28:05,323 [INFO] predictor: Models loaded OK
-2026-04-28 17:28:16,967 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-28 17:28:18,080 [INFO] scraper: odds3f: 19/20 parsed
-2026-04-28 17:28:19,228 [INFO] scraper: odds2t: 29/30 parsed
-2026-04-28 17:28:19,229 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-28 17:28:20,329 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-28 17:28:20,329 [INFO] scraper: fetch_race 24/1: boats=6 odds=189/191
-2026-04-28 17:28:20,340 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-28 17:28:20,340 [INFO] predictor: combos: {'win': 6, '2t': 29, '3t': 120}
-2026-04-28 17:28:20,348 [INFO] run_cycle: fetched 24/1 [scan]: 155 combos
-2026-04-28 17:28:20,439 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-28 17:29:05,356 [INFO] run_cycle: === run_cycle 17:29:05 ===
-2026-04-28 17:29:05,356 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-28 17:29:05,356 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-28 17:29:05,418 [INFO] predictor: Models loaded OK
-2026-04-28 17:29:18,181 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-28 17:29:19,246 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-28 17:29:20,348 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-28 17:29:20,349 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-28 17:29:21,427 [INFO] scraper: odds_win: 5/6 parsed
-2026-04-28 17:29:21,427 [INFO] scraper: fetch_race 05/12: boats=6 odds=190/191
-2026-04-28 17:29:21,438 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-28 17:29:21,439 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-04-28 17:29:21,444 [INFO] run_cycle: fetched 05/12 [scan]: 155 combos
-2026-04-28 17:29:21,536 [INFO] run_cycle: run_cycle done: 0 notifications
+:39:05,991 [INFO] run_cycle: === run_cycle 17:39:05 ===
+2026-04-28 17:39:05,991 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-04-28 17:39:05,991 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-04-28 17:39:06,040 [INFO] predictor: Models loaded OK
+2026-04-28 17:39:17,099 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=24&hd=20260428: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-04-28 17:39:28,153 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=24&hd=20260428: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-04-28 17:39:41,212 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=24&hd=20260428: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
+2026-04-28 17:39:41,212 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=24&hd=20260428
+2026-04-28 17:39:41,212 [ERROR] scraper: racelist fetch failed: jcd=24 rno=1
+2026-04-28 17:39:41,212 [WARNING] run_cycle: fetch None: 24/1
+2026-04-28 17:39:53,657 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-28 17:39:54,767 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-28 17:39:55,853 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-28 17:39:55,854 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-28 17:39:56,971 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-28 17:39:56,971 [INFO] scraper: fetch_race 05/12: boats=6 odds=191/191
+2026-04-28 17:39:56,982 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-28 17:39:56,983 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-28 17:39:56,990 [INFO] run_cycle: fetched 05/12 [final]: 156 combos
+2026-04-28 17:39:57,162 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -209,10 +201,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [16:48:27] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1046}
 ```
 
-## 本日残レース: 33件
+## 本日残レース: 32件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 135件 締切済
+- race_schedule: 168件 登録 / 136件 締切済
 - 通知発射: scan=14 nid / final=13 nid / result=4 nid
 - predictions: 4 / うち結果DB記録済: 4
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -300,4 +292,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-28T17:30:01.847152+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-28T17:40:01.878112+09:00_
