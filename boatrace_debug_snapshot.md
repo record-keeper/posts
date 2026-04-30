@@ -2,14 +2,14 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-04-30T17:30:01.830205+09:00
+**生成**: 2026-04-30T17:40:01.896061+09:00
 
 ### 次に取るべきアクション
-> RED最優先: CIRCUIT_BREAKER_TRIP×23 (24h) → ログ/DB確認
+> RED最優先: CIRCUIT_BREAKER_TRIP×22 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×57 (24h)
-- 🔴 CIRCUIT_BREAKER_TRIP×23 (24h)
+- 🟡 FINAL_MISSING×55 (24h)
+- 🔴 CIRCUIT_BREAKER_TRIP×22 (24h)
 - 🔴 CALIBRATION_DRIFT×5 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
 
@@ -21,11 +21,11 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×27  [2026-04-30T17:03:53]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×37  [2026-04-30T17:03:53]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×27  [2026-04-30T17:03:53]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×37  [2026-04-30T17:03:53]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.48MB / last modified 2026-04-30T17:30:03.605984+09:00
+- DB: 1.48MB / last modified 2026-04-30T17:40:02.551997+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,32 +149,35 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-04-30 17:28:41,455 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-30 17:28:42,595 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-30 17:28:43,719 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-30 17:28:43,720 [INFO] scraper: odds2f: 15/15 parsed
-2026-04-30 17:28:44,790 [INFO] scraper: odds_win: 4/6 parsed
-2026-04-30 17:28:44,790 [INFO] scraper: fetch_race 24/1: boats=6 odds=189/191
-2026-04-30 17:28:44,802 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-30 17:28:44,802 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-04-30 17:28:44,809 [INFO] run_cycle: fetched 24/1 [scan]: 154 combos
-2026-04-30 17:28:44,905 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-04-30 17:29:05,413 [INFO] run_cycle: === run_cycle 17:29:05 ===
-2026-04-30 17:29:05,413 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-04-30 17:29:05,413 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-04-30 17:29:05,493 [INFO] predictor: Models loaded OK
-2026-04-30 17:29:16,738 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=05&hd=20260430: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-04-30 17:29:29,451 [INFO] scraper: odds3t: 120/120 parsed
-2026-04-30 17:29:30,687 [INFO] scraper: odds3f: 20/20 parsed
-2026-04-30 17:29:31,896 [INFO] scraper: odds2t: 30/30 parsed
-2026-04-30 17:29:31,897 [INFO] scraper: odds2f: 14/15 parsed
-2026-04-30 17:29:33,021 [INFO] scraper: odds_win: 6/6 parsed
-2026-04-30 17:29:33,021 [INFO] scraper: fetch_race 05/12: boats=6 odds=190/191
-2026-04-30 17:29:33,033 [INFO] predictor: CALIBRATION_MODE=on
-2026-04-30 17:29:33,033 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-04-30 17:29:33,041 [INFO] run_cycle: fetched 05/12 [scan]: 156 combos
-2026-04-30 17:29:33,159 [INFO] run_cycle: run_cycle done: 0 notifications
+=20260430: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-04-30 17:39:43,051 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-30 17:39:44,375 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-30 17:39:45,499 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-30 17:39:45,500 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-30 17:39:46,619 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-30 17:39:46,619 [INFO] scraper: fetch_race 24/1: boats=6 odds=191/191
+2026-04-30 17:39:46,632 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-30 17:39:46,632 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-30 17:39:46,639 [INFO] run_cycle: fetched 24/1 [final]: 156 combos
+2026-04-30 17:39:50,139 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-30 17:39:51,255 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-30 17:39:52,417 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-30 17:39:52,418 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-30 17:39:53,537 [INFO] scraper: odds_win: 6/6 parsed
+2026-04-30 17:39:53,537 [INFO] scraper: fetch_race 05/12: boats=6 odds=191/191
+2026-04-30 17:39:53,546 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-30 17:39:53,546 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-04-30 17:39:53,555 [INFO] run_cycle: fetched 05/12 [final]: 156 combos
+2026-04-30 17:39:57,403 [INFO] scraper: odds3t: 120/120 parsed
+2026-04-30 17:39:58,556 [INFO] scraper: odds3f: 20/20 parsed
+2026-04-30 17:39:59,679 [INFO] scraper: odds2t: 30/30 parsed
+2026-04-30 17:39:59,681 [INFO] scraper: odds2f: 15/15 parsed
+2026-04-30 17:40:00,785 [INFO] scraper: odds_win: 4/6 parsed
+2026-04-30 17:40:00,785 [INFO] scraper: fetch_race 15/6: boats=6 odds=189/191
+2026-04-30 17:40:00,793 [INFO] predictor: CALIBRATION_MODE=on
+2026-04-30 17:40:00,793 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-04-30 17:40:00,801 [INFO] run_cycle: fetched 15/6 [scan]: 154 combos
+2026-04-30 17:40:00,915 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -189,24 +192,24 @@ jp', port=443): Read timed out. (read timeout=10), retry in 3s
   {
     "target": "mirror",
     "ok": 1,
-    "c": 32
+    "c": 31
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 32
+    "c": 31
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 11, 'result': 6, 'scan': 15}
+{'final': 10, 'result': 6, 'scan': 15}
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 119
-  FINAL_MISSING: 57
-  CIRCUIT_BREAKER_TRIP: 23
+  ANOMALY_SCRAPER_FAILURE_BURST: 110
+  FINAL_MISSING: 55
+  CIRCUIT_BREAKER_TRIP: 22
   CIRCUIT_BREAKER_NO_ACTION: 17
   CALIBRATION_DRIFT: 5
   ANOMALY_BET_VOLUME_DROP: 3
@@ -221,6 +224,7 @@ jp', port=443): Read timed out. (read timeout=10), retry in 3s
 
 ## 直近アラート (24h・新しい順)
 ```
+[17:37:21] FINAL_MISSING: {"deadline": "2026-04-30T13:04:00+09:00", "kind": "FINAL_MISSING", "nid": "2026043005031304", "sid": "S00"}
 [17:26:40] FINAL_MISSING: {"deadline": "2026-04-30T10:54:00+09:00", "kind": "FINAL_MISSING", "nid": "2026043021061054", "sid": "S00"}
 [17:23:28] FINAL_MISSING: {"deadline": "2026-04-30T16:53:00+09:00", "kind": "FINAL_MISSING", "nid": "2026043022101653", "sid": "S00"}
 [17:08:39] CIRCUIT_BREAKER_TRIP: {"cost": 15900, "kind": "CIRCUIT_BREAKER_TRIP", "n": 53, "payout": 10710, "roi_7d": 0.674, "sid": "S00"}
@@ -230,7 +234,6 @@ jp', port=443): Read timed out. (read timeout=10), retry in 3s
 [16:36:27] FINAL_MISSING: {"deadline": "2026-04-30T13:04:00+09:00", "kind": "FINAL_MISSING", "nid": "2026043005031304", "sid": "S00"}
 [16:25:29] FINAL_MISSING: {"deadline": "2026-04-30T10:54:00+09:00", "kind": "FINAL_MISSING", "nid": "2026043021061054", "sid": "S00"}
 [16:07:36] CIRCUIT_BREAKER_TRIP: {"cost": 15900, "kind": "CIRCUIT_BREAKER_TRIP", "n": 53, "payout": 10710, "roi_7d": 0.674, "sid": "S00"}
-[16:03:52] FINAL_MISSING: {"deadline": "2026-04-30T12:33:00+09:00", "kind": "FINAL_MISSING", "nid": "2026043022011233", "sid": "S00"}
 ```
 
 ## 本日残レース: 27件
@@ -279,7 +282,7 @@ jp', port=443): Read timed out. (read timeout=10), retry in 3s
 |---|---|
 | **Latency** (scan→final avg) | 468.9s |
 | **Latency** (scan→final max) | 610.7s |
-| **Traffic** (notifications 24h) | 32 |
+| **Traffic** (notifications 24h) | 31 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 1,800円 used |
 
@@ -324,4 +327,4 @@ jp', port=443): Read timed out. (read timeout=10), retry in 3s
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-04-30T17:30:01.830205+09:00_
+_auto-generated by claude_snapshot.py at 2026-04-30T17:40:01.896061+09:00_
