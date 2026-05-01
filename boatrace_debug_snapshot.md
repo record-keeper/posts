@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-01T10:50:01.758499+09:00
+**生成**: 2026-05-01T11:00:01.903849+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×25 (24h) → ログ/DB確認
@@ -17,11 +17,11 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×48  [2026-05-01T10:02:06]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×58  [2026-05-01T10:02:06]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×48  [2026-05-01T10:02:06]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×58  [2026-05-01T10:02:06]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
@@ -29,7 +29,7 @@
 - key: `ANOMALY_BET_VOLUME_DROP|`
 - **FIX**: 本日のbet数が7日baselineから2σ低下。戦略filter/ scan fix/run_cycle停止を疑え
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-05-01T10:00:04]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×3  [2026-05-01T10:00:04]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.51MB / last modified 2026-05-01T10:49:17.355674+09:00
+- DB: 1.51MB / last modified 2026-05-01T11:00:03.451525+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,33 +149,35 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-race.jp/owpc/pc/race/racelist?rno=6&jcd=23&hd=20260501: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-05-01 10:48:29,807 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-01 10:48:30,914 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-01 10:48:31,986 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-01 10:48:31,987 [INFO] scraper: odds2f: 14/15 parsed
-2026-05-01 10:48:33,092 [INFO] scraper: odds_win: 6/6 parsed
-2026-05-01 10:48:33,093 [INFO] scraper: fetch_race 23/6: boats=6 odds=190/191
-2026-05-01 10:48:33,105 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-01 10:48:33,105 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-01 10:48:33,113 [INFO] run_cycle: fetched 23/6 [final]: 156 combos
-2026-05-01 10:48:36,563 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-01 10:48:37,633 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-01 10:48:38,708 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-01 10:48:38,710 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-01 10:48:39,775 [INFO] scraper: odds_win: 3/6 parsed
-2026-05-01 10:48:39,775 [INFO] scraper: fetch_race 18/6: boats=6 odds=188/191
-2026-05-01 10:48:39,783 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-01 10:48:39,783 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-05-01 10:48:39,791 [INFO] run_cycle: fetched 18/6 [scan]: 153 combos
-2026-05-01 10:48:39,960 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-01 10:49:05,735 [INFO] run_cycle: === run_cycle 10:49:05 ===
-2026-05-01 10:49:05,736 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-01 10:49:05,736 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-01 10:49:05,811 [INFO] predictor: Models loaded OK
-2026-05-01 10:49:17,333 [WARNING] scraper: beforeinfo parse failed: jcd=14 rno=6
-2026-05-01 10:49:17,334 [WARNING] run_cycle: fetch None: 14/6
-2026-05-01 10:49:17,334 [INFO] run_cycle: run_cycle done: 0 notifications
+rsed
+2026-05-01 10:58:44,658 [INFO] scraper: fetch_race 11/2: boats=6 odds=189/191
+2026-05-01 10:58:44,670 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-01 10:58:44,670 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-05-01 10:58:44,677 [INFO] run_cycle: fetched 11/2 [scan]: 154 combos
+2026-05-01 10:58:44,792 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-01 10:59:05,687 [INFO] run_cycle: === run_cycle 10:59:05 ===
+2026-05-01 10:59:05,688 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-01 10:59:05,688 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-01 10:59:05,760 [INFO] predictor: Models loaded OK
+2026-05-01 10:59:18,124 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-01 10:59:19,211 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-01 10:59:20,305 [INFO] scraper: odds2t: 30/30 parsed
+2026-05-01 10:59:20,307 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-01 10:59:21,372 [INFO] scraper: odds_win: 6/6 parsed
+2026-05-01 10:59:21,372 [INFO] scraper: fetch_race 14/6: boats=6 odds=191/191
+2026-05-01 10:59:21,385 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-01 10:59:21,385 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-05-01 10:59:21,392 [INFO] run_cycle: fetched 14/6 [final]: 156 combos
+2026-05-01 10:59:24,926 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-01 10:59:26,025 [INFO] scraper: odds3f: 17/20 parsed
+2026-05-01 10:59:27,115 [INFO] scraper: odds2t: 26/30 parsed
+2026-05-01 10:59:27,116 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-01 10:59:28,192 [INFO] scraper: odds_win: 6/6 parsed
+2026-05-01 10:59:28,192 [INFO] scraper: fetch_race 17/2: boats=6 odds=184/191
+2026-05-01 10:59:28,203 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-01 10:59:28,203 [INFO] predictor: combos: {'win': 6, '2t': 26, '3t': 120}
+2026-05-01 10:59:28,211 [INFO] run_cycle: fetched 17/2 [scan]: 152 combos
+2026-05-01 10:59:28,331 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -234,10 +236,10 @@ race.jp/owpc/pc/race/racelist?rno=6&jcd=23&hd=20260501: HTTPSConnectionPool(host
 [08:00:37] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S00"}
 ```
 
-## 本日残レース: 160件
+## 本日残レース: 158件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 180件 登録 / 20件 締切済
+- race_schedule: 180件 登録 / 22件 締切済
 - 通知発射: scan=2 nid / final=2 nid / result=0 nid
 - predictions: 2 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -325,4 +327,4 @@ race.jp/owpc/pc/race/racelist?rno=6&jcd=23&hd=20260501: HTTPSConnectionPool(host
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-01T10:50:01.758499+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-01T11:00:01.903849+09:00_
