@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-01T23:10:02.353377+09:00
+**生成**: 2026-05-01T23:20:01.452196+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×19 (24h) → ログ/DB確認
@@ -16,7 +16,11 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-05-01T23:08:06]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×9  [2026-05-01T23:11:06]
+- key: `CIRCUIT_BREAKER_TRIP|`
+- **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
+
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×12  [2026-05-01T23:08:06]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
@@ -24,13 +28,9 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CALIBRATION_DRIFT  ×25  [2026-05-01T22:45:07]
+### 🔴 CALIBRATION_DRIFT  ×35  [2026-05-01T22:45:07]
 - key: `CALIBRATION_DRIFT|`
 - **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
-
-### 🔴 CIRCUIT_BREAKER_TRIP  ×59  [2026-05-01T22:11:06]
-- key: `CIRCUIT_BREAKER_TRIP|`
-- **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
 ### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-05-01T21:00:04]
 - key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 5 件 (閾値 3)`
@@ -105,7 +105,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.54MB / last modified 2026-05-01T23:09:06.178389+09:00
+- DB: 1.54MB / last modified 2026-05-01T23:19:06.447145+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -148,30 +148,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-07 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-01 23:05:06,307 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-01 23:05:06,355 [INFO] predictor: Models loaded OK
-2026-05-01 23:05:06,359 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-01 23:06:06,333 [INFO] run_cycle: === run_cycle 23:06:06 ===
-2026-05-01 23:06:06,334 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-01 23:06:06,334 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-01 23:06:06,402 [INFO] predictor: Models loaded OK
-2026-05-01 23:06:06,412 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-01 23:07:06,110 [INFO] run_cycle: === run_cycle 23:07:06 ===
-2026-05-01 23:07:06,110 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-01 23:07:06,110 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-01 23:07:06,176 [INFO] predictor: Models loaded OK
-2026-05-01 23:07:06,182 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-01 23:08:06,185 [INFO] run_cycle: === run_cycle 23:08:06 ===
-2026-05-01 23:08:06,186 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-01 23:08:06,186 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-01 23:08:06,264 [INFO] predictor: Models loaded OK
-2026-05-01 23:08:06,273 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-01 23:09:06,060 [INFO] run_cycle: === run_cycle 23:09:06 ===
-2026-05-01 23:09:06,060 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-01 23:09:06,060 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-01 23:09:06,115 [INFO] predictor: Models loaded OK
-2026-05-01 23:09:06,121 [INFO] run_cycle: run_cycle done: 0 notifications
+24 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-01 23:15:06,524 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-01 23:15:06,599 [INFO] predictor: Models loaded OK
+2026-05-01 23:15:06,605 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-01 23:16:05,709 [INFO] run_cycle: === run_cycle 23:16:05 ===
+2026-05-01 23:16:05,709 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-01 23:16:05,709 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-01 23:16:05,781 [INFO] predictor: Models loaded OK
+2026-05-01 23:16:05,785 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-01 23:17:06,211 [INFO] run_cycle: === run_cycle 23:17:06 ===
+2026-05-01 23:17:06,211 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-01 23:17:06,211 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-01 23:17:06,263 [INFO] predictor: Models loaded OK
+2026-05-01 23:17:06,269 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-01 23:18:05,667 [INFO] run_cycle: === run_cycle 23:18:05 ===
+2026-05-01 23:18:05,668 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-01 23:18:05,668 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-01 23:18:05,760 [INFO] predictor: Models loaded OK
+2026-05-01 23:18:05,766 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-01 23:19:06,297 [INFO] run_cycle: === run_cycle 23:19:06 ===
+2026-05-01 23:19:06,297 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-01 23:19:06,297 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-01 23:19:06,348 [INFO] predictor: Models loaded OK
+2026-05-01 23:19:06,352 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -321,4 +321,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-01T23:10:02.353377+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-01T23:20:01.452196+09:00_
