@@ -2,32 +2,32 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-02T22:30:01.821680+09:00
+**生成**: 2026-05-02T22:40:01.575512+09:00
 
 ### 次に取るべきアクション
-> RED最優先: CALIBRATION_DRIFT×29 (24h) → ログ/DB確認
+> RED最優先: CALIBRATION_DRIFT×28 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×86 (24h)
-- 🔴 CALIBRATION_DRIFT×29 (24h)
-- 🔴 CIRCUIT_BREAKER_TRIP×15 (24h)
+- 🟡 FINAL_MISSING×83 (24h)
+- 🔴 CALIBRATION_DRIFT×28 (24h)
+- 🔴 CIRCUIT_BREAKER_TRIP×14 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
 
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×4  [2026-05-02T22:26:06]
+### 🔴 CALIBRATION_DRIFT  ×10  [2026-05-02T22:30:09]
+- key: `CALIBRATION_DRIFT|`
+- **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
+
+### 🔴 CIRCUIT_BREAKER_TRIP  ×14  [2026-05-02T22:26:06]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×22  [2026-05-02T22:08:05]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×32  [2026-05-02T22:08:05]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
-
-### 🔴 CALIBRATION_DRIFT  ×60  [2026-05-02T21:30:09]
-- key: `CALIBRATION_DRIFT|`
-- **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
 
 ### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×3  [2026-05-02T21:30:03]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
@@ -106,7 +106,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.62MB / last modified 2026-05-02T22:30:03.330755+09:00
+- DB: 1.62MB / last modified 2026-05-02T22:39:06.067465+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,30 +149,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-04 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-02 22:25:06,704 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-02 22:25:06,777 [INFO] predictor: Models loaded OK
-2026-05-02 22:25:06,784 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-02 22:26:05,892 [INFO] run_cycle: === run_cycle 22:26:05 ===
-2026-05-02 22:26:05,892 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-02 22:26:05,892 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-02 22:26:05,936 [INFO] predictor: Models loaded OK
-2026-05-02 22:26:05,941 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-02 22:27:06,629 [INFO] run_cycle: === run_cycle 22:27:06 ===
-2026-05-02 22:27:06,629 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-02 22:27:06,629 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-02 22:27:06,672 [INFO] predictor: Models loaded OK
-2026-05-02 22:27:06,676 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-02 22:28:06,688 [INFO] run_cycle: === run_cycle 22:28:06 ===
-2026-05-02 22:28:06,688 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-02 22:28:06,688 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-02 22:28:06,736 [INFO] predictor: Models loaded OK
-2026-05-02 22:28:06,757 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-02 22:29:06,046 [INFO] run_cycle: === run_cycle 22:29:06 ===
-2026-05-02 22:29:06,046 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-02 22:29:06,046 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-02 22:29:06,087 [INFO] predictor: Models loaded OK
-2026-05-02 22:29:06,091 [INFO] run_cycle: run_cycle done: 0 notifications
+82 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-02 22:35:06,982 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-02 22:35:07,030 [INFO] predictor: Models loaded OK
+2026-05-02 22:35:07,034 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-02 22:36:05,921 [INFO] run_cycle: === run_cycle 22:36:05 ===
+2026-05-02 22:36:05,921 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-02 22:36:05,921 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-02 22:36:05,965 [INFO] predictor: Models loaded OK
+2026-05-02 22:36:05,972 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-02 22:37:05,735 [INFO] run_cycle: === run_cycle 22:37:05 ===
+2026-05-02 22:37:05,735 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-02 22:37:05,736 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-02 22:37:05,807 [INFO] predictor: Models loaded OK
+2026-05-02 22:37:05,813 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-02 22:38:05,111 [INFO] run_cycle: === run_cycle 22:38:05 ===
+2026-05-02 22:38:05,112 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-02 22:38:05,112 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-02 22:38:05,194 [INFO] predictor: Models loaded OK
+2026-05-02 22:38:05,198 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-02 22:39:05,981 [INFO] run_cycle: === run_cycle 22:39:05 ===
+2026-05-02 22:39:05,982 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-02 22:39:05,982 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-02 22:39:06,036 [INFO] predictor: Models loaded OK
+2026-05-02 22:39:06,039 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -203,10 +203,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 242
-  FINAL_MISSING: 86
-  CALIBRATION_DRIFT: 29
+  FINAL_MISSING: 83
+  CALIBRATION_DRIFT: 28
   CIRCUIT_BREAKER_NO_ACTION: 17
-  CIRCUIT_BREAKER_TRIP: 15
+  CIRCUIT_BREAKER_TRIP: 14
   ANOMALY_BET_VOLUME_SPIKE: 5
   ANOMALY_SCAN_FINAL_RATIO: 2
   LARGE_ODDS_DRIFT: 1
@@ -323,4 +323,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-02T22:30:01.821680+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-02T22:40:01.575512+09:00_
