@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-06T14:10:01.727470+09:00
+**生成**: 2026-05-06T14:20:01.861434+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×26 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×89 (24h)
+- 🟡 FINAL_MISSING×88 (24h)
 - 🔴 PSI_DRIFT_DETECTED×26 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
 
@@ -16,11 +16,11 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×6  [2026-05-06T14:04:41]
+### 🔴 PSI_DRIFT_DETECTED  ×16  [2026-05-06T14:04:41]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🟡 ANOMALY_BET_VOLUME_DROP  ×10  [2026-05-06T14:00:39]
+### 🟡 ANOMALY_BET_VOLUME_DROP  ×20  [2026-05-06T14:00:39]
 - key: `ANOMALY_BET_VOLUME_DROP|`
 - **FIX**: 本日のbet数が7日baselineから2σ低下。戦略filter/ scan fix/run_cycle停止を疑え
 
@@ -105,7 +105,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.94MB / last modified 2026-05-06T14:09:31.078257+09:00
+- DB: 1.94MB / last modified 2026-05-06T14:19:42.873596+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -148,34 +148,36 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-2026-05-06 14:08:41,210 [INFO] predictor: combos: {'win': 3, '2t': 26, '3t': 120}
-2026-05-06 14:08:41,214 [INFO] run_cycle: fetched 09/9 [scan]: 149 combos
-2026-05-06 14:08:41,327 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-06 14:09:05,662 [INFO] run_cycle: === run_cycle 14:09:05 ===
-2026-05-06 14:09:05,663 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-06 14:09:05,663 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-06 14:09:05,754 [INFO] predictor: Models loaded OK
-2026-05-06 14:09:17,241 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-06 14:09:18,422 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-06 14:09:19,696 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-06 14:09:19,697 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-06 14:09:20,794 [INFO] scraper: odds_win: 4/6 parsed
-2026-05-06 14:09:20,794 [INFO] scraper: fetch_race 11/8: boats=6 odds=189/191
-2026-05-06 14:09:20,806 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-06 14:09:20,806 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-05-06 14:09:20,814 [INFO] run_cycle: fetched 11/8 [final]: 154 combos
-2026-05-06 14:09:23,350 [WARNING] scraper: beforeinfo parse failed: jcd=18 rno=12
-2026-05-06 14:09:23,350 [WARNING] run_cycle: fetch None: 18/12
-2026-05-06 14:09:26,905 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-06 14:09:28,111 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-06 14:09:29,239 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-06 14:09:29,240 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-06 14:09:30,399 [INFO] scraper: odds_win: 6/6 parsed
-2026-05-06 14:09:30,399 [INFO] scraper: fetch_race 02/8: boats=6 odds=191/191
-2026-05-06 14:09:30,411 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-06 14:09:30,412 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-06 14:09:30,420 [INFO] run_cycle: fetched 02/8 [scan]: 156 combos
-2026-05-06 14:09:30,854 [INFO] run_cycle: run_cycle done: 0 notifications
+combos: {'win': 3, '2t': 30, '3t': 120}
+2026-05-06 14:19:21,141 [INFO] run_cycle: fetched 09/9 [final]: 153 combos
+2026-05-06 14:19:25,011 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-06 14:19:26,120 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-06 14:19:27,225 [INFO] scraper: odds2t: 30/30 parsed
+2026-05-06 14:19:27,226 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-06 14:19:28,334 [INFO] scraper: odds_win: 6/6 parsed
+2026-05-06 14:19:28,334 [INFO] scraper: fetch_race 04/6: boats=6 odds=191/191
+2026-05-06 14:19:28,343 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-06 14:19:28,344 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-05-06 14:19:28,353 [INFO] run_cycle: fetched 04/6 [scan]: 156 combos
+2026-05-06 14:19:32,166 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-06 14:19:33,280 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-06 14:19:34,397 [INFO] scraper: odds2t: 30/30 parsed
+2026-05-06 14:19:34,398 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-06 14:19:35,468 [INFO] scraper: odds_win: 6/6 parsed
+2026-05-06 14:19:35,469 [INFO] scraper: fetch_race 21/12: boats=6 odds=191/191
+2026-05-06 14:19:35,478 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-06 14:19:35,478 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-05-06 14:19:35,486 [INFO] run_cycle: fetched 21/12 [scan]: 156 combos
+2026-05-06 14:19:39,080 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-06 14:19:40,216 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-06 14:19:41,320 [INFO] scraper: odds2t: 30/30 parsed
+2026-05-06 14:19:41,321 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-06 14:19:42,458 [INFO] scraper: odds_win: 2/6 parsed
+2026-05-06 14:19:42,459 [INFO] scraper: fetch_race 16/8: boats=6 odds=187/191
+2026-05-06 14:19:42,467 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-06 14:19:42,467 [INFO] predictor: combos: {'win': 2, '2t': 30, '3t': 120}
+2026-05-06 14:19:42,475 [INFO] run_cycle: fetched 16/8 [scan]: 152 combos
+2026-05-06 14:19:42,582 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -205,8 +207,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 337
-  FINAL_MISSING: 89
+  ANOMALY_SCRAPER_FAILURE_BURST: 327
+  FINAL_MISSING: 88
   PSI_DRIFT_DETECTED: 26
   ANOMALY_BET_VOLUME_SPIKE: 12
   CIRCUIT_BREAKER_NO_ACTION: 9
@@ -234,10 +236,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [12:15:59] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1449}
 ```
 
-## 本日残レース: 109件
+## 本日残レース: 104件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 216件 登録 / 107件 締切済
+- race_schedule: 216件 登録 / 112件 締切済
 - 通知発射: scan=8 nid / final=5 nid / result=1 nid
 - predictions: 1 / うち結果DB記録済: 1
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -326,4 +328,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-06T14:10:01.727470+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-06T14:20:01.861434+09:00_
