@@ -2,14 +2,14 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-06T12:50:01.795501+09:00
+**生成**: 2026-05-06T13:00:01.917166+09:00
 
 ### 次に取るべきアクション
-> RED最優先: PSI_DRIFT_DETECTED×27 (24h) → ログ/DB確認
+> RED最優先: PSI_DRIFT_DETECTED×28 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×91 (24h)
-- 🔴 PSI_DRIFT_DETECTED×27 (24h)
+- 🟡 FINAL_MISSING×90 (24h)
+- 🔴 PSI_DRIFT_DETECTED×28 (24h)
 - 🔴 CALIBRATION_DRIFT×3 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
 
@@ -17,11 +17,11 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×2  [2026-05-06T12:48:36]
+### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×11  [2026-05-06T12:48:36]
 - key: `ANOMALY_SCAN_FINAL_RATIO|`
 - **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
 
-### 🔴 PSI_DRIFT_DETECTED  ×45  [2026-05-06T12:03:06]
+### 🔴 PSI_DRIFT_DETECTED  ×54  [2026-05-06T12:03:06]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.94MB / last modified 2026-05-06T12:49:36.932633+09:00
+- DB: 1.94MB / last modified 2026-05-06T13:00:02.951843+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,36 +149,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-rust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-06 12:49:05,141 [INFO] predictor: Models loaded OK
-2026-05-06 12:49:18,069 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-06 12:49:19,324 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-06 12:49:20,628 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-06 12:49:20,630 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-06 12:49:21,943 [INFO] scraper: odds_win: 6/6 parsed
-2026-05-06 12:49:21,943 [INFO] scraper: fetch_race 13/6: boats=6 odds=191/191
-2026-05-06 12:49:21,956 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-06 12:49:21,957 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-06 12:49:21,965 [INFO] run_cycle: fetched 13/6 [final]: 156 combos
-2026-05-06 12:49:26,095 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-06 12:49:27,199 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-06 12:49:28,325 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-06 12:49:28,326 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-06 12:49:29,566 [INFO] scraper: odds_win: 6/6 parsed
-2026-05-06 12:49:29,567 [INFO] scraper: fetch_race 23/10: boats=6 odds=191/191
-2026-05-06 12:49:29,575 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-06 12:49:29,575 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-06 12:49:29,583 [INFO] run_cycle: fetched 23/10 [scan]: 156 combos
-2026-05-06 12:49:33,084 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-06 12:49:34,183 [INFO] scraper: odds3f: 17/20 parsed
-2026-05-06 12:49:35,283 [INFO] scraper: odds2t: 29/30 parsed
-2026-05-06 12:49:35,284 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-06 12:49:36,383 [INFO] scraper: odds_win: 4/6 parsed
-2026-05-06 12:49:36,383 [INFO] scraper: fetch_race 18/10: boats=6 odds=185/191
-2026-05-06 12:49:36,390 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-06 12:49:36,390 [INFO] predictor: combos: {'win': 4, '2t': 29, '3t': 120}
-2026-05-06 12:49:36,398 [INFO] run_cycle: fetched 18/10 [scan]: 153 combos
-2026-05-06 12:49:36,504 [INFO] run_cycle: run_cycle done: 0 notifications
+un_cycle 12:58:05 ===
+2026-05-06 12:58:05,545 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-06 12:58:05,545 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-06 12:58:05,613 [INFO] predictor: Models loaded OK
+2026-05-06 12:58:06,132 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-06 12:59:05,003 [INFO] run_cycle: === run_cycle 12:59:05 ===
+2026-05-06 12:59:05,003 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-06 12:59:05,003 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-06 12:59:05,092 [INFO] predictor: Models loaded OK
+2026-05-06 12:59:17,674 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-06 12:59:18,824 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-06 12:59:20,287 [INFO] scraper: odds2t: 30/30 parsed
+2026-05-06 12:59:20,288 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-06 12:59:21,581 [INFO] scraper: odds_win: 4/6 parsed
+2026-05-06 12:59:21,581 [INFO] scraper: fetch_race 18/10: boats=6 odds=189/191
+2026-05-06 12:59:21,592 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-06 12:59:21,593 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-05-06 12:59:21,600 [INFO] run_cycle: fetched 18/10 [final]: 154 combos
+2026-05-06 12:59:25,178 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-06 12:59:26,266 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-06 12:59:27,391 [INFO] scraper: odds2t: 30/30 parsed
+2026-05-06 12:59:27,392 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-06 12:59:28,544 [INFO] scraper: odds_win: 5/6 parsed
+2026-05-06 12:59:28,544 [INFO] scraper: fetch_race 10/10: boats=6 odds=190/191
+2026-05-06 12:59:28,553 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-06 12:59:28,553 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-05-06 12:59:28,561 [INFO] run_cycle: fetched 10/10 [scan]: 155 combos
+2026-05-06 12:59:28,807 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -193,24 +191,24 @@ rust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
   {
     "target": "mirror",
     "ok": 1,
-    "c": 41
+    "c": 40
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 41
+    "c": 40
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 13, 'result': 9, 'scan': 19}
+{'final': 13, 'result': 9, 'scan': 18}
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 355
-  FINAL_MISSING: 91
-  PSI_DRIFT_DETECTED: 27
+  ANOMALY_SCRAPER_FAILURE_BURST: 345
+  FINAL_MISSING: 90
+  PSI_DRIFT_DETECTED: 28
   ANOMALY_BET_VOLUME_SPIKE: 15
   CIRCUIT_BREAKER_NO_ACTION: 11
   ANOMALY_BET_VOLUME_DROP: 3
@@ -222,10 +220,11 @@ rust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 ## 戦略別 ROI (7日)
 | sid | n | hits | cost | payout | PL | ROI |
 |---|---|---|---|---|---|---|
-| S00 | 55 | 13 | 16,500 | 15,000 | -1,500 | 0.909 |
+| S00 | 54 | 13 | 16,200 | 15,000 | -1,200 | 0.926 |
 
 ## 直近アラート (24h・新しい順)
 ```
+[12:56:28] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 71, "n_recent": 54, "psi": 0.576}
 [12:26:23] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": -0.25, "baseline_mean": 0.55, "baseline_stdev": 0.082, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 0.8, "today_scan_count": 5, "z_score": 3.04}
 [12:16:47] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1436}
 [12:15:59] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1449}
@@ -235,13 +234,12 @@ rust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 [12:11:36] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1448}
 [12:10:33] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1428}
 [12:09:30] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1417}
-[12:08:36] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 4, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1426}
 ```
 
-## 本日残レース: 140件
+## 本日残レース: 136件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 216件 登録 / 76件 締切済
+- race_schedule: 216件 登録 / 80件 締切済
 - 通知発射: scan=5 nid / final=4 nid / result=1 nid
 - predictions: 1 / うち結果DB記録済: 1
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -284,7 +282,7 @@ rust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 |---|---|
 | **Latency** (scan→final avg) | 532.9s |
 | **Latency** (scan→final max) | 594.0s |
-| **Traffic** (notifications 24h) | 41 |
+| **Traffic** (notifications 24h) | 40 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 300円 used |
 
@@ -330,4 +328,4 @@ rust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-06T12:50:01.795501+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-06T13:00:01.917166+09:00_
