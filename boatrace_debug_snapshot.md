@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-06T23:40:02.388281+09:00
+**生成**: 2026-05-06T23:50:02.291580+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×23 (24h) → ログ/DB確認
@@ -16,7 +16,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×31  [2026-05-06T23:10:08]
+### 🔴 PSI_DRIFT_DETECTED  ×40  [2026-05-06T23:10:08]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
@@ -105,7 +105,7 @@
 - strategies.json md5: `149bfa9ecc7e714a646f5a33d43fea95`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.95MB / last modified 2026-05-06T23:39:04.476553+09:00
+- DB: 1.95MB / last modified 2026-05-06T23:49:06.106100+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -148,30 +148,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-:05,513 [INFO] run_cycle: === run_cycle 23:36:05 ===
-2026-05-06 23:36:05,514 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-06 23:36:05,514 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-06 23:36:05,570 [INFO] predictor: Models loaded OK
-2026-05-06 23:36:05,576 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-06 23:37:06,924 [INFO] run_cycle: === run_cycle 23:37:06 ===
-2026-05-06 23:37:06,924 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-06 23:37:06,924 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-06 23:37:06,976 [INFO] predictor: Models loaded OK
-2026-05-06 23:37:06,980 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-06 23:38:05,986 [INFO] run_cycle: === run_cycle 23:38:05 ===
-2026-05-06 23:38:05,986 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-06 23:38:05,986 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-06 23:38:06,031 [INFO] predictor: Models loaded OK
-2026-05-06 23:38:06,034 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-06 23:39:04,374 [INFO] run_cycle: === run_cycle 23:39:04 ===
-2026-05-06 23:39:04,374 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-06 23:39:04,374 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-06 23:39:04,419 [INFO] predictor: Models loaded OK
-2026-05-06 23:39:04,424 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-06 23:40:09,699 [INFO] run_cycle: === run_cycle 23:40:09 ===
-2026-05-06 23:40:09,699 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-06 23:40:09,699 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-06 23:40:09,830 [INFO] predictor: Models loaded OK
+65 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-06 23:45:06,065 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-06 23:45:06,136 [INFO] predictor: Models loaded OK
+2026-05-06 23:45:06,140 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-06 23:46:05,893 [INFO] run_cycle: === run_cycle 23:46:05 ===
+2026-05-06 23:46:05,897 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-06 23:46:05,897 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-06 23:46:06,008 [INFO] predictor: Models loaded OK
+2026-05-06 23:46:06,018 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-06 23:47:06,106 [INFO] run_cycle: === run_cycle 23:47:06 ===
+2026-05-06 23:47:06,107 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-06 23:47:06,107 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-06 23:47:06,151 [INFO] predictor: Models loaded OK
+2026-05-06 23:47:06,156 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-06 23:48:05,927 [INFO] run_cycle: === run_cycle 23:48:05 ===
+2026-05-06 23:48:05,927 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-06 23:48:05,927 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-06 23:48:06,005 [INFO] predictor: Models loaded OK
+2026-05-06 23:48:06,010 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-06 23:49:05,704 [INFO] run_cycle: === run_cycle 23:49:05 ===
+2026-05-06 23:49:05,705 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-06 23:49:05,705 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-06 23:49:05,775 [INFO] predictor: Models loaded OK
+2026-05-06 23:49:05,784 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -216,6 +216,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[23:44:05] FINAL_MISSING: {"deadline": "2026-05-06T14:09:00+09:00", "kind": "FINAL_MISSING", "nid": "2026050605061409", "sid": "S00"}
 [23:24:05] FINAL_MISSING: {"deadline": "2026-05-06T14:48:00+09:00", "kind": "FINAL_MISSING", "nid": "2026050602091448", "sid": "S00"}
 [23:17:06] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 71, "n_recent": 56, "psi": 0.57}
 [23:14:05] FINAL_MISSING: {"deadline": "2026-05-06T12:39:00+09:00", "kind": "FINAL_MISSING", "nid": "2026050605031239", "sid": "S00"}
@@ -225,7 +226,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [22:16:06] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 71, "n_recent": 56, "psi": 0.57}
 [22:13:06] FINAL_MISSING: {"deadline": "2026-05-06T12:39:00+09:00", "kind": "FINAL_MISSING", "nid": "2026050605031239", "sid": "S00"}
 [21:54:06] FINAL_MISSING: {"deadline": "2026-05-06T13:19:00+09:00", "kind": "FINAL_MISSING", "nid": "2026050606051319", "sid": "S00"}
-[21:43:05] FINAL_MISSING: {"deadline": "2026-05-06T14:09:00+09:00", "kind": "FINAL_MISSING", "nid": "2026050605061409", "sid": "S00"}
 ```
 
 ## 本日残レース: 0件
@@ -320,4 +320,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-06T23:40:02.388281+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-06T23:50:02.291580+09:00_
