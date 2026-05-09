@@ -2,34 +2,35 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-09T09:10:02.137056+09:00
+**生成**: 2026-05-09T09:20:02.211968+09:00
 
 ### 次に取るべきアクション
-> RED最優先: PSI_DRIFT_DETECTED×25 (24h) → ログ/DB確認
+> RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
 
 ### 検出された問題
 - 🟡 FINAL_MISSING×60 (24h)
 - 🔴 PSI_DRIFT_DETECTED×25 (24h)
 - 🟡 LARGE_ODDS_DRIFT×5 (24h)
+- 🔴 CRITICAL_ODDS_COLLAPSE×1 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
 
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×9  [2026-05-09T09:01:23]
+### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×11  [2026-05-09T09:01:23]
 - key: `ANOMALY_SCAN_FINAL_RATIO|`
 - **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
 
-### 🔴 PSI_DRIFT_DETECTED  ×9  [2026-05-09T09:01:23]
+### 🔴 PSI_DRIFT_DETECTED  ×19  [2026-05-09T09:01:23]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 ANOMALY_ML_PROB_SHIFT  ×15  [2026-05-09T08:55:22]
+### 🔴 ANOMALY_ML_PROB_SHIFT  ×25  [2026-05-09T08:55:22]
 - key: `ANOMALY_ML_PROB_SHIFT|`
 - **FIX**: predictions.ml_prob 分布が2σシフト。model drift / CAL_MODE 変更 / 計算バグ
 
-### 🟡 ANOMALY_ODDS_SHIFT  ×15  [2026-05-09T08:55:22]
+### 🟡 ANOMALY_ODDS_SHIFT  ×25  [2026-05-09T08:55:22]
 - key: `ANOMALY_ODDS_SHIFT|`
 - **FIX**: odds 分布が2σシフト。scraper format変化・市場変動・戦略filterレンジ変更
 
@@ -106,7 +107,7 @@
 - strategies.json md5: `d3e97601d6febcc877a6fc9779762cac`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 1.98MB / last modified 2026-05-09T09:09:06.378226+09:00
+- DB: 1.98MB / last modified 2026-05-09T09:19:22.214194+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,33 +150,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-ault=5000
-2026-05-09 09:06:05,378 [INFO] predictor: Models loaded OK
-2026-05-09 09:06:05,547 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-09 09:07:05,669 [INFO] run_cycle: === run_cycle 09:07:05 ===
-2026-05-09 09:07:05,669 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-09 09:07:05,669 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-09 09:07:05,747 [INFO] predictor: Models loaded OK
-2026-05-09 09:07:05,845 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-09 09:08:05,502 [INFO] run_cycle: === run_cycle 09:08:05 ===
-2026-05-09 09:08:05,502 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-09 09:08:05,502 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-09 09:08:05,542 [INFO] predictor: Models loaded OK
-2026-05-09 09:08:17,924 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-09 09:08:19,027 [INFO] scraper: odds3f: 19/20 parsed
-2026-05-09 09:08:20,140 [INFO] scraper: odds2t: 26/30 parsed
-2026-05-09 09:08:20,141 [INFO] scraper: odds2f: 13/15 parsed
-2026-05-09 09:08:21,356 [INFO] scraper: odds_win: 4/6 parsed
-2026-05-09 09:08:21,356 [INFO] scraper: fetch_race 21/2: boats=6 odds=182/191
-2026-05-09 09:08:21,367 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-09 09:08:21,368 [INFO] predictor: combos: {'win': 4, '2t': 26, '3t': 120}
-2026-05-09 09:08:21,375 [INFO] run_cycle: fetched 21/2 [scan]: 150 combos
-2026-05-09 09:08:21,461 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-09 09:09:06,032 [INFO] run_cycle: === run_cycle 09:09:06 ===
-2026-05-09 09:09:06,032 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-09 09:09:06,032 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-09 09:09:06,072 [INFO] predictor: Models loaded OK
-2026-05-09 09:09:06,209 [INFO] run_cycle: run_cycle done: 0 notifications
+18:28,620 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-09 09:18:29,700 [INFO] scraper: odds3f: 18/20 parsed
+2026-05-09 09:18:30,808 [INFO] scraper: odds2t: 28/30 parsed
+2026-05-09 09:18:30,809 [INFO] scraper: odds2f: 14/15 parsed
+2026-05-09 09:18:31,949 [INFO] scraper: odds_win: 6/6 parsed
+2026-05-09 09:18:31,949 [INFO] scraper: fetch_race 18/3: boats=6 odds=186/191
+2026-05-09 09:18:31,961 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-09 09:18:31,961 [INFO] predictor: combos: {'win': 6, '2t': 28, '3t': 120}
+2026-05-09 09:18:31,968 [INFO] run_cycle: fetched 18/3 [scan]: 154 combos
+2026-05-09 09:18:32,062 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-09 09:19:05,970 [INFO] run_cycle: === run_cycle 09:19:05 ===
+2026-05-09 09:19:05,970 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-09 09:19:05,970 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-09 09:19:06,013 [INFO] predictor: Models loaded OK
+2026-05-09 09:19:17,762 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-09 09:19:18,919 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-09 09:19:20,080 [INFO] scraper: odds2t: 26/30 parsed
+2026-05-09 09:19:20,081 [INFO] scraper: odds2f: 14/15 parsed
+2026-05-09 09:19:21,151 [INFO] scraper: odds_win: 5/6 parsed
+2026-05-09 09:19:21,152 [INFO] scraper: fetch_race 14/3: boats=6 odds=185/191
+2026-05-09 09:19:21,163 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-09 09:19:21,163 [INFO] predictor: combos: {'win': 5, '2t': 26, '3t': 120}
+2026-05-09 09:19:21,170 [INFO] run_cycle: fetched 14/3 [scan]: 151 combos
+2026-05-09 09:19:21,187 [INFO] race_id: notif: nid=2026050914030932 sid=S04_SELL_3T phase=scan rank=SSS
+2026-05-09 09:19:21,546 [INFO] notifier: Discord notify OK (status=204)
+2026-05-09 09:19:22,036 [INFO] notifier: Discord notify OK (status=204)
+2026-05-09 09:19:22,094 [INFO] run_cycle: SCAN S04_SELL_3T 鳴門3R SSS
+2026-05-09 09:19:22,190 [INFO] run_cycle: run_cycle done: 1 notifications
 
 ```
 
@@ -192,57 +194,58 @@ ault=5000
   {
     "target": "mirror",
     "ok": 1,
-    "c": 32
+    "c": 35
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 32
+    "c": 35
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 10, 'result': 7, 'scan': 15}
+{'final': 11, 'result': 7, 'scan': 17}
 
 ## アラート件数 (24h・種類別)
 ```
   FINAL_MISSING: 60
   PSI_DRIFT_DETECTED: 25
   ANOMALY_SCRAPER_FAILURE_BURST: 21
-  ANOMALY_SCAN_FINAL_RATIO: 9
+  ANOMALY_SCAN_FINAL_RATIO: 10
   LARGE_ODDS_DRIFT: 5
+  ANOMALY_ML_PROB_SHIFT: 2
+  ANOMALY_ODDS_SHIFT: 2
   ANOMALY_BET_VOLUME_DROP: 1
-  ANOMALY_ML_PROB_SHIFT: 1
-  ANOMALY_ODDS_SHIFT: 1
+  CRITICAL_ODDS_COLLAPSE: 1
 ```
 
 ## 戦略別 ROI (7日)
 | sid | n | hits | cost | payout | PL | ROI |
 |---|---|---|---|---|---|---|
 | S00 | 55 | 17 | 16,500 | 17,370 | +870 | 1.053 |
-| S04_SELL_3T | 6 | 0 | 600 | 0 | -600 | 0.0 |
+| S04_SELL_3T | 12 | 0 | 1,200 | 0 | -1,200 | 0.0 |
 
 ## 直近アラート (24h・新しい順)
 ```
+[09:19:22] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": 0.173, "baseline_mean": 0.573, "baseline_stdev": 0.084, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 0.4, "today_scan_count": 5, "z_score": -2.06}
+[09:11:30] CRITICAL_ODDS_COLLAPSE: {"combo": "1-4-6", "drift_pct": -41.4, "final": 20.1, "kind": "CRITICAL_ODDS_COLLAPSE", "race": "212R", "scan": 34.3, "sid": "S04_SELL_3T"}
+[09:11:30] ANOMALY_ODDS_SHIFT: {"baseline_mean": 9.57, "baseline_n": 62, "baseline_stdev": 8.34, "kind": "ANOMALY_ODDS_SHIFT", "today_mean": 52.57, "today_n": 12, "z_score": 5.16}
+[09:11:30] ANOMALY_ML_PROB_SHIFT: {"baseline_mean": 0.4194, "baseline_n": 62, "baseline_stdev": 0.1205, "kind": "ANOMALY_ML_PROB_SHIFT", "today_mean": 0.0019, "today_n": 12, "z_score": -3.47}
 [09:02:06] FINAL_MISSING: {"deadline": "2026-05-09T08:32:00+09:00", "kind": "FINAL_MISSING", "nid": "2026050918010832", "sid": "S04_SELL_3T"}
 [09:01:23] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 84, "n_recent": 55, "psi": 0.472}
 [09:01:23] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": 0.24, "baseline_mean": 0.573, "baseline_stdev": 0.084, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 0.333, "today_scan_count": 3, "z_score": -2.86}
 [08:55:22] LARGE_ODDS_DRIFT: {"combo": "1-5-6", "drift_pct": -26.3, "final": 35.0, "kind": "LARGE_ODDS_DRIFT", "race": "182R", "scan": 47.5, "sid": "S04_SELL_3T"}
 [08:55:22] LARGE_ODDS_DRIFT: {"combo": "1-4-2", "drift_pct": 75.7, "final": 61.5, "kind": "LARGE_ODDS_DRIFT", "race": "182R", "scan": 35.0, "sid": "S04_SELL_3T"}
 [08:55:22] LARGE_ODDS_DRIFT: {"combo": "1-5-3", "drift_pct": -10.4, "final": 85.6, "kind": "LARGE_ODDS_DRIFT", "race": "182R", "scan": 95.5, "sid": "S04_SELL_3T"}
-[08:55:22] LARGE_ODDS_DRIFT: {"combo": "1-5-2", "drift_pct": 67.6, "final": 105.6, "kind": "LARGE_ODDS_DRIFT", "race": "182R", "scan": 63.0, "sid": "S04_SELL_3T"}
-[08:55:22] ANOMALY_ODDS_SHIFT: {"baseline_mean": 9.57, "baseline_n": 62, "baseline_stdev": 8.34, "kind": "ANOMALY_ODDS_SHIFT", "today_mean": 54.45, "today_n": 6, "z_score": 5.38}
-[08:55:22] ANOMALY_ML_PROB_SHIFT: {"baseline_mean": 0.4194, "baseline_n": 62, "baseline_stdev": 0.1205, "kind": "ANOMALY_ML_PROB_SHIFT", "today_mean": 0.0014, "today_n": 6, "z_score": -3.47}
-[08:00:56] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 84, "n_recent": 55, "psi": 0.472}
 ```
 
-## 本日残レース: 127件
+## 本日残レース: 126件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 132件 登録 / 5件 締切済
-- 通知発射: scan=3 nid / final=1 nid / result=0 nid
-- predictions: 6 / うち結果DB記録済: 0
+- race_schedule: 132件 登録 / 6件 締切済
+- 通知発射: scan=5 nid / final=2 nid / result=0 nid
+- predictions: 12 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - 🔴 scan後final無しのまま締切: 1件（FINAL_MISSING の温床）
 
@@ -253,22 +256,22 @@ ault=5000
 ## 最新 predictions サンプル (計算spot-check用)
 | sid | race | bt | combo | p | odds | ev | bet | at |
 |---|---|---|---|---|---|---|---|---|
+| S04_SELL_3T | 212R | 3t | 1-4-2 | 0.0086 | 7.1 | 0.06 | 100 | scan=7.9 drift=-10.1% | 09:11:21 |
+| S04_SELL_3T | 212R | 3t | 1-4-3 | 0.0052 | 16.0 | 0.08 | 100 | scan=14.8 drift=+8.1% | 09:11:21 |
+| S04_SELL_3T | 212R | 3t | 1-4-6 | 0.0007 | 20.1 | 0.01 | 100 | scan=34.3 drift=-41.4% | 09:11:21 |
+| S04_SELL_3T | 212R | 3t | 1-5-2 | 0.0002 | 63.9 | 0.01 | 100 | scan=47.8 drift=+33.7% | 09:11:21 |
+| S04_SELL_3T | 212R | 3t | 1-5-3 | 0.0001 | 91.1 | 0.01 | 100 | scan=60.0 drift=+51.8% | 09:11:21 |
+| S04_SELL_3T | 212R | 3t | 1-5-6 | 0.0000 | 106.0 | 0.00 | 100 | scan=122.1 drift=-13.2% | 09:11:21 |
 | S04_SELL_3T | 182R | 3t | 1-4-6 | 0.0010 | 10.6 | 0.01 | 100 | scan=11.1 drift=-4.5% | 08:55:20 |
 | S04_SELL_3T | 182R | 3t | 1-4-3 | 0.0010 | 28.4 | 0.03 | 100 | scan=26.3 drift=+8.0% | 08:55:20 |
 | S04_SELL_3T | 182R | 3t | 1-5-6 | 0.0020 | 35.0 | 0.07 | 100 | scan=47.5 drift=-26.3% | 08:55:20 |
 | S04_SELL_3T | 182R | 3t | 1-4-2 | 0.0010 | 61.5 | 0.06 | 100 | scan=35.0 drift=+75.7% | 08:55:20 |
-| S04_SELL_3T | 182R | 3t | 1-5-3 | 0.0019 | 85.6 | 0.16 | 100 | scan=95.5 drift=-10.4% | 08:55:20 |
-| S04_SELL_3T | 182R | 3t | 1-5-2 | 0.0015 | 105.6 | 0.16 | 100 | scan=63.0 drift=+67.6% | 08:55:20 |
-| S00 | 057R | win | 1 | 0.1293 | 5.2 | 0.67 | 300 | scan=5.6 drift=-7.1% | 14:35:22 |
-| S00 | 225R | win | 1 | 0.4111 | 5.0 | 2.06 | 300 | scan=9.3 drift=-46.2% | 14:22:33 |
-| S00 | 224R | win | 1 | 0.1957 | 5.5 | 1.08 | 300 | scan=- drift=- | 13:54:20 |
-| S00 | 223R | win | 1 | 0.3177 | 13.7 | 4.35 | 300 | scan=27.0 drift=-49.3% | 13:26:31 |
 
 ## オッズドリフト統計 (7日)
 
 | bt | n | avg | min | max | down10 | collapse(≤-30%) | any_large(≥10%) |
 |---|---|---|---|---|---|---|---|
-| 3t | 6 | +18.4% | -26.3% | +75.7% | 2 | 0 | 4 |
+| 3t | 12 | +11.6% | -41.4% | +75.7% | 5 | 1 | 9 |
 | win | 43 | -7.4% | -81.4% | +124.4% | 20 | 14 | 30 |
 
 ## 校正テーブル合格状況
@@ -282,11 +285,11 @@ ault=5000
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 420.5s |
-| **Latency** (scan→final max) | 599.4s |
-| **Traffic** (notifications 24h) | 32 |
+| **Latency** (scan→final avg) | 440.4s |
+| **Latency** (scan→final max) | 599.7s |
+| **Traffic** (notifications 24h) | 35 |
 | **Errors** (send fail rate) | ✅ 0.0% |
-| **Saturation** (S04_SELL_3T) | 600円 used |
+| **Saturation** (S04_SELL_3T) | 1,200円 used |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
 
@@ -331,4 +334,4 @@ ault=5000
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-09T09:10:02.137056+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-09T09:20:02.211968+09:00_
