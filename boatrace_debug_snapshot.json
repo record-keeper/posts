@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-10T05:10:01.374681+09:00",
+  "generated_at": "2026-05-10T05:20:01.505985+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -135,7 +135,7 @@
       },
       {
         "kind": "PSI_DRIFT_DETECTED",
-        "c": 26
+        "c": 25
       },
       {
         "kind": "ANOMALY_ML_PROB_SHIFT",
@@ -805,30 +805,6 @@
         "count": 2,
         "last_at": "2026-05-09T05:30:03",
         "fix_hint": "dispatch_pending が WARNING 連発。webhook 解決失敗。config_loader lazy dotenv 動作確認"
-      },
-      {
-        "kind": "ROI_STAT",
-        "severity": "INFO",
-        "key": "ROI_STAT|S00: n=139 hit%=25.9% hit_CI[Bonf]=[16.8,37.8]% ROI=0.89 ROI_boot95=[0.61,1.21]",
-        "count": 2,
-        "last_at": "2026-05-09T05:12:26",
-        "fix_hint": "統計サマリ情報。判定ではなく参照用"
-      },
-      {
-        "kind": "INSUFFICIENT_SAMPLE",
-        "severity": "INFO",
-        "key": "INSUFFICIENT_SAMPLE|S00: n=139<300 — v17 要件未達、ROI判定保留",
-        "count": 2,
-        "last_at": "2026-05-09T05:12:26",
-        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
-      },
-      {
-        "kind": "ORPHAN_SCAN",
-        "severity": "WARN",
-        "key": "ORPHAN_SCAN|120 件の scan に final/retreat 追従無し",
-        "count": 2,
-        "last_at": "2026-05-09T05:12:26",
-        "fix_hint": "scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗"
       }
     ],
     "golden_signals": {
