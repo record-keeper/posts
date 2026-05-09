@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-10T05:30:02.023805+09:00",
+  "generated_at": "2026-05-10T05:40:01.653270+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -797,14 +797,6 @@
         "count": 3,
         "last_at": "2026-05-09T16:04:08",
         "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
-      },
-      {
-        "kind": "CODE_AUDIT_DISPATCH_WARNING_REPEATED",
-        "severity": "WARN",
-        "key": "CODE_AUDIT_DISPATCH_WARNING_REPEATED|直近1時間で WARNING 3件",
-        "count": 2,
-        "last_at": "2026-05-09T05:30:03",
-        "fix_hint": "dispatch_pending が WARNING 連発。webhook 解決失敗。config_loader lazy dotenv 動作確認"
       }
     ],
     "golden_signals": {
