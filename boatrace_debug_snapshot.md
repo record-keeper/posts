@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-12T10:10:01.773394+09:00
+**生成**: 2026-05-12T10:20:01.680974+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×38 (24h) → ログ/DB確認
@@ -17,15 +17,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×8  [2026-05-12T10:02:06]
+### 🔴 PSI_DRIFT_DETECTED  ×18  [2026-05-12T10:02:06]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×8  [2026-05-12T10:02:06]
+### 🔴 STRATEGY_CI_FAIL  ×18  [2026-05-12T10:02:06]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 KS_ODDS_DRIFT  ×8  [2026-05-12T10:02:06]
+### 🟡 KS_ODDS_DRIFT  ×18  [2026-05-12T10:02:06]
 - key: `KS_ODDS_DRIFT|`
 - **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 2.57MB / last modified 2026-05-12T10:09:05.643848+09:00
+- DB: 2.57MB / last modified 2026-05-12T10:19:20.941797+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,33 +149,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-ault=5000
-2026-05-12 10:06:05,870 [INFO] predictor: Models loaded OK
-2026-05-12 10:06:06,009 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-12 10:07:06,147 [INFO] run_cycle: === run_cycle 10:07:06 ===
-2026-05-12 10:07:06,147 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-12 10:07:06,147 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-12 10:07:06,216 [INFO] predictor: Models loaded OK
-2026-05-12 10:07:06,311 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-12 10:08:05,819 [INFO] run_cycle: === run_cycle 10:08:05 ===
-2026-05-12 10:08:05,819 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-12 10:08:05,819 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-12 10:08:05,891 [INFO] predictor: Models loaded OK
-2026-05-12 10:08:17,544 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-12 10:08:18,665 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-12 10:08:19,821 [INFO] scraper: odds2t: 29/30 parsed
-2026-05-12 10:08:19,822 [INFO] scraper: odds2f: 13/15 parsed
-2026-05-12 10:08:20,962 [INFO] scraper: odds_win: 5/6 parsed
-2026-05-12 10:08:20,962 [INFO] scraper: fetch_race 23/5: boats=6 odds=187/191
-2026-05-12 10:08:20,974 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-12 10:08:20,974 [INFO] predictor: combos: {'win': 5, '2t': 29, '3t': 120}
-2026-05-12 10:08:20,983 [INFO] run_cycle: fetched 23/5 [scan]: 154 combos
-2026-05-12 10:08:21,092 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-12 10:09:05,436 [INFO] run_cycle: === run_cycle 10:09:05 ===
-2026-05-12 10:09:05,437 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-12 10:09:05,437 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-12 10:09:05,505 [INFO] predictor: Models loaded OK
-2026-05-12 10:09:05,613 [INFO] run_cycle: run_cycle done: 0 notifications
+=== run_cycle 10:18:06 ===
+2026-05-12 10:18:06,316 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-12 10:18:06,316 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-12 10:18:06,386 [INFO] predictor: Models loaded OK
+2026-05-12 10:18:17,919 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-12 10:18:19,406 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-12 10:18:20,550 [INFO] scraper: odds2t: 29/30 parsed
+2026-05-12 10:18:20,552 [INFO] scraper: odds2f: 14/15 parsed
+2026-05-12 10:18:21,675 [INFO] scraper: odds_win: 5/6 parsed
+2026-05-12 10:18:21,675 [INFO] scraper: fetch_race 18/5: boats=6 odds=188/191
+2026-05-12 10:18:21,687 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-12 10:18:21,687 [INFO] predictor: combos: {'win': 5, '2t': 29, '3t': 120}
+2026-05-12 10:18:21,694 [INFO] run_cycle: fetched 18/5 [scan]: 154 combos
+2026-05-12 10:18:21,876 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-12 10:19:05,432 [INFO] run_cycle: === run_cycle 10:19:05 ===
+2026-05-12 10:19:05,433 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-12 10:19:05,433 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-12 10:19:05,481 [INFO] predictor: Models loaded OK
+2026-05-12 10:19:17,117 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-12 10:19:18,223 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-12 10:19:19,389 [INFO] scraper: odds2t: 30/30 parsed
+2026-05-12 10:19:19,390 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-12 10:19:20,563 [INFO] scraper: odds_win: 3/6 parsed
+2026-05-12 10:19:20,563 [INFO] scraper: fetch_race 14/5: boats=6 odds=188/191
+2026-05-12 10:19:20,575 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-12 10:19:20,575 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
+2026-05-12 10:19:20,582 [INFO] run_cycle: fetched 14/5 [scan]: 153 combos
+2026-05-12 10:19:20,696 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -197,18 +198,18 @@ ault=5000
   {
     "target": "mirror",
     "ok": 1,
-    "c": 77
+    "c": 76
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 77
+    "c": 76
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 29, 'result': 20, 'scan': 28}
+{'final': 29, 'result': 20, 'scan': 27}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -242,10 +243,10 @@ ault=5000
 [08:00:36] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 2.3e-05, "ks_stat": 0.351}
 ```
 
-## 本日残レース: 156件
+## 本日残レース: 155件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 12件 締切済
+- race_schedule: 168件 登録 / 13件 締切済
 - 通知発射: scan=0 nid / final=1 nid / result=1 nid
 - predictions: 1 / うち結果DB記録済: 1
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -287,9 +288,9 @@ ault=5000
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 465.1s |
+| **Latency** (scan→final avg) | 467.4s |
 | **Latency** (scan→final max) | 611.2s |
-| **Traffic** (notifications 24h) | 77 |
+| **Traffic** (notifications 24h) | 76 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 300円 used |
 
@@ -342,4 +343,4 @@ ault=5000
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-12T10:10:01.773394+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-12T10:20:01.680974+09:00_
