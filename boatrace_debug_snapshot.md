@@ -2,14 +2,14 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-13T10:50:01.781641+09:00
+**生成**: 2026-05-13T11:00:02.451916+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
 
 ### 検出された問題
 - 🟡 FINAL_MISSING×76 (24h)
-- 🔴 PSI_DRIFT_DETECTED×41 (24h)
+- 🔴 PSI_DRIFT_DETECTED×42 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🟡 LARGE_ODDS_DRIFT×2 (24h)
 - 🔴 CRITICAL_ODDS_COLLAPSE×1 (24h)
@@ -19,15 +19,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×48  [2026-05-13T10:02:06]
+### 🔴 PSI_DRIFT_DETECTED  ×58  [2026-05-13T10:02:06]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×48  [2026-05-13T10:02:06]
+### 🔴 STRATEGY_CI_FAIL  ×58  [2026-05-13T10:02:06]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 KS_ODDS_DRIFT  ×48  [2026-05-13T10:02:06]
+### 🟡 KS_ODDS_DRIFT  ×58  [2026-05-13T10:02:06]
 - key: `KS_ODDS_DRIFT|`
 - **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 2.59MB / last modified 2026-05-13T10:49:28.672545+09:00
+- DB: 2.59MB / last modified 2026-05-13T11:00:04.240034+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,35 +151,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-rsed
-2026-05-13 10:48:31,969 [INFO] scraper: fetch_race 08/2: boats=6 odds=186/191
-2026-05-13 10:48:31,981 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-13 10:48:31,981 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-05-13 10:48:31,988 [INFO] run_cycle: fetched 08/2 [scan]: 153 combos
-2026-05-13 10:48:32,268 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-13 10:49:05,661 [INFO] run_cycle: === run_cycle 10:49:05 ===
-2026-05-13 10:49:05,661 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-13 10:49:05,661 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-13 10:49:05,725 [INFO] predictor: Models loaded OK
-2026-05-13 10:49:17,407 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-13 10:49:18,484 [INFO] scraper: odds3f: 19/20 parsed
-2026-05-13 10:49:19,995 [INFO] scraper: odds2t: 28/30 parsed
-2026-05-13 10:49:19,996 [INFO] scraper: odds2f: 14/15 parsed
-2026-05-13 10:49:21,110 [INFO] scraper: odds_win: 6/6 parsed
-2026-05-13 10:49:21,110 [INFO] scraper: fetch_race 16/1: boats=6 odds=187/191
-2026-05-13 10:49:21,122 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-13 10:49:21,122 [INFO] predictor: combos: {'win': 6, '2t': 28, '3t': 120}
-2026-05-13 10:49:21,132 [INFO] run_cycle: fetched 16/1 [final]: 154 combos
-2026-05-13 10:49:25,003 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-13 10:49:26,086 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-13 10:49:27,310 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-13 10:49:27,312 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-13 10:49:28,408 [INFO] scraper: odds_win: 6/6 parsed
-2026-05-13 10:49:28,408 [INFO] scraper: fetch_race 14/6: boats=6 odds=191/191
-2026-05-13 10:49:28,417 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-13 10:49:28,417 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-13 10:49:28,425 [INFO] run_cycle: fetched 14/6 [scan]: 156 combos
-2026-05-13 10:49:28,541 [INFO] run_cycle: run_cycle done: 0 notifications
+5000
+2026-05-13 10:58:05,620 [INFO] predictor: Models loaded OK
+2026-05-13 10:58:16,679 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=11&hd=20260513: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-05-13 10:58:28,083 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-13 10:58:29,151 [INFO] scraper: odds3f: 18/20 parsed
+2026-05-13 10:58:30,276 [INFO] scraper: odds2t: 25/30 parsed
+2026-05-13 10:58:30,277 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-13 10:58:31,373 [INFO] scraper: odds_win: 5/6 parsed
+2026-05-13 10:58:31,373 [INFO] scraper: fetch_race 11/2: boats=6 odds=183/191
+2026-05-13 10:58:31,384 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-13 10:58:31,385 [INFO] predictor: combos: {'win': 5, '2t': 25, '3t': 120}
+2026-05-13 10:58:31,472 [INFO] run_cycle: fetched 11/2 [final]: 150 combos
+2026-05-13 10:58:31,672 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-13 10:59:05,381 [INFO] run_cycle: === run_cycle 10:59:05 ===
+2026-05-13 10:59:05,381 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-13 10:59:05,381 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-13 10:59:05,454 [INFO] predictor: Models loaded OK
+2026-05-13 10:59:16,906 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-13 10:59:18,002 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-13 10:59:19,083 [INFO] scraper: odds2t: 30/30 parsed
+2026-05-13 10:59:19,084 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-13 10:59:20,190 [INFO] scraper: odds_win: 6/6 parsed
+2026-05-13 10:59:20,190 [INFO] scraper: fetch_race 14/6: boats=6 odds=191/191
+2026-05-13 10:59:20,196 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-13 10:59:20,196 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-05-13 10:59:20,200 [INFO] run_cycle: fetched 14/6 [final]: 156 combos
+2026-05-13 10:59:20,442 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -218,8 +216,8 @@ rsed
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 212
   FINAL_MISSING: 76
-  PSI_DRIFT_DETECTED: 41
-  KS_ODDS_DRIFT: 38
+  PSI_DRIFT_DETECTED: 42
+  KS_ODDS_DRIFT: 39
   STRATEGY_CI_FAIL: 17
   LARGE_ODDS_DRIFT: 2
   CRITICAL_ODDS_COLLAPSE: 1
@@ -230,11 +228,13 @@ rsed
 |---|---|---|---|---|---|---|
 | S00 | 43 | 12 | 12,900 | 10,470 | -2,430 | 0.812 |
 | S01_NAKAANA1 | 22 | 10 | 4,400 | 3,820 | -580 | 0.868 |
-| S02_TETSUBAN | 16 | 9 | 3,200 | 3,700 | +500 | 1.156 |
+| S02_TETSUBAN | 17 | 9 | 3,400 | 3,700 | +300 | 1.088 |
 | S04_SELL_3T | 12 | 1 | 1,200 | 740 | -460 | 0.617 |
 
 ## 直近アラート (24h・新しい順)
 ```
+[10:51:28] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 0.0, "ks_stat": 0.436}
+[10:51:28] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 124, "n_recent": 82, "psi": 0.407}
 [10:02:05] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [10:02:05] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 0.0, "ks_stat": 0.43}
 [10:02:05] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 124, "n_recent": 81, "psi": 0.419}
@@ -243,16 +243,14 @@ rsed
 [09:01:28] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 124, "n_recent": 81, "psi": 0.419}
 [08:00:34] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [08:00:34] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 0.0, "ks_stat": 0.43}
-[08:00:34] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 124, "n_recent": 81, "psi": 0.419}
-[06:00:07] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 ```
 
-## 本日残レース: 149件
+## 本日残レース: 144件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 19件 締切済
-- 通知発射: scan=2 nid / final=0 nid / result=0 nid
-- predictions: 0 / うち結果DB記録済: 0
+- race_schedule: 168件 登録 / 24件 締切済
+- 通知発射: scan=2 nid / final=2 nid / result=0 nid
+- predictions: 1 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - ✅ scan後final無しのまま締切: 0件（FINAL_MISSING の温床）
 
@@ -263,6 +261,7 @@ rsed
 ## 最新 predictions サンプル (計算spot-check用)
 | sid | race | bt | combo | p | odds | ev | bet | at |
 |---|---|---|---|---|---|---|---|---|
+| S02_TETSUBAN | 031R | win | 1 | 0.4989 | 2.1 | 1.05 | 200 | scan=2.1 drift=+0.0% | 10:51:20 |
 | S01_NAKAANA1 | 209R | win | 1 | 0.5735 | 3.0 | 1.72 | 200 | scan=- drift=- | 19:09:22 |
 | S00 | 076R | win | 1 | 0.5735 | 5.6 | 3.21 | 300 | scan=5.2 drift=+7.7% | 17:59:20 |
 | S01_NAKAANA1 | 123R | win | 1 | 0.5891 | 3.8 | 2.24 | 200 | scan=3.9 drift=-2.6% | 16:42:23 |
@@ -272,14 +271,13 @@ rsed
 | S00 | 202R | win | 1 | 0.3177 | 4.7 | 1.49 | 300 | scan=- drift=- | 15:57:45 |
 | S01_NAKAANA1 | 202R | win | 1 | 0.3177 | 3.3 | 1.05 | 200 | scan=- drift=- | 15:56:19 |
 | S00 | 048R | win | 1 | 0.5174 | 11.5 | 5.95 | 300 | scan=22.5 drift=-48.9% | 15:26:56 |
-| S01_NAKAANA1 | 201R | win | 1 | 0.5334 | 4.3 | 2.29 | 200 | scan=3.5 drift=+22.9% | 15:23:21 |
 
 ## オッズドリフト統計 (7日)
 
 | bt | n | avg | min | max | down10 | collapse(≤-30%) | any_large(≥10%) |
 |---|---|---|---|---|---|---|---|
 | 3t | 12 | +11.6% | -41.4% | +75.7% | 5 | 1 | 9 |
-| win | 57 | +5.0% | -75.4% | +522.0% | 24 | 15 | 39 |
+| win | 58 | +4.9% | -75.4% | +522.0% | 24 | 15 | 39 |
 
 ## 校正テーブル合格状況
 
@@ -292,10 +290,11 @@ rsed
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 471.4s |
+| **Latency** (scan→final avg) | 467.8s |
 | **Latency** (scan→final max) | 650.7s |
 | **Traffic** (notifications 24h) | 90 |
 | **Errors** (send fail rate) | ✅ 0.0% |
+| **Saturation** (S02_TETSUBAN) | 200円 used |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
 
@@ -346,4 +345,4 @@ rsed
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-13T10:50:01.781641+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-13T11:00:02.451916+09:00_
