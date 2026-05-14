@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-15T06:00:01.562890+09:00
+**生成**: 2026-05-15T06:10:01.907166+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×30 (24h) → ログ/DB確認
@@ -18,85 +18,85 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×52  [2026-05-14T23:08:06]
-- key: `PSI_DRIFT_DETECTED|`
-- **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
-
-### 🔴 STRATEGY_CI_FAIL  ×52  [2026-05-14T23:08:06]
-- key: `STRATEGY_CI_FAIL|`
-- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
-
-### 🟡 KS_ODDS_DRIFT  ×52  [2026-05-14T23:08:06]
-- key: `KS_ODDS_DRIFT|`
-- **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
-
-### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×52  [2026-05-14T13:49:13]
-- key: `ANOMALY_SCRAPER_FAILURE_BURST|`
-- **FIX**: 直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS
-
-### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×9  [2026-05-14T11:14:32]
-- key: `ANOMALY_SCAN_FINAL_RATIO|`
-- **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
-
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-14T06:00:12]
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-15T06:00:19]
 - key: `CALIBRATION_LIVE|decile 0.00-0.05: n=13 pred=0.0030 actual=0.0769 gap=-0.0739`
 - **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
 
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-14T06:00:12]
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-15T06:00:19]
 - key: `CALIBRATION_LIVE|decile 0.15-0.20: n=7 pred=0.1907 actual=0.1429 gap=+0.0479`
 - **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
 
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-14T06:00:12]
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-15T06:00:19]
 - key: `CALIBRATION_LIVE|decile 0.20-0.30: n=10 pred=0.2234 actual=0.3000 gap=-0.0766`
 - **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
 
-### ℹ️ ROI_STAT  ×1  [2026-05-14T06:00:12]
-- key: `ROI_STAT|S00: n=176 hit%=25.6% hit_CI[Bonf]=[17.3,36.0]% ROI=0.87 ROI_boot95=[0.62,1.14]`
+### ℹ️ ROI_STAT  ×1  [2026-05-15T06:00:19]
+- key: `ROI_STAT|S00: n=183 hit%=25.7% hit_CI[Bonf]=[17.6,35.9]% ROI=0.86 ROI_boot95=[0.62,1.12]`
 - **FIX**: 統計サマリ情報。判定ではなく参照用
 
-### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-05-14T06:00:12]
-- key: `INSUFFICIENT_SAMPLE|S00: n=176<300 — v17 要件未達、ROI判定保留`
+### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-05-15T06:00:19]
+- key: `INSUFFICIENT_SAMPLE|S00: n=183<300 — v17 要件未達、ROI判定保留`
 - **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
 
-### ℹ️ ROI_STAT  ×1  [2026-05-14T06:00:12]
-- key: `ROI_STAT|S01_NAKAANA1: n=30 hit%=43.3% hit_CI[Bonf]=[21.6,67.9]% ROI=0.87 ROI_boot95=[0.4`
+### ℹ️ ROI_STAT  ×1  [2026-05-15T06:00:19]
+- key: `ROI_STAT|S01_NAKAANA1: n=35 hit%=40.0% hit_CI[Bonf]=[20.4,63.5]% ROI=0.80 ROI_boot95=[0.4`
 - **FIX**: 統計サマリ情報。判定ではなく参照用
 
-### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-05-14T06:00:12]
-- key: `INSUFFICIENT_SAMPLE|S01_NAKAANA1: n=30<300 — v17 要件未達、ROI判定保留`
+### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-05-15T06:00:19]
+- key: `INSUFFICIENT_SAMPLE|S01_NAKAANA1: n=35<300 — v17 要件未達、ROI判定保留`
 - **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
 
-### 🟡 ORPHAN_SCAN  ×1  [2026-05-14T06:00:12]
-- key: `ORPHAN_SCAN|212 件の scan に final/retreat 追従無し`
+### 🟡 ORPHAN_SCAN  ×1  [2026-05-15T06:00:19]
+- key: `ORPHAN_SCAN|220 件の scan に final/retreat 追従無し`
 - **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
 
-### ℹ️ DRIFT_BUCKET  ×1  [2026-05-14T06:00:12]
-- key: `DRIFT_BUCKET|drift ≤-30%: n=39 hit%=20.5% ROI=0.58 (コスト 11,500/回収 6,660)`
+### ℹ️ DRIFT_BUCKET  ×1  [2026-05-15T06:00:19]
+- key: `DRIFT_BUCKET|drift ≤-30%: n=41 hit%=22.0% ROI=0.60 (コスト 12,100/回収 7,290)`
 - **FIX**: ドリフト帯別 ROI 分析の情報。対策検討の材料
 
-### ℹ️ DRIFT_BUCKET  ×1  [2026-05-14T06:00:12]
-- key: `DRIFT_BUCKET|drift -30%〜-10%: n=28 hit%=32.1% ROI=1.51 (コスト 6,800/回収 10,260)`
+### ℹ️ DRIFT_BUCKET  ×1  [2026-05-15T06:00:19]
+- key: `DRIFT_BUCKET|drift -30%〜-10%: n=31 hit%=32.3% ROI=1.48 (コスト 7,500/回収 11,070)`
 - **FIX**: ドリフト帯別 ROI 分析の情報。対策検討の材料
 
-### ℹ️ DRIFT_BUCKET  ×1  [2026-05-14T06:00:12]
-- key: `DRIFT_BUCKET|drift -10%〜+10%: n=45 hit%=28.9% ROI=1.04 (コスト 11,400/回収 11,840)`
+### ℹ️ DRIFT_BUCKET  ×1  [2026-05-15T06:00:19]
+- key: `DRIFT_BUCKET|drift -10%〜+10%: n=49 hit%=30.6% ROI=1.03 (コスト 12,400/回収 12,720)`
 - **FIX**: ドリフト帯別 ROI 分析の情報。対策検討の材料
 
-### ℹ️ DRIFT_BUCKET  ×1  [2026-05-14T06:00:12]
-- key: `DRIFT_BUCKET|drift ≥+30%: n=31 hit%=22.6% ROI=0.64 (コスト 8,300/回収 5,280)`
+### ℹ️ DRIFT_BUCKET  ×1  [2026-05-15T06:00:19]
+- key: `DRIFT_BUCKET|drift ≥+30%: n=33 hit%=21.2% ROI=0.60 (コスト 8,800/回収 5,280)`
 - **FIX**: ドリフト帯別 ROI 分析の情報。対策検討の材料
 
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-14T06:00:12]
-- key: `CALIBRATION_LIVE|bt=win: n=226 pred=0.4505 actual=0.3009 error=+0.1496 (+33%) brier=0.2316 [OVERC`
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-15T06:00:19]
+- key: `CALIBRATION_LIVE|bt=win: n=242 pred=0.4545 actual=0.3017 error=+0.1529 (+34%) brier=0.2324 [OVERC`
 - **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
 
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-14T06:00:12]
-- key: `CALIBRATION_LIVE|S00(win): n=176 pred=0.4372 hit=0.2557 cal_err=+0.1815 brier=0.2280 BSS=-0.20 RO`
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-15T06:00:19]
+- key: `CALIBRATION_LIVE|S00(win): n=183 pred=0.4382 hit=0.2568 cal_err=+0.1814 brier=0.2283 BSS=-0.20 RO`
 - **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
 
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-14T06:00:12]
-- key: `CALIBRATION_LIVE|S01_NAKAANA1(win): n=30 pred=0.4869 hit=0.4333 cal_err=+0.0535 brier=0.2321 BSS=`
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-15T06:00:19]
+- key: `CALIBRATION_LIVE|S01_NAKAANA1(win): n=35 pred=0.4969 hit=0.4000 cal_err=+0.0969 brier=0.2378 BSS=`
 - **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-15T06:00:19]
+- key: `CALIBRATION_LIVE|S02_TETSUBAN(win): n=24 pred=0.5166 hit=0.5000 cal_err=+0.0166 brier=0.2559 BSS=`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-15T06:00:19]
+- key: `CALIBRATION_LIVE|decile 0.30-0.40: n=20 pred=0.3268 actual=0.1500 gap=+0.1768`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-15T06:00:19]
+- key: `CALIBRATION_LIVE|decile 0.40-0.50: n=90 pred=0.4480 actual=0.2889 gap=+0.1591`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-15T06:00:19]
+- key: `CALIBRATION_LIVE|decile 0.50+: n=109 pred=0.5410 actual=0.3578 gap=+0.1832`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### 🟡 PAYOUT_RATIO_WEIRD  ×1  [2026-05-15T06:00:15]
+- key: `PAYOUT_RATIO_WEIRD|pid=759 bet=300 odds=4.0 payout=1980 ratio=1.65`
+- **FIX**: 同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視
 
 
 以下、詳細セクション（通常読み飛ばし可）
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 2.71MB / last modified 2026-05-15T05:30:06.730458+09:00
+- DB: 2.71MB / last modified 2026-05-15T06:00:23.634486+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -229,6 +229,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[06:00:12] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
+[06:00:12] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 0.0, "ks_stat": 0.506}
+[06:00:12] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 132, "n_recent": 110, "psi": 0.432}
 [23:50:18] FINAL_MISSING: {"deadline": "2026-05-14T12:14:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051402041214", "sid": "S00"}
 [23:48:06] FINAL_MISSING: {"deadline": "2026-05-14T15:12:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051416091512", "sid": "S00"}
 [23:29:06] FINAL_MISSING: {"deadline": "2026-05-14T12:54:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051404031254", "sid": "S00"}
@@ -236,9 +239,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:26:06] FINAL_MISSING: {"deadline": "2026-05-14T18:52:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051407081852", "sid": "S00"}
 [23:26:06] FINAL_MISSING: {"deadline": "2026-05-14T11:48:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051403031148", "sid": "S00"}
 [23:09:06] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 0.0, "ks_stat": 0.506}
-[23:09:06] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 132, "n_recent": 110, "psi": 0.432}
-[23:09:06] FINAL_MISSING: {"deadline": "2026-05-14T17:37:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051407051737", "sid": "S00"}
-[23:08:05] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 ```
 
 ## 本日残レース: 0件
@@ -340,4 +340,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-15T06:00:01.562890+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-15T06:10:01.907166+09:00_
