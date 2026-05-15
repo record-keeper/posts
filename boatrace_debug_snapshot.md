@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-15T10:10:01.429831+09:00
+**生成**: 2026-05-15T10:20:02.228404+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×30 (24h) → ログ/DB確認
@@ -18,15 +18,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×8  [2026-05-15T10:02:07]
+### 🔴 PSI_DRIFT_DETECTED  ×18  [2026-05-15T10:02:07]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×8  [2026-05-15T10:02:07]
+### 🔴 STRATEGY_CI_FAIL  ×18  [2026-05-15T10:02:07]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 KS_ODDS_DRIFT  ×8  [2026-05-15T10:02:07]
+### 🟡 KS_ODDS_DRIFT  ×18  [2026-05-15T10:02:07]
 - key: `KS_ODDS_DRIFT|`
 - **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 2.74MB / last modified 2026-05-15T10:09:06.599056+09:00
+- DB: 2.74MB / last modified 2026-05-15T10:19:06.535199+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,31 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-[INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-15 10:07:06,509 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-15 10:07:06,587 [INFO] predictor: Models loaded OK
-2026-05-15 10:07:06,695 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-15 10:08:06,282 [INFO] run_cycle: === run_cycle 10:08:06 ===
-2026-05-15 10:08:06,283 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-15 10:08:06,283 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-15 10:08:06,326 [INFO] predictor: Models loaded OK
-2026-05-15 10:08:17,360 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=5&jcd=18&hd=20260515: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-05-15 10:08:30,296 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-15 10:08:31,614 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-15 10:08:32,775 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-15 10:08:32,776 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-15 10:08:33,857 [INFO] scraper: odds_win: 6/6 parsed
-2026-05-15 10:08:34,814 [INFO] scraper: fetch_race 18/5: boats=6 odds=191/191
-2026-05-15 10:08:34,827 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-15 10:08:34,827 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-15 10:08:35,818 [INFO] run_cycle: fetched 18/5 [scan]: 156 combos
-2026-05-15 10:08:35,936 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-15 10:09:06,319 [INFO] run_cycle: === run_cycle 10:09:06 ===
-2026-05-15 10:09:06,319 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-15 10:09:06,319 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-15 10:09:06,388 [INFO] predictor: Models loaded OK
-2026-05-15 10:09:06,492 [INFO] run_cycle: run_cycle done: 0 notifications
+_race 10/5: boats=6 odds=187/191
+2026-05-15 10:17:20,551 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-15 10:17:20,551 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-05-15 10:17:20,558 [INFO] run_cycle: fetched 10/5 [scan]: 154 combos
+2026-05-15 10:17:20,665 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-15 10:18:05,532 [INFO] run_cycle: === run_cycle 10:18:05 ===
+2026-05-15 10:18:05,532 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-15 10:18:05,532 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-15 10:18:05,589 [INFO] predictor: Models loaded OK
+2026-05-15 10:18:16,725 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=08&hd=20260515: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-05-15 10:18:28,536 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-15 10:18:29,650 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-15 10:18:30,743 [INFO] scraper: odds2t: 24/30 parsed
+2026-05-15 10:18:30,744 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-15 10:18:31,852 [INFO] scraper: odds_win: 5/6 parsed
+2026-05-15 10:18:31,852 [INFO] scraper: fetch_race 08/1: boats=6 odds=184/191
+2026-05-15 10:18:31,863 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-15 10:18:31,864 [INFO] predictor: combos: {'win': 5, '2t': 24, '3t': 120}
+2026-05-15 10:18:31,871 [INFO] run_cycle: fetched 08/1 [scan]: 149 combos
+2026-05-15 10:18:31,992 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-15 10:19:06,188 [INFO] run_cycle: === run_cycle 10:19:06 ===
+2026-05-15 10:19:06,188 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-15 10:19:06,188 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-15 10:19:06,237 [INFO] predictor: Models loaded OK
+2026-05-15 10:19:06,487 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -241,10 +242,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [08:00:58] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 132, "n_recent": 110, "psi": 0.432}
 ```
 
-## 本日残レース: 148件
+## 本日残レース: 147件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 8件 締切済
+- race_schedule: 156件 登録 / 9件 締切済
 - 通知発射: scan=1 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -340,4 +341,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-15T10:10:01.429831+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-15T10:20:02.228404+09:00_
