@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-16T09:10:01.815058+09:00
+**生成**: 2026-05-16T09:20:01.450044+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×29 (24h) → ログ/DB確認
@@ -18,19 +18,19 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×10  [2026-05-16T09:00:44]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×20  [2026-05-16T09:00:44]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 PSI_DRIFT_DETECTED  ×10  [2026-05-16T09:00:44]
+### 🔴 PSI_DRIFT_DETECTED  ×20  [2026-05-16T09:00:44]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×10  [2026-05-16T09:00:44]
+### 🔴 STRATEGY_CI_FAIL  ×20  [2026-05-16T09:00:44]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 KS_ODDS_DRIFT  ×10  [2026-05-16T09:00:44]
+### 🟡 KS_ODDS_DRIFT  ×20  [2026-05-16T09:00:44]
 - key: `KS_ODDS_DRIFT|`
 - **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 2.78MB / last modified 2026-05-16T09:09:05.630988+09:00
+- DB: 2.78MB / last modified 2026-05-16T09:19:05.351139+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,33 +150,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-TION_MODE=on
-2026-05-16 09:07:20,231 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-16 09:07:20,239 [INFO] run_cycle: fetched 14/2 [final]: 156 combos
-2026-05-16 09:07:20,249 [INFO] race_id: notif: nid=2026051614020910 sid=S01_NAKAANA1 phase=final rank=B
-2026-05-16 09:07:20,583 [INFO] notifier: Discord notify OK (status=204)
-2026-05-16 09:07:20,943 [INFO] notifier: Discord notify OK (status=204)
-2026-05-16 09:07:20,982 [INFO] run_cycle: FINAL S01_NAKAANA1 鳴門2R B
-2026-05-16 09:07:21,077 [INFO] run_cycle: run_cycle done: 1 notifications
-2026-05-16 09:08:05,253 [INFO] run_cycle: === run_cycle 09:08:05 ===
-2026-05-16 09:08:05,253 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-16 09:08:05,253 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-16 09:08:05,303 [INFO] predictor: Models loaded OK
-2026-05-16 09:08:16,789 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-16 09:08:17,877 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-16 09:08:18,979 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-16 09:08:18,980 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-16 09:08:20,084 [INFO] scraper: odds_win: 6/6 parsed
-2026-05-16 09:08:20,084 [INFO] scraper: fetch_race 14/2: boats=6 odds=191/191
-2026-05-16 09:08:20,095 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-16 09:08:20,096 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-16 09:08:20,103 [INFO] run_cycle: fetched 14/2 [final]: 156 combos
-2026-05-16 09:08:20,192 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-16 09:09:05,444 [INFO] run_cycle: === run_cycle 09:09:05 ===
-2026-05-16 09:09:05,446 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-16 09:09:05,446 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-16 09:09:05,508 [INFO] predictor: Models loaded OK
-2026-05-16 09:09:05,511 [INFO] run_cycle: run_cycle done: 0 notifications
+[INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-16 09:17:05,750 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-16 09:17:05,812 [INFO] predictor: Models loaded OK
+2026-05-16 09:17:16,886 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=3&jcd=10&hd=20260516: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-05-16 09:17:29,415 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-16 09:17:30,594 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-16 09:17:31,688 [INFO] scraper: odds2t: 30/30 parsed
+2026-05-16 09:17:31,689 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-16 09:17:33,074 [INFO] scraper: odds_win: 5/6 parsed
+2026-05-16 09:17:33,074 [INFO] scraper: fetch_race 10/3: boats=6 odds=190/191
+2026-05-16 09:17:33,088 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-16 09:17:33,088 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-05-16 09:17:33,099 [INFO] run_cycle: fetched 10/3 [scan]: 155 combos
+2026-05-16 09:17:33,225 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-16 09:18:05,368 [INFO] run_cycle: === run_cycle 09:18:05 ===
+2026-05-16 09:18:05,368 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-16 09:18:05,368 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-16 09:18:05,436 [INFO] predictor: Models loaded OK
+2026-05-16 09:18:05,640 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-16 09:19:05,016 [INFO] run_cycle: === run_cycle 09:19:05 ===
+2026-05-16 09:19:05,016 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-16 09:19:05,016 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-16 09:19:05,085 [INFO] predictor: Models loaded OK
+2026-05-16 09:19:05,283 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -229,7 +226,6 @@ TION_MODE=on
 | S00 | 48 | 12 | 14,400 | 10,620 | -3,780 | 0.738 |
 | S01_NAKAANA1 | 38 | 14 | 7,600 | 5,620 | -1,980 | 0.739 |
 | S02_TETSUBAN | 27 | 13 | 5,400 | 5,000 | -400 | 0.926 |
-| S04_SELL_3T | 6 | 1 | 600 | 740 | +140 | 1.233 |
 
 ## 直近アラート (24h・新しい順)
 ```
@@ -276,7 +272,6 @@ TION_MODE=on
 
 | bt | n | avg | min | max | down10 | collapse(≤-30%) | any_large(≥10%) |
 |---|---|---|---|---|---|---|---|
-| 3t | 6 | +4.8% | -41.4% | +51.8% | 3 | 1 | 5 |
 | win | 73 | +0.3% | -76.3% | +522.0% | 30 | 16 | 46 |
 
 ## 校正テーブル合格状況
@@ -345,4 +340,4 @@ TION_MODE=on
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-16T09:10:01.815058+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-16T09:20:01.450044+09:00_
