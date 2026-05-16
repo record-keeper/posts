@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-16T14:50:02.206204+09:00
+**生成**: 2026-05-16T15:00:01.638089+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
@@ -10,7 +10,7 @@
 ### 検出された問題
 - 🟡 FINAL_MISSING×59 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
-- 🔴 PSI_DRIFT_DETECTED×15 (24h)
+- 🔴 PSI_DRIFT_DETECTED×14 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×2 (24h)
 - 🔴 CRITICAL_ODDS_COLLAPSE×1 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
@@ -24,23 +24,23 @@
 - key: `ANOMALY_SCAN_FINAL_RATIO|`
 - **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-05-16T14:30:05]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-05-16T14:30:05]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🟡 ANOMALY_BET_VOLUME_DROP  ×48  [2026-05-16T14:02:28]
+### 🟡 ANOMALY_BET_VOLUME_DROP  ×58  [2026-05-16T14:02:28]
 - key: `ANOMALY_BET_VOLUME_DROP|`
 - **FIX**: 本日のbet数が7日baselineから2σ低下。戦略filter/ scan fix/run_cycle停止を疑え
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×48  [2026-05-16T14:02:28]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×58  [2026-05-16T14:02:28]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×48  [2026-05-16T14:02:28]
+### 🔴 STRATEGY_CI_FAIL  ×58  [2026-05-16T14:02:28]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 KS_ODDS_DRIFT  ×48  [2026-05-16T14:02:28]
+### 🟡 KS_ODDS_DRIFT  ×58  [2026-05-16T14:02:28]
 - key: `KS_ODDS_DRIFT|`
 - **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
 
@@ -109,7 +109,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 2.83MB / last modified 2026-05-16T14:49:05.439818+09:00
+- DB: 2.83MB / last modified 2026-05-16T15:00:04.506080+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -152,32 +152,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-s2f: 15/15 parsed
-2026-05-16 14:46:46,602 [INFO] scraper: odds_win: 5/6 parsed
-2026-05-16 14:46:46,602 [INFO] scraper: fetch_race 06/8: boats=6 odds=190/191
-2026-05-16 14:46:46,613 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-16 14:46:46,613 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-05-16 14:46:46,621 [INFO] run_cycle: fetched 06/8 [scan]: 155 combos
-2026-05-16 14:46:46,845 [INFO] race_id: notif: nid=2026051604071459 sid=S00 phase=scan rank=S
-2026-05-16 14:46:47,278 [INFO] notifier: Discord notify OK (status=204)
-2026-05-16 14:46:47,607 [INFO] notifier: Discord notify OK (status=204)
-2026-05-16 14:46:47,612 [INFO] run_cycle: SCAN S00 平和島7R S
-2026-05-16 14:46:47,696 [INFO] run_cycle: run_cycle done: 1 notifications
-2026-05-16 14:47:05,628 [INFO] run_cycle: === run_cycle 14:47:05 ===
-2026-05-16 14:47:05,628 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-16 14:47:05,628 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-16 14:47:05,681 [INFO] predictor: Models loaded OK
-2026-05-16 14:47:06,246 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-16 14:48:05,429 [INFO] run_cycle: === run_cycle 14:48:05 ===
-2026-05-16 14:48:05,430 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-16 14:48:05,430 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-16 14:48:05,475 [INFO] predictor: Models loaded OK
-2026-05-16 14:48:05,695 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-16 14:49:04,936 [INFO] run_cycle: === run_cycle 14:49:04 ===
-2026-05-16 14:49:04,936 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-16 14:49:04,936 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-16 14:49:05,002 [INFO] predictor: Models loaded OK
-2026-05-16 14:49:05,367 [INFO] run_cycle: run_cycle done: 0 notifications
+] predictor: CALIBRATION_MODE=on
+2026-05-16 14:57:33,222 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-05-16 14:57:33,269 [INFO] run_cycle: fetched 04/7 [final]: 156 combos
+2026-05-16 14:57:34,637 [INFO] race_id: notif: nid=2026051604071459 sid=S00 phase=final rank=
+2026-05-16 14:57:35,123 [INFO] notifier: Discord notify OK (status=204)
+2026-05-16 14:57:35,819 [INFO] notifier: Discord notify OK (status=204)
+2026-05-16 14:57:35,860 [INFO] run_cycle: RETREAT S00 平和島7R
+2026-05-16 14:57:36,044 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-16 14:58:06,533 [INFO] run_cycle: === run_cycle 14:58:06 ===
+2026-05-16 14:58:07,342 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-16 14:58:07,342 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-16 14:58:07,387 [INFO] predictor: Models loaded OK
+2026-05-16 14:58:07,495 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-16 14:59:05,064 [INFO] run_cycle: === run_cycle 14:59:05 ===
+2026-05-16 14:59:05,064 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-16 14:59:05,064 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-16 14:59:05,128 [INFO] predictor: Models loaded OK
+2026-05-16 14:59:17,837 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-16 14:59:18,929 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-16 14:59:20,132 [INFO] scraper: odds2t: 29/30 parsed
+2026-05-16 14:59:20,133 [INFO] scraper: odds2f: 8/15 parsed
+2026-05-16 14:59:21,208 [INFO] scraper: odds_win: 4/6 parsed
+2026-05-16 14:59:21,208 [INFO] scraper: fetch_race 17/9: boats=6 odds=181/191
+2026-05-16 14:59:21,211 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-16 14:59:21,211 [INFO] predictor: combos: {'win': 4, '2t': 29, '3t': 120}
+2026-05-16 14:59:21,215 [INFO] run_cycle: fetched 17/9 [scan]: 153 combos
+2026-05-16 14:59:21,311 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -199,28 +200,28 @@ s2f: 15/15 parsed
   {
     "target": "mirror",
     "ok": 1,
-    "c": 46
+    "c": 48
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 46
+    "c": 48
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 15, 'result': 6, 'scan': 25}
+{'final': 16, 'result': 6, 'scan': 26}
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 144
+  ANOMALY_SCRAPER_FAILURE_BURST: 142
   FINAL_MISSING: 59
-  KS_ODDS_DRIFT: 22
   ANOMALY_SCAN_FINAL_RATIO: 21
+  KS_ODDS_DRIFT: 21
   CIRCUIT_BREAKER_NO_ACTION: 17
   STRATEGY_CI_FAIL: 17
-  PSI_DRIFT_DETECTED: 15
+  PSI_DRIFT_DETECTED: 14
   ANOMALY_BET_VOLUME_DROP: 4
   CIRCUIT_BREAKER_TRIP: 2
   CRITICAL_ODDS_COLLAPSE: 1
@@ -248,11 +249,11 @@ s2f: 15/15 parsed
 [14:14:27] FINAL_MISSING: {"deadline": "2026-05-16T12:43:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051603051243", "sid": "S00"}
 ```
 
-## 本日残レース: 76件
+## 本日残レース: 73件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 80件 締切済
-- 通知発射: scan=18 nid / final=11 nid / result=5 nid
+- race_schedule: 156件 登録 / 83件 締切済
+- 通知発射: scan=19 nid / final=13 nid / result=5 nid
 - predictions: 5 / うち結果DB記録済: 5
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - 🔴 scan後final無しのまま締切: 8件（FINAL_MISSING の温床）
@@ -292,9 +293,9 @@ s2f: 15/15 parsed
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 487.5s |
-| **Latency** (scan→final max) | 646.3s |
-| **Traffic** (notifications 24h) | 46 |
+| **Latency** (scan→final avg) | 494.3s |
+| **Latency** (scan→final max) | 646.5s |
+| **Traffic** (notifications 24h) | 48 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 600円 used |
 | **Saturation** (S01_NAKAANA1) | 600円 used |
@@ -348,4 +349,4 @@ s2f: 15/15 parsed
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-16T14:50:02.206204+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-16T15:00:01.638089+09:00_
