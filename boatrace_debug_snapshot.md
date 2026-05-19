@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-19T22:00:01.869136+09:00
+**生成**: 2026-05-19T22:10:02.140123+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×60 (24h)
+- 🟡 FINAL_MISSING×59 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×13 (24h)
 - 🟡 LARGE_ODDS_DRIFT×3 (24h)
@@ -18,21 +18,21 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-05-19T21:30:03]
-- key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
-- **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
-
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×52  [2026-05-19T21:08:05]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-05-19T22:08:06]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×52  [2026-05-19T21:08:05]
+### 🔴 STRATEGY_CI_FAIL  ×2  [2026-05-19T22:08:06]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 KS_ODDS_DRIFT  ×52  [2026-05-19T21:08:05]
+### 🟡 KS_ODDS_DRIFT  ×2  [2026-05-19T22:08:06]
 - key: `KS_ODDS_DRIFT|`
 - **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
+
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-05-19T21:30:03]
+- key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
+- **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
 ### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×44  [2026-05-19T17:57:41]
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 2.98MB / last modified 2026-05-19T22:00:04.692505+09:00
+- DB: 2.98MB / last modified 2026-05-19T22:09:06.555349+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,31 +150,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-_race 20/10: boats=6 odds=191/191
-2026-05-19 21:55:20,828 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-19 21:55:20,828 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-19 21:55:20,838 [INFO] run_cycle: fetched 20/10 [final]: 156 combos
-2026-05-19 21:55:20,944 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-19 21:56:06,417 [INFO] run_cycle: === run_cycle 21:56:06 ===
-2026-05-19 21:56:06,417 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-19 21:56:06,419 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-19 21:56:06,483 [INFO] predictor: Models loaded OK
-2026-05-19 21:56:06,489 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-19 21:57:05,939 [INFO] run_cycle: === run_cycle 21:57:05 ===
-2026-05-19 21:57:05,940 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-19 21:57:05,940 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-19 21:57:06,009 [INFO] predictor: Models loaded OK
-2026-05-19 21:57:06,015 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-19 21:58:05,845 [INFO] run_cycle: === run_cycle 21:58:05 ===
-2026-05-19 21:58:05,846 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-19 21:58:05,846 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-19 21:58:05,912 [INFO] predictor: Models loaded OK
-2026-05-19 21:58:05,916 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-19 21:59:06,075 [INFO] run_cycle: === run_cycle 21:59:06 ===
-2026-05-19 21:59:06,075 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-19 21:59:06,076 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-19 21:59:06,121 [INFO] predictor: Models loaded OK
-2026-05-19 21:59:06,127 [INFO] run_cycle: run_cycle done: 0 notifications
+00 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-19 22:05:06,200 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-19 22:05:06,265 [INFO] predictor: Models loaded OK
+2026-05-19 22:05:06,270 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-19 22:06:06,604 [INFO] run_cycle: === run_cycle 22:06:06 ===
+2026-05-19 22:06:06,604 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-19 22:06:06,604 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-19 22:06:06,671 [INFO] predictor: Models loaded OK
+2026-05-19 22:06:06,677 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-19 22:07:06,543 [INFO] run_cycle: === run_cycle 22:07:06 ===
+2026-05-19 22:07:06,543 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-19 22:07:06,543 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-19 22:07:06,583 [INFO] predictor: Models loaded OK
+2026-05-19 22:07:06,588 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-19 22:08:06,143 [INFO] run_cycle: === run_cycle 22:08:06 ===
+2026-05-19 22:08:06,143 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-19 22:08:06,143 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-19 22:08:06,223 [INFO] predictor: Models loaded OK
+2026-05-19 22:08:06,229 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-19 22:09:06,198 [INFO] run_cycle: === run_cycle 22:09:06 ===
+2026-05-19 22:09:06,198 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-19 22:09:06,198 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-19 22:09:06,244 [INFO] predictor: Models loaded OK
+2026-05-19 22:09:06,250 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -211,7 +210,7 @@ _race 20/10: boats=6 odds=191/191
 
 ## アラート件数 (24h・種類別)
 ```
-  FINAL_MISSING: 60
+  FINAL_MISSING: 59
   ANOMALY_SCRAPER_FAILURE_BURST: 46
   KS_ODDS_DRIFT: 38
   CIRCUIT_BREAKER_NO_ACTION: 17
@@ -231,6 +230,9 @@ _race 20/10: boats=6 odds=191/191
 
 ## 直近アラート (24h・新しい順)
 ```
+[22:08:06] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
+[22:08:06] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S01_NAKAANA1"}
+[22:06:06] FINAL_MISSING: {"deadline": "2026-05-19T18:34:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051920031834", "sid": "S00"}
 [21:54:32] FINAL_MISSING: {"deadline": "2026-05-19T10:18:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051914051018", "sid": "S00"}
 [21:53:05] FINAL_MISSING: {"deadline": "2026-05-19T11:16:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051902021116", "sid": "S00"}
 [21:48:06] FINAL_MISSING: {"deadline": "2026-05-19T12:14:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051902041214", "sid": "S00"}
@@ -238,9 +240,6 @@ _race 20/10: boats=6 odds=191/191
 [21:23:05] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 0.0, "ks_stat": 0.418}
 [21:21:20] FINAL_MISSING: {"deadline": "2026-05-19T10:47:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051902011047", "sid": "S00"}
 [21:08:05] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
-[21:08:05] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S01_NAKAANA1"}
-[21:05:07] FINAL_MISSING: {"deadline": "2026-05-19T18:34:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051920031834", "sid": "S00"}
-[20:54:22] FINAL_MISSING: {"deadline": "2026-05-19T10:18:00+09:00", "kind": "FINAL_MISSING", "nid": "2026051914051018", "sid": "S00"}
 ```
 
 ## 本日残レース: 2件
@@ -345,4 +344,4 @@ _race 20/10: boats=6 odds=191/191
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-19T22:00:01.869136+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-19T22:10:02.140123+09:00_
