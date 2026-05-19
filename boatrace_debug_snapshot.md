@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-19T21:10:01.739928+09:00
+**生成**: 2026-05-19T21:20:02.043341+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -18,15 +18,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-05-19T21:08:05]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×12  [2026-05-19T21:08:05]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×2  [2026-05-19T21:08:05]
+### 🔴 STRATEGY_CI_FAIL  ×12  [2026-05-19T21:08:05]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 KS_ODDS_DRIFT  ×2  [2026-05-19T21:08:05]
+### 🟡 KS_ODDS_DRIFT  ×12  [2026-05-19T21:08:05]
 - key: `KS_ODDS_DRIFT|`
 - **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 2.98MB / last modified 2026-05-19T21:09:06.210457+09:00
+- DB: 2.98MB / last modified 2026-05-19T21:19:06.350692+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-23 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-19 21:05:07,523 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-19 21:05:07,603 [INFO] predictor: Models loaded OK
-2026-05-19 21:05:07,610 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-19 21:06:06,111 [INFO] run_cycle: === run_cycle 21:06:06 ===
-2026-05-19 21:06:06,112 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-19 21:06:06,112 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-19 21:06:06,184 [INFO] predictor: Models loaded OK
-2026-05-19 21:06:06,187 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-19 21:07:05,874 [INFO] run_cycle: === run_cycle 21:07:05 ===
-2026-05-19 21:07:05,874 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-19 21:07:05,874 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-19 21:07:05,938 [INFO] predictor: Models loaded OK
-2026-05-19 21:07:05,944 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-19 21:08:05,494 [INFO] run_cycle: === run_cycle 21:08:05 ===
-2026-05-19 21:08:05,494 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-19 21:08:05,494 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-19 21:08:05,554 [INFO] predictor: Models loaded OK
-2026-05-19 21:08:05,557 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-19 21:09:06,046 [INFO] run_cycle: === run_cycle 21:09:06 ===
-2026-05-19 21:09:06,048 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-19 21:09:06,048 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-19 21:09:06,121 [INFO] predictor: Models loaded OK
-2026-05-19 21:09:06,123 [INFO] run_cycle: run_cycle done: 0 notifications
+ault=5000
+2026-05-19 21:16:06,127 [INFO] predictor: Models loaded OK
+2026-05-19 21:16:06,241 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-19 21:17:05,677 [INFO] run_cycle: === run_cycle 21:17:05 ===
+2026-05-19 21:17:05,677 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-19 21:17:05,680 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-19 21:17:05,746 [INFO] predictor: Models loaded OK
+2026-05-19 21:17:05,951 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-19 21:18:06,029 [INFO] run_cycle: === run_cycle 21:18:06 ===
+2026-05-19 21:18:06,029 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-19 21:18:06,029 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-19 21:18:06,075 [INFO] predictor: Models loaded OK
+2026-05-19 21:18:17,524 [INFO] scraper: odds3t: 120/120 parsed
+2026-05-19 21:18:18,681 [INFO] scraper: odds3f: 20/20 parsed
+2026-05-19 21:18:19,985 [INFO] scraper: odds2t: 30/30 parsed
+2026-05-19 21:18:19,986 [INFO] scraper: odds2f: 15/15 parsed
+2026-05-19 21:18:21,100 [INFO] scraper: odds_win: 5/6 parsed
+2026-05-19 21:18:21,101 [INFO] scraper: fetch_race 20/9: boats=6 odds=190/191
+2026-05-19 21:18:21,112 [INFO] predictor: CALIBRATION_MODE=on
+2026-05-19 21:18:21,112 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-05-19 21:18:21,120 [INFO] run_cycle: fetched 20/9 [scan]: 155 combos
+2026-05-19 21:18:21,215 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-19 21:19:05,993 [INFO] run_cycle: === run_cycle 21:19:05 ===
+2026-05-19 21:19:05,995 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-19 21:19:05,995 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-19 21:19:06,064 [INFO] predictor: Models loaded OK
+2026-05-19 21:19:06,268 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -195,18 +198,18 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 73
+    "c": 72
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 73
+    "c": 72
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 30, 'result': 11, 'scan': 32}
+{'final': 30, 'result': 11, 'scan': 31}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -286,9 +289,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 473.0s |
+| **Latency** (scan→final avg) | 468.4s |
 | **Latency** (scan→final max) | 602.4s |
-| **Traffic** (notifications 24h) | 73 |
+| **Traffic** (notifications 24h) | 72 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 1,200円 used |
 | **Saturation** (S01_NAKAANA1) | 1,000円 used |
@@ -344,4 +347,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-19T21:10:01.739928+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-19T21:20:02.043341+09:00_
