@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-21T21:00:02.573378+09:00
+**生成**: 2026-05-21T21:10:01.778126+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
@@ -18,17 +18,17 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×19  [2026-05-21T20:41:06]
-- key: `ANOMALY_SCAN_FINAL_RATIO|`
-- **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
-
-### 🔴 STRATEGY_CI_FAIL  ×53  [2026-05-21T20:07:06]
+### 🔴 STRATEGY_CI_FAIL  ×3  [2026-05-21T21:07:27]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 KS_ODDS_DRIFT  ×53  [2026-05-21T20:07:06]
+### 🟡 KS_ODDS_DRIFT  ×3  [2026-05-21T21:07:27]
 - key: `KS_ODDS_DRIFT|`
 - **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
+
+### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×29  [2026-05-21T20:41:06]
+- key: `ANOMALY_SCAN_FINAL_RATIO|`
+- **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
 
 ### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×9  [2026-05-21T17:13:41]
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 3.11MB / last modified 2026-05-21T21:00:04.309611+09:00
+- DB: 3.11MB / last modified 2026-05-21T21:09:06.160385+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,25 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-12 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-21 20:55:06,112 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-21 20:55:06,165 [INFO] predictor: Models loaded OK
-2026-05-21 20:55:06,169 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-21 20:56:06,244 [INFO] run_cycle: === run_cycle 20:56:06 ===
-2026-05-21 20:56:06,244 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-21 20:56:06,244 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-21 20:56:06,289 [INFO] predictor: Models loaded OK
-2026-05-21 20:56:06,293 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-21 20:57:06,471 [INFO] run_cycle: === run_cycle 20:57:06 ===
-2026-05-21 20:57:06,472 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-21 20:57:06,472 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-21 20:57:06,542 [INFO] predictor: Models loaded OK
-2026-05-21 20:57:06,546 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-21 20:58:05,607 [INFO] run_cycle: === run_cycle 20:58:05 ===
-2026-05-21 20:58:05,609 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-21 20:58:05,609 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-21 20:58:05,682 [INFO] predictor: Models loaded OK
-2026-05-21 20:58:05,688 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-21 20:59:06,381 [INFO] run_cycle: === run_cycle 20:59:06 ===
-2026-05-21 20:59:06,383 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-21 20:59:06,383 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-21 20:59:06,446 [INFO] predictor: Models loaded OK
-2026-05-21 20:59:06,451 [INFO] run_cycle: run_cycle done: 0 notifications
+ beforeinfo parse failed: jcd=19 rno=9
+2026-05-21 21:07:27,834 [WARNING] run_cycle: fetch None: 19/9
+2026-05-21 21:07:27,834 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-21 21:08:05,721 [INFO] run_cycle: === run_cycle 21:08:05 ===
+2026-05-21 21:08:05,722 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-21 21:08:05,722 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-21 21:08:05,770 [INFO] predictor: Models loaded OK
+2026-05-21 21:08:16,828 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=19&hd=20260521: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-05-21 21:08:27,883 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=19&hd=20260521: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-05-21 21:08:40,936 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=19&hd=20260521: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
+2026-05-21 21:08:40,936 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=19&hd=20260521
+2026-05-21 21:08:40,936 [ERROR] scraper: racelist fetch failed: jcd=19 rno=9
+2026-05-21 21:08:40,936 [WARNING] run_cycle: fetch None: 19/9
+2026-05-21 21:08:40,936 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-21 21:09:05,914 [INFO] run_cycle: === run_cycle 21:09:05 ===
+2026-05-21 21:09:05,915 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-21 21:09:05,915 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-21 21:09:05,987 [INFO] predictor: Models loaded OK
+2026-05-21 21:09:06,098 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -215,8 +210,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   ANOMALY_SCAN_FINAL_RATIO: 18
   STRATEGY_CI_FAIL: 17
   FINAL_MISSING: 11
-  CIRCUIT_BREAKER_NO_ACTION: 3
   ANOMALY_BET_VOLUME_DROP: 2
+  CIRCUIT_BREAKER_NO_ACTION: 2
   CRITICAL_ODDS_COLLAPSE: 1
   LARGE_ODDS_DRIFT: 1
 ```
@@ -230,6 +225,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[21:07:27] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [20:28:05] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": -0.217, "baseline_mean": 0.783, "baseline_stdev": 0.073, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 1.0, "today_scan_count": 15, "z_score": 2.95}
 [20:09:33] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 0.000265, "ks_stat": 0.293}
 [20:07:06] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
@@ -239,7 +235,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [19:00:33] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 6.2e-05, "ks_stat": 0.313}
 [18:27:21] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": -0.217, "baseline_mean": 0.783, "baseline_stdev": 0.073, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 1.0, "today_scan_count": 15, "z_score": 2.95}
 [18:06:22] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
-[18:00:26] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 6.2e-05, "ks_stat": 0.313}
 ```
 
 ## 本日残レース: 4件
@@ -344,4 +339,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-21T21:00:02.573378+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-21T21:10:01.778126+09:00_
