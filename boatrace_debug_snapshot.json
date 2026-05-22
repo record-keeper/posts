@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-22T22:40:02.168154+09:00",
+  "generated_at": "2026-05-22T22:50:02.238012+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,9 +33,9 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup\n\n# 30分毎: コード/DB anti-pattern 検査→alert 流入（HOOK level 自動検出）\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 tools/audit_and_emit_alerts.py >> logs/audit.log 2>&1",
       "db_size_mb": 3.16,
-      "db_mtime": "2026-05-22T22:39:06.177043+09:00",
-      "run_cycle_log_mtime": "2026-05-22T22:39:06.114042+09:00",
-      "log_tail": "2026-05-22 22:32:06,110 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:33:06,143 [INFO] run_cycle: === run_cycle 22:33:06 ===\n2026-05-22 22:33:06,143 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:33:06,143 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:33:06,191 [INFO] predictor: Models loaded OK\n2026-05-22 22:33:06,195 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:34:05,770 [INFO] run_cycle: === run_cycle 22:34:05 ===\n2026-05-22 22:34:05,770 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:34:05,770 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:34:05,828 [INFO] predictor: Models loaded OK\n2026-05-22 22:34:05,833 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:35:06,674 [INFO] run_cycle: === run_cycle 22:35:06 ===\n2026-05-22 22:35:06,674 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:35:06,674 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:35:06,749 [INFO] predictor: Models loaded OK\n2026-05-22 22:35:06,753 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:36:06,235 [INFO] run_cycle: === run_cycle 22:36:06 ===\n2026-05-22 22:36:06,235 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:36:06,235 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:36:06,277 [INFO] predictor: Models loaded OK\n2026-05-22 22:36:06,280 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:37:06,673 [INFO] run_cycle: === run_cycle 22:37:06 ===\n2026-05-22 22:37:06,673 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:37:06,673 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:37:06,719 [INFO] predictor: Models loaded OK\n2026-05-22 22:37:06,723 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:38:05,138 [INFO] run_cycle: === run_cycle 22:38:05 ===\n2026-05-22 22:38:05,140 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:38:05,140 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:38:05,205 [INFO] predictor: Models loaded OK\n2026-05-22 22:38:05,209 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:39:06,040 [INFO] run_cycle: === run_cycle 22:39:06 ===\n2026-05-22 22:39:06,041 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:39:06,041 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:39:06,110 [INFO] predictor: Models loaded OK\n2026-05-22 22:39:06,115 [INFO] run_cycle: run_cycle done: 0 notifications\n"
+      "db_mtime": "2026-05-22T22:49:06.079170+09:00",
+      "run_cycle_log_mtime": "2026-05-22T22:49:06.012170+09:00",
+      "log_tail": "2026-05-22 22:42:06,578 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:43:05,850 [INFO] run_cycle: === run_cycle 22:43:05 ===\n2026-05-22 22:43:05,850 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:43:05,850 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:43:05,898 [INFO] predictor: Models loaded OK\n2026-05-22 22:43:05,902 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:44:05,496 [INFO] run_cycle: === run_cycle 22:44:05 ===\n2026-05-22 22:44:05,498 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:44:05,498 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:44:05,574 [INFO] predictor: Models loaded OK\n2026-05-22 22:44:05,580 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:45:06,134 [INFO] run_cycle: === run_cycle 22:45:06 ===\n2026-05-22 22:45:06,134 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:45:06,134 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:45:06,211 [INFO] predictor: Models loaded OK\n2026-05-22 22:45:06,216 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:46:06,393 [INFO] run_cycle: === run_cycle 22:46:06 ===\n2026-05-22 22:46:06,393 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:46:06,393 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:46:06,474 [INFO] predictor: Models loaded OK\n2026-05-22 22:46:06,481 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:47:06,797 [INFO] run_cycle: === run_cycle 22:47:06 ===\n2026-05-22 22:47:06,797 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:47:06,797 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:47:06,840 [INFO] predictor: Models loaded OK\n2026-05-22 22:47:06,844 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:48:05,723 [INFO] run_cycle: === run_cycle 22:48:05 ===\n2026-05-22 22:48:05,724 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:48:05,724 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:48:05,780 [INFO] predictor: Models loaded OK\n2026-05-22 22:48:05,786 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-22 22:49:05,932 [INFO] run_cycle: === run_cycle 22:49:05 ===\n2026-05-22 22:49:05,932 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-22 22:49:05,932 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-22 22:49:06,007 [INFO] predictor: Models loaded OK\n2026-05-22 22:49:06,013 [INFO] run_cycle: run_cycle done: 0 notifications\n"
     },
     "strategies_active": [
       {
@@ -408,7 +408,7 @@
         "kind": "ANOMALY_BET_VOLUME_SPIKE",
         "severity": "WARN",
         "key": "ANOMALY_BET_VOLUME_SPIKE|",
-        "count": 14,
+        "count": 24,
         "last_at": "2026-05-22T22:26:06",
         "fix_hint": "本日のbet数が2σ急増。filter logic緩み・戦略追加・race_schedule異常"
       },
@@ -416,7 +416,7 @@
         "kind": "STRATEGY_CI_FAIL",
         "severity": "CRITICAL",
         "key": "STRATEGY_CI_FAIL|",
-        "count": 31,
+        "count": 41,
         "last_at": "2026-05-22T22:09:05",
         "fix_hint": "grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認"
       },
@@ -424,7 +424,7 @@
         "kind": "KS_ODDS_DRIFT",
         "severity": "WARN",
         "key": "KS_ODDS_DRIFT|",
-        "count": 31,
+        "count": 41,
         "last_at": "2026-05-22T22:09:05",
         "fix_hint": "オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証"
       },
