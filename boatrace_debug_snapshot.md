@@ -2,13 +2,12 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-24T08:00:02.569303+09:00
+**生成**: 2026-05-24T08:10:01.579613+09:00
 
 ### 次に取るべきアクション
-> RED最優先: ⚠️ run_cycle.log が481分前（cron停止疑い・今レース時間帯） → ログ/DB確認
+> RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🔴 ⚠️ run_cycle.log が481分前（cron停止疑い・今レース時間帯）
 - 🟡 FINAL_MISSING×32 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🟡 LARGE_ODDS_DRIFT×2 (24h)
@@ -17,6 +16,14 @@
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
+
+### 🔴 STRATEGY_CI_FAIL  ×10  [2026-05-24T08:00:36]
+- key: `STRATEGY_CI_FAIL|`
+- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
+
+### 🟡 KS_ODDS_DRIFT  ×10  [2026-05-24T08:00:36]
+- key: `KS_ODDS_DRIFT|`
+- **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
 
 ### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-24T06:00:12]
 - key: `CALIBRATION_LIVE|decile 0.10-0.15: n=5 pred=0.1288 actual=0.2000 gap=-0.0712`
@@ -90,14 +97,6 @@
 - key: `CALIBRATION_LIVE|S00(win): n=195 pred=0.4357 hit=0.2923 cal_err=+0.1434 brier=0.2277 BSS=-0.10 RO`
 - **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
 
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-24T06:00:12]
-- key: `CALIBRATION_LIVE|S01_NAKAANA1(win): n=70 pred=0.4845 hit=0.3143 cal_err=+0.1702 brier=0.2442 BSS=`
-- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
-
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-05-24T06:00:12]
-- key: `CALIBRATION_LIVE|S02_TETSUBAN(win): n=44 pred=0.5098 hit=0.4545 cal_err=+0.0553 brier=0.2540 BSS=`
-- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
-
 
 以下、詳細セクション（通常読み飛ばし可）
 
@@ -107,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 3.25MB / last modified 2026-05-24T08:00:04.897447+09:00
+- DB: 3.27MB / last modified 2026-05-24T08:09:05.805566+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +149,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-61 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-23 23:55:06,461 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-23 23:55:06,508 [INFO] predictor: Models loaded OK
-2026-05-23 23:55:06,511 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-23 23:56:05,768 [INFO] run_cycle: === run_cycle 23:56:05 ===
-2026-05-23 23:56:05,768 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-23 23:56:05,768 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-23 23:56:05,812 [INFO] predictor: Models loaded OK
-2026-05-23 23:56:05,818 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-23 23:57:06,381 [INFO] run_cycle: === run_cycle 23:57:06 ===
-2026-05-23 23:57:06,381 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-23 23:57:06,381 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-23 23:57:06,448 [INFO] predictor: Models loaded OK
-2026-05-23 23:57:06,452 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-23 23:58:05,572 [INFO] run_cycle: === run_cycle 23:58:05 ===
-2026-05-23 23:58:05,573 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-23 23:58:05,573 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-23 23:58:05,638 [INFO] predictor: Models loaded OK
-2026-05-23 23:58:05,644 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-23 23:59:05,529 [INFO] run_cycle: === run_cycle 23:59:05 ===
-2026-05-23 23:59:05,530 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-23 23:59:05,530 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-23 23:59:05,591 [INFO] predictor: Models loaded OK
-2026-05-23 23:59:05,595 [INFO] run_cycle: run_cycle done: 0 notifications
+55 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-24 08:05:06,455 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-24 08:05:06,500 [INFO] predictor: Models loaded OK
+2026-05-24 08:05:06,504 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-24 08:06:06,171 [INFO] run_cycle: === run_cycle 08:06:06 ===
+2026-05-24 08:06:06,171 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-24 08:06:06,172 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-24 08:06:06,252 [INFO] predictor: Models loaded OK
+2026-05-24 08:06:06,258 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-24 08:07:05,771 [INFO] run_cycle: === run_cycle 08:07:05 ===
+2026-05-24 08:07:05,771 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-24 08:07:05,771 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-24 08:07:05,815 [INFO] predictor: Models loaded OK
+2026-05-24 08:07:05,819 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-24 08:08:06,200 [INFO] run_cycle: === run_cycle 08:08:06 ===
+2026-05-24 08:08:06,201 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-24 08:08:06,201 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-24 08:08:06,246 [INFO] predictor: Models loaded OK
+2026-05-24 08:08:06,248 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-24 08:09:05,487 [INFO] run_cycle: === run_cycle 08:09:05 ===
+2026-05-24 08:09:05,487 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-24 08:09:05,487 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-24 08:09:05,548 [INFO] predictor: Models loaded OK
+2026-05-24 08:09:05,555 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -228,6 +227,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[08:00:36] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
+[08:00:36] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 5.4e-05, "ks_stat": 0.296}
 [06:00:08] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [06:00:08] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 5.4e-05, "ks_stat": 0.296}
 [23:54:06] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 5.4e-05, "ks_stat": 0.296}
@@ -236,14 +237,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:09:06] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [23:07:06] FINAL_MISSING: {"deadline": "2026-05-23T11:29:00+09:00", "kind": "FINAL_MISSING", "nid": "2026052309031129", "sid": "S00"}
 [23:02:05] FINAL_MISSING: {"deadline": "2026-05-23T16:27:00+09:00", "kind": "FINAL_MISSING", "nid": "2026052301031627", "sid": "S00"}
-[22:54:05] KS_ODDS_DRIFT: {"kind": "KS_ODDS_DRIFT", "ks_p": 5.4e-05, "ks_stat": 0.296}
-[22:54:05] FINAL_MISSING: {"deadline": "2026-05-23T19:23:00+09:00", "kind": "FINAL_MISSING", "nid": "2026052315091923", "sid": "S00"}
 ```
 
-## 本日残レース: 0件
+## 本日残レース: 144件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 0件 登録 / 0件 締切済
+- race_schedule: 144件 登録 / 0件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -339,4 +338,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-24T08:00:02.569303+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-24T08:10:01.579613+09:00_
