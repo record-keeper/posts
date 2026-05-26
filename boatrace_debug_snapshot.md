@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-26T21:30:02.188831+09:00
+**生成**: 2026-05-26T21:40:02.446420+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×18 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×53 (24h)
+- 🟡 FINAL_MISSING×52 (24h)
 - 🔴 PSI_DRIFT_DETECTED×18 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×10 (24h)
@@ -20,25 +20,25 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
+### 🔴 PSI_DRIFT_DETECTED  ×9  [2026-05-26T21:31:05]
+- key: `PSI_DRIFT_DETECTED|`
+- **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
+
 ### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-05-26T21:30:04]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 STRATEGY_CI_FAIL  ×22  [2026-05-26T21:08:05]
+### 🔴 STRATEGY_CI_FAIL  ×32  [2026-05-26T21:08:05]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×40  [2026-05-26T20:50:10]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×50  [2026-05-26T20:50:10]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×41  [2026-05-26T20:49:05]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×51  [2026-05-26T20:49:05]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
-
-### 🔴 PSI_DRIFT_DETECTED  ×60  [2026-05-26T20:30:26]
-- key: `PSI_DRIFT_DETECTED|`
-- **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
 ### 🟡 ANOMALY_BET_VOLUME_DROP  ×47  [2026-05-26T15:00:40]
 - key: `ANOMALY_BET_VOLUME_DROP|`
@@ -109,7 +109,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 3.56MB / last modified 2026-05-26T21:30:05.003843+09:00
+- DB: 3.56MB / last modified 2026-05-26T21:39:05.933849+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -152,30 +152,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-21 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-26 21:25:07,121 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-26 21:25:07,164 [INFO] predictor: Models loaded OK
-2026-05-26 21:25:07,168 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-26 21:26:05,701 [INFO] run_cycle: === run_cycle 21:26:05 ===
-2026-05-26 21:26:05,701 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-26 21:26:05,701 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-26 21:26:05,767 [INFO] predictor: Models loaded OK
-2026-05-26 21:26:05,773 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-26 21:27:06,869 [INFO] run_cycle: === run_cycle 21:27:06 ===
-2026-05-26 21:27:06,869 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-26 21:27:06,869 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-26 21:27:06,913 [INFO] predictor: Models loaded OK
-2026-05-26 21:27:06,917 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-26 21:28:05,452 [INFO] run_cycle: === run_cycle 21:28:05 ===
-2026-05-26 21:28:05,452 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-26 21:28:05,452 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-26 21:28:05,497 [INFO] predictor: Models loaded OK
-2026-05-26 21:28:05,500 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-26 21:29:06,102 [INFO] run_cycle: === run_cycle 21:29:06 ===
-2026-05-26 21:29:06,102 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-26 21:29:06,102 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-26 21:29:06,192 [INFO] predictor: Models loaded OK
-2026-05-26 21:29:06,196 [INFO] run_cycle: run_cycle done: 0 notifications
+50 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-26 21:35:06,650 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-26 21:35:06,701 [INFO] predictor: Models loaded OK
+2026-05-26 21:35:06,707 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-26 21:36:04,919 [INFO] run_cycle: === run_cycle 21:36:04 ===
+2026-05-26 21:36:04,919 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-26 21:36:04,919 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-26 21:36:05,007 [INFO] predictor: Models loaded OK
+2026-05-26 21:36:05,010 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-26 21:37:06,771 [INFO] run_cycle: === run_cycle 21:37:06 ===
+2026-05-26 21:37:06,771 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-26 21:37:06,771 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-26 21:37:06,815 [INFO] predictor: Models loaded OK
+2026-05-26 21:37:06,819 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-26 21:38:05,633 [INFO] run_cycle: === run_cycle 21:38:05 ===
+2026-05-26 21:38:05,633 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-26 21:38:05,633 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-26 21:38:05,701 [INFO] predictor: Models loaded OK
+2026-05-26 21:38:05,705 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-26 21:39:05,588 [INFO] run_cycle: === run_cycle 21:39:05 ===
+2026-05-26 21:39:05,588 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-26 21:39:05,588 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-26 21:39:05,635 [INFO] predictor: Models loaded OK
+2026-05-26 21:39:05,640 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -212,7 +212,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  FINAL_MISSING: 53
+  FINAL_MISSING: 52
   ANOMALY_SCRAPER_FAILURE_BURST: 51
   PSI_DRIFT_DETECTED: 18
   STRATEGY_CI_FAIL: 17
@@ -347,4 +347,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-26T21:30:02.188831+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-26T21:40:02.446420+09:00_
