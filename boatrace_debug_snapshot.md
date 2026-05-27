@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-27T20:40:02.205386+09:00
+**生成**: 2026-05-27T20:50:02.144891+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×36 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×37 (24h)
+- 🟡 FINAL_MISSING×36 (24h)
 - 🔴 PSI_DRIFT_DETECTED×36 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×20 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
@@ -19,23 +19,23 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 ANOMALY_BET_VOLUME_DROP  ×34  [2026-05-27T20:06:06]
+### 🟡 ANOMALY_BET_VOLUME_DROP  ×44  [2026-05-27T20:06:06]
 - key: `ANOMALY_BET_VOLUME_DROP|`
 - **FIX**: 本日のbet数が7日baselineから2σ低下。戦略filter/ scan fix/run_cycle停止を疑え
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×34  [2026-05-27T20:06:06]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×44  [2026-05-27T20:06:06]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×34  [2026-05-27T20:06:06]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×44  [2026-05-27T20:06:06]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 PSI_DRIFT_DETECTED  ×34  [2026-05-27T20:06:06]
+### 🔴 PSI_DRIFT_DETECTED  ×44  [2026-05-27T20:06:06]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×34  [2026-05-27T20:06:06]
+### 🔴 STRATEGY_CI_FAIL  ×44  [2026-05-27T20:06:06]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 3.58MB / last modified 2026-05-27T20:39:33.853962+09:00
+- DB: 3.58MB / last modified 2026-05-27T20:49:05.803266+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,32 +151,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-:20,891 [INFO] run_cycle: fetched 12/12 [final]: 156 combos
-2026-05-27 20:38:24,470 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-27 20:38:25,599 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-27 20:38:26,767 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-27 20:38:26,768 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-27 20:38:27,837 [INFO] scraper: odds_win: 6/6 parsed
-2026-05-27 20:38:27,837 [INFO] scraper: fetch_race 07/12: boats=6 odds=191/191
-2026-05-27 20:38:27,845 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-27 20:38:27,845 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-27 20:38:27,853 [INFO] run_cycle: fetched 07/12 [scan]: 156 combos
-2026-05-27 20:38:27,973 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-27 20:39:06,325 [INFO] run_cycle: === run_cycle 20:39:06 ===
-2026-05-27 20:39:06,325 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-27 20:39:06,325 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-27 20:39:06,380 [INFO] predictor: Models loaded OK
-2026-05-27 20:39:17,420 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=12&hd=20260527: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-05-27 20:39:29,880 [INFO] scraper: odds3t: 120/120 parsed
-2026-05-27 20:39:30,980 [INFO] scraper: odds3f: 20/20 parsed
-2026-05-27 20:39:32,202 [INFO] scraper: odds2t: 30/30 parsed
-2026-05-27 20:39:32,501 [INFO] scraper: odds2f: 15/15 parsed
-2026-05-27 20:39:33,622 [INFO] scraper: odds_win: 6/6 parsed
-2026-05-27 20:39:33,622 [INFO] scraper: fetch_race 12/12: boats=6 odds=191/191
-2026-05-27 20:39:33,635 [INFO] predictor: CALIBRATION_MODE=on
-2026-05-27 20:39:33,635 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-05-27 20:39:33,643 [INFO] run_cycle: fetched 12/12 [final]: 156 combos
-2026-05-27 20:39:33,821 [INFO] run_cycle: run_cycle done: 0 notifications
+56 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-27 20:45:06,456 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-27 20:45:06,524 [INFO] predictor: Models loaded OK
+2026-05-27 20:45:06,528 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-27 20:46:06,507 [INFO] run_cycle: === run_cycle 20:46:06 ===
+2026-05-27 20:46:06,507 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-27 20:46:06,507 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-27 20:46:06,582 [INFO] predictor: Models loaded OK
+2026-05-27 20:46:06,588 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-27 20:47:06,437 [INFO] run_cycle: === run_cycle 20:47:06 ===
+2026-05-27 20:47:06,438 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-27 20:47:06,438 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-27 20:47:06,485 [INFO] predictor: Models loaded OK
+2026-05-27 20:47:06,488 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-27 20:48:05,572 [INFO] run_cycle: === run_cycle 20:48:05 ===
+2026-05-27 20:48:05,572 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-27 20:48:05,572 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-27 20:48:05,627 [INFO] predictor: Models loaded OK
+2026-05-27 20:48:05,629 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-27 20:49:05,649 [INFO] run_cycle: === run_cycle 20:49:05 ===
+2026-05-27 20:49:05,651 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-27 20:49:05,651 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-27 20:49:05,718 [INFO] predictor: Models loaded OK
+2026-05-27 20:49:05,723 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -213,7 +211,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  FINAL_MISSING: 37
+  FINAL_MISSING: 36
   PSI_DRIFT_DETECTED: 36
   CIRCUIT_BREAKER_TRIP: 20
   CIRCUIT_BREAKER_NO_ACTION: 18
@@ -232,6 +230,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[20:42:32] FINAL_MISSING: {"deadline": "2026-05-27T16:09:00+09:00", "kind": "FINAL_MISSING", "nid": "2026052712021609", "sid": "S00"}
 [20:28:45] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 235, "n_recent": 73, "psi": 0.548}
 [20:27:38] CIRCUIT_BREAKER_TRIP: {"cost": 5600, "kind": "CIRCUIT_BREAKER_TRIP", "n": 28, "payout": 2840, "roi_7d": 0.507, "sid": "S01_NAKAANA1"}
 [20:13:05] FINAL_MISSING: {"deadline": "2026-05-27T17:43:00+09:00", "kind": "FINAL_MISSING", "nid": "2026052707051743", "sid": "S00"}
@@ -241,13 +240,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [20:00:10] ANOMALY_BET_VOLUME_DROP: {"baseline_mean": 11.6, "baseline_n_days": 7, "baseline_stdev": 3.0, "hour": 20, "kind": "ANOMALY_BET_VOLUME_DROP", "today_so_far": 5, "z_score": -2.16}
 [19:56:29] FINAL_MISSING: {"deadline": "2026-05-27T17:24:00+09:00", "kind": "FINAL_MISSING", "nid": "2026052715051724", "sid": "S00"}
 [19:49:22] FINAL_MISSING: {"deadline": "2026-05-27T09:12:00+09:00", "kind": "FINAL_MISSING", "nid": "2026052721020912", "sid": "S00"}
-[19:41:33] FINAL_MISSING: {"deadline": "2026-05-27T16:09:00+09:00", "kind": "FINAL_MISSING", "nid": "2026052712021609", "sid": "S00"}
 ```
 
-## 本日残レース: 2件
+## 本日残レース: 0件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 142件 締切済
+- race_schedule: 144件 登録 / 144件 締切済
 - 通知発射: scan=16 nid / final=14 nid / result=4 nid
 - predictions: 5 / うち結果DB記録済: 5
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -344,4 +342,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-27T20:40:02.205386+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-27T20:50:02.144891+09:00_
