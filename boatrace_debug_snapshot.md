@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-27T21:30:02.212172+09:00
+**生成**: 2026-05-27T21:40:01.797481+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×36 (24h) → ログ/DB確認
@@ -19,23 +19,23 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 ANOMALY_BET_VOLUME_DROP  ×23  [2026-05-27T21:07:06]
+### 🟡 ANOMALY_BET_VOLUME_DROP  ×33  [2026-05-27T21:07:06]
 - key: `ANOMALY_BET_VOLUME_DROP|`
 - **FIX**: 本日のbet数が7日baselineから2σ低下。戦略filter/ scan fix/run_cycle停止を疑え
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×23  [2026-05-27T21:07:06]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×33  [2026-05-27T21:07:06]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×23  [2026-05-27T21:07:06]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×33  [2026-05-27T21:07:06]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 PSI_DRIFT_DETECTED  ×23  [2026-05-27T21:07:06]
+### 🔴 PSI_DRIFT_DETECTED  ×33  [2026-05-27T21:07:06]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×23  [2026-05-27T21:07:06]
+### 🔴 STRATEGY_CI_FAIL  ×33  [2026-05-27T21:07:06]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 3.58MB / last modified 2026-05-27T21:30:04.157182+09:00
+- DB: 3.58MB / last modified 2026-05-27T21:39:05.593528+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,30 +151,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-22 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-27 21:25:06,422 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-27 21:25:06,471 [INFO] predictor: Models loaded OK
-2026-05-27 21:25:06,475 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-27 21:26:05,849 [INFO] run_cycle: === run_cycle 21:26:05 ===
-2026-05-27 21:26:05,849 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-27 21:26:05,849 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-27 21:26:05,918 [INFO] predictor: Models loaded OK
-2026-05-27 21:26:05,922 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-27 21:27:06,540 [INFO] run_cycle: === run_cycle 21:27:06 ===
-2026-05-27 21:27:06,540 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-27 21:27:06,540 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-27 21:27:06,581 [INFO] predictor: Models loaded OK
-2026-05-27 21:27:06,585 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-27 21:28:05,807 [INFO] run_cycle: === run_cycle 21:28:05 ===
-2026-05-27 21:28:05,807 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-27 21:28:05,807 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-27 21:28:05,874 [INFO] predictor: Models loaded OK
-2026-05-27 21:28:05,879 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-27 21:29:05,975 [INFO] run_cycle: === run_cycle 21:29:05 ===
-2026-05-27 21:29:05,976 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-27 21:29:05,976 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-27 21:29:06,020 [INFO] predictor: Models loaded OK
-2026-05-27 21:29:06,024 [INFO] run_cycle: run_cycle done: 0 notifications
+94 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-27 21:35:06,594 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-27 21:35:06,664 [INFO] predictor: Models loaded OK
+2026-05-27 21:35:06,670 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-27 21:36:06,131 [INFO] run_cycle: === run_cycle 21:36:06 ===
+2026-05-27 21:36:06,131 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-27 21:36:06,131 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-27 21:36:06,191 [INFO] predictor: Models loaded OK
+2026-05-27 21:36:06,197 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-27 21:37:05,877 [INFO] run_cycle: === run_cycle 21:37:05 ===
+2026-05-27 21:37:05,877 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-27 21:37:05,877 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-27 21:37:05,949 [INFO] predictor: Models loaded OK
+2026-05-27 21:37:05,952 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-27 21:38:05,400 [INFO] run_cycle: === run_cycle 21:38:05 ===
+2026-05-27 21:38:05,401 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-27 21:38:05,401 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-27 21:38:05,470 [INFO] predictor: Models loaded OK
+2026-05-27 21:38:05,472 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-27 21:39:05,511 [INFO] run_cycle: === run_cycle 21:39:05 ===
+2026-05-27 21:39:05,511 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-27 21:39:05,511 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-27 21:39:05,555 [INFO] predictor: Models loaded OK
+2026-05-27 21:39:05,559 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -342,4 +342,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-27T21:30:02.212172+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-27T21:40:01.797481+09:00_
