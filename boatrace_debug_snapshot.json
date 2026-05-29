@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T16:40:01.947145+09:00",
+  "generated_at": "2026-05-29T16:50:02.386614+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,9 +33,9 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup\n\n# 30分毎: コード/DB anti-pattern 検査→alert 流入（HOOK level 自動検出）\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 tools/audit_and_emit_alerts.py >> logs/audit.log 2>&1",
       "db_size_mb": 3.75,
-      "db_mtime": "2026-05-29T16:39:06.333395+09:00",
-      "run_cycle_log_mtime": "2026-05-29T16:39:06.290395+09:00",
-      "log_tail": " [INFO] predictor: Models loaded OK\n2026-05-29 16:35:17,780 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=3&jcd=01&hd=20260529: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s\n2026-05-29 16:35:28,073 [WARNING] scraper: beforeinfo parse failed: jcd=01 rno=3\n2026-05-29 16:35:28,073 [WARNING] run_cycle: fetch None: 01/3\n2026-05-29 16:35:28,158 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-29 16:36:06,650 [INFO] run_cycle: === run_cycle 16:36:06 ===\n2026-05-29 16:36:06,650 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-29 16:36:06,650 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-29 16:36:06,692 [INFO] predictor: Models loaded OK\n2026-05-29 16:36:06,801 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-29 16:37:06,132 [INFO] run_cycle: === run_cycle 16:37:06 ===\n2026-05-29 16:37:06,132 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-29 16:37:06,132 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-29 16:37:06,176 [INFO] predictor: Models loaded OK\n2026-05-29 16:37:06,281 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-29 16:38:05,720 [INFO] run_cycle: === run_cycle 16:38:05 ===\n2026-05-29 16:38:05,720 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-29 16:38:05,720 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-29 16:38:05,790 [INFO] predictor: Models loaded OK\n2026-05-29 16:38:16,855 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=3&jcd=07&hd=20260529: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s\n2026-05-29 16:38:28,318 [INFO] scraper: odds3t: 120/120 parsed\n2026-05-29 16:38:29,467 [INFO] scraper: odds3f: 20/20 parsed\n2026-05-29 16:38:30,543 [INFO] scraper: odds2t: 30/30 parsed\n2026-05-29 16:38:30,544 [INFO] scraper: odds2f: 14/15 parsed\n2026-05-29 16:38:31,694 [INFO] scraper: odds_win: 5/6 parsed\n2026-05-29 16:38:31,694 [INFO] scraper: fetch_race 07/3: boats=6 odds=189/191\n2026-05-29 16:38:31,706 [INFO] predictor: CALIBRATION_MODE=on\n2026-05-29 16:38:31,706 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}\n2026-05-29 16:38:31,714 [INFO] run_cycle: fetched 07/3 [scan]: 155 combos\n2026-05-29 16:38:31,824 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-29 16:39:06,077 [INFO] run_cycle: === run_cycle 16:39:06 ===\n2026-05-29 16:39:06,077 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-29 16:39:06,077 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-29 16:39:06,147 [INFO] predictor: Models loaded OK\n2026-05-29 16:39:06,290 [INFO] run_cycle: run_cycle done: 0 notifications\n"
+      "db_mtime": "2026-05-29T16:49:05.545763+09:00",
+      "run_cycle_log_mtime": "2026-05-29T16:49:05.511762+09:00",
+      "log_tail": "5 [INFO] run_cycle: FINAL S01_NAKAANA1 蒲郡3R A\n2026-05-29 16:45:25,077 [INFO] run_cycle: run_cycle done: 1 notifications\n2026-05-29 16:46:05,794 [INFO] run_cycle: === run_cycle 16:46:05 ===\n2026-05-29 16:46:05,794 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-29 16:46:05,794 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-29 16:46:05,862 [INFO] predictor: Models loaded OK\n2026-05-29 16:46:06,003 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-29 16:47:05,938 [INFO] run_cycle: === run_cycle 16:47:05 ===\n2026-05-29 16:47:05,938 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-29 16:47:05,938 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-29 16:47:05,982 [INFO] predictor: Models loaded OK\n2026-05-29 16:47:18,822 [INFO] scraper: odds3t: 120/120 parsed\n2026-05-29 16:47:19,895 [INFO] scraper: odds3f: 20/20 parsed\n2026-05-29 16:47:21,007 [INFO] scraper: odds2t: 30/30 parsed\n2026-05-29 16:47:21,008 [INFO] scraper: odds2f: 15/15 parsed\n2026-05-29 16:47:22,092 [INFO] scraper: odds_win: 6/6 parsed\n2026-05-29 16:47:22,092 [INFO] scraper: fetch_race 15/4: boats=6 odds=191/191\n2026-05-29 16:47:22,104 [INFO] predictor: CALIBRATION_MODE=on\n2026-05-29 16:47:22,104 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-05-29 16:47:22,111 [INFO] run_cycle: fetched 15/4 [scan]: 156 combos\n2026-05-29 16:47:22,215 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-29 16:48:05,601 [INFO] run_cycle: === run_cycle 16:48:05 ===\n2026-05-29 16:48:05,601 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-29 16:48:05,601 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-29 16:48:05,647 [INFO] predictor: Models loaded OK\n2026-05-29 16:48:18,138 [INFO] scraper: odds3t: 120/120 parsed\n2026-05-29 16:48:19,350 [INFO] scraper: odds3f: 20/20 parsed\n2026-05-29 16:48:20,449 [INFO] scraper: odds2t: 30/30 parsed\n2026-05-29 16:48:20,450 [INFO] scraper: odds2f: 15/15 parsed\n2026-05-29 16:48:21,531 [INFO] scraper: odds_win: 6/6 parsed\n2026-05-29 16:48:21,532 [INFO] scraper: fetch_race 17/12: boats=6 odds=191/191\n2026-05-29 16:48:21,544 [INFO] predictor: CALIBRATION_MODE=on\n2026-05-29 16:48:21,544 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-05-29 16:48:21,552 [INFO] run_cycle: fetched 17/12 [scan]: 156 combos\n2026-05-29 16:48:21,755 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-05-29 16:49:05,306 [INFO] run_cycle: === run_cycle 16:49:05 ===\n2026-05-29 16:49:05,306 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-05-29 16:49:05,306 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-05-29 16:49:05,378 [INFO] predictor: Models loaded OK\n2026-05-29 16:49:05,512 [INFO] run_cycle: run_cycle done: 0 notifications\n"
     },
     "strategies_active": [
       {
@@ -107,31 +107,31 @@
       {
         "target": "mirror",
         "ok": 1,
-        "c": 80
+        "c": 81
       },
       {
         "target": "primary",
         "ok": 1,
-        "c": 80
+        "c": 81
       }
     ],
     "phases_24h": {
-      "final": 33,
+      "final": 34,
       "result": 19,
       "scan": 28
     },
     "alerts_24h": [
       {
         "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
-        "c": 105
+        "c": 95
       },
       {
         "kind": "FINAL_MISSING",
-        "c": 53
+        "c": 54
       },
       {
         "kind": "KS_ODDS_DRIFT",
-        "c": 41
+        "c": 42
       },
       {
         "kind": "PSI_DRIFT_DETECTED",
@@ -139,7 +139,7 @@
       },
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
-        "c": 34
+        "c": 35
       },
       {
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
@@ -175,12 +175,12 @@
       },
       {
         "sid": "S01_NAKAANA1",
-        "n": 36,
+        "n": 37,
         "hits": 9,
-        "cost": 7200,
+        "cost": 7400,
         "payout": 4460,
-        "roi": 0.619,
-        "pl": -2740
+        "roi": 0.603,
+        "pl": -2940
       },
       {
         "sid": "S02_TETSUBAN",
@@ -193,6 +193,21 @@
       }
     ],
     "recent_alerts": [
+      {
+        "kind": "CIRCUIT_BREAKER_TRIP",
+        "detail": "{\"cost\": 9300, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 31, \"payout\": 4680, \"roi_7d\": 0.503, \"sid\": \"S00\"}",
+        "detected_at": "2026-05-29T16:48:21.781722+09:00"
+      },
+      {
+        "kind": "KS_ODDS_DRIFT",
+        "detail": "{\"kind\": \"KS_ODDS_DRIFT\", \"ks_p\": 0.003782, \"ks_stat\": 0.225}",
+        "detected_at": "2026-05-29T16:45:25.103629+09:00"
+      },
+      {
+        "kind": "FINAL_MISSING",
+        "detail": "{\"deadline\": \"2026-05-29T12:11:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026052908041211\", \"sid\": \"S01_NAKAANA1\"}",
+        "detected_at": "2026-05-29T16:44:39.914711+09:00"
+      },
       {
         "kind": "FINAL_MISSING",
         "detail": "{\"deadline\": \"2026-05-29T14:01:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026052909081401\", \"sid\": \"S00\"}",
@@ -227,37 +242,36 @@
         "kind": "CIRCUIT_BREAKER_TRIP",
         "detail": "{\"cost\": 7400, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 37, \"payout\": 4460, \"roi_7d\": 0.603, \"sid\": \"S01_NAKAANA1\"}",
         "detected_at": "2026-05-29T16:04:45.736971+09:00"
-      },
-      {
-        "kind": "KS_ODDS_DRIFT",
-        "detail": "{\"kind\": \"KS_ODDS_DRIFT\", \"ks_p\": 0.003504, \"ks_stat\": 0.226}",
-        "detected_at": "2026-05-29T16:04:45.736703+09:00"
-      },
-      {
-        "kind": "CIRCUIT_BREAKER_NO_ACTION",
-        "detail": "{\"kind\": \"CIRCUIT_BREAKER_NO_ACTION\", \"sid\": \"S01_NAKAANA1\"}",
-        "detected_at": "2026-05-29T16:04:45.723262+09:00"
-      },
-      {
-        "kind": "FINAL_MISSING",
-        "detail": "{\"deadline\": \"2026-05-29T12:20:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026052923091220\", \"sid\": \"S00\"}",
-        "detected_at": "2026-05-29T15:52:40.865140+09:00"
       }
     ],
-    "races_remaining_today": 38,
+    "races_remaining_today": 37,
     "nid_ledger_today": {
       "scheduled_total": 168,
-      "scheduled_deadline_passed": 130,
+      "scheduled_deadline_passed": 131,
       "scan_unique_nids": 20,
-      "final_unique_nids": 22,
+      "final_unique_nids": 23,
       "result_unique_nids": 12,
-      "predictions": 13,
+      "predictions": 14,
       "predictions_with_results": 13,
       "missing_result_notif": 0,
       "orphan_scan_no_final": 4
     },
     "recent_send_failures": [],
     "latest_predictions": [
+      {
+        "strategy_id": "S01_NAKAANA1",
+        "jcd": "07",
+        "rno": 3,
+        "bet_type": "win",
+        "combo": "1",
+        "ml_prob": 0.5123125910758972,
+        "odds": 4.4,
+        "ev": 2.2541754245758057,
+        "bet_amount": 200,
+        "scan_odds": null,
+        "odds_drift": null,
+        "notified_at": "2026-05-29T16:45:22.151018+09:00"
+      },
       {
         "strategy_id": "S00",
         "jcd": "15",
@@ -383,20 +397,6 @@
         "scan_odds": null,
         "odds_drift": null,
         "notified_at": "2026-05-29T10:57:44.264265+09:00"
-      },
-      {
-        "strategy_id": "S00",
-        "jcd": "11",
-        "rno": 2,
-        "bet_type": "win",
-        "combo": "1",
-        "ml_prob": 0.5734742879867554,
-        "odds": 5.2,
-        "ev": 2.9820661544799805,
-        "bet_amount": 300,
-        "scan_odds": null,
-        "odds_drift": null,
-        "notified_at": "2026-05-29T10:56:33.203094+09:00"
       }
     ],
     "drift_stats_7d": [
@@ -416,7 +416,7 @@
         "kind": "CIRCUIT_BREAKER_TRIP",
         "severity": "CRITICAL",
         "key": "CIRCUIT_BREAKER_TRIP|",
-        "count": 72,
+        "count": 92,
         "last_at": "2026-05-29T16:04:45",
         "fix_hint": "7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認"
       },
@@ -424,7 +424,7 @@
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
         "severity": "CRITICAL",
         "key": "CIRCUIT_BREAKER_NO_ACTION|",
-        "count": 72,
+        "count": 92,
         "last_at": "2026-05-29T16:04:45",
         "fix_hint": "CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認"
       },
@@ -432,7 +432,7 @@
         "kind": "STRATEGY_CI_FAIL",
         "severity": "CRITICAL",
         "key": "STRATEGY_CI_FAIL|",
-        "count": 36,
+        "count": 46,
         "last_at": "2026-05-29T16:04:45",
         "fix_hint": "grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認"
       },
@@ -440,7 +440,7 @@
         "kind": "KS_ODDS_DRIFT",
         "severity": "WARN",
         "key": "KS_ODDS_DRIFT|",
-        "count": 36,
+        "count": 46,
         "last_at": "2026-05-29T16:04:45",
         "fix_hint": "オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証"
       },
@@ -816,7 +816,7 @@
     "golden_signals": {
       "latency_avg_sec": 451.3,
       "latency_max_sec": 622.7,
-      "traffic_24h": 80,
+      "traffic_24h": 81,
       "error_rate_24h": 0.0,
       "saturation": [
         {
@@ -825,7 +825,7 @@
         },
         {
           "sid": "S01_NAKAANA1",
-          "used": 1200
+          "used": 1400
         }
       ]
     },
