@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-05-31T21:40:02.323521+09:00
+**生成**: 2026-05-31T21:50:01.430111+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×24 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×46 (24h)
+- 🟡 FINAL_MISSING×45 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×24 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
@@ -26,15 +26,15 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×33  [2026-05-31T21:07:06]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×43  [2026-05-31T21:07:06]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×66  [2026-05-31T21:07:06]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×86  [2026-05-31T21:07:06]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×33  [2026-05-31T21:07:06]
+### 🔴 STRATEGY_CI_FAIL  ×43  [2026-05-31T21:07:06]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 3.98MB / last modified 2026-05-31T21:39:05.914487+09:00
+- DB: 3.98MB / last modified 2026-05-31T21:49:06.100496+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-58 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-31 21:35:06,058 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-31 21:35:06,103 [INFO] predictor: Models loaded OK
-2026-05-31 21:35:06,105 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-31 21:36:06,521 [INFO] run_cycle: === run_cycle 21:36:06 ===
-2026-05-31 21:36:06,521 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-31 21:36:06,521 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-31 21:36:06,569 [INFO] predictor: Models loaded OK
-2026-05-31 21:36:06,574 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-31 21:37:06,533 [INFO] run_cycle: === run_cycle 21:37:06 ===
-2026-05-31 21:37:06,533 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-31 21:37:06,533 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-31 21:37:06,576 [INFO] predictor: Models loaded OK
-2026-05-31 21:37:06,581 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-31 21:38:05,662 [INFO] run_cycle: === run_cycle 21:38:05 ===
-2026-05-31 21:38:05,662 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-31 21:38:05,662 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-31 21:38:05,730 [INFO] predictor: Models loaded OK
-2026-05-31 21:38:05,737 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-05-31 21:39:05,642 [INFO] run_cycle: === run_cycle 21:39:05 ===
-2026-05-31 21:39:05,642 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-05-31 21:39:05,643 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-05-31 21:39:05,720 [INFO] predictor: Models loaded OK
-2026-05-31 21:39:05,725 [INFO] run_cycle: run_cycle done: 0 notifications
+96 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-31 21:45:06,496 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-31 21:45:06,540 [INFO] predictor: Models loaded OK
+2026-05-31 21:45:06,545 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-31 21:46:06,255 [INFO] run_cycle: === run_cycle 21:46:06 ===
+2026-05-31 21:46:06,255 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-31 21:46:06,255 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-31 21:46:06,330 [INFO] predictor: Models loaded OK
+2026-05-31 21:46:06,334 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-31 21:47:06,030 [INFO] run_cycle: === run_cycle 21:47:06 ===
+2026-05-31 21:47:06,030 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-31 21:47:06,030 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-31 21:47:06,082 [INFO] predictor: Models loaded OK
+2026-05-31 21:47:06,086 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-31 21:48:06,901 [INFO] run_cycle: === run_cycle 21:48:06 ===
+2026-05-31 21:48:06,901 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-31 21:48:06,902 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-31 21:48:06,990 [INFO] predictor: Models loaded OK
+2026-05-31 21:48:07,001 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-05-31 21:49:05,922 [INFO] run_cycle: === run_cycle 21:49:05 ===
+2026-05-31 21:49:05,923 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-05-31 21:49:05,923 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-05-31 21:49:06,006 [INFO] predictor: Models loaded OK
+2026-05-31 21:49:06,013 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -211,7 +211,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 95
-  FINAL_MISSING: 46
+  FINAL_MISSING: 45
   CIRCUIT_BREAKER_NO_ACTION: 34
   CIRCUIT_BREAKER_TRIP: 24
   STRATEGY_CI_FAIL: 17
@@ -344,4 +344,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-05-31T21:40:02.323521+09:00_
+_auto-generated by claude_snapshot.py at 2026-05-31T21:50:01.430111+09:00_
