@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-06-01T22:20:01.412420+09:00
+**生成**: 2026-06-01T22:30:02.105022+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×22 (24h) → ログ/DB確認
@@ -18,21 +18,21 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×12  [2026-06-01T22:08:05]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-06-01T22:30:04]
+- key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
+- **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
+
+### 🔴 CIRCUIT_BREAKER_TRIP  ×22  [2026-06-01T22:08:05]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×12  [2026-06-01T22:08:05]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×22  [2026-06-01T22:08:05]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×12  [2026-06-01T22:08:05]
+### 🔴 STRATEGY_CI_FAIL  ×22  [2026-06-01T22:08:05]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
-
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×3  [2026-06-01T21:00:05]
-- key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
-- **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
 ### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×31  [2026-06-01T13:34:41]
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 4.01MB / last modified 2026-06-01T22:19:06.393277+09:00
+- DB: 4.01MB / last modified 2026-06-01T22:30:04.212078+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-61 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-01 22:15:06,661 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-01 22:15:06,704 [INFO] predictor: Models loaded OK
-2026-06-01 22:15:06,709 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-01 22:16:06,562 [INFO] run_cycle: === run_cycle 22:16:06 ===
-2026-06-01 22:16:06,562 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-01 22:16:06,562 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-01 22:16:06,608 [INFO] predictor: Models loaded OK
-2026-06-01 22:16:06,612 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-01 22:17:05,919 [INFO] run_cycle: === run_cycle 22:17:05 ===
-2026-06-01 22:17:05,920 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-01 22:17:05,920 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-01 22:17:05,987 [INFO] predictor: Models loaded OK
-2026-06-01 22:17:05,994 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-01 22:18:05,373 [INFO] run_cycle: === run_cycle 22:18:05 ===
-2026-06-01 22:18:05,373 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-01 22:18:05,373 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-01 22:18:05,438 [INFO] predictor: Models loaded OK
-2026-06-01 22:18:05,442 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-01 22:19:06,265 [INFO] run_cycle: === run_cycle 22:19:06 ===
-2026-06-01 22:19:06,266 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-01 22:19:06,266 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-01 22:19:06,308 [INFO] predictor: Models loaded OK
-2026-06-01 22:19:06,312 [INFO] run_cycle: run_cycle done: 0 notifications
+FO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-01 22:27:05,968 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-01 22:27:06,031 [INFO] predictor: Models loaded OK
+2026-06-01 22:27:06,035 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-01 22:28:05,802 [INFO] run_cycle: === run_cycle 22:28:05 ===
+2026-06-01 22:28:05,802 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-01 22:28:05,802 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-01 22:28:05,892 [INFO] predictor: Models loaded OK
+2026-06-01 22:28:16,946 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=24&hd=20260601: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-06-01 22:28:29,412 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-01 22:28:30,685 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-01 22:28:31,808 [INFO] scraper: odds2t: 30/30 parsed
+2026-06-01 22:28:31,809 [INFO] scraper: odds2f: 15/15 parsed
+2026-06-01 22:28:32,947 [INFO] scraper: odds_win: 6/6 parsed
+2026-06-01 22:28:32,947 [INFO] scraper: fetch_race 24/12: boats=6 odds=191/191
+2026-06-01 22:28:32,959 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-01 22:28:32,959 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-06-01 22:28:32,967 [INFO] run_cycle: fetched 24/12 [scan]: 156 combos
+2026-06-01 22:28:33,074 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-01 22:29:05,953 [INFO] run_cycle: === run_cycle 22:29:05 ===
+2026-06-01 22:29:05,953 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-01 22:29:05,953 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-01 22:29:05,998 [INFO] predictor: Models loaded OK
+2026-06-01 22:29:06,087 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -342,4 +342,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-06-01T22:20:01.412420+09:00_
+_auto-generated by claude_snapshot.py at 2026-06-01T22:30:02.105022+09:00_
