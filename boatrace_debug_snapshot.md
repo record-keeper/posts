@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-06-02T22:10:02.014176+09:00
+**生成**: 2026-06-02T22:20:01.410514+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×21 (24h) → ログ/DB確認
@@ -18,15 +18,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×2  [2026-06-02T22:08:17]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×12  [2026-06-02T22:08:17]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-06-02T22:08:17]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×12  [2026-06-02T22:08:17]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×2  [2026-06-02T22:08:17]
+### 🔴 STRATEGY_CI_FAIL  ×12  [2026-06-02T22:08:17]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 4.05MB / last modified 2026-06-02T22:09:27.825004+09:00
+- DB: 4.05MB / last modified 2026-06-02T22:19:06.096019+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,28 +150,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-efault=100
-2026-06-02 22:07:06,280 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-02 22:07:06,340 [INFO] predictor: Models loaded OK
-2026-06-02 22:07:17,408 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=11&jcd=24&hd=20260602: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-06-02 22:07:27,683 [WARNING] scraper: beforeinfo parse failed: jcd=24 rno=11
-2026-06-02 22:07:27,683 [WARNING] run_cycle: fetch None: 24/11
-2026-06-02 22:07:27,683 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-02 22:08:06,322 [INFO] run_cycle: === run_cycle 22:08:06 ===
-2026-06-02 22:08:06,322 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-02 22:08:06,322 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-02 22:08:06,387 [INFO] predictor: Models loaded OK
-2026-06-02 22:08:17,683 [WARNING] scraper: beforeinfo parse failed: jcd=24 rno=11
-2026-06-02 22:08:17,683 [WARNING] run_cycle: fetch None: 24/11
-2026-06-02 22:08:17,683 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-02 22:09:05,519 [INFO] run_cycle: === run_cycle 22:09:05 ===
-2026-06-02 22:09:05,519 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-02 22:09:05,519 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-02 22:09:05,588 [INFO] predictor: Models loaded OK
-2026-06-02 22:09:16,660 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=11&jcd=24&hd=20260602: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-06-02 22:09:27,396 [WARNING] scraper: beforeinfo parse failed: jcd=24 rno=11
-2026-06-02 22:09:27,397 [WARNING] run_cycle: fetch None: 24/11
-2026-06-02 22:09:27,397 [INFO] run_cycle: run_cycle done: 0 notifications
+99 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-02 22:15:06,299 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-02 22:15:06,375 [INFO] predictor: Models loaded OK
+2026-06-02 22:15:06,388 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-02 22:16:06,335 [INFO] run_cycle: === run_cycle 22:16:06 ===
+2026-06-02 22:16:06,335 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-02 22:16:06,335 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-02 22:16:06,410 [INFO] predictor: Models loaded OK
+2026-06-02 22:16:06,416 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-02 22:17:06,733 [INFO] run_cycle: === run_cycle 22:17:06 ===
+2026-06-02 22:17:06,733 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-02 22:17:06,733 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-02 22:17:06,802 [INFO] predictor: Models loaded OK
+2026-06-02 22:17:06,806 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-02 22:18:06,466 [INFO] run_cycle: === run_cycle 22:18:06 ===
+2026-06-02 22:18:06,466 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-02 22:18:06,467 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-02 22:18:06,535 [INFO] predictor: Models loaded OK
+2026-06-02 22:18:06,539 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-02 22:19:05,985 [INFO] run_cycle: === run_cycle 22:19:05 ===
+2026-06-02 22:19:05,985 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-02 22:19:05,985 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-02 22:19:06,032 [INFO] predictor: Models loaded OK
+2026-06-02 22:19:06,036 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -227,6 +229,7 @@ efault=100
 
 ## 直近アラート (24h・新しい順)
 ```
+[22:16:06] FINAL_MISSING: {"deadline": "2026-06-02T16:43:00+09:00", "kind": "FINAL_MISSING", "nid": "2026060201031643", "sid": "S00"}
 [22:08:17] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [22:08:17] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S00"}
 [21:48:27] CIRCUIT_BREAKER_TRIP: {"cost": 10200, "kind": "CIRCUIT_BREAKER_TRIP", "n": 34, "payout": 4530, "roi_7d": 0.444, "sid": "S00"}
@@ -236,13 +239,12 @@ efault=100
 [21:08:06] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S00"}
 [20:48:17] CIRCUIT_BREAKER_TRIP: {"cost": 10200, "kind": "CIRCUIT_BREAKER_TRIP", "n": 34, "payout": 4530, "roi_7d": 0.444, "sid": "S00"}
 [20:14:23] FINAL_MISSING: {"deadline": "2026-06-02T16:43:00+09:00", "kind": "FINAL_MISSING", "nid": "2026060201031643", "sid": "S00"}
-[20:07:07] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 ```
 
-## 本日残レース: 2件
+## 本日残レース: 1件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 142件 締切済
+- race_schedule: 144件 登録 / 143件 締切済
 - 通知発射: scan=14 nid / final=18 nid / result=7 nid
 - predictions: 7 / うち結果DB記録済: 7
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -340,4 +342,4 @@ efault=100
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-06-02T22:10:02.014176+09:00_
+_auto-generated by claude_snapshot.py at 2026-06-02T22:20:01.410514+09:00_
