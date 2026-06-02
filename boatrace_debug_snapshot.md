@@ -2,15 +2,15 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-06-02T22:30:02.282681+09:00
+**生成**: 2026-06-02T22:40:01.443910+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×21 (24h) → ログ/DB確認
 
 ### 検出された問題
 - 🔴 CIRCUIT_BREAKER_TRIP×21 (24h)
-- 🟡 FINAL_MISSING×17 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
+- 🟡 FINAL_MISSING×16 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
 
@@ -18,15 +18,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×22  [2026-06-02T22:08:17]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×32  [2026-06-02T22:08:17]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×22  [2026-06-02T22:08:17]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×32  [2026-06-02T22:08:17]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×22  [2026-06-02T22:08:17]
+### 🔴 STRATEGY_CI_FAIL  ×32  [2026-06-02T22:08:17]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 4.05MB / last modified 2026-06-02T22:30:04.042881+09:00
+- DB: 4.05MB / last modified 2026-06-02T22:39:27.028579+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,25 +150,26 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-e done: 0 notifications
-2026-06-02 22:28:05,686 [INFO] run_cycle: === run_cycle 22:28:05 ===
-2026-06-02 22:28:05,686 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-02 22:28:05,686 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-02 22:28:05,765 [INFO] predictor: Models loaded OK
-2026-06-02 22:28:17,039 [WARNING] scraper: beforeinfo parse failed: jcd=24 rno=12
-2026-06-02 22:28:17,039 [WARNING] run_cycle: fetch None: 24/12
-2026-06-02 22:28:17,039 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-02 22:29:06,330 [INFO] run_cycle: === run_cycle 22:29:06 ===
-2026-06-02 22:29:06,330 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-02 22:29:06,330 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-02 22:29:06,378 [INFO] predictor: Models loaded OK
-2026-06-02 22:29:23,683 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=24&hd=20260602: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-06-02 22:29:39,804 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=24&hd=20260602: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-06-02 22:29:55,015 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=24&hd=20260602: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
-2026-06-02 22:29:55,015 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=24&hd=20260602
-2026-06-02 22:29:55,015 [ERROR] scraper: racelist fetch failed: jcd=24 rno=12
-2026-06-02 22:29:55,015 [WARNING] run_cycle: fetch None: 24/12
-2026-06-02 22:29:55,015 [INFO] run_cycle: run_cycle done: 0 notifications
+6000, 'B': 1500} default=5000
+2026-06-02 22:37:07,106 [INFO] predictor: Models loaded OK
+2026-06-02 22:37:07,108 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-02 22:38:06,124 [INFO] run_cycle: === run_cycle 22:38:06 ===
+2026-06-02 22:38:06,124 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-02 22:38:06,124 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-02 22:38:06,197 [INFO] predictor: Models loaded OK
+2026-06-02 22:38:17,270 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=24&hd=20260602: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-06-02 22:38:28,324 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=24&hd=20260602: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-06-02 22:38:41,718 [WARNING] scraper: beforeinfo parse failed: jcd=24 rno=12
+2026-06-02 22:38:41,718 [WARNING] run_cycle: fetch None: 24/12
+2026-06-02 22:38:41,718 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-02 22:39:05,520 [INFO] run_cycle: === run_cycle 22:39:05 ===
+2026-06-02 22:39:05,520 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-02 22:39:05,520 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-02 22:39:05,581 [INFO] predictor: Models loaded OK
+2026-06-02 22:39:16,643 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=24&hd=20260602: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-06-02 22:39:26,983 [WARNING] scraper: beforeinfo parse failed: jcd=24 rno=12
+2026-06-02 22:39:26,983 [WARNING] run_cycle: fetch None: 24/12
+2026-06-02 22:39:26,983 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -208,8 +209,8 @@ e done: 0 notifications
   ANOMALY_SCRAPER_FAILURE_BURST: 60
   CIRCUIT_BREAKER_TRIP: 21
   CIRCUIT_BREAKER_NO_ACTION: 17
-  FINAL_MISSING: 17
   STRATEGY_CI_FAIL: 17
+  FINAL_MISSING: 16
   ANOMALY_SCAN_FINAL_RATIO: 8
   ANOMALY_BET_VOLUME_DROP: 1
   LARGE_ODDS_DRIFT: 1
@@ -337,4 +338,4 @@ e done: 0 notifications
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-06-02T22:30:02.282681+09:00_
+_auto-generated by claude_snapshot.py at 2026-06-02T22:40:01.443910+09:00_
