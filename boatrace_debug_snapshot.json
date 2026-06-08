@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T05:50:01.583917+09:00",
+  "generated_at": "2026-06-09T06:00:04.773679+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -127,11 +127,11 @@
       },
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
-        "c": 63
+        "c": 66
       },
       {
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
-        "c": 51
+        "c": 54
       },
       {
         "kind": "FINAL_MISSING",
@@ -139,15 +139,15 @@
       },
       {
         "kind": "CALIBRATION_DRIFT",
-        "c": 26
+        "c": 27
       },
       {
         "kind": "PSI_DRIFT_DETECTED",
-        "c": 25
+        "c": 26
       },
       {
         "kind": "STRATEGY_CI_FAIL",
-        "c": 17
+        "c": 18
       },
       {
         "kind": "ANOMALY_SCAN_FINAL_RATIO",
@@ -194,54 +194,54 @@
     ],
     "recent_alerts": [
       {
+        "kind": "STRATEGY_CI_FAIL",
+        "detail": "{\"ci_lo\": null, \"kind\": \"STRATEGY_CI_FAIL\", \"sid\": \"S02_TETSUBAN\"}",
+        "detected_at": "2026-06-09T06:00:04.866716+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_TRIP",
+        "detail": "{\"cost\": 4800, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 24, \"payout\": 1720, \"roi_7d\": 0.358, \"sid\": \"S02_TETSUBAN\"}",
+        "detected_at": "2026-06-09T06:00:04.866176+09:00"
+      },
+      {
         "kind": "CIRCUIT_BREAKER_TRIP",
         "detail": "{\"cost\": 5600, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 28, \"payout\": 1740, \"roi_7d\": 0.311, \"sid\": \"S01_NAKAANA1\"}",
-        "detected_at": "2026-06-08T23:46:06.013244+09:00"
-      },
-      {
-        "kind": "FINAL_MISSING",
-        "detail": "{\"deadline\": \"2026-06-08T18:08:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026060824021808\", \"sid\": \"S00\"}",
-        "detected_at": "2026-06-08T23:41:06.099449+09:00"
-      },
-      {
-        "kind": "FINAL_MISSING",
-        "detail": "{\"deadline\": \"2026-06-08T15:58:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026060801021558\", \"sid\": \"S00\"}",
-        "detected_at": "2026-06-08T23:32:06.384435+09:00"
-      },
-      {
-        "kind": "PSI_DRIFT_DETECTED",
-        "detail": "{\"bt\": \"win\", \"kind\": \"PSI_DRIFT_DETECTED\", \"n_baseline\": 299, \"n_recent\": 81, \"psi\": 0.336}",
-        "detected_at": "2026-06-08T23:30:10.697399+09:00"
+        "detected_at": "2026-06-09T06:00:04.866148+09:00"
       },
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
         "detail": "{\"cost\": 8700, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 29, \"payout\": 3390, \"roi_7d\": 0.39, \"sid\": \"S00\"}",
-        "detected_at": "2026-06-08T23:27:06.350920+09:00"
+        "detected_at": "2026-06-09T06:00:04.866106+09:00"
       },
       {
-        "kind": "FINAL_MISSING",
-        "detail": "{\"deadline\": \"2026-06-08T10:49:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026060821061049\", \"sid\": \"S00\"}",
-        "detected_at": "2026-06-08T23:27:06.329888+09:00"
+        "kind": "PSI_DRIFT_DETECTED",
+        "detail": "{\"bt\": \"win\", \"kind\": \"PSI_DRIFT_DETECTED\", \"n_baseline\": 299, \"n_recent\": 81, \"psi\": 0.336}",
+        "detected_at": "2026-06-09T06:00:04.854947+09:00"
       },
       {
         "kind": "CALIBRATION_DRIFT",
         "detail": "{\"avg_actual\": 0.1728, \"avg_pred\": 0.4842, \"bt\": \"win\", \"kind\": \"CALIBRATION_DRIFT\", \"n\": 81, \"overconf_pct\": 64.3}",
-        "detected_at": "2026-06-08T23:14:05.576369+09:00"
-      },
-      {
-        "kind": "FINAL_MISSING",
-        "detail": "{\"deadline\": \"2026-06-08T22:41:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026060824122241\", \"sid\": \"S00\"}",
-        "detected_at": "2026-06-08T23:11:06.054301+09:00"
-      },
-      {
-        "kind": "STRATEGY_CI_FAIL",
-        "detail": "{\"ci_lo\": null, \"kind\": \"STRATEGY_CI_FAIL\", \"sid\": \"S02_TETSUBAN\"}",
-        "detected_at": "2026-06-08T23:10:09.009159+09:00"
+        "detected_at": "2026-06-09T06:00:04.840634+09:00"
       },
       {
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
         "detail": "{\"kind\": \"CIRCUIT_BREAKER_NO_ACTION\", \"sid\": \"S02_TETSUBAN\"}",
-        "detected_at": "2026-06-08T23:10:08.956176+09:00"
+        "detected_at": "2026-06-09T06:00:04.836545+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_NO_ACTION",
+        "detail": "{\"kind\": \"CIRCUIT_BREAKER_NO_ACTION\", \"sid\": \"S01_NAKAANA1\"}",
+        "detected_at": "2026-06-09T06:00:04.836521+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_NO_ACTION",
+        "detail": "{\"kind\": \"CIRCUIT_BREAKER_NO_ACTION\", \"sid\": \"S00\"}",
+        "detected_at": "2026-06-09T06:00:04.836446+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_TRIP",
+        "detail": "{\"cost\": 5600, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 28, \"payout\": 1740, \"roi_7d\": 0.311, \"sid\": \"S01_NAKAANA1\"}",
+        "detected_at": "2026-06-08T23:46:06.013244+09:00"
       }
     ],
     "races_remaining_today": 0,
@@ -416,7 +416,7 @@
         "kind": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION",
         "severity": "CRITICAL",
         "key": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま",
-        "count": 1,
+        "count": 2,
         "last_at": "2026-06-09T05:30:04",
         "fix_hint": "CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に"
       },
@@ -424,7 +424,7 @@
         "kind": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION",
         "severity": "CRITICAL",
         "key": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま",
-        "count": 1,
+        "count": 2,
         "last_at": "2026-06-09T05:30:04",
         "fix_hint": "CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に"
       },
@@ -432,7 +432,7 @@
         "kind": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION",
         "severity": "CRITICAL",
         "key": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S02_TETSUBAN が TRIP してるが enabled のまま",
-        "count": 1,
+        "count": 2,
         "last_at": "2026-06-09T05:30:04",
         "fix_hint": "CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に"
       },
