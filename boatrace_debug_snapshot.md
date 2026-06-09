@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-06-09T09:20:01.621835+09:00
+**生成**: 2026-06-09T09:30:02.316742+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×62 (24h) → ログ/DB確認
@@ -20,37 +20,37 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CALIBRATION_DRIFT  ×19  [2026-06-09T09:01:07]
-- key: `CALIBRATION_DRIFT|`
-- **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
-
-### 🔴 CIRCUIT_BREAKER_TRIP  ×57  [2026-06-09T09:01:07]
-- key: `CIRCUIT_BREAKER_TRIP|`
-- **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
-
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×57  [2026-06-09T09:01:07]
-- key: `CIRCUIT_BREAKER_NO_ACTION|`
-- **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
-
-### 🔴 PSI_DRIFT_DETECTED  ×19  [2026-06-09T09:01:07]
-- key: `PSI_DRIFT_DETECTED|`
-- **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
-
-### 🔴 STRATEGY_CI_FAIL  ×19  [2026-06-09T09:01:07]
-- key: `STRATEGY_CI_FAIL|`
-- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
-
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×3  [2026-06-09T08:00:06]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-06-09T09:30:03]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×3  [2026-06-09T08:00:06]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-06-09T09:30:03]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×3  [2026-06-09T08:00:06]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-06-09T09:30:03]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S02_TETSUBAN が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
+
+### 🔴 CALIBRATION_DRIFT  ×29  [2026-06-09T09:01:07]
+- key: `CALIBRATION_DRIFT|`
+- **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
+
+### 🔴 CIRCUIT_BREAKER_TRIP  ×87  [2026-06-09T09:01:07]
+- key: `CIRCUIT_BREAKER_TRIP|`
+- **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
+
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×87  [2026-06-09T09:01:07]
+- key: `CIRCUIT_BREAKER_NO_ACTION|`
+- **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
+
+### 🔴 PSI_DRIFT_DETECTED  ×29  [2026-06-09T09:01:07]
+- key: `PSI_DRIFT_DETECTED|`
+- **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
+
+### 🔴 STRATEGY_CI_FAIL  ×29  [2026-06-09T09:01:07]
+- key: `STRATEGY_CI_FAIL|`
+- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
 ### ℹ️ DRIFT_BUCKET  ×1  [2026-06-09T06:00:17]
 - key: `DRIFT_BUCKET|drift +10%〜+30%: n=37 hit%=27.0% ROI=1.00 (コスト 8,400/回収 8,380)`
@@ -109,7 +109,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 4.72MB / last modified 2026-06-09T09:19:06.238042+09:00
+- DB: 4.72MB / last modified 2026-06-09T09:30:05.540879+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -153,29 +153,29 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ### 直近 run_cycle ログ (末尾)
 ```
 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-09 09:17:06,404 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-09 09:17:06,455 [INFO] predictor: Models loaded OK
-2026-06-09 09:17:17,517 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=3&jcd=23&hd=20260609: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-06-09 09:17:29,011 [INFO] scraper: odds3t: 120/120 parsed
-2026-06-09 09:17:30,139 [INFO] scraper: odds3f: 20/20 parsed
-2026-06-09 09:17:31,223 [INFO] scraper: odds2t: 26/30 parsed
-2026-06-09 09:17:31,224 [INFO] scraper: odds2f: 15/15 parsed
-2026-06-09 09:17:32,317 [INFO] scraper: odds_win: 5/6 parsed
-2026-06-09 09:17:32,317 [INFO] scraper: fetch_race 23/3: boats=6 odds=186/191
-2026-06-09 09:17:32,330 [INFO] predictor: CALIBRATION_MODE=on
-2026-06-09 09:17:32,330 [INFO] predictor: combos: {'win': 5, '2t': 26, '3t': 120}
-2026-06-09 09:17:32,338 [INFO] run_cycle: fetched 23/3 [scan]: 151 combos
-2026-06-09 09:17:32,430 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-09 09:18:05,643 [INFO] run_cycle: === run_cycle 09:18:05 ===
-2026-06-09 09:18:05,643 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-09 09:18:05,643 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-09 09:18:05,686 [INFO] predictor: Models loaded OK
-2026-06-09 09:18:05,778 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-09 09:19:05,818 [INFO] run_cycle: === run_cycle 09:19:05 ===
-2026-06-09 09:19:05,818 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-09 09:19:05,818 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-09 09:19:05,881 [INFO] predictor: Models loaded OK
-2026-06-09 09:19:05,973 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-09 09:27:05,843 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-09 09:27:05,910 [INFO] predictor: Models loaded OK
+2026-06-09 09:27:16,978 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=3&jcd=18&hd=20260609: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-06-09 09:27:29,470 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-09 09:27:30,597 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-09 09:27:31,688 [INFO] scraper: odds2t: 30/30 parsed
+2026-06-09 09:27:31,690 [INFO] scraper: odds2f: 15/15 parsed
+2026-06-09 09:27:32,828 [INFO] scraper: odds_win: 4/6 parsed
+2026-06-09 09:27:32,828 [INFO] scraper: fetch_race 18/3: boats=6 odds=189/191
+2026-06-09 09:27:32,832 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-09 09:27:32,832 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-06-09 09:27:32,836 [INFO] run_cycle: fetched 18/3 [scan]: 154 combos
+2026-06-09 09:27:32,937 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-09 09:28:06,281 [INFO] run_cycle: === run_cycle 09:28:06 ===
+2026-06-09 09:28:06,281 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-09 09:28:06,281 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-09 09:28:06,332 [INFO] predictor: Models loaded OK
+2026-06-09 09:28:06,427 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-09 09:29:05,092 [INFO] run_cycle: === run_cycle 09:29:05 ===
+2026-06-09 09:29:05,092 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-09 09:29:05,092 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-09 09:29:05,258 [INFO] predictor: Models loaded OK
+2026-06-09 09:29:05,440 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -245,10 +245,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [08:00:54] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 ```
 
-## 本日残レース: 140件
+## 本日残レース: 139件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 4件 締切済
+- race_schedule: 144件 登録 / 5件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -341,4 +341,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-06-09T09:20:01.621835+09:00_
+_auto-generated by claude_snapshot.py at 2026-06-09T09:30:02.316742+09:00_
