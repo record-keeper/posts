@@ -2,15 +2,15 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-06-11T13:00:02.011133+09:00
+**生成**: 2026-06-11T13:10:01.929494+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🔴 CIRCUIT_BREAKER_TRIP×73 (24h)
-- 🔴 CALIBRATION_DRIFT×32 (24h)
-- 🟡 FINAL_MISSING×30 (24h)
+- 🔴 CIRCUIT_BREAKER_TRIP×74 (24h)
+- 🔴 CALIBRATION_DRIFT×31 (24h)
+- 🟡 FINAL_MISSING×31 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🔴 CRITICAL_ODDS_COLLAPSE×1 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
@@ -20,29 +20,29 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
+### 🟡 ANOMALY_BET_VOLUME_SPIKE  ×4  [2026-06-11T13:06:22]
+- key: `ANOMALY_BET_VOLUME_SPIKE|`
+- **FIX**: 本日のbet数が2σ急増。filter logic緩み・戦略追加・race_schedule異常
+
+### 🔴 CIRCUIT_BREAKER_TRIP  ×18  [2026-06-11T13:04:06]
+- key: `CIRCUIT_BREAKER_TRIP|`
+- **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
+
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×18  [2026-06-11T13:04:06]
+- key: `CIRCUIT_BREAKER_NO_ACTION|`
+- **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
+
+### 🔴 STRATEGY_CI_FAIL  ×6  [2026-06-11T13:04:06]
+- key: `STRATEGY_CI_FAIL|`
+- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
+
 ### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×3  [2026-06-11T12:43:56]
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
 - **FIX**: 直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS
 
-### 🟡 ANOMALY_BET_VOLUME_SPIKE  ×55  [2026-06-11T12:05:54]
-- key: `ANOMALY_BET_VOLUME_SPIKE|`
-- **FIX**: 本日のbet数が2σ急増。filter logic緩み・戦略追加・race_schedule異常
-
 ### 🔴 CALIBRATION_DRIFT  ×47  [2026-06-11T12:03:42]
 - key: `CALIBRATION_DRIFT|`
 - **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
-
-### 🔴 CIRCUIT_BREAKER_TRIP  ×171  [2026-06-11T12:03:42]
-- key: `CIRCUIT_BREAKER_TRIP|`
-- **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
-
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×171  [2026-06-11T12:03:42]
-- key: `CIRCUIT_BREAKER_NO_ACTION|`
-- **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
-
-### 🔴 STRATEGY_CI_FAIL  ×57  [2026-06-11T12:03:42]
-- key: `STRATEGY_CI_FAIL|`
-- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
 ### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×2  [2026-06-11T12:01:50]
 - key: `ANOMALY_SCAN_FINAL_RATIO|`
@@ -109,7 +109,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 4.82MB / last modified 2026-06-11T13:00:04.745611+09:00
+- DB: 4.82MB / last modified 2026-06-11T13:09:07.052156+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -152,33 +152,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-default=100
-2026-06-11 12:59:05,915 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-11 12:59:05,988 [INFO] predictor: Models loaded OK
-2026-06-11 12:59:17,038 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=5&jcd=03&hd=20260611: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-06-11 12:59:28,495 [INFO] scraper: odds3t: 120/120 parsed
-2026-06-11 12:59:29,596 [INFO] scraper: odds3f: 20/20 parsed
-2026-06-11 12:59:30,715 [INFO] scraper: odds2t: 30/30 parsed
-2026-06-11 12:59:30,716 [INFO] scraper: odds2f: 13/15 parsed
-2026-06-11 12:59:31,859 [INFO] scraper: odds_win: 4/6 parsed
-2026-06-11 12:59:31,859 [INFO] scraper: fetch_race 03/5: boats=6 odds=187/191
-2026-06-11 12:59:31,871 [INFO] predictor: CALIBRATION_MODE=on
-2026-06-11 12:59:31,871 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-06-11 12:59:31,880 [INFO] run_cycle: fetched 03/5 [final]: 154 combos
-2026-06-11 12:59:32,825 [INFO] race_id: notif: nid=2026061103051302 sid=S00 phase=final rank=S
-2026-06-11 12:59:33,274 [INFO] notifier: Discord notify OK (status=204)
-2026-06-11 12:59:35,160 [INFO] notifier: Discord notify OK (status=204)
-2026-06-11 12:59:35,166 [INFO] run_cycle: FINAL S00 江戸川5R S
-2026-06-11 12:59:38,843 [INFO] scraper: odds3t: 120/120 parsed
-2026-06-11 12:59:39,975 [INFO] scraper: odds3f: 20/20 parsed
-2026-06-11 12:59:41,064 [INFO] scraper: odds2t: 30/30 parsed
-2026-06-11 12:59:41,065 [INFO] scraper: odds2f: 14/15 parsed
-2026-06-11 12:59:42,208 [INFO] scraper: odds_win: 3/6 parsed
-2026-06-11 12:59:42,208 [INFO] scraper: fetch_race 14/10: boats=6 odds=187/191
-2026-06-11 12:59:42,216 [INFO] predictor: CALIBRATION_MODE=on
-2026-06-11 12:59:42,218 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-06-11 12:59:42,226 [INFO] run_cycle: fetched 14/10 [scan]: 153 combos
-2026-06-11 12:59:42,449 [INFO] run_cycle: run_cycle done: 1 notifications
+ run_cycle 13:08:06 ===
+2026-06-11 13:08:06,340 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-11 13:08:06,340 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-11 13:08:06,381 [INFO] predictor: Models loaded OK
+2026-06-11 13:08:17,880 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-11 13:08:18,970 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-11 13:08:20,156 [INFO] scraper: odds2t: 30/30 parsed
+2026-06-11 13:08:20,157 [INFO] scraper: odds2f: 13/15 parsed
+2026-06-11 13:08:21,378 [INFO] scraper: odds_win: 3/6 parsed
+2026-06-11 13:08:21,378 [INFO] scraper: fetch_race 09/6: boats=6 odds=186/191
+2026-06-11 13:08:21,390 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-11 13:08:21,390 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
+2026-06-11 13:08:21,397 [INFO] run_cycle: fetched 09/6 [final]: 153 combos
+2026-06-11 13:08:24,906 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-11 13:08:26,026 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-11 13:08:27,155 [INFO] scraper: odds2t: 30/30 parsed
+2026-06-11 13:08:27,156 [INFO] scraper: odds2f: 14/15 parsed
+2026-06-11 13:08:28,286 [INFO] scraper: odds_win: 3/6 parsed
+2026-06-11 13:08:28,286 [INFO] scraper: fetch_race 10/11: boats=6 odds=187/191
+2026-06-11 13:08:28,295 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-11 13:08:28,295 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
+2026-06-11 13:08:28,303 [INFO] run_cycle: fetched 10/11 [scan]: 153 combos
+2026-06-11 13:08:28,411 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-11 13:09:06,371 [INFO] run_cycle: === run_cycle 13:09:06 ===
+2026-06-11 13:09:06,371 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-11 13:09:06,372 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-11 13:09:06,475 [INFO] predictor: Models loaded OK
+2026-06-11 13:09:06,630 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -215,14 +216,14 @@ default=100
 
 ## アラート件数 (24h・種類別)
 ```
-  CIRCUIT_BREAKER_TRIP: 73
+  CIRCUIT_BREAKER_TRIP: 74
   CIRCUIT_BREAKER_NO_ACTION: 51
-  ANOMALY_SCRAPER_FAILURE_BURST: 33
-  CALIBRATION_DRIFT: 32
-  FINAL_MISSING: 30
+  CALIBRATION_DRIFT: 31
+  FINAL_MISSING: 31
+  ANOMALY_SCRAPER_FAILURE_BURST: 26
   STRATEGY_CI_FAIL: 17
   ANOMALY_SCAN_FINAL_RATIO: 8
-  ANOMALY_BET_VOLUME_SPIKE: 5
+  ANOMALY_BET_VOLUME_SPIKE: 6
   CRITICAL_ODDS_COLLAPSE: 1
   LARGE_ODDS_DRIFT: 1
 ```
@@ -232,28 +233,28 @@ default=100
 |---|---|---|---|---|---|---|
 | S00 | 41 | 10 | 12,300 | 7,950 | -4,350 | 0.646 |
 | S01_NAKAANA1 | 33 | 9 | 6,600 | 4,040 | -2,560 | 0.612 |
-| S02_TETSUBAN | 27 | 6 | 5,400 | 1,880 | -3,520 | 0.348 |
+| S02_TETSUBAN | 26 | 6 | 5,200 | 1,880 | -3,320 | 0.362 |
 
 ## 直近アラート (24h・新しい順)
 ```
+[13:04:06] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
+[13:04:06] FINAL_MISSING: {"deadline": "2026-06-11T11:34:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061114071134", "sid": "S00"}
+[13:04:06] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S02_TETSUBAN"}
+[13:04:06] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S01_NAKAANA1"}
+[13:04:06] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S00"}
+[13:03:29] CIRCUIT_BREAKER_TRIP: {"cost": 5200, "kind": "CIRCUIT_BREAKER_TRIP", "n": 26, "payout": 1880, "roi_7d": 0.362, "sid": "S02_TETSUBAN"}
+[13:00:32] ANOMALY_BET_VOLUME_SPIKE: {"baseline_mean": 7.6, "baseline_n_days": 7, "baseline_stdev": 2.5, "hour": 13, "kind": "ANOMALY_BET_VOLUME_SPIKE", "today_so_far": 14, "z_score": 2.56}
 [12:59:42] CIRCUIT_BREAKER_TRIP: {"cost": 12300, "kind": "CIRCUIT_BREAKER_TRIP", "n": 41, "payout": 7950, "roi_7d": 0.646, "sid": "S00"}
 [12:59:42] ANOMALY_BET_VOLUME_SPIKE: {"baseline_mean": 4.9, "baseline_n_days": 7, "baseline_stdev": 2.3, "hour": 12, "kind": "ANOMALY_BET_VOLUME_SPIKE", "today_so_far": 14, "z_score": 3.91}
 [12:56:49] CIRCUIT_BREAKER_TRIP: {"cost": 12000, "kind": "CIRCUIT_BREAKER_TRIP", "n": 40, "payout": 7950, "roi_7d": 0.662, "sid": "S00"}
-[12:50:35] CIRCUIT_BREAKER_TRIP: {"cost": 5400, "kind": "CIRCUIT_BREAKER_TRIP", "n": 27, "payout": 1880, "roi_7d": 0.348, "sid": "S02_TETSUBAN"}
-[12:45:24] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1188}
-[12:44:46] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1177}
-[12:43:56] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1181}
-[12:38:41] FINAL_MISSING: {"deadline": "2026-06-11T12:08:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061103031208", "sid": "S00"}
-[12:37:21] CALIBRATION_DRIFT: {"avg_actual": 0.2371, "avg_pred": 0.4887, "bt": "win", "kind": "CALIBRATION_DRIFT", "n": 97, "overconf_pct": 51.5}
-[12:35:33] CIRCUIT_BREAKER_TRIP: {"cost": 6600, "kind": "CIRCUIT_BREAKER_TRIP", "n": 33, "payout": 4040, "roi_7d": 0.612, "sid": "S01_NAKAANA1"}
 ```
 
-## 本日残レース: 86件
+## 本日残レース: 82件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 58件 締切済
-- 通知発射: scan=19 nid / final=19 nid / result=11 nid
-- predictions: 14 / うち結果DB記録済: 12
+- race_schedule: 144件 登録 / 62件 締切済
+- 通知発射: scan=19 nid / final=20 nid / result=12 nid
+- predictions: 14 / うち結果DB記録済: 13
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - 🔴 scan後final無しのまま締切: 3件（FINAL_MISSING の温床）
 
@@ -279,7 +280,7 @@ default=100
 
 | bt | n | avg | min | max | down10 | collapse(≤-30%) | any_large(≥10%) |
 |---|---|---|---|---|---|---|---|
-| win | 58 | +6.2% | -62.9% | +274.6% | 19 | 8 | 32 |
+| win | 57 | +6.8% | -62.9% | +274.6% | 18 | 8 | 31 |
 
 ## 校正テーブル合格状況
 
@@ -292,7 +293,7 @@ default=100
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 443.8s |
+| **Latency** (scan→final avg) | 449.9s |
 | **Latency** (scan→final max) | 616.2s |
 | **Traffic** (notifications 24h) | 76 |
 | **Errors** (send fail rate) | ✅ 0.0% |
@@ -305,12 +306,12 @@ default=100
 ### bt別: 予測確率 vs 実的中率
 | bt | n | 予測avg | 実的中率 | 校正誤差 | 過信度 | Brier |
 |---|---|---|---|---|---|---|
-| win | 373 | 0.4697 | 0.2949 | +0.1748 | 🟡+37% | 0.2364 |
+| win | 374 | 0.4695 | 0.2941 | +0.1754 | 🟡+37% | 0.2363 |
 
 ### 戦略別: 校正精度 + Brier Skill Score
 | sid | bt | n | pred | actual | Brier | BSS | ROI |
 |---|---|---|---|---|---|---|---|
-| S00 | win | 152 | 0.4199 | 0.2697 | 0.2170 | 🔴-0.10 | 0.801 |
+| S00 | win | 153 | 0.4199 | 0.2680 | 0.2167 | 🔴-0.10 | 0.796 |
 | S01_NAKAANA1 | win | 140 | 0.4886 | 0.2857 | 0.2431 | 🔴-0.19 | 0.72 |
 | S02_TETSUBAN | win | 81 | 0.5303 | 0.3580 | 0.2613 | 🔴-0.14 | 0.607 |
 
@@ -320,7 +321,7 @@ default=100
 | 0.10-0.15 | 6 | 0.1254 | 0.1667 | ✅-0.0412 |
 | 0.15-0.20 | 5 | 0.1835 | 0.2000 | ✅-0.0165 |
 | 0.20-0.30 | 6 | 0.2236 | 0.3333 | 🔴-0.1097 |
-| 0.30-0.50 | 139 | 0.4202 | 0.2302 | 🔴+0.1900 |
+| 0.30-0.50 | 140 | 0.4202 | 0.2286 | 🔴+0.1916 |
 | 0.50+ | 209 | 0.5421 | 0.3541 | 🔴+0.1880 |
 
 ## Settlement Ratio データ品質
@@ -347,4 +348,4 @@ default=100
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-06-11T13:00:02.011133+09:00_
+_auto-generated by claude_snapshot.py at 2026-06-11T13:10:01.929494+09:00_
