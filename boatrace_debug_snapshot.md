@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-06-14T17:50:01.798280+09:00
+**生成**: 2026-06-14T18:00:02.066164+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×60 (24h)
+- 🟡 FINAL_MISSING×62 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×23 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🔴 CRITICAL_ODDS_COLLAPSE×1 (24h)
@@ -18,19 +18,19 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-06-14T17:30:04]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-06-14T17:30:04]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S02_TETSUBAN が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×45  [2026-06-14T17:05:09]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×55  [2026-06-14T17:05:09]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×45  [2026-06-14T17:05:09]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×55  [2026-06-14T17:05:09]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×45  [2026-06-14T17:05:09]
+### 🔴 STRATEGY_CI_FAIL  ×55  [2026-06-14T17:05:09]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 5.1MB / last modified 2026-06-14T17:49:05.534680+09:00
+- DB: 5.1MB / last modified 2026-06-14T18:00:04.432608+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,34 +150,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-rsed
-2026-06-14 17:47:34,842 [INFO] scraper: odds2t: 30/30 parsed
-2026-06-14 17:47:34,843 [INFO] scraper: odds2f: 15/15 parsed
-2026-06-14 17:47:35,944 [INFO] scraper: odds_win: 6/6 parsed
-2026-06-14 17:47:35,944 [INFO] scraper: fetch_race 22/12: boats=6 odds=191/191
-2026-06-14 17:47:35,952 [INFO] predictor: CALIBRATION_MODE=on
-2026-06-14 17:47:35,952 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-06-14 17:47:35,960 [INFO] run_cycle: fetched 22/12 [scan]: 156 combos
-2026-06-14 17:47:36,071 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-14 17:48:05,555 [INFO] run_cycle: === run_cycle 17:48:05 ===
-2026-06-14 17:48:05,557 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-14 17:48:05,557 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-14 17:48:05,615 [INFO] predictor: Models loaded OK
-2026-06-14 17:48:18,251 [INFO] scraper: odds3t: 120/120 parsed
-2026-06-14 17:48:19,392 [INFO] scraper: odds3f: 20/20 parsed
-2026-06-14 17:48:20,494 [INFO] scraper: odds2t: 30/30 parsed
-2026-06-14 17:48:20,495 [INFO] scraper: odds2f: 15/15 parsed
-2026-06-14 17:48:21,661 [INFO] scraper: odds_win: 6/6 parsed
-2026-06-14 17:48:21,661 [INFO] scraper: fetch_race 20/6: boats=6 odds=191/191
-2026-06-14 17:48:21,665 [INFO] predictor: CALIBRATION_MODE=on
-2026-06-14 17:48:21,665 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-06-14 17:48:21,669 [INFO] run_cycle: fetched 20/6 [final]: 156 combos
-2026-06-14 17:48:21,978 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-14 17:49:05,218 [INFO] run_cycle: === run_cycle 17:49:05 ===
-2026-06-14 17:49:05,218 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-14 17:49:05,218 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-14 17:49:05,266 [INFO] predictor: Models loaded OK
-2026-06-14 17:49:05,430 [INFO] run_cycle: run_cycle done: 0 notifications
+ run_cycle 17:58:05 ===
+2026-06-14 17:58:05,981 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-14 17:58:05,981 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-14 17:58:06,043 [INFO] predictor: Models loaded OK
+2026-06-14 17:58:17,627 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-14 17:58:18,720 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-14 17:58:19,828 [INFO] scraper: odds2t: 30/30 parsed
+2026-06-14 17:58:19,830 [INFO] scraper: odds2f: 15/15 parsed
+2026-06-14 17:58:20,966 [INFO] scraper: odds_win: 6/6 parsed
+2026-06-14 17:58:20,966 [INFO] scraper: fetch_race 22/12: boats=6 odds=191/191
+2026-06-14 17:58:20,979 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-14 17:58:20,979 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-06-14 17:58:20,987 [INFO] run_cycle: fetched 22/12 [final]: 156 combos
+2026-06-14 17:58:24,636 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-14 17:58:25,739 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-14 17:58:26,848 [INFO] scraper: odds2t: 30/30 parsed
+2026-06-14 17:58:26,849 [INFO] scraper: odds2f: 15/15 parsed
+2026-06-14 17:58:27,929 [INFO] scraper: odds_win: 5/6 parsed
+2026-06-14 17:58:27,929 [INFO] scraper: fetch_race 19/2: boats=6 odds=190/191
+2026-06-14 17:58:27,937 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-14 17:58:27,937 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-06-14 17:58:27,946 [INFO] run_cycle: fetched 19/2 [scan]: 155 combos
+2026-06-14 17:58:28,079 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-14 17:59:06,267 [INFO] run_cycle: === run_cycle 17:59:06 ===
+2026-06-14 17:59:06,267 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-14 17:59:06,267 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-14 17:59:06,311 [INFO] predictor: Models loaded OK
+2026-06-14 17:59:06,486 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -215,7 +215,7 @@ rsed
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 105
-  FINAL_MISSING: 60
+  FINAL_MISSING: 62
   CIRCUIT_BREAKER_NO_ACTION: 23
   CIRCUIT_BREAKER_TRIP: 23
   STRATEGY_CI_FAIL: 17
@@ -233,6 +233,9 @@ rsed
 
 ## 直近アラート (24h・新しい順)
 ```
+[17:58:28] FINAL_MISSING: {"deadline": "2026-06-14T12:25:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061406031225", "sid": "S00"}
+[17:56:05] FINAL_MISSING: {"deadline": "2026-06-14T14:25:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061422051425", "sid": "S00"}
+[17:56:05] FINAL_MISSING: {"deadline": "2026-06-14T15:25:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061401011525", "sid": "S00"}
 [17:48:21] FINAL_MISSING: {"deadline": "2026-06-14T13:16:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061416061316", "sid": "S00"}
 [17:38:22] CIRCUIT_BREAKER_TRIP: {"cost": 4800, "kind": "CIRCUIT_BREAKER_TRIP", "n": 24, "payout": 2300, "roi_7d": 0.479, "sid": "S02_TETSUBAN"}
 [17:29:27] FINAL_MISSING: {"deadline": "2026-06-14T14:59:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061406081459", "sid": "S00"}
@@ -240,15 +243,12 @@ rsed
 [17:05:06] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [17:05:06] FINAL_MISSING: {"deadline": "2026-06-14T16:35:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061401031635", "sid": "S00"}
 [17:05:06] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S02_TETSUBAN"}
-[16:58:20] FINAL_MISSING: {"deadline": "2026-06-14T12:25:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061406031225", "sid": "S00"}
-[16:56:05] FINAL_MISSING: {"deadline": "2026-06-14T14:25:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061422051425", "sid": "S00"}
-[16:56:05] FINAL_MISSING: {"deadline": "2026-06-14T15:25:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061401011525", "sid": "S00"}
 ```
 
-## 本日残レース: 32件
+## 本日残レース: 30件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 112件 締切済
+- race_schedule: 144件 登録 / 114件 締切済
 - 通知発射: scan=19 nid / final=17 nid / result=11 nid
 - predictions: 14 / うち結果DB記録済: 14
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -343,4 +343,4 @@ rsed
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-06-14T17:50:01.798280+09:00_
+_auto-generated by claude_snapshot.py at 2026-06-14T18:00:02.066164+09:00_
