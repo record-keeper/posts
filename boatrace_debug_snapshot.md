@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-06-14T22:10:01.827475+09:00
+**生成**: 2026-06-14T22:20:02.071984+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×69 (24h)
+- 🟡 FINAL_MISSING×67 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×23 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🔴 CRITICAL_ODDS_COLLAPSE×1 (24h)
@@ -18,15 +18,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×2  [2026-06-14T22:08:06]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×12  [2026-06-14T22:08:06]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-06-14T22:08:06]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×12  [2026-06-14T22:08:06]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×2  [2026-06-14T22:08:06]
+### 🔴 STRATEGY_CI_FAIL  ×12  [2026-06-14T22:08:06]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 5.11MB / last modified 2026-06-14T22:09:05.588084+09:00
+- DB: 5.11MB / last modified 2026-06-14T22:19:06.387430+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-53 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-14 22:05:06,653 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-14 22:05:06,698 [INFO] predictor: Models loaded OK
-2026-06-14 22:05:06,702 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-14 22:06:05,757 [INFO] run_cycle: === run_cycle 22:06:05 ===
-2026-06-14 22:06:05,757 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-14 22:06:05,757 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-14 22:06:05,824 [INFO] predictor: Models loaded OK
-2026-06-14 22:06:05,828 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-14 22:07:06,073 [INFO] run_cycle: === run_cycle 22:07:06 ===
-2026-06-14 22:07:06,073 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-14 22:07:06,074 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-14 22:07:06,119 [INFO] predictor: Models loaded OK
-2026-06-14 22:07:06,123 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-14 22:08:05,905 [INFO] run_cycle: === run_cycle 22:08:05 ===
-2026-06-14 22:08:05,905 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-14 22:08:05,905 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-14 22:08:05,971 [INFO] predictor: Models loaded OK
-2026-06-14 22:08:05,974 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-14 22:09:05,426 [INFO] run_cycle: === run_cycle 22:09:05 ===
-2026-06-14 22:09:05,426 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-14 22:09:05,426 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-14 22:09:05,470 [INFO] predictor: Models loaded OK
-2026-06-14 22:09:05,476 [INFO] run_cycle: run_cycle done: 0 notifications
+lt=5000
+2026-06-14 22:16:06,630 [INFO] predictor: Models loaded OK
+2026-06-14 22:16:06,634 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-14 22:17:06,048 [INFO] run_cycle: === run_cycle 22:17:06 ===
+2026-06-14 22:17:06,048 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-14 22:17:06,048 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-14 22:17:06,093 [INFO] predictor: Models loaded OK
+2026-06-14 22:17:17,585 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-14 22:17:18,824 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-14 22:17:19,946 [INFO] scraper: odds2t: 30/30 parsed
+2026-06-14 22:17:19,947 [INFO] scraper: odds2f: 15/15 parsed
+2026-06-14 22:17:21,103 [INFO] scraper: odds_win: 6/6 parsed
+2026-06-14 22:17:21,103 [INFO] scraper: fetch_race 19/12: boats=6 odds=191/191
+2026-06-14 22:17:21,122 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-14 22:17:21,122 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-06-14 22:17:21,134 [INFO] run_cycle: fetched 19/12 [scan]: 156 combos
+2026-06-14 22:17:21,241 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-14 22:18:06,087 [INFO] run_cycle: === run_cycle 22:18:06 ===
+2026-06-14 22:18:06,088 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-14 22:18:06,088 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-14 22:18:06,159 [INFO] predictor: Models loaded OK
+2026-06-14 22:18:06,329 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-14 22:19:05,814 [INFO] run_cycle: === run_cycle 22:19:05 ===
+2026-06-14 22:19:05,814 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-14 22:19:05,814 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-14 22:19:05,858 [INFO] predictor: Models loaded OK
+2026-06-14 22:19:05,959 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -211,7 +214,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 148
-  FINAL_MISSING: 69
+  FINAL_MISSING: 67
   CIRCUIT_BREAKER_TRIP: 23
   CIRCUIT_BREAKER_NO_ACTION: 18
   STRATEGY_CI_FAIL: 17
@@ -339,4 +342,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-06-14T22:10:01.827475+09:00_
+_auto-generated by claude_snapshot.py at 2026-06-14T22:20:02.071984+09:00_
