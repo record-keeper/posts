@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-06-18T12:40:01.490493+09:00
+**生成**: 2026-06-18T12:50:01.667323+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×42 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×53 (24h)
+- 🟡 FINAL_MISSING×54 (24h)
 - 🔴 PSI_DRIFT_DETECTED×42 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
@@ -22,11 +22,11 @@
 - key: `ANOMALY_SCAN_FINAL_RATIO|`
 - **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
 
-### 🔴 PSI_DRIFT_DETECTED  ×37  [2026-06-18T12:03:29]
+### 🔴 PSI_DRIFT_DETECTED  ×47  [2026-06-18T12:03:29]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×37  [2026-06-18T12:03:29]
+### 🔴 STRATEGY_CI_FAIL  ×47  [2026-06-18T12:03:29]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 5.31MB / last modified 2026-06-18T12:39:22.157879+09:00
+- DB: 5.31MB / last modified 2026-06-18T12:49:33.167598+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,35 +150,32 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-d
-2026-06-18 12:38:20,810 [INFO] scraper: fetch_race 09/5: boats=6 odds=187/191
-2026-06-18 12:38:20,821 [INFO] predictor: CALIBRATION_MODE=on
-2026-06-18 12:38:20,822 [INFO] predictor: combos: {'win': 2, '2t': 30, '3t': 120}
-2026-06-18 12:38:20,829 [INFO] run_cycle: fetched 09/5 [final]: 152 combos
-2026-06-18 12:38:24,436 [INFO] scraper: odds3t: 120/120 parsed
-2026-06-18 12:38:25,525 [INFO] scraper: odds3f: 20/20 parsed
-2026-06-18 12:38:26,634 [INFO] scraper: odds2t: 30/30 parsed
-2026-06-18 12:38:26,635 [INFO] scraper: odds2f: 15/15 parsed
-2026-06-18 12:38:27,783 [INFO] scraper: odds_win: 3/6 parsed
-2026-06-18 12:38:27,783 [INFO] scraper: fetch_race 21/10: boats=6 odds=188/191
-2026-06-18 12:38:27,792 [INFO] predictor: CALIBRATION_MODE=on
-2026-06-18 12:38:27,792 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-06-18 12:38:27,800 [INFO] run_cycle: fetched 21/10 [scan]: 153 combos
-2026-06-18 12:38:27,912 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-18 12:39:05,760 [INFO] run_cycle: === run_cycle 12:39:05 ===
-2026-06-18 12:39:05,760 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-18 12:39:05,760 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-18 12:39:05,829 [INFO] predictor: Models loaded OK
-2026-06-18 12:39:18,433 [INFO] scraper: odds3t: 120/120 parsed
-2026-06-18 12:39:19,515 [INFO] scraper: odds3f: 20/20 parsed
-2026-06-18 12:39:20,615 [INFO] scraper: odds2t: 30/30 parsed
-2026-06-18 12:39:20,616 [INFO] scraper: odds2f: 15/15 parsed
-2026-06-18 12:39:21,818 [INFO] scraper: odds_win: 6/6 parsed
-2026-06-18 12:39:21,818 [INFO] scraper: fetch_race 17/5: boats=6 odds=191/191
-2026-06-18 12:39:21,830 [INFO] predictor: CALIBRATION_MODE=on
-2026-06-18 12:39:21,830 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-06-18 12:39:21,838 [INFO] run_cycle: fetched 17/5 [final]: 156 combos
-2026-06-18 12:39:22,100 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-18 12:48:05,576 [INFO] predictor: Models loaded OK
+2026-06-18 12:48:17,086 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-18 12:48:18,432 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-18 12:48:19,537 [INFO] scraper: odds2t: 30/30 parsed
+2026-06-18 12:48:19,538 [INFO] scraper: odds2f: 15/15 parsed
+2026-06-18 12:48:21,027 [INFO] scraper: odds_win: 5/6 parsed
+2026-06-18 12:48:21,028 [INFO] scraper: fetch_race 21/10: boats=6 odds=190/191
+2026-06-18 12:48:21,037 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-18 12:48:21,038 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-06-18 12:48:21,045 [INFO] run_cycle: fetched 21/10 [final]: 155 combos
+2026-06-18 12:48:21,291 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-18 12:49:05,938 [INFO] run_cycle: === run_cycle 12:49:05 ===
+2026-06-18 12:49:05,938 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-18 12:49:05,938 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-18 12:49:06,008 [INFO] predictor: Models loaded OK
+2026-06-18 12:49:17,097 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=21&hd=20260618: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-06-18 12:49:28,747 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-18 12:49:29,847 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-18 12:49:31,173 [INFO] scraper: odds2t: 30/30 parsed
+2026-06-18 12:49:31,174 [INFO] scraper: odds2f: 15/15 parsed
+2026-06-18 12:49:32,360 [INFO] scraper: odds_win: 6/6 parsed
+2026-06-18 12:49:32,361 [INFO] scraper: fetch_race 21/10: boats=6 odds=191/191
+2026-06-18 12:49:32,373 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-18 12:49:32,373 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-06-18 12:49:32,380 [INFO] run_cycle: fetched 21/10 [final]: 156 combos
+2026-06-18 12:49:32,644 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -200,26 +197,26 @@ d
   {
     "target": "mirror",
     "ok": 1,
-    "c": 64
+    "c": 63
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 64
+    "c": 63
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 25, 'result': 10, 'scan': 29}
+{'final': 25, 'result': 10, 'scan': 28}
 
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 124
-  FINAL_MISSING: 53
+  FINAL_MISSING: 54
   PSI_DRIFT_DETECTED: 42
   STRATEGY_CI_FAIL: 17
-  ANOMALY_SCAN_FINAL_RATIO: 16
+  ANOMALY_SCAN_FINAL_RATIO: 15
   CIRCUIT_BREAKER_NO_ACTION: 11
   ANOMALY_BET_VOLUME_DROP: 2
   LARGE_ODDS_DRIFT: 1
@@ -234,6 +231,7 @@ d
 
 ## 直近アラート (24h・新しい順)
 ```
+[12:42:22] FINAL_MISSING: {"deadline": "2026-06-18T12:12:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061817041212", "sid": "S00"}
 [12:32:31] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 287, "n_recent": 71, "psi": 0.602}
 [12:32:31] LARGE_ODDS_DRIFT: {"combo": "1", "drift_pct": 22.0, "final": 5.0, "kind": "LARGE_ODDS_DRIFT", "race": "053R", "scan": 4.1, "sid": "S00"}
 [12:29:47] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 287, "n_recent": 70, "psi": 0.612}
@@ -243,13 +241,12 @@ d
 [12:21:22] FINAL_MISSING: {"deadline": "2026-06-18T11:51:00+09:00", "kind": "FINAL_MISSING", "nid": "2026061821081151", "sid": "S00"}
 [12:18:52] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 286, "n_recent": 72, "psi": 0.633}
 [12:06:40] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 285, "n_recent": 73, "psi": 0.636}
-[12:04:06] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 284, "n_recent": 74, "psi": 0.639}
 ```
 
-## 本日残レース: 110件
+## 本日残レース: 108件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 46件 締切済
+- race_schedule: 156件 登録 / 48件 締切済
 - 通知発射: scan=7 nid / final=6 nid / result=2 nid
 - predictions: 3 / うち結果DB記録済: 2
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -290,9 +287,9 @@ d
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 494.3s |
-| **Latency** (scan→final max) | 658.7s |
-| **Traffic** (notifications 24h) | 64 |
+| **Latency** (scan→final avg) | 486.8s |
+| **Latency** (scan→final max) | 609.5s |
+| **Traffic** (notifications 24h) | 63 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 600円 used |
 | **Saturation** (S01_NAKAANA1) | 200円 used |
@@ -343,4 +340,4 @@ d
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-06-18T12:40:01.490493+09:00_
+_auto-generated by claude_snapshot.py at 2026-06-18T12:50:01.667323+09:00_
