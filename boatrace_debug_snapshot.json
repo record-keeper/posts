@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T21:30:02.136672+09:00",
+  "generated_at": "2026-06-26T21:40:02.104439+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,9 +33,9 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup\n\n# 30分毎: コード/DB anti-pattern 検査→alert 流入（HOOK level 自動検出）\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 tools/audit_and_emit_alerts.py >> logs/audit.log 2>&1",
       "db_size_mb": 6.12,
-      "db_mtime": "2026-06-26T21:30:08.062268+09:00",
-      "run_cycle_log_mtime": "2026-06-26T21:29:07.082397+09:00",
-      "log_tail": "2026-06-26 21:22:07,642 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:23:08,189 [INFO] run_cycle: === run_cycle 21:23:08 ===\n2026-06-26 21:23:08,191 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:23:08,191 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:23:08,295 [INFO] predictor: Models loaded OK\n2026-06-26 21:23:08,301 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:24:07,467 [INFO] run_cycle: === run_cycle 21:24:07 ===\n2026-06-26 21:24:07,467 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:24:07,467 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:24:07,557 [INFO] predictor: Models loaded OK\n2026-06-26 21:24:07,559 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:25:07,035 [INFO] run_cycle: === run_cycle 21:25:07 ===\n2026-06-26 21:25:07,035 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:25:07,035 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:25:07,094 [INFO] predictor: Models loaded OK\n2026-06-26 21:25:07,099 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:26:07,913 [INFO] run_cycle: === run_cycle 21:26:07 ===\n2026-06-26 21:26:07,913 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:26:07,913 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:26:07,973 [INFO] predictor: Models loaded OK\n2026-06-26 21:26:07,979 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:27:07,362 [INFO] run_cycle: === run_cycle 21:27:07 ===\n2026-06-26 21:27:07,362 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:27:07,362 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:27:07,475 [INFO] predictor: Models loaded OK\n2026-06-26 21:27:07,480 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:28:07,491 [INFO] run_cycle: === run_cycle 21:28:07 ===\n2026-06-26 21:28:07,491 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:28:07,491 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:28:07,598 [INFO] predictor: Models loaded OK\n2026-06-26 21:28:07,605 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:29:07,009 [INFO] run_cycle: === run_cycle 21:29:07 ===\n2026-06-26 21:29:07,010 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:29:07,010 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:29:07,078 [INFO] predictor: Models loaded OK\n2026-06-26 21:29:07,083 [INFO] run_cycle: run_cycle done: 0 notifications\n"
+      "db_mtime": "2026-06-26T21:39:09.170333+09:00",
+      "run_cycle_log_mtime": "2026-06-26T21:40:11.162093+09:00",
+      "log_tail": "cle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:33:07,406 [INFO] predictor: Models loaded OK\n2026-06-26 21:33:07,410 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:34:07,061 [INFO] run_cycle: === run_cycle 21:34:07 ===\n2026-06-26 21:34:07,061 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:34:07,061 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:34:07,103 [INFO] predictor: Models loaded OK\n2026-06-26 21:34:07,109 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:35:07,852 [INFO] run_cycle: === run_cycle 21:35:07 ===\n2026-06-26 21:35:07,852 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:35:07,853 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:35:07,956 [INFO] predictor: Models loaded OK\n2026-06-26 21:35:07,961 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:36:08,109 [INFO] run_cycle: === run_cycle 21:36:08 ===\n2026-06-26 21:36:08,109 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:36:08,109 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:36:08,180 [INFO] predictor: Models loaded OK\n2026-06-26 21:36:08,184 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:37:08,397 [INFO] run_cycle: === run_cycle 21:37:08 ===\n2026-06-26 21:37:08,397 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:37:08,397 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:37:08,470 [INFO] predictor: Models loaded OK\n2026-06-26 21:37:08,480 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:38:05,078 [INFO] run_cycle: === run_cycle 21:38:05 ===\n2026-06-26 21:38:05,078 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:38:05,078 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:38:05,148 [INFO] predictor: Models loaded OK\n2026-06-26 21:38:05,150 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:39:06,935 [INFO] run_cycle: === run_cycle 21:39:06 ===\n2026-06-26 21:39:06,935 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:39:06,935 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-06-26 21:39:06,984 [INFO] predictor: Models loaded OK\n2026-06-26 21:39:06,989 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-06-26 21:40:11,160 [INFO] run_cycle: === run_cycle 21:40:11 ===\n2026-06-26 21:40:11,160 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-06-26 21:40:11,162 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n"
     },
     "strategies_active": [
       {
@@ -127,19 +127,19 @@
       },
       {
         "kind": "CALIBRATION_DRIFT",
-        "c": 37
-      },
-      {
-        "kind": "FINAL_MISSING",
-        "c": 37
+        "c": 36
       },
       {
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
         "c": 34
       },
       {
+        "kind": "FINAL_MISSING",
+        "c": 34
+      },
+      {
         "kind": "CIRCUIT_BREAKER_TRIP",
-        "c": 32
+        "c": 33
       },
       {
         "kind": "STRATEGY_CI_FAIL",
@@ -190,6 +190,16 @@
     ],
     "recent_alerts": [
       {
+        "kind": "FINAL_MISSING",
+        "detail": "{\"deadline\": \"2026-06-26T16:05:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026062604091605\", \"sid\": \"S00\"}",
+        "detected_at": "2026-06-26T21:39:07.014463+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_TRIP",
+        "detail": "{\"cost\": 15600, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 52, \"payout\": 6990, \"roi_7d\": 0.448, \"sid\": \"S00\"}",
+        "detected_at": "2026-06-26T21:36:08.306987+09:00"
+      },
+      {
         "kind": "STRATEGY_CI_FAIL",
         "detail": "{\"ci_lo\": null, \"kind\": \"STRATEGY_CI_FAIL\", \"sid\": \"S02_TETSUBAN\"}",
         "detected_at": "2026-06-26T21:09:07.354610+09:00"
@@ -228,16 +238,6 @@
         "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
         "detail": "{\"failures_1h\": 3, \"kind\": \"ANOMALY_SCRAPER_FAILURE_BURST\", \"log_lines_1h\": 691}",
         "detected_at": "2026-06-26T20:28:41.636493+09:00"
-      },
-      {
-        "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
-        "detail": "{\"failures_1h\": 3, \"kind\": \"ANOMALY_SCRAPER_FAILURE_BURST\", \"log_lines_1h\": 673}",
-        "detected_at": "2026-06-26T20:27:30.714534+09:00"
-      },
-      {
-        "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
-        "detail": "{\"failures_1h\": 3, \"kind\": \"ANOMALY_SCRAPER_FAILURE_BURST\", \"log_lines_1h\": 660}",
-        "detected_at": "2026-06-26T20:26:07.899802+09:00"
       }
     ],
     "races_remaining_today": 0,
@@ -412,7 +412,7 @@
         "kind": "CALIBRATION_DRIFT",
         "severity": "CRITICAL",
         "key": "CALIBRATION_DRIFT|",
-        "count": 21,
+        "count": 31,
         "last_at": "2026-06-26T21:09:08",
         "fix_hint": "予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中"
       },
@@ -420,7 +420,7 @@
         "kind": "CIRCUIT_BREAKER_TRIP",
         "severity": "CRITICAL",
         "key": "CIRCUIT_BREAKER_TRIP|",
-        "count": 21,
+        "count": 31,
         "last_at": "2026-06-26T21:09:08",
         "fix_hint": "7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認"
       },
@@ -428,7 +428,7 @@
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
         "severity": "CRITICAL",
         "key": "CIRCUIT_BREAKER_NO_ACTION|",
-        "count": 42,
+        "count": 62,
         "last_at": "2026-06-26T21:09:08",
         "fix_hint": "CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認"
       },
@@ -436,7 +436,7 @@
         "kind": "STRATEGY_CI_FAIL",
         "severity": "CRITICAL",
         "key": "STRATEGY_CI_FAIL|",
-        "count": 21,
+        "count": 31,
         "last_at": "2026-06-26T21:09:08",
         "fix_hint": "grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認"
       },
