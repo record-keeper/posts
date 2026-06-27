@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-06-28T08:20:02.149991+09:00
+**生成**: 2026-06-28T08:30:02.475957+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CALIBRATION_DRIFT×35 (24h) → ログ/DB確認
@@ -21,27 +21,27 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CALIBRATION_DRIFT  ×20  [2026-06-28T08:00:52]
+### 🔴 CALIBRATION_DRIFT  ×30  [2026-06-28T08:00:52]
 - key: `CALIBRATION_DRIFT|`
 - **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×20  [2026-06-28T08:00:52]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×30  [2026-06-28T08:00:52]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×20  [2026-06-28T08:00:52]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×30  [2026-06-28T08:00:52]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×20  [2026-06-28T08:00:52]
+### 🔴 STRATEGY_CI_FAIL  ×30  [2026-06-28T08:00:52]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 KS_ODDS_DRIFT  ×20  [2026-06-28T08:00:52]
+### 🟡 KS_ODDS_DRIFT  ×30  [2026-06-28T08:00:52]
 - key: `KS_ODDS_DRIFT|`
 - **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-06-28T08:00:04]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-06-28T08:00:04]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
@@ -110,7 +110,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 6.28MB / last modified 2026-06-28T08:19:21.962674+09:00
+- DB: 6.28MB / last modified 2026-06-28T08:30:04.449654+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -153,33 +153,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-ault=5000
-2026-06-28 08:16:05,879 [INFO] predictor: Models loaded OK
-2026-06-28 08:16:05,884 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-28 08:17:05,504 [INFO] run_cycle: === run_cycle 08:17:05 ===
-2026-06-28 08:17:05,504 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-28 08:17:05,504 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-28 08:17:05,565 [INFO] predictor: Models loaded OK
-2026-06-28 08:17:05,571 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-28 08:18:06,306 [INFO] run_cycle: === run_cycle 08:18:06 ===
-2026-06-28 08:18:06,306 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-28 08:18:06,307 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-28 08:18:06,354 [INFO] predictor: Models loaded OK
-2026-06-28 08:18:06,359 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-06-28 08:19:05,446 [INFO] run_cycle: === run_cycle 08:19:05 ===
-2026-06-28 08:19:05,446 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-06-28 08:19:05,446 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-06-28 08:19:05,560 [INFO] predictor: Models loaded OK
-2026-06-28 08:19:17,938 [INFO] scraper: odds3t: 120/120 parsed
-2026-06-28 08:19:19,033 [INFO] scraper: odds3f: 19/20 parsed
-2026-06-28 08:19:20,132 [INFO] scraper: odds2t: 27/30 parsed
-2026-06-28 08:19:20,133 [INFO] scraper: odds2f: 12/15 parsed
-2026-06-28 08:19:21,225 [INFO] scraper: odds_win: 4/6 parsed
-2026-06-28 08:19:21,225 [INFO] scraper: fetch_race 21/1: boats=6 odds=182/191
-2026-06-28 08:19:21,238 [INFO] predictor: CALIBRATION_MODE=on
-2026-06-28 08:19:21,238 [INFO] predictor: combos: {'win': 4, '2t': 27, '3t': 120}
-2026-06-28 08:19:21,245 [INFO] run_cycle: fetched 21/1 [scan]: 151 combos
-2026-06-28 08:19:21,347 [INFO] run_cycle: run_cycle done: 0 notifications
+== run_cycle 08:28:05 ===
+2026-06-28 08:28:05,996 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-28 08:28:05,996 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-28 08:28:06,043 [INFO] predictor: Models loaded OK
+2026-06-28 08:28:06,142 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-06-28 08:29:05,494 [INFO] run_cycle: === run_cycle 08:29:05 ===
+2026-06-28 08:29:05,494 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-06-28 08:29:05,494 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-06-28 08:29:05,535 [INFO] predictor: Models loaded OK
+2026-06-28 08:29:17,987 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-28 08:29:19,072 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-28 08:29:20,172 [INFO] scraper: odds2t: 29/30 parsed
+2026-06-28 08:29:20,174 [INFO] scraper: odds2f: 14/15 parsed
+2026-06-28 08:29:21,290 [INFO] scraper: odds_win: 6/6 parsed
+2026-06-28 08:29:21,291 [INFO] scraper: fetch_race 21/1: boats=6 odds=189/191
+2026-06-28 08:29:21,300 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-28 08:29:21,301 [INFO] predictor: combos: {'win': 6, '2t': 29, '3t': 120}
+2026-06-28 08:29:21,308 [INFO] run_cycle: fetched 21/1 [final]: 155 combos
+2026-06-28 08:29:24,753 [INFO] scraper: odds3t: 120/120 parsed
+2026-06-28 08:29:25,833 [INFO] scraper: odds3f: 20/20 parsed
+2026-06-28 08:29:26,942 [INFO] scraper: odds2t: 28/30 parsed
+2026-06-28 08:29:26,943 [INFO] scraper: odds2f: 11/15 parsed
+2026-06-28 08:29:28,037 [INFO] scraper: odds_win: 5/6 parsed
+2026-06-28 08:29:28,038 [INFO] scraper: fetch_race 10/1: boats=6 odds=184/191
+2026-06-28 08:29:28,046 [INFO] predictor: CALIBRATION_MODE=on
+2026-06-28 08:29:28,046 [INFO] predictor: combos: {'win': 5, '2t': 28, '3t': 120}
+2026-06-28 08:29:28,054 [INFO] run_cycle: fetched 10/1 [scan]: 153 combos
+2026-06-28 08:29:28,147 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -346,4 +347,4 @@ ault=5000
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-06-28T08:20:02.149991+09:00_
+_auto-generated by claude_snapshot.py at 2026-06-28T08:30:02.475957+09:00_
