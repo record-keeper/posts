@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-07-04T08:20:01.588734+09:00
+**生成**: 2026-07-04T08:30:01.849788+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -19,19 +19,19 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×40  [2026-07-04T08:00:42]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×60  [2026-07-04T08:00:42]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×20  [2026-07-04T08:00:42]
+### 🔴 STRATEGY_CI_FAIL  ×30  [2026-07-04T08:00:42]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-07-04T08:00:06]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-07-04T08:00:06]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-07-04T08:00:06]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-07-04T08:00:06]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S02_TETSUBAN が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 6.67MB / last modified 2026-07-04T08:19:21.393907+09:00
+- DB: 6.67MB / last modified 2026-07-04T08:30:04.740238+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,33 +151,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-fault=5000
-2026-07-04 08:16:06,382 [INFO] predictor: Models loaded OK
-2026-07-04 08:16:06,388 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-04 08:17:05,920 [INFO] run_cycle: === run_cycle 08:17:05 ===
-2026-07-04 08:17:05,921 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-04 08:17:05,921 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-04 08:17:06,002 [INFO] predictor: Models loaded OK
-2026-07-04 08:17:06,009 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-04 08:18:05,848 [INFO] run_cycle: === run_cycle 08:18:05 ===
-2026-07-04 08:18:05,848 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-04 08:18:05,848 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-04 08:18:05,915 [INFO] predictor: Models loaded OK
-2026-07-04 08:18:05,919 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-04 08:19:05,496 [INFO] run_cycle: === run_cycle 08:19:05 ===
-2026-07-04 08:19:05,496 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-04 08:19:05,496 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-04 08:19:05,558 [INFO] predictor: Models loaded OK
-2026-07-04 08:19:17,901 [INFO] scraper: odds3t: 120/120 parsed
-2026-07-04 08:19:18,994 [INFO] scraper: odds3f: 20/20 parsed
-2026-07-04 08:19:20,065 [INFO] scraper: odds2t: 27/30 parsed
-2026-07-04 08:19:20,067 [INFO] scraper: odds2f: 4/15 parsed
-2026-07-04 08:19:21,158 [INFO] scraper: odds_win: 3/6 parsed
-2026-07-04 08:19:21,158 [INFO] scraper: fetch_race 21/1: boats=6 odds=174/191
-2026-07-04 08:19:21,170 [INFO] predictor: CALIBRATION_MODE=on
-2026-07-04 08:19:21,170 [INFO] predictor: combos: {'win': 3, '2t': 27, '3t': 120}
-2026-07-04 08:19:21,177 [INFO] run_cycle: fetched 21/1 [scan]: 150 combos
-2026-07-04 08:19:21,281 [INFO] run_cycle: run_cycle done: 0 notifications
+== run_cycle 08:28:06 ===
+2026-07-04 08:28:06,001 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-04 08:28:06,002 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-04 08:28:06,070 [INFO] predictor: Models loaded OK
+2026-07-04 08:28:06,288 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-04 08:29:06,885 [INFO] run_cycle: === run_cycle 08:29:06 ===
+2026-07-04 08:29:06,886 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-04 08:29:06,886 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-04 08:29:06,932 [INFO] predictor: Models loaded OK
+2026-07-04 08:29:18,399 [INFO] scraper: odds3t: 120/120 parsed
+2026-07-04 08:29:19,496 [INFO] scraper: odds3f: 20/20 parsed
+2026-07-04 08:29:20,568 [INFO] scraper: odds2t: 30/30 parsed
+2026-07-04 08:29:20,569 [INFO] scraper: odds2f: 14/15 parsed
+2026-07-04 08:29:21,673 [INFO] scraper: odds_win: 6/6 parsed
+2026-07-04 08:29:21,675 [INFO] scraper: fetch_race 21/1: boats=6 odds=190/191
+2026-07-04 08:29:21,694 [INFO] predictor: CALIBRATION_MODE=on
+2026-07-04 08:29:21,694 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-07-04 08:29:21,705 [INFO] run_cycle: fetched 21/1 [final]: 156 combos
+2026-07-04 08:29:25,157 [INFO] scraper: odds3t: 120/120 parsed
+2026-07-04 08:29:26,250 [INFO] scraper: odds3f: 20/20 parsed
+2026-07-04 08:29:27,340 [INFO] scraper: odds2t: 29/30 parsed
+2026-07-04 08:29:27,341 [INFO] scraper: odds2f: 12/15 parsed
+2026-07-04 08:29:28,409 [INFO] scraper: odds_win: 6/6 parsed
+2026-07-04 08:29:28,409 [INFO] scraper: fetch_race 23/1: boats=6 odds=187/191
+2026-07-04 08:29:28,419 [INFO] predictor: CALIBRATION_MODE=on
+2026-07-04 08:29:28,419 [INFO] predictor: combos: {'win': 6, '2t': 29, '3t': 120}
+2026-07-04 08:29:28,427 [INFO] run_cycle: fetched 23/1 [scan]: 155 combos
+2026-07-04 08:29:28,537 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -339,4 +340,4 @@ fault=5000
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-07-04T08:20:01.588734+09:00_
+_auto-generated by claude_snapshot.py at 2026-07-04T08:30:01.849788+09:00_
