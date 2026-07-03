@@ -2,15 +2,15 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-07-03T21:30:01.868978+09:00
+**生成**: 2026-07-03T21:40:02.248955+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
 
 ### 検出された問題
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
-- 🟡 FINAL_MISSING×14 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×13 (24h)
+- 🟡 FINAL_MISSING×12 (24h)
 - 🔴 PSI_DRIFT_DETECTED×10 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
@@ -27,11 +27,11 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S02_TETSUBAN が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×42  [2026-07-03T21:09:08]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×62  [2026-07-03T21:09:08]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×21  [2026-07-03T21:09:08]
+### 🔴 STRATEGY_CI_FAIL  ×31  [2026-07-03T21:09:08]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 6.64MB / last modified 2026-07-03T21:30:05.089837+09:00
+- DB: 6.64MB / last modified 2026-07-03T21:39:05.773015+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,32 +151,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-race.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-07-03 21:26:31,156 [INFO] scraper: odds3t: 120/120 parsed
-2026-07-03 21:26:32,286 [INFO] scraper: odds3f: 20/20 parsed
-2026-07-03 21:26:33,424 [INFO] scraper: odds2t: 30/30 parsed
-2026-07-03 21:26:33,425 [INFO] scraper: odds2f: 15/15 parsed
-2026-07-03 21:26:34,552 [INFO] scraper: odds_win: 6/6 parsed
-2026-07-03 21:26:34,552 [INFO] scraper: fetch_race 20/9: boats=6 odds=191/191
-2026-07-03 21:26:34,565 [INFO] predictor: CALIBRATION_MODE=on
-2026-07-03 21:26:34,565 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-07-03 21:26:34,573 [INFO] run_cycle: fetched 20/9 [final]: 156 combos
-2026-07-03 21:26:34,679 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-03 21:27:09,071 [INFO] run_cycle: === run_cycle 21:27:09 ===
-2026-07-03 21:27:09,072 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-03 21:27:09,072 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-03 21:27:09,148 [INFO] predictor: Models loaded OK
-2026-07-03 21:27:09,150 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-03 21:28:07,116 [INFO] run_cycle: === run_cycle 21:28:07 ===
-2026-07-03 21:28:07,116 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-03 21:28:07,118 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-03 21:28:07,254 [INFO] predictor: Models loaded OK
-2026-07-03 21:28:07,258 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-03 21:29:07,168 [INFO] run_cycle: === run_cycle 21:29:07 ===
-2026-07-03 21:29:07,168 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-03 21:29:07,168 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-03 21:29:07,210 [INFO] predictor: Models loaded OK
-2026-07-03 21:29:07,214 [INFO] run_cycle: run_cycle done: 0 notifications
+09 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-03 21:35:07,109 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-03 21:35:07,179 [INFO] predictor: Models loaded OK
+2026-07-03 21:35:07,185 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-03 21:36:07,443 [INFO] run_cycle: === run_cycle 21:36:07 ===
+2026-07-03 21:36:07,443 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-03 21:36:07,443 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-03 21:36:07,488 [INFO] predictor: Models loaded OK
+2026-07-03 21:36:07,492 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-03 21:37:07,483 [INFO] run_cycle: === run_cycle 21:37:07 ===
+2026-07-03 21:37:07,483 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-03 21:37:07,483 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-03 21:37:07,527 [INFO] predictor: Models loaded OK
+2026-07-03 21:37:07,532 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-03 21:38:06,918 [INFO] run_cycle: === run_cycle 21:38:06 ===
+2026-07-03 21:38:06,918 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-03 21:38:06,918 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-03 21:38:06,970 [INFO] predictor: Models loaded OK
+2026-07-03 21:38:06,974 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-03 21:39:05,372 [INFO] run_cycle: === run_cycle 21:39:05 ===
+2026-07-03 21:39:05,372 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-03 21:39:05,372 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-03 21:39:05,422 [INFO] predictor: Models loaded OK
+2026-07-03 21:39:05,426 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -216,8 +214,8 @@ race.jp', port=443): Read timed out. (read timeout=10), retry in 1s
   ANOMALY_SCRAPER_FAILURE_BURST: 62
   CIRCUIT_BREAKER_NO_ACTION: 24
   STRATEGY_CI_FAIL: 17
-  FINAL_MISSING: 14
   CIRCUIT_BREAKER_TRIP: 13
+  FINAL_MISSING: 12
   PSI_DRIFT_DETECTED: 10
   LARGE_ODDS_DRIFT: 1
 ```
@@ -341,4 +339,4 @@ race.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-07-03T21:30:01.868978+09:00_
+_auto-generated by claude_snapshot.py at 2026-07-03T21:40:02.248955+09:00_
