@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-07-05T08:10:01.770375+09:00
+**生成**: 2026-07-05T08:20:02.126756+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -17,7 +17,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 STRATEGY_CI_FAIL  ×9  [2026-07-05T08:01:34]
+### 🔴 STRATEGY_CI_FAIL  ×19  [2026-07-05T08:01:34]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 6.75MB / last modified 2026-07-05T08:09:07.740776+09:00
+- DB: 6.75MB / last modified 2026-07-05T08:19:34.184669+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,30 +149,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-55 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-05 08:05:07,255 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-05 08:05:07,313 [INFO] predictor: Models loaded OK
-2026-07-05 08:05:07,318 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-05 08:06:07,507 [INFO] run_cycle: === run_cycle 08:06:07 ===
-2026-07-05 08:06:07,507 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-05 08:06:07,507 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-05 08:06:07,571 [INFO] predictor: Models loaded OK
-2026-07-05 08:06:07,575 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-05 08:07:08,272 [INFO] run_cycle: === run_cycle 08:07:08 ===
-2026-07-05 08:07:08,273 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-05 08:07:08,273 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-05 08:07:08,391 [INFO] predictor: Models loaded OK
-2026-07-05 08:07:08,395 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-05 08:08:06,969 [INFO] run_cycle: === run_cycle 08:08:06 ===
-2026-07-05 08:08:06,970 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-05 08:08:06,970 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-05 08:08:07,051 [INFO] predictor: Models loaded OK
-2026-07-05 08:08:07,053 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-05 08:09:07,174 [INFO] run_cycle: === run_cycle 08:09:07 ===
-2026-07-05 08:09:07,174 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-05 08:09:07,174 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-05 08:09:07,289 [INFO] predictor: Models loaded OK
-2026-07-05 08:09:07,294 [INFO] run_cycle: run_cycle done: 0 notifications
+[INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-05 08:17:08,665 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-05 08:17:08,781 [INFO] predictor: Models loaded OK
+2026-07-05 08:17:08,789 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-05 08:18:05,759 [INFO] run_cycle: === run_cycle 08:18:05 ===
+2026-07-05 08:18:05,759 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-05 08:18:05,759 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-05 08:18:05,838 [INFO] predictor: Models loaded OK
+2026-07-05 08:18:05,842 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-05 08:19:07,350 [INFO] run_cycle: === run_cycle 08:19:07 ===
+2026-07-05 08:19:07,351 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-05 08:19:07,351 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-05 08:19:07,461 [INFO] predictor: Models loaded OK
+2026-07-05 08:19:18,552 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=21&hd=20260705: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-07-05 08:19:30,024 [INFO] scraper: odds3t: 120/120 parsed
+2026-07-05 08:19:31,162 [INFO] scraper: odds3f: 20/20 parsed
+2026-07-05 08:19:32,289 [INFO] scraper: odds2t: 24/30 parsed
+2026-07-05 08:19:32,291 [INFO] scraper: odds2f: 13/15 parsed
+2026-07-05 08:19:33,384 [INFO] scraper: odds_win: 3/6 parsed
+2026-07-05 08:19:33,384 [INFO] scraper: fetch_race 21/1: boats=6 odds=180/191
+2026-07-05 08:19:33,396 [INFO] predictor: CALIBRATION_MODE=on
+2026-07-05 08:19:33,397 [INFO] predictor: combos: {'win': 3, '2t': 24, '3t': 120}
+2026-07-05 08:19:33,404 [INFO] run_cycle: fetched 21/1 [scan]: 147 combos
+2026-07-05 08:19:33,547 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -333,4 +333,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-07-05T08:10:01.770375+09:00_
+_auto-generated by claude_snapshot.py at 2026-07-05T08:20:02.126756+09:00_
