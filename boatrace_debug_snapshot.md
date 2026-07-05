@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-07-05T10:00:02.381627+09:00
+**生成**: 2026-07-05T10:10:01.983549+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -16,11 +16,11 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 STRATEGY_CI_FAIL  ×58  [2026-07-05T09:02:23]
+### 🔴 STRATEGY_CI_FAIL  ×8  [2026-07-05T10:02:40]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 ANOMALY_BET_VOLUME_DROP  ×60  [2026-07-05T09:00:27]
+### 🟡 ANOMALY_BET_VOLUME_DROP  ×9  [2026-07-05T10:01:21]
 - key: `ANOMALY_BET_VOLUME_DROP|`
 - **FIX**: 本日のbet数が7日baselineから2σ低下。戦略filter/ scan fix/run_cycle停止を疑え
 
@@ -105,7 +105,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 6.75MB / last modified 2026-07-05T10:00:05.919768+09:00
+- DB: 6.75MB / last modified 2026-07-05T10:09:09.262543+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,29 +149,29 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ### 直近 run_cycle ログ (末尾)
 ```
 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-05 09:57:06,505 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-05 09:57:06,563 [INFO] predictor: Models loaded OK
-2026-07-05 09:57:06,792 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-05 09:58:06,557 [INFO] run_cycle: === run_cycle 09:58:06 ===
-2026-07-05 09:58:06,557 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-05 09:58:06,557 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-05 09:58:06,627 [INFO] predictor: Models loaded OK
-2026-07-05 09:58:06,837 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-05 09:59:04,460 [INFO] run_cycle: === run_cycle 09:59:04 ===
-2026-07-05 09:59:04,460 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-05 09:59:04,460 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-05 09:59:04,508 [INFO] predictor: Models loaded OK
-2026-07-05 09:59:15,621 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=4&jcd=18&hd=20260705: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-07-05 09:59:27,163 [INFO] scraper: odds3t: 120/120 parsed
-2026-07-05 09:59:28,267 [INFO] scraper: odds3f: 20/20 parsed
-2026-07-05 09:59:29,379 [INFO] scraper: odds2t: 30/30 parsed
-2026-07-05 09:59:29,381 [INFO] scraper: odds2f: 12/15 parsed
-2026-07-05 09:59:30,462 [INFO] scraper: odds_win: 5/6 parsed
-2026-07-05 09:59:30,462 [INFO] scraper: fetch_race 18/4: boats=6 odds=187/191
-2026-07-05 09:59:30,474 [INFO] predictor: CALIBRATION_MODE=on
-2026-07-05 09:59:30,474 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-07-05 09:59:30,481 [INFO] run_cycle: fetched 18/4 [scan]: 155 combos
-2026-07-05 09:59:30,586 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-05 10:07:07,260 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-05 10:07:07,300 [INFO] predictor: Models loaded OK
+2026-07-05 10:07:18,365 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=5&jcd=21&hd=20260705: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-07-05 10:07:30,023 [INFO] scraper: odds3t: 120/120 parsed
+2026-07-05 10:07:31,167 [INFO] scraper: odds3f: 20/20 parsed
+2026-07-05 10:07:32,277 [INFO] scraper: odds2t: 30/30 parsed
+2026-07-05 10:07:32,280 [INFO] scraper: odds2f: 14/15 parsed
+2026-07-05 10:07:33,421 [INFO] scraper: odds_win: 6/6 parsed
+2026-07-05 10:07:33,421 [INFO] scraper: fetch_race 21/5: boats=6 odds=190/191
+2026-07-05 10:07:33,439 [INFO] predictor: CALIBRATION_MODE=on
+2026-07-05 10:07:33,439 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-07-05 10:07:33,452 [INFO] run_cycle: fetched 21/5 [scan]: 156 combos
+2026-07-05 10:07:33,986 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-05 10:08:07,156 [INFO] run_cycle: === run_cycle 10:08:07 ===
+2026-07-05 10:08:07,157 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-05 10:08:07,157 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-05 10:08:07,221 [INFO] predictor: Models loaded OK
+2026-07-05 10:08:07,466 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-05 10:09:07,692 [INFO] run_cycle: === run_cycle 10:09:07 ===
+2026-07-05 10:09:07,692 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-05 10:09:07,692 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-05 10:09:07,762 [INFO] predictor: Models loaded OK
+2026-07-05 10:09:07,881 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -193,27 +193,27 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 77
+    "c": 75
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 77
+    "c": 75
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 29, 'result': 14, 'scan': 34}
+{'final': 29, 'result': 12, 'scan': 34}
 
 ## アラート件数 (24h・種類別)
 ```
   FINAL_MISSING: 88
-  ANOMALY_SCRAPER_FAILURE_BURST: 72
-  CIRCUIT_BREAKER_NO_ACTION: 28
+  ANOMALY_SCRAPER_FAILURE_BURST: 65
+  CIRCUIT_BREAKER_NO_ACTION: 26
   STRATEGY_CI_FAIL: 17
   ANOMALY_SCAN_FINAL_RATIO: 14
-  ANOMALY_BET_VOLUME_DROP: 1
+  ANOMALY_BET_VOLUME_DROP: 2
 ```
 
 ## 戦略別 ROI (7日)
@@ -225,6 +225,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[10:02:32] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
+[10:00:11] ANOMALY_BET_VOLUME_DROP: {"baseline_mean": 1.7, "baseline_n_days": 6, "baseline_stdev": 0.8, "hour": 10, "kind": "ANOMALY_BET_VOLUME_DROP", "today_so_far": 0, "z_score": -2.04}
 [09:02:23] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [09:00:25] ANOMALY_BET_VOLUME_DROP: {"baseline_mean": 1.2, "baseline_n_days": 4, "baseline_stdev": 0.5, "hour": 9, "kind": "ANOMALY_BET_VOLUME_DROP", "today_so_far": 0, "z_score": -2.5}
 [08:01:33] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
@@ -233,14 +235,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:46:06] FINAL_MISSING: {"deadline": "2026-07-04T12:09:00+09:00", "kind": "FINAL_MISSING", "nid": "2026070409041209", "sid": "S00"}
 [23:44:06] FINAL_MISSING: {"deadline": "2026-07-04T13:08:00+09:00", "kind": "FINAL_MISSING", "nid": "2026070409061308", "sid": "S00"}
 [23:30:10] FINAL_MISSING: {"deadline": "2026-07-04T13:55:00+09:00", "kind": "FINAL_MISSING", "nid": "2026070404051355", "sid": "S00"}
-[23:24:06] FINAL_MISSING: {"deadline": "2026-07-04T10:47:00+09:00", "kind": "FINAL_MISSING", "nid": "2026070421061047", "sid": "S00"}
-[23:24:06] FINAL_MISSING: {"deadline": "2026-07-04T15:49:00+09:00", "kind": "FINAL_MISSING", "nid": "2026070409111549", "sid": "S00"}
 ```
 
-## 本日残レース: 157件
+## 本日残レース: 156件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 11件 締切済
+- race_schedule: 168件 登録 / 12件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -283,7 +283,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 |---|---|
 | **Latency** (scan→final avg) | 483.9s |
 | **Latency** (scan→final max) | 604.6s |
-| **Traffic** (notifications 24h) | 77 |
+| **Traffic** (notifications 24h) | 75 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
@@ -332,4 +332,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-07-05T10:00:02.381627+09:00_
+_auto-generated by claude_snapshot.py at 2026-07-05T10:10:01.983549+09:00_
