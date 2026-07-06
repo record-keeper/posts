@@ -2,14 +2,14 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-07-06T22:20:02.423350+09:00
+**生成**: 2026-07-06T22:30:02.170487+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
 
 ### 検出された問題
 - 🟡 FINAL_MISSING×47 (24h)
-- 🔴 CIRCUIT_BREAKER_TRIP×29 (24h)
+- 🔴 CIRCUIT_BREAKER_TRIP×28 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🔴 CRITICAL_ODDS_COLLAPSE×1 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
@@ -18,25 +18,25 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×8  [2026-07-06T22:12:06]
-- key: `CIRCUIT_BREAKER_TRIP|`
-- **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
-
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×16  [2026-07-06T22:12:06]
-- key: `CIRCUIT_BREAKER_NO_ACTION|`
-- **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
-
-### 🔴 STRATEGY_CI_FAIL  ×8  [2026-07-06T22:12:06]
-- key: `STRATEGY_CI_FAIL|`
-- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
-
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-07-06T21:30:04]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-07-06T22:30:04]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×3  [2026-07-06T21:00:05]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-07-06T22:30:04]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
+
+### 🔴 CIRCUIT_BREAKER_TRIP  ×18  [2026-07-06T22:12:06]
+- key: `CIRCUIT_BREAKER_TRIP|`
+- **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
+
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×36  [2026-07-06T22:12:06]
+- key: `CIRCUIT_BREAKER_NO_ACTION|`
+- **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
+
+### 🔴 STRATEGY_CI_FAIL  ×18  [2026-07-06T22:12:06]
+- key: `STRATEGY_CI_FAIL|`
+- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
 ### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×16  [2026-07-06T17:54:47]
 - key: `ANOMALY_SCAN_FINAL_RATIO|`
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 6.98MB / last modified 2026-07-06T22:19:06.115243+09:00
+- DB: 6.98MB / last modified 2026-07-06T22:30:05.541533+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-37 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-06 22:15:06,437 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-06 22:15:06,609 [INFO] predictor: Models loaded OK
-2026-07-06 22:15:06,613 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-06 22:16:06,484 [INFO] run_cycle: === run_cycle 22:16:06 ===
-2026-07-06 22:16:06,484 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-06 22:16:06,484 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-06 22:16:06,562 [INFO] predictor: Models loaded OK
-2026-07-06 22:16:06,567 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-06 22:17:06,056 [INFO] run_cycle: === run_cycle 22:17:06 ===
-2026-07-06 22:17:06,056 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-06 22:17:06,056 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-06 22:17:06,100 [INFO] predictor: Models loaded OK
-2026-07-06 22:17:06,104 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-06 22:18:06,244 [INFO] run_cycle: === run_cycle 22:18:06 ===
-2026-07-06 22:18:06,244 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-06 22:18:06,244 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-06 22:18:06,293 [INFO] predictor: Models loaded OK
-2026-07-06 22:18:06,297 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-06 22:19:05,774 [INFO] run_cycle: === run_cycle 22:19:05 ===
-2026-07-06 22:19:05,774 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-06 22:19:05,774 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-06 22:19:05,853 [INFO] predictor: Models loaded OK
-2026-07-06 22:19:05,857 [INFO] run_cycle: run_cycle done: 0 notifications
+FO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-06 22:27:07,225 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-06 22:27:07,272 [INFO] predictor: Models loaded OK
+2026-07-06 22:27:07,276 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-06 22:28:06,578 [INFO] run_cycle: === run_cycle 22:28:06 ===
+2026-07-06 22:28:06,578 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-06 22:28:06,580 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-06 22:28:06,730 [INFO] predictor: Models loaded OK
+2026-07-06 22:28:17,805 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=24&hd=20260706: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-07-06 22:28:29,209 [INFO] scraper: odds3t: 120/120 parsed
+2026-07-06 22:28:30,305 [INFO] scraper: odds3f: 20/20 parsed
+2026-07-06 22:28:31,415 [INFO] scraper: odds2t: 30/30 parsed
+2026-07-06 22:28:31,416 [INFO] scraper: odds2f: 15/15 parsed
+2026-07-06 22:28:32,511 [INFO] scraper: odds_win: 6/6 parsed
+2026-07-06 22:28:32,511 [INFO] scraper: fetch_race 24/12: boats=6 odds=191/191
+2026-07-06 22:28:32,523 [INFO] predictor: CALIBRATION_MODE=on
+2026-07-06 22:28:32,523 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-07-06 22:28:32,530 [INFO] run_cycle: fetched 24/12 [scan]: 156 combos
+2026-07-06 22:28:32,676 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-06 22:29:07,108 [INFO] run_cycle: === run_cycle 22:29:07 ===
+2026-07-06 22:29:07,108 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-06 22:29:07,108 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-06 22:29:07,159 [INFO] predictor: Models loaded OK
+2026-07-06 22:29:07,273 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -212,7 +212,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 139
   FINAL_MISSING: 47
-  CIRCUIT_BREAKER_TRIP: 29
+  CIRCUIT_BREAKER_TRIP: 28
   CIRCUIT_BREAKER_NO_ACTION: 24
   STRATEGY_CI_FAIL: 17
   ANOMALY_SCAN_FINAL_RATIO: 5
@@ -340,4 +340,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-07-06T22:20:02.423350+09:00_
+_auto-generated by claude_snapshot.py at 2026-07-06T22:30:02.170487+09:00_
