@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T14:30:02.495603+09:00",
+  "generated_at": "2026-07-07T14:40:01.459904+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,9 +33,9 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup\n\n# 30分毎: コード/DB anti-pattern 検査→alert 流入（HOOK level 自動検出）\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 tools/audit_and_emit_alerts.py >> logs/audit.log 2>&1",
       "db_size_mb": 7.03,
-      "db_mtime": "2026-07-07T14:30:05.691907+09:00",
-      "run_cycle_log_mtime": "2026-07-07T14:29:06.293448+09:00",
-      "log_tail": "21,837 [INFO] scraper: fetch_race 08/9: boats=6 odds=190/191\n2026-07-07 14:27:21,849 [INFO] predictor: CALIBRATION_MODE=on\n2026-07-07 14:27:21,849 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-07-07 14:27:21,857 [INFO] run_cycle: fetched 08/9 [final]: 156 combos\n2026-07-07 14:27:25,408 [INFO] scraper: odds3t: 120/120 parsed\n2026-07-07 14:27:26,566 [INFO] scraper: odds3f: 20/20 parsed\n2026-07-07 14:27:27,664 [INFO] scraper: odds2t: 30/30 parsed\n2026-07-07 14:27:27,665 [INFO] scraper: odds2f: 15/15 parsed\n2026-07-07 14:27:28,777 [INFO] scraper: odds_win: 6/6 parsed\n2026-07-07 14:27:28,777 [INFO] scraper: fetch_race 13/9: boats=6 odds=191/191\n2026-07-07 14:27:28,785 [INFO] predictor: CALIBRATION_MODE=on\n2026-07-07 14:27:28,785 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-07-07 14:27:28,793 [INFO] run_cycle: fetched 13/9 [scan]: 156 combos\n2026-07-07 14:27:28,904 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-07-07 14:28:05,748 [INFO] run_cycle: === run_cycle 14:28:05 ===\n2026-07-07 14:28:05,748 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-07-07 14:28:05,748 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-07-07 14:28:05,792 [INFO] predictor: Models loaded OK\n2026-07-07 14:28:17,190 [INFO] scraper: odds3t: 120/120 parsed\n2026-07-07 14:28:18,265 [INFO] scraper: odds3f: 20/20 parsed\n2026-07-07 14:28:19,365 [INFO] scraper: odds2t: 30/30 parsed\n2026-07-07 14:28:19,367 [INFO] scraper: odds2f: 14/15 parsed\n2026-07-07 14:28:20,495 [INFO] scraper: odds_win: 6/6 parsed\n2026-07-07 14:28:20,495 [INFO] scraper: fetch_race 08/9: boats=6 odds=190/191\n2026-07-07 14:28:20,507 [INFO] predictor: CALIBRATION_MODE=on\n2026-07-07 14:28:20,507 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-07-07 14:28:20,514 [INFO] run_cycle: fetched 08/9 [final]: 156 combos\n2026-07-07 14:28:24,030 [INFO] scraper: odds3t: 120/120 parsed\n2026-07-07 14:28:25,123 [INFO] scraper: odds3f: 20/20 parsed\n2026-07-07 14:28:26,259 [INFO] scraper: odds2t: 30/30 parsed\n2026-07-07 14:28:26,261 [INFO] scraper: odds2f: 15/15 parsed\n2026-07-07 14:28:27,364 [INFO] scraper: odds_win: 5/6 parsed\n2026-07-07 14:28:27,364 [INFO] scraper: fetch_race 05/7: boats=6 odds=190/191\n2026-07-07 14:28:27,372 [INFO] predictor: CALIBRATION_MODE=on\n2026-07-07 14:28:27,374 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}\n2026-07-07 14:28:27,388 [INFO] run_cycle: fetched 05/7 [scan]: 155 combos\n2026-07-07 14:28:27,572 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-07-07 14:29:05,865 [INFO] run_cycle: === run_cycle 14:29:05 ===\n2026-07-07 14:29:05,865 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-07-07 14:29:05,865 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-07-07 14:29:05,935 [INFO] predictor: Models loaded OK\n2026-07-07 14:29:06,293 [INFO] run_cycle: run_cycle done: 0 notifications\n"
+      "db_mtime": "2026-07-07T14:39:10.443339+09:00",
+      "run_cycle_log_mtime": "2026-07-07T14:39:06.245291+09:00",
+      "log_tail": "===\n2026-07-07 14:37:06,904 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-07-07 14:37:06,904 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-07-07 14:37:06,949 [INFO] predictor: Models loaded OK\n2026-07-07 14:37:19,465 [INFO] scraper: odds3t: 120/120 parsed\n2026-07-07 14:37:20,579 [INFO] scraper: odds3f: 20/20 parsed\n2026-07-07 14:37:21,767 [INFO] scraper: odds2t: 30/30 parsed\n2026-07-07 14:37:21,769 [INFO] scraper: odds2f: 15/15 parsed\n2026-07-07 14:37:22,914 [INFO] scraper: odds_win: 6/6 parsed\n2026-07-07 14:37:22,914 [INFO] scraper: fetch_race 13/9: boats=6 odds=191/191\n2026-07-07 14:37:22,928 [INFO] predictor: CALIBRATION_MODE=on\n2026-07-07 14:37:22,928 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-07-07 14:37:22,938 [INFO] run_cycle: fetched 13/9 [final]: 156 combos\n2026-07-07 14:37:26,512 [INFO] scraper: odds3t: 120/120 parsed\n2026-07-07 14:37:27,643 [INFO] scraper: odds3f: 20/20 parsed\n2026-07-07 14:37:28,813 [INFO] scraper: odds2t: 30/30 parsed\n2026-07-07 14:37:28,815 [INFO] scraper: odds2f: 15/15 parsed\n2026-07-07 14:37:29,931 [INFO] scraper: odds_win: 6/6 parsed\n2026-07-07 14:37:29,931 [INFO] scraper: fetch_race 02/9: boats=6 odds=191/191\n2026-07-07 14:37:29,941 [INFO] predictor: CALIBRATION_MODE=on\n2026-07-07 14:37:29,941 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-07-07 14:37:29,949 [INFO] run_cycle: fetched 02/9 [scan]: 156 combos\n2026-07-07 14:37:30,056 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-07-07 14:38:05,781 [INFO] run_cycle: === run_cycle 14:38:05 ===\n2026-07-07 14:38:05,781 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-07-07 14:38:05,781 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-07-07 14:38:05,829 [INFO] predictor: Models loaded OK\n2026-07-07 14:38:17,401 [INFO] scraper: odds3t: 120/120 parsed\n2026-07-07 14:38:18,654 [INFO] scraper: odds3f: 20/20 parsed\n2026-07-07 14:38:19,747 [INFO] scraper: odds2t: 30/30 parsed\n2026-07-07 14:38:19,748 [INFO] scraper: odds2f: 15/15 parsed\n2026-07-07 14:38:20,913 [INFO] scraper: odds_win: 6/6 parsed\n2026-07-07 14:38:20,913 [INFO] scraper: fetch_race 13/9: boats=6 odds=191/191\n2026-07-07 14:38:20,926 [INFO] predictor: CALIBRATION_MODE=on\n2026-07-07 14:38:20,926 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-07-07 14:38:20,934 [INFO] run_cycle: fetched 13/9 [final]: 156 combos\n2026-07-07 14:38:21,121 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-07-07 14:39:06,035 [INFO] run_cycle: === run_cycle 14:39:06 ===\n2026-07-07 14:39:06,035 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-07-07 14:39:06,035 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-07-07 14:39:06,096 [INFO] predictor: Models loaded OK\n2026-07-07 14:39:06,246 [INFO] run_cycle: run_cycle done: 0 notifications\n"
     },
     "strategies_active": [
       {
@@ -123,7 +123,7 @@
     "alerts_24h": [
       {
         "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
-        "c": 141
+        "c": 143
       },
       {
         "kind": "FINAL_MISSING",
@@ -182,6 +182,21 @@
     ],
     "recent_alerts": [
       {
+        "kind": "FINAL_MISSING",
+        "detail": "{\"deadline\": \"2026-07-07T14:09:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026070705061409\", \"sid\": \"S00\"}",
+        "detected_at": "2026-07-07T14:39:06.267859+09:00"
+      },
+      {
+        "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
+        "detail": "{\"failures_1h\": 3, \"kind\": \"ANOMALY_SCRAPER_FAILURE_BURST\", \"log_lines_1h\": 937}",
+        "detected_at": "2026-07-07T14:31:33.209778+09:00"
+      },
+      {
+        "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
+        "detail": "{\"failures_1h\": 3, \"kind\": \"ANOMALY_SCRAPER_FAILURE_BURST\", \"log_lines_1h\": 939}",
+        "detected_at": "2026-07-07T14:30:38.425675+09:00"
+      },
+      {
         "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
         "detail": "{\"failures_1h\": 3, \"kind\": \"ANOMALY_SCRAPER_FAILURE_BURST\", \"log_lines_1h\": 956}",
         "detected_at": "2026-07-07T14:29:06.310922+09:00"
@@ -215,27 +230,12 @@
         "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
         "detail": "{\"failures_1h\": 3, \"kind\": \"ANOMALY_SCRAPER_FAILURE_BURST\", \"log_lines_1h\": 953}",
         "detected_at": "2026-07-07T14:24:21.415405+09:00"
-      },
-      {
-        "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
-        "detail": "{\"failures_1h\": 3, \"kind\": \"ANOMALY_SCRAPER_FAILURE_BURST\", \"log_lines_1h\": 981}",
-        "detected_at": "2026-07-07T14:23:06.695194+09:00"
-      },
-      {
-        "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
-        "detail": "{\"failures_1h\": 3, \"kind\": \"ANOMALY_SCRAPER_FAILURE_BURST\", \"log_lines_1h\": 976}",
-        "detected_at": "2026-07-07T14:21:07.058083+09:00"
-      },
-      {
-        "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
-        "detail": "{\"failures_1h\": 4, \"kind\": \"ANOMALY_SCRAPER_FAILURE_BURST\", \"log_lines_1h\": 1015}",
-        "detected_at": "2026-07-07T14:15:32.259102+09:00"
       }
     ],
-    "races_remaining_today": 75,
+    "races_remaining_today": 73,
     "nid_ledger_today": {
       "scheduled_total": 144,
-      "scheduled_deadline_passed": 69,
+      "scheduled_deadline_passed": 71,
       "scan_unique_nids": 13,
       "final_unique_nids": 14,
       "result_unique_nids": 5,
@@ -420,7 +420,7 @@
         "kind": "CIRCUIT_BREAKER_TRIP",
         "severity": "CRITICAL",
         "key": "CIRCUIT_BREAKER_TRIP|",
-        "count": 6,
+        "count": 16,
         "last_at": "2026-07-07T14:24:21",
         "fix_hint": "7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認"
       },
@@ -428,7 +428,7 @@
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
         "severity": "CRITICAL",
         "key": "CIRCUIT_BREAKER_NO_ACTION|",
-        "count": 50,
+        "count": 70,
         "last_at": "2026-07-07T14:05:47",
         "fix_hint": "CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認"
       },
@@ -436,7 +436,7 @@
         "kind": "STRATEGY_CI_FAIL",
         "severity": "CRITICAL",
         "key": "STRATEGY_CI_FAIL|",
-        "count": 25,
+        "count": 35,
         "last_at": "2026-07-07T14:05:47",
         "fix_hint": "grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認"
       },
@@ -444,7 +444,7 @@
         "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
         "severity": "WARN",
         "key": "ANOMALY_SCRAPER_FAILURE_BURST|",
-        "count": 58,
+        "count": 60,
         "last_at": "2026-07-07T13:32:08",
         "fix_hint": "直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS"
       },
