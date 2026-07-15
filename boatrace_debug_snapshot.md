@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-07-15T23:50:01.613520+09:00
+**生成**: 2026-07-16T00:00:02.234053+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -21,11 +21,11 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×40  [2026-07-15T23:10:05]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×50  [2026-07-15T23:10:05]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×40  [2026-07-15T23:10:05]
+### 🔴 STRATEGY_CI_FAIL  ×50  [2026-07-15T23:10:05]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 7.72MB / last modified 2026-07-15T23:49:03.748385+09:00
+- DB: 7.72MB / last modified 2026-07-15T23:59:03.748414+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,30 +149,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-03 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-15 23:45:04,603 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-15 23:45:04,648 [INFO] predictor: Models loaded OK
-2026-07-15 23:45:04,652 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-15 23:46:03,719 [INFO] run_cycle: === run_cycle 23:46:03 ===
-2026-07-15 23:46:03,719 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-15 23:46:03,719 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-15 23:46:03,798 [INFO] predictor: Models loaded OK
-2026-07-15 23:46:03,802 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-15 23:47:03,945 [INFO] run_cycle: === run_cycle 23:47:03 ===
-2026-07-15 23:47:03,945 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-15 23:47:03,945 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-15 23:47:03,986 [INFO] predictor: Models loaded OK
-2026-07-15 23:47:03,990 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-15 23:48:03,749 [INFO] run_cycle: === run_cycle 23:48:03 ===
-2026-07-15 23:48:03,749 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-15 23:48:03,749 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-15 23:48:03,792 [INFO] predictor: Models loaded OK
-2026-07-15 23:48:03,796 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-15 23:49:03,567 [INFO] run_cycle: === run_cycle 23:49:03 ===
-2026-07-15 23:49:03,567 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-15 23:49:03,567 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-15 23:49:03,610 [INFO] predictor: Models loaded OK
-2026-07-15 23:49:03,614 [INFO] run_cycle: run_cycle done: 0 notifications
+43 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-15 23:55:04,343 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-15 23:55:04,375 [INFO] predictor: Models loaded OK
+2026-07-15 23:55:04,378 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-15 23:56:04,029 [INFO] run_cycle: === run_cycle 23:56:04 ===
+2026-07-15 23:56:04,029 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-15 23:56:04,029 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-15 23:56:04,056 [INFO] predictor: Models loaded OK
+2026-07-15 23:56:04,058 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-15 23:57:03,956 [INFO] run_cycle: === run_cycle 23:57:03 ===
+2026-07-15 23:57:03,956 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-15 23:57:03,956 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-15 23:57:03,983 [INFO] predictor: Models loaded OK
+2026-07-15 23:57:03,985 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-15 23:58:03,758 [INFO] run_cycle: === run_cycle 23:58:03 ===
+2026-07-15 23:58:03,758 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-15 23:58:03,758 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-15 23:58:03,784 [INFO] predictor: Models loaded OK
+2026-07-15 23:58:03,787 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-15 23:59:03,541 [INFO] run_cycle: === run_cycle 23:59:03 ===
+2026-07-15 23:59:03,541 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-15 23:59:03,541 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-15 23:59:03,567 [INFO] predictor: Models loaded OK
+2026-07-15 23:59:03,569 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -241,11 +241,11 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## 本日残レース: 0件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 168件 締切済
-- 通知発射: scan=15 nid / final=18 nid / result=12 nid
-- predictions: 12 / うち結果DB記録済: 12
+- race_schedule: 0件 登録 / 0件 締切済
+- 通知発射: scan=0 nid / final=0 nid / result=0 nid
+- predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
-- 🔴 scan後final無しのまま締切: 5件（FINAL_MISSING の温床）
+- ✅ scan後final無しのまま締切: 0件（FINAL_MISSING の温床）
 
 ## 直近送信失敗 (24h)
 ```
@@ -286,8 +286,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | **Latency** (scan→final max) | 599.7s |
 | **Traffic** (notifications 24h) | 47 |
 | **Errors** (send fail rate) | ✅ 0.0% |
-| **Saturation** (S00) | 1,800円 used |
-| **Saturation** (S01_NAKAANA1) | 1,200円 used |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
 
@@ -335,4 +333,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-07-15T23:50:01.613520+09:00_
+_auto-generated by claude_snapshot.py at 2026-07-16T00:00:02.234053+09:00_
