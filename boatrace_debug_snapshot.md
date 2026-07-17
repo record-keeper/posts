@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-07-17T13:40:02.190257+09:00
+**生成**: 2026-07-17T13:50:01.618899+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -10,17 +10,18 @@
 ### 検出された問題
 - 🟡 FINAL_MISSING×23 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
+- 🟡 LARGE_ODDS_DRIFT×1 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
 
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×19  [2026-07-17T13:19:39]
+### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×29  [2026-07-17T13:19:39]
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
 - **FIX**: 直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS
 
-### 🔴 STRATEGY_CI_FAIL  ×36  [2026-07-17T13:03:18]
+### 🔴 STRATEGY_CI_FAIL  ×46  [2026-07-17T13:03:18]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -105,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 7.83MB / last modified 2026-07-17T13:39:04.817027+09:00
+- DB: 7.83MB / last modified 2026-07-17T13:49:26.830012+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -148,32 +149,35 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-:37,773 [INFO] predictor: CALIBRATION_MODE=on
-2026-07-17 13:37:37,773 [INFO] predictor: combos: {'win': 6, '2t': 29, '3t': 120}
-2026-07-17 13:37:37,777 [INFO] run_cycle: fetched 17/7 [scan]: 155 combos
-2026-07-17 13:37:37,968 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-17 13:38:03,694 [INFO] run_cycle: === run_cycle 13:38:03 ===
-2026-07-17 13:38:03,694 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-17 13:38:03,694 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-17 13:38:03,737 [INFO] predictor: Models loaded OK
-2026-07-17 13:38:16,442 [INFO] scraper: odds3t: 120/120 parsed
-2026-07-17 13:38:17,580 [INFO] scraper: odds3f: 20/20 parsed
-2026-07-17 13:38:18,664 [INFO] scraper: odds2t: 30/30 parsed
-2026-07-17 13:38:18,665 [INFO] scraper: odds2f: 15/15 parsed
-2026-07-17 13:38:19,811 [INFO] scraper: odds_win: 4/6 parsed
-2026-07-17 13:38:19,811 [INFO] scraper: fetch_race 11/7: boats=6 odds=189/191
-2026-07-17 13:38:19,814 [INFO] predictor: CALIBRATION_MODE=on
-2026-07-17 13:38:19,814 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-07-17 13:38:19,818 [INFO] run_cycle: fetched 11/7 [scan]: 154 combos
-2026-07-17 13:38:19,923 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-17 13:39:04,454 [INFO] run_cycle: === run_cycle 13:39:04 ===
-2026-07-17 13:39:04,454 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-17 13:39:04,454 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-17 13:39:04,482 [INFO] predictor: Models loaded OK
-2026-07-17 13:39:04,675 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-17 13:40:05,432 [INFO] run_cycle: === run_cycle 13:40:05 ===
-2026-07-17 13:40:05,432 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-17 13:40:05,432 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+rsed
+2026-07-17 13:48:28,131 [INFO] scraper: fetch_race 08/8: boats=6 odds=189/191
+2026-07-17 13:48:28,134 [INFO] predictor: CALIBRATION_MODE=on
+2026-07-17 13:48:28,134 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-07-17 13:48:28,137 [INFO] run_cycle: fetched 08/8 [scan]: 154 combos
+2026-07-17 13:48:28,327 [INFO] run_cycle: run_cycle done: 2 notifications
+2026-07-17 13:49:04,406 [INFO] run_cycle: === run_cycle 13:49:04 ===
+2026-07-17 13:49:04,406 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-17 13:49:04,406 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-17 13:49:04,525 [INFO] predictor: Models loaded OK
+2026-07-17 13:49:15,920 [INFO] scraper: odds3t: 120/120 parsed
+2026-07-17 13:49:16,998 [INFO] scraper: odds3f: 20/20 parsed
+2026-07-17 13:49:18,124 [INFO] scraper: odds2t: 30/30 parsed
+2026-07-17 13:49:18,125 [INFO] scraper: odds2f: 15/15 parsed
+2026-07-17 13:49:19,279 [INFO] scraper: odds_win: 5/6 parsed
+2026-07-17 13:49:19,279 [INFO] scraper: fetch_race 11/7: boats=6 odds=190/191
+2026-07-17 13:49:19,282 [INFO] predictor: CALIBRATION_MODE=on
+2026-07-17 13:49:19,282 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-07-17 13:49:19,286 [INFO] run_cycle: fetched 11/7 [final]: 155 combos
+2026-07-17 13:49:22,779 [INFO] scraper: odds3t: 120/120 parsed
+2026-07-17 13:49:23,898 [INFO] scraper: odds3f: 20/20 parsed
+2026-07-17 13:49:24,990 [INFO] scraper: odds2t: 30/30 parsed
+2026-07-17 13:49:24,991 [INFO] scraper: odds2f: 15/15 parsed
+2026-07-17 13:49:26,118 [INFO] scraper: odds_win: 5/6 parsed
+2026-07-17 13:49:26,118 [INFO] scraper: fetch_race 16/5: boats=6 odds=190/191
+2026-07-17 13:49:26,120 [INFO] predictor: CALIBRATION_MODE=on
+2026-07-17 13:49:26,121 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-07-17 13:49:26,124 [INFO] run_cycle: fetched 16/5 [scan]: 155 combos
+2026-07-17 13:49:26,414 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -195,55 +199,56 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 67
+    "c": 70
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 67
+    "c": 70
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 30, 'result': 12, 'scan': 25}
+{'final': 31, 'result': 12, 'scan': 27}
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 152
+  ANOMALY_SCRAPER_FAILURE_BURST: 159
   FINAL_MISSING: 23
   STRATEGY_CI_FAIL: 17
   ANOMALY_SCAN_FINAL_RATIO: 2
   ANOMALY_BET_VOLUME_DROP: 1
+  LARGE_ODDS_DRIFT: 1
 ```
 
 ## 戦略別 ROI (7日)
 | sid | n | hits | cost | payout | PL | ROI |
 |---|---|---|---|---|---|---|
-| S00 | 46 | 14 | 13,800 | 12,840 | -960 | 0.93 |
-| S01_NAKAANA1 | 38 | 12 | 7,600 | 6,340 | -1,260 | 0.834 |
+| S00 | 47 | 14 | 14,100 | 12,840 | -1,260 | 0.911 |
+| S01_NAKAANA1 | 39 | 12 | 7,800 | 6,340 | -1,460 | 0.813 |
 | S02_TETSUBAN | 16 | 6 | 3,200 | 3,340 | +140 | 1.044 |
 
 ## 直近アラート (24h・新しい順)
 ```
+[13:49:26] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 988}
+[13:48:28] LARGE_ODDS_DRIFT: {"combo": "1", "drift_pct": 46.7, "final": 4.4, "kind": "LARGE_ODDS_DRIFT", "race": "117R", "scan": 3.0, "sid": "S01_NAKAANA1"}
+[13:48:28] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 971}
+[13:47:19] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 972}
+[13:43:24] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 983}
+[13:42:18] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 980}
+[13:41:39] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 974}
+[13:40:39] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 960}
 [13:39:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 982}
 [13:38:19] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 977}
-[13:36:37] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 976}
-[13:35:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 968}
-[13:33:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 984}
-[13:32:29] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 989}
-[13:31:18] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1013}
-[13:30:47] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1008}
-[13:29:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1007}
-[13:28:31] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1006}
 ```
 
-## 本日残レース: 86件
+## 本日残レース: 84件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 58件 締切済
-- 通知発射: scan=14 nid / final=14 nid / result=6 nid
-- predictions: 8 / うち結果DB記録済: 7
+- race_schedule: 144件 登録 / 60件 締切済
+- 通知発射: scan=16 nid / final=15 nid / result=6 nid
+- predictions: 10 / うち結果DB記録済: 7
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - 🔴 scan後final無しのまま締切: 3件（FINAL_MISSING の温床）
 
@@ -254,6 +259,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## 最新 predictions サンプル (計算spot-check用)
 | sid | race | bt | combo | p | odds | ev | bet | at |
 |---|---|---|---|---|---|---|---|---|
+| S01_NAKAANA1 | 117R | win | 1 | 0.4111 | 4.4 | 1.81 | 200 | scan=3.0 drift=+46.7% | 13:48:20 |
+| S00 | 117R | win | 1 | 0.4111 | 4.4 | 1.81 | 300 | scan=- drift=- | 13:48:18 |
 | S02_TETSUBAN | 164R | win | 1 | 0.5334 | 2.0 | 1.07 | 200 | scan=- drift=- | 13:20:19 |
 | S01_NAKAANA1 | 085R | win | 1 | 0.4111 | 4.5 | 1.85 | 200 | scan=4.5 drift=+0.0% | 12:30:25 |
 | S00 | 085R | win | 1 | 0.4111 | 4.5 | 1.85 | 300 | scan=12.7 drift=-64.6% | 12:30:24 |
@@ -262,14 +269,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | S01_NAKAANA1 | 113R | win | 1 | 0.4989 | 3.2 | 1.60 | 200 | scan=- drift=- | 11:41:19 |
 | S00 | 173R | win | 1 | 0.5334 | 7.2 | 3.84 | 300 | scan=9.0 drift=-20.0% | 11:38:18 |
 | S02_TETSUBAN | 213R | win | 1 | 0.5334 | 2.2 | 1.17 | 200 | scan=- drift=- | 09:21:31 |
-| S01_NAKAANA1 | 019R | win | 1 | 0.3177 | 3.0 | 0.95 | 200 | scan=- drift=- | 19:03:17 |
-| S00 | 015R | win | 1 | 0.3177 | 6.3 | 2.00 | 300 | scan=- drift=- | 17:06:43 |
 
 ## オッズドリフト統計 (7日)
 
 | bt | n | avg | min | max | down10 | collapse(≤-30%) | any_large(≥10%) |
 |---|---|---|---|---|---|---|---|
-| win | 48 | +14.7% | -64.6% | +533.3% | 15 | 5 | 31 |
+| win | 49 | +15.4% | -64.6% | +533.3% | 15 | 5 | 32 |
 
 ## 校正テーブル合格状況
 
@@ -282,12 +287,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 458.0s |
+| **Latency** (scan→final avg) | 455.4s |
 | **Latency** (scan→final max) | 610.8s |
-| **Traffic** (notifications 24h) | 67 |
+| **Traffic** (notifications 24h) | 70 |
 | **Errors** (send fail rate) | ✅ 0.0% |
-| **Saturation** (S00) | 900円 used |
-| **Saturation** (S01_NAKAANA1) | 400円 used |
+| **Saturation** (S00) | 1,200円 used |
+| **Saturation** (S01_NAKAANA1) | 600円 used |
 | **Saturation** (S02_TETSUBAN) | 600円 used |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
@@ -295,12 +300,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ### bt別: 予測確率 vs 実的中率
 | bt | n | 予測avg | 実的中率 | 校正誤差 | 過信度 | Brier |
 |---|---|---|---|---|---|---|
-| win | 408 | 0.4682 | 0.3137 | +0.1545 | 🟡+33% | 0.2371 |
+| win | 407 | 0.4683 | 0.3145 | +0.1538 | 🟡+33% | 0.2373 |
 
 ### 戦略別: 校正精度 + Brier Skill Score
 | sid | bt | n | pred | actual | Brier | BSS | ROI |
 |---|---|---|---|---|---|---|---|
-| S00 | win | 178 | 0.4270 | 0.2809 | 0.2259 | 🔴-0.12 | 0.729 |
+| S00 | win | 177 | 0.4271 | 0.2825 | 0.2262 | 🔴-0.12 | 0.733 |
 | S01_NAKAANA1 | win | 160 | 0.4807 | 0.3000 | 0.2383 | 🔴-0.13 | 0.777 |
 | S02_TETSUBAN | win | 70 | 0.5443 | 0.4286 | 0.2630 | 🔴-0.07 | 0.874 |
 
@@ -309,7 +314,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 |---|---|---|---|---|
 | 0.15-0.20 | 7 | 0.1777 | 0.5714 | 🔴-0.3938 |
 | 0.20-0.30 | 16 | 0.2269 | 0.1875 | ✅+0.0394 |
-| 0.30-0.50 | 153 | 0.4167 | 0.2745 | 🔴+0.1422 |
+| 0.30-0.50 | 152 | 0.4168 | 0.2763 | 🔴+0.1404 |
 | 0.50+ | 224 | 0.5426 | 0.3482 | 🔴+0.1944 |
 
 ## Settlement Ratio データ品質
@@ -336,4 +341,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-07-17T13:40:02.190257+09:00_
+_auto-generated by claude_snapshot.py at 2026-07-17T13:50:01.618899+09:00_
