@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-07-17T21:50:01.759795+09:00
+**生成**: 2026-07-17T22:00:01.792807+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×43 (24h)
+- 🟡 FINAL_MISSING×42 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
@@ -17,7 +17,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 STRATEGY_CI_FAIL  ×43  [2026-07-17T21:07:04]
+### 🔴 STRATEGY_CI_FAIL  ×53  [2026-07-17T21:07:04]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 7.86MB / last modified 2026-07-17T21:49:19.163771+09:00
+- DB: 7.86MB / last modified 2026-07-17T22:00:02.964548+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,32 +149,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
- port=443): Read timed out. (read timeout=10), retry in 1s
-2026-07-17 21:48:25,577 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=24&hd=20260717: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-07-17 21:48:38,978 [INFO] scraper: odds3t: 120/120 parsed
-2026-07-17 21:48:40,103 [INFO] scraper: odds3f: 20/20 parsed
-2026-07-17 21:48:41,177 [INFO] scraper: odds2t: 30/30 parsed
-2026-07-17 21:48:41,178 [INFO] scraper: odds2f: 15/15 parsed
-2026-07-17 21:48:42,282 [INFO] scraper: odds_win: 6/6 parsed
-2026-07-17 21:48:42,282 [INFO] scraper: fetch_race 24/10: boats=6 odds=191/191
-2026-07-17 21:48:42,286 [INFO] predictor: CALIBRATION_MODE=on
-2026-07-17 21:48:42,286 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-07-17 21:48:42,289 [INFO] run_cycle: fetched 24/10 [final]: 156 combos
-2026-07-17 21:48:42,379 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-17 21:49:04,165 [INFO] run_cycle: === run_cycle 21:49:04 ===
-2026-07-17 21:49:04,165 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-17 21:49:04,165 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-17 21:49:04,206 [INFO] predictor: Models loaded OK
-2026-07-17 21:49:15,714 [INFO] scraper: odds3t: 120/120 parsed
-2026-07-17 21:49:16,844 [INFO] scraper: odds3f: 20/20 parsed
-2026-07-17 21:49:17,941 [INFO] scraper: odds2t: 30/30 parsed
-2026-07-17 21:49:17,943 [INFO] scraper: odds2f: 15/15 parsed
-2026-07-17 21:49:19,039 [INFO] scraper: odds_win: 6/6 parsed
-2026-07-17 21:49:19,039 [INFO] scraper: fetch_race 24/10: boats=6 odds=191/191
-2026-07-17 21:49:19,042 [INFO] predictor: CALIBRATION_MODE=on
-2026-07-17 21:49:19,042 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-07-17 21:49:19,046 [INFO] run_cycle: fetched 24/10 [final]: 156 combos
-2026-07-17 21:49:19,127 [INFO] run_cycle: run_cycle done: 0 notifications
+09 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-17 21:55:03,409 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-17 21:55:03,452 [INFO] predictor: Models loaded OK
+2026-07-17 21:55:03,456 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-17 21:56:03,368 [INFO] run_cycle: === run_cycle 21:56:03 ===
+2026-07-17 21:56:03,368 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-17 21:56:03,368 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-17 21:56:03,397 [INFO] predictor: Models loaded OK
+2026-07-17 21:56:03,399 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-17 21:57:03,801 [INFO] run_cycle: === run_cycle 21:57:03 ===
+2026-07-17 21:57:03,801 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-17 21:57:03,801 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-17 21:57:03,845 [INFO] predictor: Models loaded OK
+2026-07-17 21:57:03,849 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-17 21:58:03,644 [INFO] run_cycle: === run_cycle 21:58:03 ===
+2026-07-17 21:58:03,644 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-17 21:58:03,644 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-17 21:58:03,671 [INFO] predictor: Models loaded OK
+2026-07-17 21:58:03,673 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-17 21:59:04,136 [INFO] run_cycle: === run_cycle 21:59:04 ===
+2026-07-17 21:59:04,136 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-17 21:59:04,136 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-17 21:59:04,177 [INFO] predictor: Models loaded OK
+2026-07-17 21:59:04,178 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -212,7 +210,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 164
-  FINAL_MISSING: 43
+  FINAL_MISSING: 42
   STRATEGY_CI_FAIL: 17
   ANOMALY_SCAN_FINAL_RATIO: 2
   ANOMALY_BET_VOLUME_DROP: 1
@@ -240,10 +238,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [20:06:25] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 ```
 
-## 本日残レース: 3件
+## 本日残レース: 2件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 141件 締切済
+- race_schedule: 144件 登録 / 142件 締切済
 - 通知発射: scan=28 nid / final=28 nid / result=13 nid
 - predictions: 15 / うち結果DB記録済: 15
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -338,4 +336,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-07-17T21:50:01.759795+09:00_
+_auto-generated by claude_snapshot.py at 2026-07-17T22:00:01.792807+09:00_
