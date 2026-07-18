@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-07-18T08:50:01.611999+09:00
+**生成**: 2026-07-18T09:00:02.015057+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -17,7 +17,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 STRATEGY_CI_FAIL  ×50  [2026-07-18T08:00:34]
+### 🔴 STRATEGY_CI_FAIL  ×60  [2026-07-18T08:00:34]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 7.89MB / last modified 2026-07-18T08:49:19.761520+09:00
+- DB: 7.89MB / last modified 2026-07-18T09:00:03.644058+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,33 +149,32 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-ault=5000
-2026-07-18 08:46:03,762 [INFO] predictor: Models loaded OK
-2026-07-18 08:46:03,858 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-18 08:47:03,859 [INFO] run_cycle: === run_cycle 08:47:03 ===
-2026-07-18 08:47:03,859 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-18 08:47:03,859 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-18 08:47:03,903 [INFO] predictor: Models loaded OK
-2026-07-18 08:47:04,006 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-18 08:48:04,088 [INFO] run_cycle: === run_cycle 08:48:04 ===
-2026-07-18 08:48:04,088 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-18 08:48:04,088 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-18 08:48:04,121 [INFO] predictor: Models loaded OK
-2026-07-18 08:48:04,228 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-07-18 08:49:03,637 [INFO] run_cycle: === run_cycle 08:49:03 ===
-2026-07-18 08:49:03,637 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-07-18 08:49:03,637 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-07-18 08:49:03,681 [INFO] predictor: Models loaded OK
-2026-07-18 08:49:16,167 [INFO] scraper: odds3t: 120/120 parsed
-2026-07-18 08:49:17,245 [INFO] scraper: odds3f: 20/20 parsed
-2026-07-18 08:49:18,346 [INFO] scraper: odds2t: 30/30 parsed
-2026-07-18 08:49:18,348 [INFO] scraper: odds2f: 11/15 parsed
-2026-07-18 08:49:19,559 [INFO] scraper: odds_win: 4/6 parsed
-2026-07-18 08:49:19,559 [INFO] scraper: fetch_race 21/2: boats=6 odds=185/191
-2026-07-18 08:49:19,563 [INFO] predictor: CALIBRATION_MODE=on
-2026-07-18 08:49:19,563 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-07-18 08:49:19,567 [INFO] run_cycle: fetched 21/2 [scan]: 154 combos
-2026-07-18 08:49:19,671 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-18 08:57:03,367 [INFO] run_cycle: === run_cycle 08:57:03 ===
+2026-07-18 08:57:03,367 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-18 08:57:03,367 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-18 08:57:03,394 [INFO] predictor: Models loaded OK
+2026-07-18 08:57:03,477 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-18 08:58:04,079 [INFO] run_cycle: === run_cycle 08:58:04 ===
+2026-07-18 08:58:04,079 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-18 08:58:04,079 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-18 08:58:04,115 [INFO] predictor: Models loaded OK
+2026-07-18 08:58:16,451 [INFO] scraper: odds3t: 120/120 parsed
+2026-07-18 08:58:17,517 [INFO] scraper: odds3f: 20/20 parsed
+2026-07-18 08:58:18,607 [INFO] scraper: odds2t: 30/30 parsed
+2026-07-18 08:58:18,608 [INFO] scraper: odds2f: 15/15 parsed
+2026-07-18 08:58:19,682 [INFO] scraper: odds_win: 5/6 parsed
+2026-07-18 08:58:19,682 [INFO] scraper: fetch_race 10/2: boats=6 odds=190/191
+2026-07-18 08:58:19,686 [INFO] predictor: CALIBRATION_MODE=on
+2026-07-18 08:58:19,686 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-07-18 08:58:19,689 [INFO] run_cycle: fetched 10/2 [scan]: 155 combos
+2026-07-18 08:58:19,780 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-07-18 08:59:03,818 [INFO] run_cycle: === run_cycle 08:59:03 ===
+2026-07-18 08:59:03,818 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-07-18 08:59:03,818 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-07-18 08:59:03,861 [INFO] predictor: Models loaded OK
+2026-07-18 08:59:14,228 [WARNING] scraper: beforeinfo parse failed: jcd=18 rno=2
+2026-07-18 08:59:14,228 [WARNING] run_cycle: fetch None: 18/2
+2026-07-18 08:59:14,229 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -197,18 +196,18 @@ ault=5000
   {
     "target": "mirror",
     "ok": 1,
-    "c": 77
+    "c": 75
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 77
+    "c": 75
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 32, 'result': 15, 'scan': 30}
+{'final': 31, 'result': 15, 'scan': 29}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -241,10 +240,10 @@ ault=5000
 [22:20:05] FINAL_MISSING: {"deadline": "2026-07-17T12:44:00+09:00", "kind": "FINAL_MISSING", "nid": "2026071702051244", "sid": "S00"}
 ```
 
-## 本日残レース: 177件
+## 本日残レース: 176件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 180件 登録 / 3件 締切済
+- race_schedule: 180件 登録 / 4件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -285,9 +284,9 @@ ault=5000
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 467.3s |
+| **Latency** (scan→final avg) | 476.8s |
 | **Latency** (scan→final max) | 610.8s |
-| **Traffic** (notifications 24h) | 77 |
+| **Traffic** (notifications 24h) | 75 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
@@ -336,4 +335,4 @@ ault=5000
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-07-18T08:50:01.611999+09:00_
+_auto-generated by claude_snapshot.py at 2026-07-18T09:00:02.015057+09:00_
