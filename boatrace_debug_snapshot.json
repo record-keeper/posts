@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-25T06:50:01.364767+09:00",
+  "generated_at": "2026-07-25T07:00:02.093394+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -405,6 +405,22 @@
     ],
     "ai_debug_queue": [
       {
+        "kind": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION",
+        "severity": "CRITICAL",
+        "key": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま",
+        "count": 1,
+        "last_at": "2026-07-25T07:00:02",
+        "fix_hint": "CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に"
+      },
+      {
+        "kind": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION",
+        "severity": "CRITICAL",
+        "key": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま",
+        "count": 1,
+        "last_at": "2026-07-25T07:00:02",
+        "fix_hint": "CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に"
+      },
+      {
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
         "key": "INSUFFICIENT_SAMPLE|S00: n=183<300 — v17 要件未達、ROI判定保留",
@@ -784,22 +800,6 @@
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=1890 bet=300 odds=4.5 payout=390 ratio=0.29",
-        "count": 1,
-        "last_at": "2026-07-25T06:00:04",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=1902 bet=200 odds=2.1 payout=560 ratio=1.33",
-        "count": 1,
-        "last_at": "2026-07-25T06:00:04",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=1920 bet=300 odds=14.1 payout=630 ratio=0.15",
         "count": 1,
         "last_at": "2026-07-25T06:00:04",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
