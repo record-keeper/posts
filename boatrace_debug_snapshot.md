@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-08-02T08:40:01.594322+09:00
+**生成**: 2026-08-02T08:50:01.453906+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
@@ -23,15 +23,15 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×40  [2026-08-02T08:00:36]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×50  [2026-08-02T08:00:36]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×40  [2026-08-02T08:00:36]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×50  [2026-08-02T08:00:36]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×40  [2026-08-02T08:00:36]
+### 🔴 STRATEGY_CI_FAIL  ×50  [2026-08-02T08:00:36]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 9.21MB / last modified 2026-08-02T08:39:04.396461+09:00
+- DB: 9.21MB / last modified 2026-08-02T08:49:39.867851+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,30 +151,23 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-[INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-02 08:37:04,213 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-02 08:37:04,257 [INFO] predictor: Models loaded OK
-2026-08-02 08:37:15,300 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=23&hd=20260802: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-08-02 08:37:26,644 [INFO] scraper: odds3t: 120/120 parsed
-2026-08-02 08:37:27,781 [INFO] scraper: odds3f: 20/20 parsed
-2026-08-02 08:37:28,862 [INFO] scraper: odds2t: 30/30 parsed
-2026-08-02 08:37:28,863 [INFO] scraper: odds2f: 14/15 parsed
-2026-08-02 08:37:29,933 [INFO] scraper: odds_win: 5/6 parsed
-2026-08-02 08:37:29,933 [INFO] scraper: fetch_race 23/1: boats=6 odds=189/191
-2026-08-02 08:37:29,936 [INFO] predictor: CALIBRATION_MODE=on
-2026-08-02 08:37:29,936 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-08-02 08:37:29,940 [INFO] run_cycle: fetched 23/1 [scan]: 155 combos
-2026-08-02 08:37:30,037 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-02 08:38:03,989 [INFO] run_cycle: === run_cycle 08:38:03 ===
-2026-08-02 08:38:03,989 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-02 08:38:03,990 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-02 08:38:04,017 [INFO] predictor: Models loaded OK
-2026-08-02 08:38:04,096 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-02 08:39:03,661 [INFO] run_cycle: === run_cycle 08:39:03 ===
-2026-08-02 08:39:03,661 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-02 08:39:03,661 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-02 08:39:03,689 [INFO] predictor: Models loaded OK
-2026-08-02 08:39:03,779 [INFO] run_cycle: run_cycle done: 0 notifications
+s
+2026-08-02 08:48:38,820 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=21&hd=20260802: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
+2026-08-02 08:48:38,820 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=21&hd=20260802
+2026-08-02 08:48:38,820 [ERROR] scraper: racelist fetch failed: jcd=21 rno=2
+2026-08-02 08:48:38,820 [WARNING] run_cycle: fetch None: 21/2
+2026-08-02 08:48:38,821 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-02 08:49:04,197 [INFO] run_cycle: === run_cycle 08:49:04 ===
+2026-08-02 08:49:04,197 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-02 08:49:04,197 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-02 08:49:04,227 [INFO] predictor: Models loaded OK
+2026-08-02 08:49:15,260 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=21&hd=20260802: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-08-02 08:49:26,401 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=21&hd=20260802: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-08-02 08:49:39,571 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=21&hd=20260802: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
+2026-08-02 08:49:39,571 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=21&hd=20260802
+2026-08-02 08:49:39,571 [ERROR] scraper: racelist fetch failed: jcd=21 rno=2
+2026-08-02 08:49:39,572 [WARNING] run_cycle: fetch None: 21/2
+2026-08-02 08:49:39,572 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -243,10 +236,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:18:03] FINAL_MISSING: {"deadline": "2026-08-01T16:44:00+09:00", "kind": "FINAL_MISSING", "nid": "2026080116101644", "sid": "S00"}
 ```
 
-## 本日残レース: 143件
+## 本日残レース: 142件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 1件 締切済
+- race_schedule: 144件 登録 / 2件 締切済
 - 通知発射: scan=1 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -339,4 +332,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-08-02T08:40:01.594322+09:00_
+_auto-generated by claude_snapshot.py at 2026-08-02T08:50:01.453906+09:00_
