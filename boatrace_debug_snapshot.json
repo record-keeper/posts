@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-02T05:50:01.744664+09:00",
+  "generated_at": "2026-08-02T06:00:02.044953+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -127,7 +127,7 @@
       },
       {
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
-        "c": 34
+        "c": 33
       },
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
@@ -190,6 +190,21 @@
     ],
     "recent_alerts": [
       {
+        "kind": "STRATEGY_CI_FAIL",
+        "detail": "{\"ci_lo\": null, \"kind\": \"STRATEGY_CI_FAIL\", \"sid\": \"S02_TETSUBAN\"}",
+        "detected_at": "2026-08-02T06:00:05.561579+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_TRIP",
+        "detail": "{\"cost\": 10500, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 35, \"payout\": 6510, \"roi_7d\": 0.62, \"sid\": \"S00\"}",
+        "detected_at": "2026-08-02T06:00:05.560956+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_NO_ACTION",
+        "detail": "{\"kind\": \"CIRCUIT_BREAKER_NO_ACTION\", \"sid\": \"S00\"}",
+        "detected_at": "2026-08-02T06:00:05.548978+09:00"
+      },
+      {
         "kind": "FINAL_MISSING",
         "detail": "{\"deadline\": \"2026-08-01T17:58:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026080115061758\", \"sid\": \"S00\"}",
         "detected_at": "2026-08-01T23:32:04.375127+09:00"
@@ -223,21 +238,6 @@
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
         "detail": "{\"kind\": \"CIRCUIT_BREAKER_NO_ACTION\", \"sid\": \"S00\"}",
         "detected_at": "2026-08-01T23:08:03.629796+09:00"
-      },
-      {
-        "kind": "FINAL_MISSING",
-        "detail": "{\"deadline\": \"2026-08-01T17:58:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026080115061758\", \"sid\": \"S00\"}",
-        "detected_at": "2026-08-01T22:32:03.722852+09:00"
-      },
-      {
-        "kind": "CIRCUIT_BREAKER_TRIP",
-        "detail": "{\"cost\": 10500, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 35, \"payout\": 6510, \"roi_7d\": 0.62, \"sid\": \"S00\"}",
-        "detected_at": "2026-08-01T22:26:03.784866+09:00"
-      },
-      {
-        "kind": "FINAL_MISSING",
-        "detail": "{\"deadline\": \"2026-08-01T13:51:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026080105061351\", \"sid\": \"S00\"}",
-        "detected_at": "2026-08-01T22:26:03.773804+09:00"
       }
     ],
     "races_remaining_today": 0,
@@ -412,8 +412,8 @@
         "kind": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION",
         "severity": "CRITICAL",
         "key": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま",
-        "count": 2,
-        "last_at": "2026-08-02T05:00:02",
+        "count": 1,
+        "last_at": "2026-08-02T06:00:02",
         "fix_hint": "CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に"
       },
       {
