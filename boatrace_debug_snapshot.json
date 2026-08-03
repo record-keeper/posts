@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T05:50:01.914344+09:00",
+  "generated_at": "2026-08-04T06:00:01.648542+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -143,7 +143,7 @@
       },
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
-        "c": 12
+        "c": 11
       },
       {
         "kind": "ANOMALY_BET_VOLUME_DROP",
@@ -190,6 +190,16 @@
     ],
     "recent_alerts": [
       {
+        "kind": "STRATEGY_CI_FAIL",
+        "detail": "{\"ci_lo\": null, \"kind\": \"STRATEGY_CI_FAIL\", \"sid\": \"S02_TETSUBAN\"}",
+        "detected_at": "2026-08-04T06:00:04.700517+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_NO_ACTION",
+        "detail": "{\"kind\": \"CIRCUIT_BREAKER_NO_ACTION\", \"sid\": \"S00\"}",
+        "detected_at": "2026-08-04T06:00:04.687765+09:00"
+      },
+      {
         "kind": "FINAL_MISSING",
         "detail": "{\"deadline\": \"2026-08-03T13:15:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026080317061315\", \"sid\": \"S00\"}",
         "detected_at": "2026-08-03T23:55:05.156598+09:00"
@@ -228,16 +238,6 @@
         "kind": "FINAL_MISSING",
         "detail": "{\"deadline\": \"2026-08-03T12:31:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026080305031231\", \"sid\": \"S00\"}",
         "detected_at": "2026-08-03T23:07:04.602549+09:00"
-      },
-      {
-        "kind": "FINAL_MISSING",
-        "detail": "{\"deadline\": \"2026-08-03T17:28:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026080301061728\", \"sid\": \"S00\"}",
-        "detected_at": "2026-08-03T23:02:03.928352+09:00"
-      },
-      {
-        "kind": "FINAL_MISSING",
-        "detail": "{\"deadline\": \"2026-08-03T13:15:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026080317061315\", \"sid\": \"S00\"}",
-        "detected_at": "2026-08-03T22:54:03.839022+09:00"
       }
     ],
     "races_remaining_today": 0,
@@ -412,8 +412,8 @@
         "kind": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION",
         "severity": "CRITICAL",
         "key": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま",
-        "count": 2,
-        "last_at": "2026-08-04T05:00:02",
+        "count": 1,
+        "last_at": "2026-08-04T06:00:02",
         "fix_hint": "CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に"
       },
       {
