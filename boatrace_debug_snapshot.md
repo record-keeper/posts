@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-08-07T09:30:02.188720+09:00
+**生成**: 2026-08-07T09:40:01.783304+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -18,19 +18,19 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×29  [2026-08-07T09:01:05]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×39  [2026-08-07T09:01:05]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×29  [2026-08-07T09:01:05]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×39  [2026-08-07T09:01:05]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 PSI_DRIFT_DETECTED  ×29  [2026-08-07T09:01:05]
+### 🔴 PSI_DRIFT_DETECTED  ×39  [2026-08-07T09:01:05]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×29  [2026-08-07T09:01:05]
+### 🔴 STRATEGY_CI_FAIL  ×39  [2026-08-07T09:01:05]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 9.57MB / last modified 2026-08-07T09:30:04.249182+09:00
+- DB: 9.57MB / last modified 2026-08-07T09:39:05.388844+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,31 +150,31 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-/race/racelist?rno=3&jcd=14&hd=20260807: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-08-07 09:27:39,726 [INFO] scraper: odds3t: 120/120 parsed
-2026-08-07 09:27:40,810 [INFO] scraper: odds3f: 20/20 parsed
-2026-08-07 09:27:42,019 [INFO] scraper: odds2t: 30/30 parsed
-2026-08-07 09:27:42,020 [INFO] scraper: odds2f: 11/15 parsed
-2026-08-07 09:27:43,085 [INFO] scraper: odds_win: 3/6 parsed
-2026-08-07 09:27:43,085 [INFO] scraper: fetch_race 14/3: boats=6 odds=184/191
-2026-08-07 09:27:43,088 [INFO] predictor: CALIBRATION_MODE=on
-2026-08-07 09:27:43,088 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-08-07 09:27:43,092 [INFO] run_cycle: fetched 14/3 [scan]: 153 combos
-2026-08-07 09:27:43,201 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-07 09:28:04,708 [INFO] run_cycle: === run_cycle 09:28:04 ===
-2026-08-07 09:28:04,716 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-07 09:28:04,716 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-07 09:28:04,780 [INFO] predictor: Models loaded OK
-2026-08-07 09:28:04,897 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-07 09:29:04,286 [INFO] run_cycle: === run_cycle 09:29:04 ===
-2026-08-07 09:29:04,286 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-07 09:29:04,286 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-07 09:29:04,350 [INFO] predictor: Models loaded OK
-2026-08-07 09:29:04,469 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-07 09:30:06,886 [INFO] run_cycle: === run_cycle 09:30:06 ===
-2026-08-07 09:30:06,886 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-07 09:30:06,886 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-07 09:30:06,955 [INFO] predictor: Models loaded OK
+un_cycle: run_cycle done: 0 notifications
+2026-08-07 09:36:03,895 [INFO] run_cycle: === run_cycle 09:36:03 ===
+2026-08-07 09:36:03,895 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-07 09:36:03,895 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-07 09:36:03,963 [INFO] predictor: Models loaded OK
+2026-08-07 09:36:03,966 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-07 09:37:04,644 [INFO] run_cycle: === run_cycle 09:37:04 ===
+2026-08-07 09:37:04,644 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-07 09:37:04,644 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-07 09:37:04,695 [INFO] predictor: Models loaded OK
+2026-08-07 09:37:16,050 [WARNING] scraper: beforeinfo parse failed: jcd=10 rno=4
+2026-08-07 09:37:16,051 [WARNING] run_cycle: fetch None: 10/4
+2026-08-07 09:37:16,051 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-07 09:38:04,015 [INFO] run_cycle: === run_cycle 09:38:04 ===
+2026-08-07 09:38:04,015 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-07 09:38:04,015 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-07 09:38:04,085 [INFO] predictor: Models loaded OK
+2026-08-07 09:38:14,481 [WARNING] scraper: beforeinfo parse failed: jcd=10 rno=4
+2026-08-07 09:38:14,481 [WARNING] run_cycle: fetch None: 10/4
+2026-08-07 09:38:14,481 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-07 09:39:04,818 [INFO] run_cycle: === run_cycle 09:39:04 ===
+2026-08-07 09:39:04,819 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-07 09:39:04,819 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-07 09:39:04,884 [INFO] predictor: Models loaded OK
+2026-08-07 09:39:05,006 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -242,10 +242,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [06:00:04] CIRCUIT_BREAKER_TRIP: {"cost": 9900, "kind": "CIRCUIT_BREAKER_TRIP", "n": 33, "payout": 6810, "roi_7d": 0.688, "sid": "S00"}
 ```
 
-## 本日残レース: 139件
+## 本日残レース: 138件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 5件 締切済
+- race_schedule: 144件 登録 / 6件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -338,4 +338,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-08-07T09:30:02.188720+09:00_
+_auto-generated by claude_snapshot.py at 2026-08-07T09:40:01.783304+09:00_
