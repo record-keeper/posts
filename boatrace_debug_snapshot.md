@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-08-09T23:30:02.029487+09:00
+**生成**: 2026-08-09T23:40:01.469674+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×132 (24h)
+- 🟡 FINAL_MISSING×134 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×49 (24h)
 - 🔴 PSI_DRIFT_DETECTED×48 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
@@ -20,19 +20,19 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×40  [2026-08-09T23:10:06]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×60  [2026-08-09T23:10:06]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×40  [2026-08-09T23:10:06]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×60  [2026-08-09T23:10:06]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 PSI_DRIFT_DETECTED  ×20  [2026-08-09T23:10:06]
+### 🔴 PSI_DRIFT_DETECTED  ×30  [2026-08-09T23:10:06]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×20  [2026-08-09T23:10:06]
+### 🔴 STRATEGY_CI_FAIL  ×30  [2026-08-09T23:10:06]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -44,7 +44,7 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🟡 ANOMALY_BET_VOLUME_SPIKE  ×42  [2026-08-09T22:48:05]
+### 🟡 ANOMALY_BET_VOLUME_SPIKE  ×52  [2026-08-09T22:48:05]
 - key: `ANOMALY_BET_VOLUME_SPIKE|`
 - **FIX**: 本日のbet数が2σ急増。filter logic緩み・戦略追加・race_schedule異常
 
@@ -109,7 +109,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 9.94MB / last modified 2026-08-09T23:30:05.621301+09:00
+- DB: 9.94MB / last modified 2026-08-09T23:39:03.948308+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -152,30 +152,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-40 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-09 23:25:03,940 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-09 23:25:03,992 [INFO] predictor: Models loaded OK
-2026-08-09 23:25:03,996 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-09 23:26:04,076 [INFO] run_cycle: === run_cycle 23:26:04 ===
-2026-08-09 23:26:04,076 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-09 23:26:04,076 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-09 23:26:04,109 [INFO] predictor: Models loaded OK
-2026-08-09 23:26:04,111 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-09 23:27:03,697 [INFO] run_cycle: === run_cycle 23:27:03 ===
-2026-08-09 23:27:03,697 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-09 23:27:03,697 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-09 23:27:03,728 [INFO] predictor: Models loaded OK
-2026-08-09 23:27:03,730 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-09 23:28:03,794 [INFO] run_cycle: === run_cycle 23:28:03 ===
-2026-08-09 23:28:03,794 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-09 23:28:03,794 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-09 23:28:03,825 [INFO] predictor: Models loaded OK
-2026-08-09 23:28:03,828 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-09 23:29:03,630 [INFO] run_cycle: === run_cycle 23:29:03 ===
-2026-08-09 23:29:03,630 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-09 23:29:03,630 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-09 23:29:03,679 [INFO] predictor: Models loaded OK
-2026-08-09 23:29:03,684 [INFO] run_cycle: run_cycle done: 0 notifications
+61 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-09 23:35:04,461 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-09 23:35:04,516 [INFO] predictor: Models loaded OK
+2026-08-09 23:35:04,523 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-09 23:36:03,389 [INFO] run_cycle: === run_cycle 23:36:03 ===
+2026-08-09 23:36:03,389 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-09 23:36:03,389 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-09 23:36:03,421 [INFO] predictor: Models loaded OK
+2026-08-09 23:36:03,424 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-09 23:37:04,391 [INFO] run_cycle: === run_cycle 23:37:04 ===
+2026-08-09 23:37:04,391 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-09 23:37:04,391 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-09 23:37:04,440 [INFO] predictor: Models loaded OK
+2026-08-09 23:37:04,444 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-09 23:38:03,681 [INFO] run_cycle: === run_cycle 23:38:03 ===
+2026-08-09 23:38:03,681 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-09 23:38:03,681 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-09 23:38:03,727 [INFO] predictor: Models loaded OK
+2026-08-09 23:38:03,733 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-09 23:39:03,671 [INFO] run_cycle: === run_cycle 23:39:03 ===
+2026-08-09 23:39:03,671 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-09 23:39:03,671 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-09 23:39:03,722 [INFO] predictor: Models loaded OK
+2026-08-09 23:39:03,726 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -213,7 +213,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 204
-  FINAL_MISSING: 132
+  FINAL_MISSING: 134
   CIRCUIT_BREAKER_TRIP: 49
   PSI_DRIFT_DETECTED: 48
   CIRCUIT_BREAKER_NO_ACTION: 34
@@ -233,6 +233,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[23:39:03] FINAL_MISSING: {"deadline": "2026-08-09T13:03:00+09:00", "kind": "FINAL_MISSING", "nid": "2026080905041303", "sid": "S00"}
+[23:37:04] FINAL_MISSING: {"deadline": "2026-08-09T13:02:00+09:00", "kind": "FINAL_MISSING", "nid": "2026080903051302", "sid": "S00"}
 [23:28:03] FINAL_MISSING: {"deadline": "2026-08-09T12:51:00+09:00", "kind": "FINAL_MISSING", "nid": "2026080916051251", "sid": "S01_NAKAANA1"}
 [23:28:03] FINAL_MISSING: {"deadline": "2026-08-09T12:51:00+09:00", "kind": "FINAL_MISSING", "nid": "2026080916051251", "sid": "S00"}
 [23:25:04] FINAL_MISSING: {"deadline": "2026-08-09T12:48:00+09:00", "kind": "FINAL_MISSING", "nid": "2026080923091248", "sid": "S00"}
@@ -241,8 +243,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:14:03] FINAL_MISSING: {"deadline": "2026-08-09T15:40:00+09:00", "kind": "FINAL_MISSING", "nid": "2026080905091540", "sid": "S00"}
 [23:14:03] FINAL_MISSING: {"deadline": "2026-08-09T12:35:00+09:00", "kind": "FINAL_MISSING", "nid": "2026080903041235", "sid": "S00"}
 [23:10:05] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
-[23:10:05] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S00"}
-[23:10:05] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S01_NAKAANA1"}
 ```
 
 ## 本日残レース: 0件
@@ -344,4 +344,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-08-09T23:30:02.029487+09:00_
+_auto-generated by claude_snapshot.py at 2026-08-09T23:40:01.469674+09:00_
