@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-08-11T18:50:01.220085+09:00
+**生成**: 2026-08-11T19:00:01.914546+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
@@ -23,15 +23,15 @@
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
 - **FIX**: 直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×43  [2026-08-11T18:07:05]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×53  [2026-08-11T18:07:05]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×86  [2026-08-11T18:07:05]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×106  [2026-08-11T18:07:05]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×43  [2026-08-11T18:07:05]
+### 🔴 STRATEGY_CI_FAIL  ×53  [2026-08-11T18:07:05]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 10.13MB / last modified 2026-08-11T18:49:22.180866+09:00
+- DB: 10.13MB / last modified 2026-08-11T18:59:04.125058+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,31 +151,32 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-craper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=01&hd=20260811: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-08-11 18:47:26,190 [WARNING] scraper: beforeinfo parse failed: jcd=01 rno=9
-2026-08-11 18:47:26,190 [WARNING] run_cycle: fetch None: 01/9
-2026-08-11 18:47:26,295 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-11 18:48:03,794 [INFO] run_cycle: === run_cycle 18:48:03 ===
-2026-08-11 18:48:03,795 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-11 18:48:03,795 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-11 18:48:03,840 [INFO] predictor: Models loaded OK
-2026-08-11 18:48:03,946 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-11 18:49:04,033 [INFO] run_cycle: === run_cycle 18:49:04 ===
-2026-08-11 18:49:04,034 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-11 18:49:04,034 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-11 18:49:04,081 [INFO] predictor: Models loaded OK
-2026-08-11 18:49:15,316 [WARNING] scraper: beforeinfo parse failed: jcd=01 rno=9
-2026-08-11 18:49:15,316 [WARNING] run_cycle: fetch None: 01/9
-2026-08-11 18:49:18,666 [INFO] scraper: odds3t: 120/120 parsed
-2026-08-11 18:49:19,766 [INFO] scraper: odds3f: 20/20 parsed
-2026-08-11 18:49:20,841 [INFO] scraper: odds2t: 30/30 parsed
-2026-08-11 18:49:20,842 [INFO] scraper: odds2f: 15/15 parsed
-2026-08-11 18:49:21,929 [INFO] scraper: odds_win: 5/6 parsed
-2026-08-11 18:49:21,929 [INFO] scraper: fetch_race 15/9: boats=6 odds=190/191
-2026-08-11 18:49:21,932 [INFO] predictor: CALIBRATION_MODE=on
-2026-08-11 18:49:21,932 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-08-11 18:49:21,936 [INFO] run_cycle: fetched 15/9 [scan]: 155 combos
-2026-08-11 18:49:22,057 [INFO] run_cycle: run_cycle done: 0 notifications
+08-11 18:56:26,062 [INFO] run_cycle: fetched 19/4 [scan]: 156 combos
+2026-08-11 18:56:26,177 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-11 18:57:04,032 [INFO] run_cycle: === run_cycle 18:57:04 ===
+2026-08-11 18:57:04,032 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-11 18:57:04,032 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-11 18:57:04,064 [INFO] predictor: Models loaded OK
+2026-08-11 18:57:04,221 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-11 18:58:03,863 [INFO] run_cycle: === run_cycle 18:58:03 ===
+2026-08-11 18:58:03,863 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-11 18:58:03,863 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-11 18:58:03,911 [INFO] predictor: Models loaded OK
+2026-08-11 18:58:15,484 [INFO] scraper: odds3t: 120/120 parsed
+2026-08-11 18:58:16,617 [INFO] scraper: odds3f: 20/20 parsed
+2026-08-11 18:58:17,726 [INFO] scraper: odds2t: 30/30 parsed
+2026-08-11 18:58:17,728 [INFO] scraper: odds2f: 12/15 parsed
+2026-08-11 18:58:18,789 [INFO] scraper: odds_win: 3/6 parsed
+2026-08-11 18:58:18,789 [INFO] scraper: fetch_race 07/9: boats=6 odds=185/191
+2026-08-11 18:58:18,792 [INFO] predictor: CALIBRATION_MODE=on
+2026-08-11 18:58:18,793 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
+2026-08-11 18:58:18,796 [INFO] run_cycle: fetched 07/9 [scan]: 153 combos
+2026-08-11 18:58:18,923 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-11 18:59:03,584 [INFO] run_cycle: === run_cycle 18:59:03 ===
+2026-08-11 18:59:03,584 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-11 18:59:03,584 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-11 18:59:03,616 [INFO] predictor: Models loaded OK
+2026-08-11 18:59:03,706 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -243,10 +244,10 @@ craper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&j
 [18:33:36] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 806}
 ```
 
-## 本日残レース: 25件
+## 本日残レース: 23件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 180件 登録 / 155件 締切済
+- race_schedule: 180件 登録 / 157件 締切済
 - 通知発射: scan=32 nid / final=33 nid / result=16 nid
 - predictions: 18 / うち結果DB記録済: 17
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -342,4 +343,4 @@ craper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&j
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-08-11T18:50:01.220085+09:00_
+_auto-generated by claude_snapshot.py at 2026-08-11T19:00:01.914546+09:00_
