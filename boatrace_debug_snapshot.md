@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-08-11T22:40:01.654280+09:00
+**生成**: 2026-08-11T22:50:01.239288+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×42 (24h)
+- 🟡 FINAL_MISSING×40 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×25 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🟡 LARGE_ODDS_DRIFT×2 (24h)
@@ -19,15 +19,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×30  [2026-08-11T22:10:07]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×40  [2026-08-11T22:10:07]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×60  [2026-08-11T22:10:07]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×80  [2026-08-11T22:10:07]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×30  [2026-08-11T22:10:07]
+### 🔴 STRATEGY_CI_FAIL  ×40  [2026-08-11T22:10:07]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 10.14MB / last modified 2026-08-11T22:39:04.259501+09:00
+- DB: 10.14MB / last modified 2026-08-11T22:49:04.313769+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,30 +151,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-28 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-11 22:35:03,928 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-11 22:35:03,964 [INFO] predictor: Models loaded OK
-2026-08-11 22:35:03,966 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-11 22:36:04,513 [INFO] run_cycle: === run_cycle 22:36:04 ===
-2026-08-11 22:36:04,513 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-11 22:36:04,513 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-11 22:36:04,548 [INFO] predictor: Models loaded OK
-2026-08-11 22:36:04,551 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-11 22:37:03,987 [INFO] run_cycle: === run_cycle 22:37:03 ===
-2026-08-11 22:37:03,987 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-11 22:37:03,988 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-11 22:37:04,036 [INFO] predictor: Models loaded OK
-2026-08-11 22:37:04,040 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-11 22:38:04,450 [INFO] run_cycle: === run_cycle 22:38:04 ===
-2026-08-11 22:38:04,450 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-11 22:38:04,451 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-11 22:38:04,498 [INFO] predictor: Models loaded OK
-2026-08-11 22:38:04,502 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-11 22:39:03,663 [INFO] run_cycle: === run_cycle 22:39:03 ===
-2026-08-11 22:39:03,663 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-11 22:39:03,663 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-11 22:39:03,710 [INFO] predictor: Models loaded OK
-2026-08-11 22:39:03,715 [INFO] run_cycle: run_cycle done: 0 notifications
+16 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-11 22:45:03,816 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-11 22:45:03,850 [INFO] predictor: Models loaded OK
+2026-08-11 22:45:03,853 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-11 22:46:03,674 [INFO] run_cycle: === run_cycle 22:46:03 ===
+2026-08-11 22:46:03,674 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-11 22:46:03,674 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-11 22:46:03,724 [INFO] predictor: Models loaded OK
+2026-08-11 22:46:03,727 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-11 22:47:04,007 [INFO] run_cycle: === run_cycle 22:47:04 ===
+2026-08-11 22:47:04,007 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-11 22:47:04,007 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-11 22:47:04,061 [INFO] predictor: Models loaded OK
+2026-08-11 22:47:04,066 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-11 22:48:03,562 [INFO] run_cycle: === run_cycle 22:48:03 ===
+2026-08-11 22:48:03,562 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-11 22:48:03,562 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-11 22:48:03,596 [INFO] predictor: Models loaded OK
+2026-08-11 22:48:03,599 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-11 22:49:03,914 [INFO] run_cycle: === run_cycle 22:49:03 ===
+2026-08-11 22:49:03,914 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-11 22:49:03,914 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-11 22:49:03,966 [INFO] predictor: Models loaded OK
+2026-08-11 22:49:03,971 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -212,7 +212,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 65
-  FINAL_MISSING: 42
+  FINAL_MISSING: 40
   CIRCUIT_BREAKER_NO_ACTION: 34
   CIRCUIT_BREAKER_TRIP: 25
   STRATEGY_CI_FAIL: 17
@@ -341,4 +341,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-08-11T22:40:01.654280+09:00_
+_auto-generated by claude_snapshot.py at 2026-08-11T22:50:01.239288+09:00_
