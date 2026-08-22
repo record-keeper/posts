@@ -2,14 +2,14 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-08-22T11:20:01.890862+09:00
+**生成**: 2026-08-22T11:30:02.101897+09:00
 
 ### 次に取るべきアクション
-> RED最優先: CIRCUIT_BREAKER_TRIP×23 (24h) → ログ/DB確認
+> RED最優先: CIRCUIT_BREAKER_TRIP×21 (24h) → ログ/DB確認
 
 ### 検出された問題
 - 🟡 FINAL_MISSING×54 (24h)
-- 🔴 CIRCUIT_BREAKER_TRIP×23 (24h)
+- 🔴 CIRCUIT_BREAKER_TRIP×21 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🟡 LARGE_ODDS_DRIFT×2 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
@@ -18,25 +18,25 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×17  [2026-08-22T11:03:21]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-08-22T11:30:03]
+- key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S02_TETSUBAN が TRIP してるが enabled のまま`
+- **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
+
+### 🔴 CIRCUIT_BREAKER_TRIP  ×27  [2026-08-22T11:03:21]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×17  [2026-08-22T11:03:21]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×27  [2026-08-22T11:03:21]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×17  [2026-08-22T11:03:21]
+### 🔴 STRATEGY_CI_FAIL  ×27  [2026-08-22T11:03:21]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
 ### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×23  [2026-08-22T10:51:27]
 - key: `ANOMALY_SCAN_FINAL_RATIO|`
 - **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
-
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×3  [2026-08-22T10:00:09]
-- key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S02_TETSUBAN が TRIP してるが enabled のまま`
-- **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
 ### 🟡 ORPHAN_SCAN  ×1  [2026-08-22T06:00:47]
 - key: `ORPHAN_SCAN|195 件の scan に final/retreat 追従無し`
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 11.11MB / last modified 2026-08-22T11:19:41.219965+09:00
+- DB: 11.11MB / last modified 2026-08-22T11:30:04.254361+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,26 +150,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-18 [INFO] scraper: odds3f: 20/20 parsed
-2026-08-22 11:18:25,313 [INFO] scraper: odds2t: 28/30 parsed
-2026-08-22 11:18:25,314 [INFO] scraper: odds2f: 14/15 parsed
-2026-08-22 11:18:26,401 [INFO] scraper: odds_win: 6/6 parsed
-2026-08-22 11:18:26,401 [INFO] scraper: fetch_race 08/3: boats=6 odds=188/191
-2026-08-22 11:18:26,404 [INFO] predictor: CALIBRATION_MODE=on
-2026-08-22 11:18:26,404 [INFO] predictor: combos: {'win': 6, '2t': 28, '3t': 120}
-2026-08-22 11:18:26,433 [INFO] run_cycle: fetched 08/3 [scan]: 154 combos
-2026-08-22 11:18:26,560 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-22 11:19:04,745 [INFO] run_cycle: === run_cycle 11:19:04 ===
-2026-08-22 11:19:04,745 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-22 11:19:04,745 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-22 11:19:04,777 [INFO] predictor: Models loaded OK
-2026-08-22 11:19:16,080 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=7&jcd=23&hd=20260822: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-08-22 11:19:27,107 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=7&jcd=23&hd=20260822: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-08-22 11:19:40,146 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=7&jcd=23&hd=20260822: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
-2026-08-22 11:19:40,146 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=7&jcd=23&hd=20260822
-2026-08-22 11:19:40,146 [ERROR] scraper: racelist fetch failed: jcd=23 rno=7
-2026-08-22 11:19:40,146 [WARNING] run_cycle: fetch None: 23/7
-2026-08-22 11:19:40,146 [INFO] run_cycle: run_cycle done: 0 notifications
+ 30/30 parsed
+2026-08-22 11:28:25,638 [INFO] scraper: odds2f: 14/15 parsed
+2026-08-22 11:28:26,740 [INFO] scraper: odds_win: 3/6 parsed
+2026-08-22 11:28:26,740 [INFO] scraper: fetch_race 03/2: boats=6 odds=187/191
+2026-08-22 11:28:26,744 [INFO] predictor: CALIBRATION_MODE=on
+2026-08-22 11:28:26,744 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
+2026-08-22 11:28:26,749 [INFO] run_cycle: fetched 03/2 [scan]: 153 combos
+2026-08-22 11:28:26,894 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-22 11:29:04,309 [INFO] run_cycle: === run_cycle 11:29:04 ===
+2026-08-22 11:29:04,309 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-22 11:29:04,309 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-22 11:29:04,361 [INFO] predictor: Models loaded OK
+2026-08-22 11:29:15,404 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=7&jcd=23&hd=20260822: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-08-22 11:29:26,435 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=7&jcd=23&hd=20260822: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-08-22 11:29:39,816 [INFO] scraper: odds3t: 120/120 parsed
+2026-08-22 11:29:41,072 [INFO] scraper: odds3f: 20/20 parsed
+2026-08-22 11:29:42,177 [INFO] scraper: odds2t: 30/30 parsed
+2026-08-22 11:29:42,178 [INFO] scraper: odds2f: 15/15 parsed
+2026-08-22 11:29:43,379 [INFO] scraper: odds_win: 6/6 parsed
+2026-08-22 11:29:43,379 [INFO] scraper: fetch_race 23/7: boats=6 odds=191/191
+2026-08-22 11:29:43,382 [INFO] predictor: CALIBRATION_MODE=on
+2026-08-22 11:29:43,383 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-08-22 11:29:43,386 [INFO] run_cycle: fetched 23/7 [final]: 156 combos
+2026-08-22 11:29:43,710 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -191,24 +195,24 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 72
+    "c": 70
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 72
+    "c": 70
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 27, 'result': 17, 'scan': 28}
+{'final': 26, 'result': 17, 'scan': 27}
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 137
+  ANOMALY_SCRAPER_FAILURE_BURST: 128
   FINAL_MISSING: 54
-  CIRCUIT_BREAKER_TRIP: 23
+  CIRCUIT_BREAKER_TRIP: 21
   CIRCUIT_BREAKER_NO_ACTION: 17
   STRATEGY_CI_FAIL: 17
   ANOMALY_SCAN_FINAL_RATIO: 8
@@ -236,10 +240,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [10:02:03] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 ```
 
-## 本日残レース: 137件
+## 本日残レース: 135件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 19件 締切済
+- race_schedule: 156件 登録 / 21件 締切済
 - 通知発射: scan=5 nid / final=4 nid / result=1 nid
 - predictions: 2 / うち結果DB記録済: 1
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -282,7 +286,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 |---|---|
 | **Latency** (scan→final avg) | 478.7s |
 | **Latency** (scan→final max) | 610.9s |
-| **Traffic** (notifications 24h) | 72 |
+| **Traffic** (notifications 24h) | 70 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S01_NAKAANA1) | 200円 used |
 | **Saturation** (S02_TETSUBAN) | 200円 used |
@@ -334,4 +338,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-08-22T11:20:01.890862+09:00_
+_auto-generated by claude_snapshot.py at 2026-08-22T11:30:02.101897+09:00_
