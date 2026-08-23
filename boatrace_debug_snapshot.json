@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T06:20:01.683373+09:00",
+  "generated_at": "2026-08-24T06:30:02.248601+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -405,6 +405,14 @@
     ],
     "ai_debug_queue": [
       {
+        "kind": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION",
+        "severity": "CRITICAL",
+        "key": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S02_TETSUBAN が TRIP してるが enabled のまま",
+        "count": 1,
+        "last_at": "2026-08-24T06:30:03",
+        "fix_hint": "CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に"
+      },
+      {
         "kind": "ORPHAN_SCAN",
         "severity": "WARN",
         "key": "ORPHAN_SCAN|192 件の scan に final/retreat 追従無し",
@@ -792,14 +800,6 @@
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2369 bet=200 odds=3.3 payout=1180 ratio=1.79",
-        "count": 1,
-        "last_at": "2026-08-24T06:00:11",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=2374 bet=300 odds=4.2 payout=330 ratio=0.26",
         "count": 1,
         "last_at": "2026-08-24T06:00:11",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
