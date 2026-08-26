@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-08-27T08:30:01.594039+09:00
+**生成**: 2026-08-27T08:40:02.088899+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -22,11 +22,11 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S02_TETSUBAN が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×30  [2026-08-27T08:00:36]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×40  [2026-08-27T08:00:36]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×30  [2026-08-27T08:00:36]
+### 🔴 STRATEGY_CI_FAIL  ×40  [2026-08-27T08:00:36]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 11.58MB / last modified 2026-08-27T08:30:03.170395+09:00
+- DB: 11.58MB / last modified 2026-08-27T08:39:04.555626+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,33 +150,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-': 200, 'B': 100} default=100
-2026-08-27 08:27:03,980 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-27 08:27:04,025 [INFO] predictor: Models loaded OK
-2026-08-27 08:27:14,383 [WARNING] scraper: beforeinfo parse failed: jcd=18 rno=1
-2026-08-27 08:27:14,383 [WARNING] run_cycle: fetch None: 18/1
-2026-08-27 08:27:14,383 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-27 08:28:03,670 [INFO] run_cycle: === run_cycle 08:28:03 ===
-2026-08-27 08:28:03,670 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-27 08:28:03,670 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-27 08:28:03,715 [INFO] predictor: Models loaded OK
-2026-08-27 08:28:14,116 [WARNING] scraper: beforeinfo parse failed: jcd=18 rno=1
-2026-08-27 08:28:14,116 [WARNING] run_cycle: fetch None: 18/1
-2026-08-27 08:28:14,117 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-08-27 08:29:04,035 [INFO] run_cycle: === run_cycle 08:29:04 ===
-2026-08-27 08:29:04,035 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-08-27 08:29:04,035 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-08-27 08:29:04,066 [INFO] predictor: Models loaded OK
-2026-08-27 08:29:15,417 [INFO] scraper: odds3t: 120/120 parsed
-2026-08-27 08:29:16,510 [INFO] scraper: odds3f: 20/20 parsed
-2026-08-27 08:29:17,590 [INFO] scraper: odds2t: 30/30 parsed
-2026-08-27 08:29:17,591 [INFO] scraper: odds2f: 14/15 parsed
-2026-08-27 08:29:18,689 [INFO] scraper: odds_win: 6/6 parsed
-2026-08-27 08:29:18,689 [INFO] scraper: fetch_race 14/1: boats=6 odds=190/191
-2026-08-27 08:29:18,692 [INFO] predictor: CALIBRATION_MODE=on
-2026-08-27 08:29:18,692 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-08-27 08:29:18,696 [INFO] run_cycle: fetched 14/1 [final]: 156 combos
-2026-08-27 08:29:18,897 [INFO] run_cycle: run_cycle done: 0 notifications
+s3t: 120/120 parsed
+2026-08-27 08:38:17,495 [INFO] scraper: odds3f: 20/20 parsed
+2026-08-27 08:38:18,612 [INFO] scraper: odds2t: 30/30 parsed
+2026-08-27 08:38:18,613 [INFO] scraper: odds2f: 15/15 parsed
+2026-08-27 08:38:19,713 [INFO] scraper: odds_win: 5/6 parsed
+2026-08-27 08:38:19,713 [INFO] scraper: fetch_race 18/1: boats=6 odds=190/191
+2026-08-27 08:38:19,716 [INFO] predictor: CALIBRATION_MODE=on
+2026-08-27 08:38:19,716 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-08-27 08:38:19,720 [INFO] run_cycle: fetched 18/1 [final]: 155 combos
+2026-08-27 08:38:23,283 [INFO] scraper: odds3t: 120/120 parsed
+2026-08-27 08:38:24,407 [INFO] scraper: odds3f: 20/20 parsed
+2026-08-27 08:38:25,526 [INFO] scraper: odds2t: 30/30 parsed
+2026-08-27 08:38:25,528 [INFO] scraper: odds2f: 14/15 parsed
+2026-08-27 08:38:26,642 [INFO] scraper: odds_win: 6/6 parsed
+2026-08-27 08:38:26,642 [INFO] scraper: fetch_race 10/1: boats=6 odds=190/191
+2026-08-27 08:38:26,645 [INFO] predictor: CALIBRATION_MODE=on
+2026-08-27 08:38:26,645 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-08-27 08:38:26,649 [INFO] run_cycle: fetched 10/1 [scan]: 156 combos
+2026-08-27 08:38:26,773 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-27 08:39:03,921 [INFO] run_cycle: === run_cycle 08:39:03 ===
+2026-08-27 08:39:03,921 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-27 08:39:03,921 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-27 08:39:03,968 [INFO] predictor: Models loaded OK
+2026-08-27 08:39:04,080 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-08-27 08:40:05,381 [INFO] run_cycle: === run_cycle 08:40:05 ===
+2026-08-27 08:40:05,381 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-08-27 08:40:05,381 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-08-27 08:40:05,436 [INFO] predictor: Models loaded OK
 
 ```
 
@@ -246,10 +247,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:23:04] FINAL_MISSING: {"deadline": "2026-08-26T17:51:00+09:00", "kind": "FINAL_MISSING", "nid": "2026082615071751", "sid": "S00"}
 ```
 
-## 本日残レース: 156件
+## 本日残レース: 154件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 0件 締切済
+- race_schedule: 156件 登録 / 2件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -342,4 +343,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-08-27T08:30:01.594039+09:00_
+_auto-generated by claude_snapshot.py at 2026-08-27T08:40:02.088899+09:00_
