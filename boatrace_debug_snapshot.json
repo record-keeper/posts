@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T06:00:02.412659+09:00",
+  "generated_at": "2026-09-05T06:10:01.272331+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,7 +33,7 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup\n\n# 30分毎: コード/DB anti-pattern 検査→alert 流入（HOOK level 自動検出）\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 tools/audit_and_emit_alerts.py >> logs/audit.log 2>&1",
       "db_size_mb": 12.32,
-      "db_mtime": "2026-09-05T06:00:03.668008+09:00",
+      "db_mtime": "2026-09-05T06:00:15.821140+09:00",
       "run_cycle_log_mtime": "2026-09-04T23:59:03.672597+09:00",
       "log_tail": "2026-09-04 23:52:04,227 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-09-04 23:53:03,927 [INFO] run_cycle: === run_cycle 23:53:03 ===\n2026-09-04 23:53:03,927 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-09-04 23:53:03,927 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-09-04 23:53:03,960 [INFO] predictor: Models loaded OK\n2026-09-04 23:53:03,962 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-09-04 23:54:03,553 [INFO] run_cycle: === run_cycle 23:54:03 ===\n2026-09-04 23:54:03,553 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-09-04 23:54:03,553 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-09-04 23:54:03,605 [INFO] predictor: Models loaded OK\n2026-09-04 23:54:03,610 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-09-04 23:55:03,974 [INFO] run_cycle: === run_cycle 23:55:03 ===\n2026-09-04 23:55:03,974 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-09-04 23:55:03,974 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-09-04 23:55:04,021 [INFO] predictor: Models loaded OK\n2026-09-04 23:55:04,026 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-09-04 23:56:03,910 [INFO] run_cycle: === run_cycle 23:56:03 ===\n2026-09-04 23:56:03,911 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-09-04 23:56:03,911 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-09-04 23:56:03,954 [INFO] predictor: Models loaded OK\n2026-09-04 23:56:03,957 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-09-04 23:57:03,813 [INFO] run_cycle: === run_cycle 23:57:03 ===\n2026-09-04 23:57:03,814 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-09-04 23:57:03,814 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-09-04 23:57:03,859 [INFO] predictor: Models loaded OK\n2026-09-04 23:57:03,864 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-09-04 23:58:03,606 [INFO] run_cycle: === run_cycle 23:58:03 ===\n2026-09-04 23:58:03,606 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-09-04 23:58:03,606 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-09-04 23:58:03,655 [INFO] predictor: Models loaded OK\n2026-09-04 23:58:03,659 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-09-04 23:59:03,577 [INFO] run_cycle: === run_cycle 23:59:03 ===\n2026-09-04 23:59:03,577 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-09-04 23:59:03,577 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-09-04 23:59:03,672 [INFO] predictor: Models loaded OK\n2026-09-04 23:59:03,674 [INFO] run_cycle: run_cycle done: 0 notifications\n"
     },
@@ -127,7 +127,7 @@
       },
       {
         "kind": "PSI_DRIFT_DETECTED",
-        "c": 29
+        "c": 28
       },
       {
         "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
@@ -135,7 +135,7 @@
       },
       {
         "kind": "CALIBRATION_DRIFT",
-        "c": 22
+        "c": 23
       },
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
@@ -190,6 +190,26 @@
     ],
     "recent_alerts": [
       {
+        "kind": "STRATEGY_CI_FAIL",
+        "detail": "{\"ci_lo\": null, \"kind\": \"STRATEGY_CI_FAIL\", \"sid\": \"S02_TETSUBAN\"}",
+        "detected_at": "2026-09-05T06:00:05.350179+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_TRIP",
+        "detail": "{\"cost\": 7000, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 35, \"payout\": 1560, \"roi_7d\": 0.223, \"sid\": \"S01_NAKAANA1\"}",
+        "detected_at": "2026-09-05T06:00:05.349334+09:00"
+      },
+      {
+        "kind": "CALIBRATION_DRIFT",
+        "detail": "{\"avg_actual\": 0.2105, \"avg_pred\": 0.4707, \"bt\": \"win\", \"kind\": \"CALIBRATION_DRIFT\", \"n\": 95, \"overconf_pct\": 55.3}",
+        "detected_at": "2026-09-05T06:00:05.343894+09:00"
+      },
+      {
+        "kind": "CIRCUIT_BREAKER_NO_ACTION",
+        "detail": "{\"kind\": \"CIRCUIT_BREAKER_NO_ACTION\", \"sid\": \"S01_NAKAANA1\"}",
+        "detected_at": "2026-09-05T06:00:05.335165+09:00"
+      },
+      {
         "kind": "FINAL_MISSING",
         "detail": "{\"deadline\": \"2026-09-04T13:22:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026090406051322\", \"sid\": \"S00\"}",
         "detected_at": "2026-09-04T23:57:03.900822+09:00"
@@ -218,26 +238,6 @@
         "kind": "FINAL_MISSING",
         "detail": "{\"deadline\": \"2026-09-04T19:10:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026090407091910\", \"sid\": \"S00\"}",
         "detected_at": "2026-09-04T23:41:04.561203+09:00"
-      },
-      {
-        "kind": "FINAL_MISSING",
-        "detail": "{\"deadline\": \"2026-09-04T17:09:00+09:00\", \"kind\": \"FINAL_MISSING\", \"nid\": \"2026090407051709\", \"sid\": \"S00\"}",
-        "detected_at": "2026-09-04T23:41:04.561155+09:00"
-      },
-      {
-        "kind": "STRATEGY_CI_FAIL",
-        "detail": "{\"ci_lo\": null, \"kind\": \"STRATEGY_CI_FAIL\", \"sid\": \"S02_TETSUBAN\"}",
-        "detected_at": "2026-09-04T23:11:04.178779+09:00"
-      },
-      {
-        "kind": "CIRCUIT_BREAKER_TRIP",
-        "detail": "{\"cost\": 7000, \"kind\": \"CIRCUIT_BREAKER_TRIP\", \"n\": 35, \"payout\": 1560, \"roi_7d\": 0.223, \"sid\": \"S01_NAKAANA1\"}",
-        "detected_at": "2026-09-04T23:11:04.178156+09:00"
-      },
-      {
-        "kind": "CIRCUIT_BREAKER_NO_ACTION",
-        "detail": "{\"kind\": \"CIRCUIT_BREAKER_NO_ACTION\", \"sid\": \"S01_NAKAANA1\"}",
-        "detected_at": "2026-09-04T23:11:04.154897+09:00"
       }
     ],
     "races_remaining_today": 0,
@@ -409,91 +409,19 @@
     ],
     "ai_debug_queue": [
       {
-        "kind": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION",
-        "severity": "CRITICAL",
-        "key": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま",
-        "count": 2,
-        "last_at": "2026-09-05T05:30:03",
-        "fix_hint": "CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に"
-      },
-      {
-        "kind": "CIRCUIT_BREAKER_TRIP",
-        "severity": "CRITICAL",
-        "key": "CIRCUIT_BREAKER_TRIP|",
-        "count": 49,
-        "last_at": "2026-09-04T23:11:04",
-        "fix_hint": "7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認"
-      },
-      {
-        "kind": "CIRCUIT_BREAKER_NO_ACTION",
-        "severity": "CRITICAL",
-        "key": "CIRCUIT_BREAKER_NO_ACTION|",
-        "count": 49,
-        "last_at": "2026-09-04T23:11:04",
-        "fix_hint": "CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認"
-      },
-      {
-        "kind": "STRATEGY_CI_FAIL",
-        "severity": "CRITICAL",
-        "key": "STRATEGY_CI_FAIL|",
-        "count": 49,
-        "last_at": "2026-09-04T23:11:04",
-        "fix_hint": "grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認"
-      },
-      {
-        "kind": "CALIBRATION_DRIFT",
-        "severity": "CRITICAL",
-        "key": "CALIBRATION_DRIFT|",
-        "count": 53,
-        "last_at": "2026-09-04T23:07:04",
-        "fix_hint": "予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中"
-      },
-      {
-        "kind": "ANOMALY_SCRAPER_FAILURE_BURST",
-        "severity": "WARN",
-        "key": "ANOMALY_SCRAPER_FAILURE_BURST|",
-        "count": 29,
-        "last_at": "2026-09-04T15:53:39",
-        "fix_hint": "直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS"
-      },
-      {
-        "kind": "PSI_DRIFT_DETECTED",
-        "severity": "CRITICAL",
-        "key": "PSI_DRIFT_DETECTED|",
-        "count": 33,
-        "last_at": "2026-09-04T15:05:23",
-        "fix_hint": "ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討"
-      },
-      {
-        "kind": "ANOMALY_SCAN_FINAL_RATIO",
-        "severity": "WARN",
-        "key": "ANOMALY_SCAN_FINAL_RATIO|",
-        "count": 5,
-        "last_at": "2026-09-04T11:32:37",
-        "fix_hint": "scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング"
-      },
-      {
         "kind": "ORPHAN_SCAN",
         "severity": "WARN",
-        "key": "ORPHAN_SCAN|192 件の scan に final/retreat 追従無し",
+        "key": "ORPHAN_SCAN|195 件の scan に final/retreat 追従無し",
         "count": 1,
-        "last_at": "2026-09-04T06:00:14",
+        "last_at": "2026-09-05T06:00:11",
         "fix_hint": "scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗"
-      },
-      {
-        "kind": "INSUFFICIENT_SAMPLE",
-        "severity": "INFO",
-        "key": "INSUFFICIENT_SAMPLE|S00: n=183<300 — v17 要件未達、ROI判定保留",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
       {
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
         "key": "INSUFFICIENT_SAMPLE|S02_TETSUBAN: n=81<300 — v17 要件未達、ROI判定保留",
         "count": 1,
-        "last_at": "2026-09-04T06:00:14",
+        "last_at": "2026-09-05T06:00:11",
         "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
       {
@@ -501,151 +429,159 @@
         "severity": "INFO",
         "key": "CALIBRATION_LIVE|decile 0.15-0.20: n=10 pred=0.1791 actual=0.2000 gap=-0.0209",
         "count": 1,
-        "last_at": "2026-09-04T06:00:14",
+        "last_at": "2026-09-05T06:00:11",
         "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
       },
       {
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
-        "key": "INSUFFICIENT_SAMPLE|S01_NAKAANA1: n=188<300 — v17 要件未達、ROI判定保留",
+        "key": "INSUFFICIENT_SAMPLE|S01_NAKAANA1: n=190<300 — v17 要件未達、ROI判定保留",
         "count": 1,
-        "last_at": "2026-09-04T06:00:14",
+        "last_at": "2026-09-05T06:00:11",
         "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
       {
-        "kind": "CALIBRATION_LIVE",
+        "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
-        "key": "CALIBRATION_LIVE|decile 0.20-0.30: n=9 pred=0.2251 actual=0.2222 gap=+0.0029",
+        "key": "INSUFFICIENT_SAMPLE|S00: n=185<300 — v17 要件未達、ROI判定保留",
         "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
-      },
-      {
-        "kind": "DRIFT_BUCKET",
-        "severity": "INFO",
-        "key": "DRIFT_BUCKET|drift -30%〜-10%: n=43 hit%=27.9% ROI=0.90 (コスト 10,100/回収 9,100)",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "ドリフト帯別 ROI 分析の情報。対策検討の材料"
-      },
-      {
-        "kind": "DRIFT_BUCKET",
-        "severity": "INFO",
-        "key": "DRIFT_BUCKET|drift ≥+30%: n=41 hit%=19.5% ROI=0.87 (コスト 11,200/回収 9,770)",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "ドリフト帯別 ROI 分析の情報。対策検討の材料"
-      },
-      {
-        "kind": "CALIBRATION_LIVE",
-        "severity": "INFO",
-        "key": "CALIBRATION_LIVE|decile 0.40-0.50: n=115 pred=0.4375 actual=0.2261 gap=+0.2114",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
-      },
-      {
-        "kind": "ROI_STAT",
-        "severity": "INFO",
-        "key": "ROI_STAT|S00: n=183 hit%=27.9% hit_CI[Bonf]=[19.4,38.2]% ROI=0.95 ROI_boot95=[0.69,1.23]",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "統計サマリ情報。判定ではなく参照用"
-      },
-      {
-        "kind": "ROI_STAT",
-        "severity": "INFO",
-        "key": "ROI_STAT|S01_NAKAANA1: n=188 hit%=23.9% hit_CI[Bonf]=[16.2,33.9]% ROI=0.74 ROI_boot95=[0.",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "統計サマリ情報。判定ではなく参照用"
-      },
-      {
-        "kind": "ROI_STAT",
-        "severity": "INFO",
-        "key": "ROI_STAT|S02_TETSUBAN: n=81 hit%=39.5% hit_CI[Bonf]=[25.5,55.4]% ROI=0.67 ROI_boot95=[0.4",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "統計サマリ情報。判定ではなく参照用"
-      },
-      {
-        "kind": "DRIFT_BUCKET",
-        "severity": "INFO",
-        "key": "DRIFT_BUCKET|drift ≤-30%: n=35 hit%=17.1% ROI=0.52 (コスト 10,100/回収 5,300)",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "ドリフト帯別 ROI 分析の情報。対策検討の材料"
-      },
-      {
-        "kind": "DRIFT_BUCKET",
-        "severity": "INFO",
-        "key": "DRIFT_BUCKET|drift -10%〜+10%: n=98 hit%=28.6% ROI=1.05 (コスト 22,600/回収 23,740)",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "ドリフト帯別 ROI 分析の情報。対策検討の材料"
-      },
-      {
-        "kind": "DRIFT_BUCKET",
-        "severity": "INFO",
-        "key": "DRIFT_BUCKET|drift +10%〜+30%: n=50 hit%=22.0% ROI=0.45 (コスト 11,300/回収 5,120)",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "ドリフト帯別 ROI 分析の情報。対策検討の材料"
-      },
-      {
-        "kind": "CALIBRATION_LIVE",
-        "severity": "INFO",
-        "key": "CALIBRATION_LIVE|bt=win: n=452 pred=0.4746 actual=0.2832 error=+0.1914 (+40%) brier=0.2411 [OVERC",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
-      },
-      {
-        "kind": "CALIBRATION_LIVE",
-        "severity": "INFO",
-        "key": "CALIBRATION_LIVE|S00(win): n=183 pred=0.4241 hit=0.2787 cal_err=+0.1454 brier=0.2213 BSS=-0.10 RO",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
-      },
-      {
-        "kind": "CALIBRATION_LIVE",
-        "severity": "INFO",
-        "key": "CALIBRATION_LIVE|S01_NAKAANA1(win): n=188 pred=0.4911 hit=0.2394 cal_err=+0.2517 brier=0.2503 BSS",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
-      },
-      {
-        "kind": "CALIBRATION_LIVE",
-        "severity": "INFO",
-        "key": "CALIBRATION_LIVE|S02_TETSUBAN(win): n=81 pred=0.5502 hit=0.3951 cal_err=+0.1551 brier=0.2646 BSS=",
-        "count": 1,
-        "last_at": "2026-09-04T06:00:14",
-        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "N<300→運用継続でサンプル蓄積、数週間は判定保留"
       },
       {
         "kind": "CALIBRATION_LIVE",
         "severity": "INFO",
         "key": "CALIBRATION_LIVE|decile 0.10-0.15: n=6 pred=0.1266 actual=0.0000 gap=+0.1266",
         "count": 1,
-        "last_at": "2026-09-04T06:00:14",
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S00: n=185 hit%=27.0% hit_CI[Bonf]=[18.7,37.3]% ROI=0.90 ROI_boot95=[0.64,1.22]",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S01_NAKAANA1: n=190 hit%=22.6% hit_CI[Bonf]=[15.1,32.4]% ROI=0.71 ROI_boot95=[0.",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "ROI_STAT",
+        "severity": "INFO",
+        "key": "ROI_STAT|S02_TETSUBAN: n=81 hit%=38.3% hit_CI[Bonf]=[24.5,54.3]% ROI=0.66 ROI_boot95=[0.4",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "統計サマリ情報。判定ではなく参照用"
+      },
+      {
+        "kind": "DRIFT_BUCKET",
+        "severity": "INFO",
+        "key": "DRIFT_BUCKET|drift ≤-30%: n=35 hit%=14.3% ROI=0.38 (コスト 10,100/回収 3,800)",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "ドリフト帯別 ROI 分析の情報。対策検討の材料"
+      },
+      {
+        "kind": "DRIFT_BUCKET",
+        "severity": "INFO",
+        "key": "DRIFT_BUCKET|drift -30%〜-10%: n=41 hit%=29.3% ROI=0.95 (コスト 9,600/回収 9,100)",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "ドリフト帯別 ROI 分析の情報。対策検討の材料"
+      },
+      {
+        "kind": "DRIFT_BUCKET",
+        "severity": "INFO",
+        "key": "DRIFT_BUCKET|drift -10%〜+10%: n=99 hit%=27.3% ROI=0.98 (コスト 22,900/回収 22,540)",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "ドリフト帯別 ROI 分析の情報。対策検討の材料"
+      },
+      {
+        "kind": "DRIFT_BUCKET",
+        "severity": "INFO",
+        "key": "DRIFT_BUCKET|drift +10%〜+30%: n=52 hit%=21.2% ROI=0.44 (コスト 11,700/回収 5,120)",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "ドリフト帯別 ROI 分析の情報。対策検討の材料"
+      },
+      {
+        "kind": "DRIFT_BUCKET",
+        "severity": "INFO",
+        "key": "DRIFT_BUCKET|drift ≥+30%: n=44 hit%=18.2% ROI=0.81 (コスト 12,000/回収 9,770)",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "ドリフト帯別 ROI 分析の情報。対策検討の材料"
+      },
+      {
+        "kind": "CALIBRATION_LIVE",
+        "severity": "INFO",
+        "key": "CALIBRATION_LIVE|bt=win: n=456 pred=0.4738 actual=0.2719 error=+0.2019 (+43%) brier=0.2403 [OVERC",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
         "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
       },
       {
         "kind": "CALIBRATION_LIVE",
         "severity": "INFO",
-        "key": "CALIBRATION_LIVE|decile 0.30-0.40: n=42 pred=0.3214 actual=0.2857 gap=+0.0357",
+        "key": "CALIBRATION_LIVE|S00(win): n=185 pred=0.4255 hit=0.2703 cal_err=+0.1553 brier=0.2199 BSS=-0.11 RO",
         "count": 1,
-        "last_at": "2026-09-04T06:00:14",
+        "last_at": "2026-09-05T06:00:11",
         "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
       },
       {
         "kind": "CALIBRATION_LIVE",
         "severity": "INFO",
-        "key": "CALIBRATION_LIVE|decile 0.50+: n=267 pred=0.5465 actual=0.3184 gap=+0.2281",
+        "key": "CALIBRATION_LIVE|S01_NAKAANA1(win): n=190 pred=0.4884 hit=0.2263 cal_err=+0.2621 brier=0.2494 BSS",
         "count": 1,
-        "last_at": "2026-09-04T06:00:14",
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
+      },
+      {
+        "kind": "CALIBRATION_LIVE",
+        "severity": "INFO",
+        "key": "CALIBRATION_LIVE|S02_TETSUBAN(win): n=81 pred=0.5498 hit=0.3827 cal_err=+0.1671 brier=0.2654 BSS=",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
+      },
+      {
+        "kind": "CALIBRATION_LIVE",
+        "severity": "INFO",
+        "key": "CALIBRATION_LIVE|decile 0.20-0.30: n=10 pred=0.2255 actual=0.2000 gap=+0.0255",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
+      },
+      {
+        "kind": "CALIBRATION_LIVE",
+        "severity": "INFO",
+        "key": "CALIBRATION_LIVE|decile 0.30-0.40: n=41 pred=0.3215 actual=0.2683 gap=+0.0532",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
+      },
+      {
+        "kind": "CALIBRATION_LIVE",
+        "severity": "INFO",
+        "key": "CALIBRATION_LIVE|decile 0.40-0.50: n=118 pred=0.4368 actual=0.2203 gap=+0.2165",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
+        "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
+      },
+      {
+        "kind": "CALIBRATION_LIVE",
+        "severity": "INFO",
+        "key": "CALIBRATION_LIVE|decile 0.50+: n=268 pred=0.5459 actual=0.3060 gap=+0.2399",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:11",
         "fix_hint": "bt別の予測確率vs実的中率の定期報告。判定ではなく参照用"
       },
       {
@@ -653,7 +589,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2182 bet=200 odds=2.4 payout=560 ratio=1.17",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -661,7 +597,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2188 bet=200 odds=4.5 payout=1160 ratio=1.29",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -669,7 +605,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2232 bet=200 odds=3.9 payout=1080 ratio=1.38",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -677,7 +613,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2233 bet=300 odds=4.1 payout=1620 ratio=1.32",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -685,7 +621,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2239 bet=300 odds=11.2 payout=660 ratio=0.20",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -693,7 +629,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2241 bet=300 odds=6.5 payout=570 ratio=0.29",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -701,7 +637,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2279 bet=300 odds=5.2 payout=390 ratio=0.25",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -709,7 +645,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2294 bet=200 odds=3.3 payout=1640 ratio=2.48",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -717,7 +653,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2304 bet=300 odds=45.3 payout=900 ratio=0.07",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -725,7 +661,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2318 bet=200 odds=3.4 payout=820 ratio=1.21",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -733,7 +669,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2324 bet=300 odds=8.0 payout=540 ratio=0.23",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -741,7 +677,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2341 bet=300 odds=9.1 payout=630 ratio=0.23",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -749,7 +685,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2356 bet=300 odds=4.7 payout=1860 ratio=1.32",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -757,7 +693,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2361 bet=300 odds=4.5 payout=3300 ratio=2.44",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -765,7 +701,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2362 bet=200 odds=4.5 payout=2200 ratio=2.44",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -773,7 +709,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2364 bet=200 odds=3.8 payout=940 ratio=1.24",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -781,7 +717,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2369 bet=200 odds=3.3 payout=1180 ratio=1.79",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -789,7 +725,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2374 bet=300 odds=4.2 payout=330 ratio=0.26",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -797,7 +733,7 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2380 bet=300 odds=7.5 payout=300 ratio=0.13",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       },
       {
@@ -805,7 +741,71 @@
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=2384 bet=300 odds=6.3 payout=2880 ratio=1.52",
         "count": 1,
-        "last_at": "2026-09-04T06:00:10",
+        "last_at": "2026-09-05T06:00:06",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=2388 bet=200 odds=2.0 payout=520 ratio=1.30",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:06",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=2398 bet=200 odds=3.1 payout=840 ratio=1.35",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:06",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=2399 bet=300 odds=21.0 payout=660 ratio=0.10",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:06",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=2421 bet=200 odds=2.3 payout=540 ratio=1.17",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:06",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=2435 bet=300 odds=9.7 payout=360 ratio=0.12",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:06",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=2504 bet=300 odds=4.5 payout=360 ratio=0.27",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:06",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=2515 bet=200 odds=3.7 payout=200 ratio=0.27",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:06",
+        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
+      },
+      {
+        "kind": "PAYOUT_RATIO_WEIRD",
+        "severity": "WARN",
+        "key": "PAYOUT_RATIO_WEIRD|pid=2542 bet=200 odds=2.6 payout=640 ratio=1.23",
+        "count": 1,
+        "last_at": "2026-09-05T06:00:06",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
       }
     ],
