@@ -2,14 +2,14 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-09-06T13:10:02.170770+09:00
+**生成**: 2026-09-06T13:20:00.518695+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×113 (24h)
-- 🔴 CALIBRATION_DRIFT×32 (24h)
+- 🟡 FINAL_MISSING×111 (24h)
+- 🔴 CALIBRATION_DRIFT×31 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×26 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🔴 CRITICAL_ODDS_COLLAPSE×1 (24h)
@@ -20,19 +20,19 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CALIBRATION_DRIFT  ×8  [2026-09-06T13:02:47]
+### 🔴 CALIBRATION_DRIFT  ×18  [2026-09-06T13:02:47]
 - key: `CALIBRATION_DRIFT|`
 - **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×8  [2026-09-06T13:02:47]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×18  [2026-09-06T13:02:47]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×8  [2026-09-06T13:02:47]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×18  [2026-09-06T13:02:47]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×8  [2026-09-06T13:02:47]
+### 🔴 STRATEGY_CI_FAIL  ×18  [2026-09-06T13:02:47]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -109,7 +109,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 12.52MB / last modified 2026-09-06T13:09:22.707576+09:00
+- DB: 12.52MB / last modified 2026-09-06T13:19:59.836894+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -152,35 +152,35 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-mbos
-2026-09-06 13:08:53,431 [INFO] scraper: odds3t: 120/120 parsed
-2026-09-06 13:08:54,571 [INFO] scraper: odds3f: 20/20 parsed
-2026-09-06 13:08:55,701 [INFO] scraper: odds2t: 27/30 parsed
-2026-09-06 13:08:55,703 [INFO] scraper: odds2f: 12/15 parsed
-2026-09-06 13:08:56,866 [INFO] scraper: odds_win: 4/6 parsed
-2026-09-06 13:08:56,866 [INFO] scraper: fetch_race 22/4: boats=6 odds=183/191
-2026-09-06 13:08:56,869 [INFO] predictor: CALIBRATION_MODE=on
-2026-09-06 13:08:56,869 [INFO] predictor: combos: {'win': 4, '2t': 27, '3t': 120}
-2026-09-06 13:08:56,874 [INFO] run_cycle: fetched 22/4 [scan]: 151 combos
-2026-09-06 13:08:56,993 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-09-06 13:09:03,411 [INFO] run_cycle: === run_cycle 13:09:03 ===
-2026-09-06 13:09:03,411 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-06 13:09:03,411 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-06 13:09:03,460 [INFO] predictor: Models loaded OK
-2026-09-06 13:09:16,308 [INFO] scraper: odds3t: 120/120 parsed
-2026-09-06 13:09:17,558 [INFO] scraper: odds3f: 20/20 parsed
-2026-09-06 13:09:18,633 [INFO] scraper: odds2t: 30/30 parsed
-2026-09-06 13:09:18,634 [INFO] scraper: odds2f: 15/15 parsed
-2026-09-06 13:09:19,710 [INFO] scraper: odds_win: 5/6 parsed
-2026-09-06 13:09:19,710 [INFO] scraper: fetch_race 04/6: boats=6 odds=190/191
-2026-09-06 13:09:19,713 [INFO] predictor: CALIBRATION_MODE=on
-2026-09-06 13:09:19,713 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-09-06 13:09:19,717 [INFO] run_cycle: fetched 04/6 [scan]: 155 combos
-2026-09-06 13:09:20,673 [INFO] race_id: notif: nid=2026090604061322 sid=S00 phase=scan rank=S
-2026-09-06 13:09:21,708 [INFO] notifier: Discord notify OK (status=204)
-2026-09-06 13:09:22,341 [INFO] notifier: Discord notify OK (status=204)
-2026-09-06 13:09:22,531 [INFO] run_cycle: SCAN S00 平和島6R S
-2026-09-06 13:09:22,651 [INFO] run_cycle: run_cycle done: 1 notifications
+, '3t': 120}
+2026-09-06 13:19:42,528 [INFO] run_cycle: fetched 04/6 [final]: 156 combos
+2026-09-06 13:19:42,900 [INFO] race_id: notif: nid=2026090604061322 sid=S01_NAKAANA1 phase=final rank=B
+2026-09-06 13:19:43,428 [INFO] notifier: Discord notify OK (status=204)
+2026-09-06 13:19:43,876 [INFO] notifier: Discord notify OK (status=204)
+2026-09-06 13:19:43,917 [INFO] run_cycle: FINAL S01_NAKAANA1 平和島6R B
+2026-09-06 13:19:47,365 [INFO] scraper: odds3t: 120/120 parsed
+2026-09-06 13:19:48,457 [INFO] scraper: odds3f: 20/20 parsed
+2026-09-06 13:19:49,577 [INFO] scraper: odds2t: 29/30 parsed
+2026-09-06 13:19:49,578 [INFO] scraper: odds2f: 15/15 parsed
+2026-09-06 13:19:50,683 [INFO] scraper: odds_win: 5/6 parsed
+2026-09-06 13:19:50,683 [INFO] scraper: fetch_race 17/6: boats=6 odds=189/191
+2026-09-06 13:19:50,686 [INFO] predictor: CALIBRATION_MODE=on
+2026-09-06 13:19:50,686 [INFO] predictor: combos: {'win': 5, '2t': 29, '3t': 120}
+2026-09-06 13:19:50,690 [INFO] run_cycle: fetched 17/6 [scan]: 154 combos
+2026-09-06 13:19:54,229 [INFO] scraper: odds3t: 120/120 parsed
+2026-09-06 13:19:55,336 [INFO] scraper: odds3f: 20/20 parsed
+2026-09-06 13:19:56,456 [INFO] scraper: odds2t: 29/30 parsed
+2026-09-06 13:19:56,458 [INFO] scraper: odds2f: 15/15 parsed
+2026-09-06 13:19:57,554 [INFO] scraper: odds_win: 5/6 parsed
+2026-09-06 13:19:57,554 [INFO] scraper: fetch_race 03/6: boats=6 odds=189/191
+2026-09-06 13:19:57,557 [INFO] predictor: CALIBRATION_MODE=on
+2026-09-06 13:19:57,557 [INFO] predictor: combos: {'win': 5, '2t': 29, '3t': 120}
+2026-09-06 13:19:57,561 [INFO] run_cycle: fetched 03/6 [scan]: 154 combos
+2026-09-06 13:19:57,843 [INFO] race_id: notif: nid=2026090611071332 sid=S02_TETSUBAN phase=scan rank=B
+2026-09-06 13:19:58,233 [INFO] notifier: Discord notify OK (status=204)
+2026-09-06 13:19:59,117 [INFO] notifier: Discord notify OK (status=204)
+2026-09-06 13:19:59,121 [INFO] run_cycle: SCAN S02_TETSUBAN びわこ7R B
+2026-09-06 13:19:59,212 [INFO] run_cycle: run_cycle done: 2 notifications
 
 ```
 
@@ -202,24 +202,24 @@ mbos
   {
     "target": "mirror",
     "ok": 1,
-    "c": 80
+    "c": 83
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 80
+    "c": 83
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 27, 'result': 16, 'scan': 37}
+{'final': 29, 'result': 15, 'scan': 39}
 
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 134
-  FINAL_MISSING: 113
-  CALIBRATION_DRIFT: 32
+  FINAL_MISSING: 111
+  CALIBRATION_DRIFT: 31
   CIRCUIT_BREAKER_TRIP: 26
   CIRCUIT_BREAKER_NO_ACTION: 17
   STRATEGY_CI_FAIL: 17
@@ -235,11 +235,12 @@ mbos
 | sid | n | hits | cost | payout | PL | ROI |
 |---|---|---|---|---|---|---|
 | S00 | 51 | 14 | 15,300 | 15,480 | +180 | 1.012 |
-| S01_NAKAANA1 | 43 | 5 | 8,600 | 2,340 | -6,260 | 0.272 |
-| S02_TETSUBAN | 12 | 5 | 2,400 | 1,940 | -460 | 0.808 |
+| S01_NAKAANA1 | 44 | 5 | 8,800 | 2,340 | -6,460 | 0.266 |
+| S02_TETSUBAN | 13 | 5 | 2,600 | 1,940 | -660 | 0.746 |
 
 ## 直近アラート (24h・新しい順)
 ```
+[13:19:59] CIRCUIT_BREAKER_TRIP: {"cost": 8800, "kind": "CIRCUIT_BREAKER_TRIP", "n": 44, "payout": 2340, "roi_7d": 0.266, "sid": "S01_NAKAANA1"}
 [13:02:47] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [13:02:47] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S01_NAKAANA1"}
 [12:52:19] FINAL_MISSING: {"deadline": "2026-09-06T12:22:00+09:00", "kind": "FINAL_MISSING", "nid": "2026090604041222", "sid": "S00"}
@@ -249,15 +250,14 @@ mbos
 [12:23:31] FINAL_MISSING: {"deadline": "2026-09-06T11:53:00+09:00", "kind": "FINAL_MISSING", "nid": "2026090604031153", "sid": "S00"}
 [12:21:31] CIRCUIT_BREAKER_TRIP: {"cost": 8600, "kind": "CIRCUIT_BREAKER_TRIP", "n": 43, "payout": 2340, "roi_7d": 0.272, "sid": "S01_NAKAANA1"}
 [12:21:31] ANOMALY_SCAN_FINAL_RATIO: {"abs_drop": 0.215, "baseline_mean": 0.798, "baseline_stdev": 0.123, "kind": "ANOMALY_SCAN_FINAL_RATIO", "today_ratio": 0.583, "today_scan_count": 12, "z_score": -1.74}
-[12:17:05] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1090}
 ```
 
-## 本日残レース: 90件
+## 本日残レース: 87件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 54件 締切済
-- 通知発射: scan=16 nid / final=12 nid / result=7 nid
-- predictions: 8 / うち結果DB記録済: 7
+- race_schedule: 144件 登録 / 57件 締切済
+- 通知発射: scan=17 nid / final=14 nid / result=7 nid
+- predictions: 10 / うち結果DB記録済: 7
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - 🔴 scan後final無しのまま締切: 4件（FINAL_MISSING の温床）
 
@@ -268,6 +268,8 @@ mbos
 ## 最新 predictions サンプル (計算spot-check用)
 | sid | race | bt | combo | p | odds | ev | bet | at |
 |---|---|---|---|---|---|---|---|---|
+| S01_NAKAANA1 | 046R | win | 1 | 0.5072 | 3.8 | 1.93 | 200 | scan=3.9 drift=-2.6% | 13:19:42 |
+| S02_TETSUBAN | 096R | win | 1 | 0.5174 | 2.5 | 1.29 | 200 | scan=2.7 drift=-7.4% | 13:12:26 |
 | S01_NAKAANA1 | 035R | win | 1 | 0.5174 | 3.0 | 1.55 | 200 | scan=4.5 drift=-33.3% | 12:59:26 |
 | S02_TETSUBAN | 093R | win | 1 | 0.5123 | 2.7 | 1.38 | 200 | scan=2.3 drift=+17.4% | 11:39:26 |
 | S00 | 113R | win | 1 | 0.3177 | 7.6 | 2.41 | 300 | scan=- drift=- | 11:33:21 |
@@ -276,14 +278,12 @@ mbos
 | S01_NAKAANA1 | 106R | win | 1 | 0.5123 | 3.0 | 1.54 | 200 | scan=- drift=- | 10:47:29 |
 | S01_NAKAANA1 | 021R | win | 1 | 0.4989 | 3.6 | 1.80 | 200 | scan=3.5 drift=+2.9% | 10:44:20 |
 | S01_NAKAANA1 | 145R | win | 1 | 0.5735 | 3.9 | 2.24 | 200 | scan=3.9 drift=+0.0% | 10:25:20 |
-| S01_NAKAANA1 | 0110R | win | 1 | 0.3177 | 3.2 | 1.02 | 200 | scan=- drift=- | 19:21:19 |
-| S02_TETSUBAN | 076R | win | 1 | 0.5174 | 2.1 | 1.09 | 200 | scan=2.7 drift=-22.2% | 17:41:19 |
 
 ## オッズドリフト統計 (7日)
 
 | bt | n | avg | min | max | down10 | collapse(≤-30%) | any_large(≥10%) |
 |---|---|---|---|---|---|---|---|
-| win | 63 | +9.1% | -75.5% | +158.3% | 17 | 10 | 42 |
+| win | 65 | +8.6% | -75.5% | +158.3% | 17 | 10 | 42 |
 
 ## 校正テーブル合格状況
 
@@ -296,13 +296,13 @@ mbos
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 416.0s |
+| **Latency** (scan→final avg) | 415.8s |
 | **Latency** (scan→final max) | 598.3s |
-| **Traffic** (notifications 24h) | 80 |
+| **Traffic** (notifications 24h) | 83 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 600円 used |
-| **Saturation** (S01_NAKAANA1) | 800円 used |
-| **Saturation** (S02_TETSUBAN) | 400円 used |
+| **Saturation** (S01_NAKAANA1) | 1,000円 used |
+| **Saturation** (S02_TETSUBAN) | 600円 used |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
 
@@ -351,4 +351,4 @@ mbos
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-09-06T13:10:02.170770+09:00_
+_auto-generated by claude_snapshot.py at 2026-09-06T13:20:00.518695+09:00_
