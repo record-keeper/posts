@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-09-08T09:00:01.772363+09:00
+**生成**: 2026-09-08T09:10:02.230247+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×25 (24h) → ログ/DB確認
@@ -20,15 +20,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×60  [2026-09-08T08:00:56]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×9  [2026-09-08T09:01:21]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×60  [2026-09-08T08:00:56]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×9  [2026-09-08T09:01:21]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×60  [2026-09-08T08:00:56]
+### 🔴 STRATEGY_CI_FAIL  ×9  [2026-09-08T09:01:21]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -109,7 +109,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 12.67MB / last modified 2026-09-08T09:00:04.827845+09:00
+- DB: 12.67MB / last modified 2026-09-08T09:09:05.192369+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -152,27 +152,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-imed out. (read timeout=10), retry in 1s
-2026-09-08 08:57:26,329 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=14&hd=20260908: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-09-08 08:57:39,397 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=14&hd=20260908: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
-2026-09-08 08:57:39,397 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=14&hd=20260908
-2026-09-08 08:57:39,397 [ERROR] scraper: racelist fetch failed: jcd=14 rno=2
-2026-09-08 08:57:39,397 [WARNING] run_cycle: fetch None: 14/2
-2026-09-08 08:57:39,397 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-09-08 08:58:03,920 [INFO] run_cycle: === run_cycle 08:58:03 ===
-2026-09-08 08:58:03,920 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-08 08:58:03,920 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-08 08:58:03,950 [INFO] predictor: Models loaded OK
-2026-09-08 08:58:04,228 [INFO] race_id: notif: nid=2026090814020910 sid=S00 phase=scan rank=S
-2026-09-08 08:58:04,597 [INFO] notifier: Discord notify OK (status=204)
-2026-09-08 08:58:05,187 [INFO] notifier: Discord notify OK (status=204)
-2026-09-08 08:58:05,192 [INFO] run_cycle: SCAN S00 鳴門2R S
-2026-09-08 08:58:05,301 [INFO] run_cycle: run_cycle done: 1 notifications
-2026-09-08 08:59:03,956 [INFO] run_cycle: === run_cycle 08:59:03 ===
-2026-09-08 08:59:03,956 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-08 08:59:03,956 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-08 08:59:03,987 [INFO] predictor: Models loaded OK
-2026-09-08 08:59:04,099 [INFO] run_cycle: run_cycle done: 0 notifications
+ predictor: CALIBRATION_MODE=on
+2026-09-08 09:07:20,406 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-09-08 09:07:20,409 [INFO] run_cycle: fetched 14/2 [final]: 156 combos
+2026-09-08 09:07:20,627 [INFO] race_id: notif: nid=2026090814020910 sid=S00 phase=final rank=
+2026-09-08 09:07:21,108 [INFO] notifier: Discord notify OK (status=204)
+2026-09-08 09:07:23,131 [INFO] notifier: Discord notify OK (status=204)
+2026-09-08 09:07:23,136 [INFO] run_cycle: RETREAT S00 鳴門2R
+2026-09-08 09:07:23,256 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-09-08 09:08:04,255 [INFO] run_cycle: === run_cycle 09:08:04 ===
+2026-09-08 09:08:04,255 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-09-08 09:08:04,255 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-09-08 09:08:04,321 [INFO] predictor: Models loaded OK
+2026-09-08 09:08:16,808 [INFO] scraper: odds3t: 120/120 parsed
+2026-09-08 09:08:17,914 [INFO] scraper: odds3f: 20/20 parsed
+2026-09-08 09:08:19,023 [INFO] scraper: odds2t: 30/30 parsed
+2026-09-08 09:08:19,024 [INFO] scraper: odds2f: 15/15 parsed
+2026-09-08 09:08:20,106 [INFO] scraper: odds_win: 6/6 parsed
+2026-09-08 09:08:20,106 [INFO] scraper: fetch_race 14/2: boats=6 odds=191/191
+2026-09-08 09:08:20,109 [INFO] predictor: CALIBRATION_MODE=on
+2026-09-08 09:08:20,110 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-09-08 09:08:20,113 [INFO] run_cycle: fetched 14/2 [final]: 156 combos
+2026-09-08 09:08:20,238 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-09-08 09:09:04,896 [INFO] run_cycle: === run_cycle 09:09:04 ===
+2026-09-08 09:09:04,896 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-09-08 09:09:04,896 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-09-08 09:09:04,977 [INFO] predictor: Models loaded OK
+2026-09-08 09:09:04,979 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -194,18 +200,18 @@ imed out. (read timeout=10), retry in 1s
   {
     "target": "mirror",
     "ok": 1,
-    "c": 68
+    "c": 69
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 68
+    "c": 69
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 27, 'result': 13, 'scan': 28}
+{'final': 28, 'result': 13, 'scan': 28}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -230,6 +236,9 @@ imed out. (read timeout=10), retry in 1s
 
 ## 直近アラート (24h・新しい順)
 ```
+[09:01:20] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
+[09:01:20] CIRCUIT_BREAKER_TRIP: {"cost": 9000, "kind": "CIRCUIT_BREAKER_TRIP", "n": 45, "payout": 4780, "roi_7d": 0.531, "sid": "S01_NAKAANA1"}
+[09:01:20] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S01_NAKAANA1"}
 [08:00:55] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [08:00:55] CIRCUIT_BREAKER_TRIP: {"cost": 9000, "kind": "CIRCUIT_BREAKER_TRIP", "n": 45, "payout": 4780, "roi_7d": 0.531, "sid": "S01_NAKAANA1"}
 [08:00:55] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S01_NAKAANA1"}
@@ -237,16 +246,13 @@ imed out. (read timeout=10), retry in 1s
 [06:00:05] CIRCUIT_BREAKER_TRIP: {"cost": 9000, "kind": "CIRCUIT_BREAKER_TRIP", "n": 45, "payout": 4780, "roi_7d": 0.531, "sid": "S01_NAKAANA1"}
 [06:00:05] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S01_NAKAANA1"}
 [23:57:04] FINAL_MISSING: {"deadline": "2026-09-07T13:22:00+09:00", "kind": "FINAL_MISSING", "nid": "2026090704061322", "sid": "S00"}
-[23:54:04] FINAL_MISSING: {"deadline": "2026-09-07T15:20:00+09:00", "kind": "FINAL_MISSING", "nid": "2026090707011520", "sid": "S00"}
-[23:32:04] FINAL_MISSING: {"deadline": "2026-09-07T10:55:00+09:00", "kind": "FINAL_MISSING", "nid": "2026090704011055", "sid": "S00"}
-[23:26:03] FINAL_MISSING: {"deadline": "2026-09-07T12:48:00+09:00", "kind": "FINAL_MISSING", "nid": "2026090722031248", "sid": "S00"}
 ```
 
-## 本日残レース: 129件
+## 本日残レース: 128件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 132件 登録 / 3件 締切済
-- 通知発射: scan=1 nid / final=0 nid / result=0 nid
+- race_schedule: 132件 登録 / 4件 締切済
+- 通知発射: scan=1 nid / final=1 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - ✅ scan後final無しのまま締切: 0件（FINAL_MISSING の温床）
@@ -286,9 +292,9 @@ imed out. (read timeout=10), retry in 1s
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 439.9s |
+| **Latency** (scan→final avg) | 445.2s |
 | **Latency** (scan→final max) | 603.2s |
-| **Traffic** (notifications 24h) | 68 |
+| **Traffic** (notifications 24h) | 69 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
@@ -338,4 +344,4 @@ imed out. (read timeout=10), retry in 1s
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-09-08T09:00:01.772363+09:00_
+_auto-generated by claude_snapshot.py at 2026-09-08T09:10:02.230247+09:00_
