@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-09-13T08:30:01.873569+09:00
+**生成**: 2026-09-13T08:40:01.388183+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×62 (24h) → ログ/DB確認
@@ -19,19 +19,19 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×90  [2026-09-13T08:00:55]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×120  [2026-09-13T08:00:55]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×90  [2026-09-13T08:00:55]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×120  [2026-09-13T08:00:55]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×30  [2026-09-13T08:00:55]
+### 🔴 STRATEGY_CI_FAIL  ×40  [2026-09-13T08:00:55]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 KS_ODDS_DRIFT  ×30  [2026-09-13T08:00:55]
+### 🟡 KS_ODDS_DRIFT  ×40  [2026-09-13T08:00:55]
 - key: `KS_ODDS_DRIFT|`
 - **FIX**: オッズ分布の KS 検定 p<0.01→市場構造変化の可能性。settlement_ratio の fallback 値を再検証
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 13.07MB / last modified 2026-09-13T08:30:03.736349+09:00
+- DB: 13.07MB / last modified 2026-09-13T08:39:05.325413+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,32 +151,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-9-13 08:26:18,746 [INFO] run_cycle: fetched 10/1 [scan]: 156 combos
-2026-09-13 08:26:18,850 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-09-13 08:27:04,079 [INFO] run_cycle: === run_cycle 08:27:04 ===
-2026-09-13 08:27:04,079 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-13 08:27:04,079 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-13 08:27:04,127 [INFO] predictor: Models loaded OK
-2026-09-13 08:27:04,229 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-09-13 08:28:03,480 [INFO] run_cycle: === run_cycle 08:28:03 ===
-2026-09-13 08:28:03,481 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-13 08:28:03,481 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-13 08:28:03,515 [INFO] predictor: Models loaded OK
-2026-09-13 08:28:03,517 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-09-13 08:29:03,847 [INFO] run_cycle: === run_cycle 08:29:03 ===
-2026-09-13 08:29:03,847 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-13 08:29:03,847 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-13 08:29:03,878 [INFO] predictor: Models loaded OK
-2026-09-13 08:29:16,288 [INFO] scraper: odds3t: 120/120 parsed
-2026-09-13 08:29:17,389 [INFO] scraper: odds3f: 20/20 parsed
-2026-09-13 08:29:18,515 [INFO] scraper: odds2t: 30/30 parsed
-2026-09-13 08:29:18,516 [INFO] scraper: odds2f: 15/15 parsed
-2026-09-13 08:29:19,614 [INFO] scraper: odds_win: 6/6 parsed
-2026-09-13 08:29:19,614 [INFO] scraper: fetch_race 10/1: boats=6 odds=191/191
-2026-09-13 08:29:19,617 [INFO] predictor: CALIBRATION_MODE=on
-2026-09-13 08:29:19,617 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-09-13 08:29:19,621 [INFO] run_cycle: fetched 10/1 [final]: 156 combos
-2026-09-13 08:29:19,736 [INFO] run_cycle: run_cycle done: 0 notifications
+[INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-09-13 08:37:03,760 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-09-13 08:37:03,805 [INFO] predictor: Models loaded OK
+2026-09-13 08:37:14,835 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=21&hd=20260913: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-09-13 08:37:27,220 [INFO] scraper: odds3t: 120/120 parsed
+2026-09-13 08:37:28,317 [INFO] scraper: odds3f: 20/20 parsed
+2026-09-13 08:37:29,421 [INFO] scraper: odds2t: 30/30 parsed
+2026-09-13 08:37:29,422 [INFO] scraper: odds2f: 15/15 parsed
+2026-09-13 08:37:30,523 [INFO] scraper: odds_win: 6/6 parsed
+2026-09-13 08:37:30,523 [INFO] scraper: fetch_race 21/1: boats=6 odds=191/191
+2026-09-13 08:37:30,526 [INFO] predictor: CALIBRATION_MODE=on
+2026-09-13 08:37:30,526 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-09-13 08:37:30,530 [INFO] run_cycle: fetched 21/1 [scan]: 156 combos
+2026-09-13 08:37:30,632 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-09-13 08:38:03,866 [INFO] run_cycle: === run_cycle 08:38:03 ===
+2026-09-13 08:38:03,866 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-09-13 08:38:03,866 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-09-13 08:38:03,897 [INFO] predictor: Models loaded OK
+2026-09-13 08:38:03,998 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-09-13 08:39:04,039 [INFO] run_cycle: === run_cycle 08:39:04 ===
+2026-09-13 08:39:04,039 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-09-13 08:39:04,039 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-09-13 08:39:04,088 [INFO] predictor: Models loaded OK
+2026-09-13 08:39:04,178 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -246,10 +244,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [06:00:05] CIRCUIT_BREAKER_TRIP: {"cost": 4200, "kind": "CIRCUIT_BREAKER_TRIP", "n": 21, "payout": 2320, "roi_7d": 0.552, "sid": "S02_TETSUBAN"}
 ```
 
-## 本日残レース: 180件
+## 本日残レース: 179件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 180件 登録 / 0件 締切済
+- race_schedule: 180件 登録 / 1件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -342,4 +340,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-09-13T08:30:01.873569+09:00_
+_auto-generated by claude_snapshot.py at 2026-09-13T08:40:01.388183+09:00_
