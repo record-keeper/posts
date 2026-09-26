@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-09-26T23:40:02.082892+09:00
+**生成**: 2026-09-26T23:50:01.897362+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×28 (24h) → ログ/DB確認
@@ -26,15 +26,15 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×30  [2026-09-26T23:10:10]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×40  [2026-09-26T23:10:10]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×60  [2026-09-26T23:10:10]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×80  [2026-09-26T23:10:10]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×30  [2026-09-26T23:10:10]
+### 🔴 STRATEGY_CI_FAIL  ×40  [2026-09-26T23:10:10]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 14.2MB / last modified 2026-09-26T23:39:05.405268+09:00
+- DB: 14.2MB / last modified 2026-09-26T23:49:04.348614+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-42 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-26 23:35:04,442 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-26 23:35:04,495 [INFO] predictor: Models loaded OK
-2026-09-26 23:35:04,501 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-09-26 23:36:04,103 [INFO] run_cycle: === run_cycle 23:36:04 ===
-2026-09-26 23:36:04,103 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-26 23:36:04,103 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-26 23:36:04,132 [INFO] predictor: Models loaded OK
-2026-09-26 23:36:04,134 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-09-26 23:37:03,895 [INFO] run_cycle: === run_cycle 23:37:03 ===
-2026-09-26 23:37:03,895 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-26 23:37:03,895 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-26 23:37:03,943 [INFO] predictor: Models loaded OK
-2026-09-26 23:37:03,948 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-09-26 23:38:04,000 [INFO] run_cycle: === run_cycle 23:38:04 ===
-2026-09-26 23:38:04,000 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-26 23:38:04,000 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-26 23:38:04,047 [INFO] predictor: Models loaded OK
-2026-09-26 23:38:04,051 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-09-26 23:39:04,354 [INFO] run_cycle: === run_cycle 23:39:04 ===
-2026-09-26 23:39:04,354 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-09-26 23:39:04,354 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-09-26 23:39:04,387 [INFO] predictor: Models loaded OK
-2026-09-26 23:39:04,389 [INFO] run_cycle: run_cycle done: 0 notifications
+83 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-09-26 23:45:03,983 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-09-26 23:45:04,018 [INFO] predictor: Models loaded OK
+2026-09-26 23:45:04,020 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-09-26 23:46:04,031 [INFO] run_cycle: === run_cycle 23:46:04 ===
+2026-09-26 23:46:04,031 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-09-26 23:46:04,031 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-09-26 23:46:04,082 [INFO] predictor: Models loaded OK
+2026-09-26 23:46:04,087 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-09-26 23:47:04,285 [INFO] run_cycle: === run_cycle 23:47:04 ===
+2026-09-26 23:47:04,286 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-09-26 23:47:04,286 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-09-26 23:47:04,326 [INFO] predictor: Models loaded OK
+2026-09-26 23:47:04,328 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-09-26 23:48:04,255 [INFO] run_cycle: === run_cycle 23:48:04 ===
+2026-09-26 23:48:04,255 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-09-26 23:48:04,255 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-09-26 23:48:04,287 [INFO] predictor: Models loaded OK
+2026-09-26 23:48:04,289 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-09-26 23:49:04,094 [INFO] run_cycle: === run_cycle 23:49:04 ===
+2026-09-26 23:49:04,094 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-09-26 23:49:04,094 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-09-26 23:49:04,142 [INFO] predictor: Models loaded OK
+2026-09-26 23:49:04,146 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -228,6 +228,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[23:43:03] FINAL_MISSING: {"deadline": "2026-09-26T12:08:00+09:00", "kind": "FINAL_MISSING", "nid": "2026092603031208", "sid": "S00"}
 [23:28:04] CIRCUIT_BREAKER_TRIP: {"cost": 9600, "kind": "CIRCUIT_BREAKER_TRIP", "n": 32, "payout": 3660, "roi_7d": 0.381, "sid": "S00"}
 [23:24:03] FINAL_MISSING: {"deadline": "2026-09-26T16:50:00+09:00", "kind": "FINAL_MISSING", "nid": "2026092622111650", "sid": "S00"}
 [23:19:04] FINAL_MISSING: {"deadline": "2026-09-26T16:44:00+09:00", "kind": "FINAL_MISSING", "nid": "2026092619041644", "sid": "S00"}
@@ -237,7 +238,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:06:04] FINAL_MISSING: {"deadline": "2026-09-26T11:29:00+09:00", "kind": "FINAL_MISSING", "nid": "2026092609031129", "sid": "S00"}
 [22:42:05] FINAL_MISSING: {"deadline": "2026-09-26T12:08:00+09:00", "kind": "FINAL_MISSING", "nid": "2026092603031208", "sid": "S00"}
 [22:27:05] CIRCUIT_BREAKER_TRIP: {"cost": 9600, "kind": "CIRCUIT_BREAKER_TRIP", "n": 32, "payout": 3660, "roi_7d": 0.381, "sid": "S00"}
-[22:24:03] FINAL_MISSING: {"deadline": "2026-09-26T16:50:00+09:00", "kind": "FINAL_MISSING", "nid": "2026092622111650", "sid": "S00"}
 ```
 
 ## 本日残レース: 0件
@@ -336,4 +336,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-09-26T23:40:02.082892+09:00_
+_auto-generated by claude_snapshot.py at 2026-09-26T23:50:01.897362+09:00_
