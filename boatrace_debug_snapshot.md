@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-02T19:50:01.994957+09:00
+**生成**: 2026-10-02T20:00:06.101267+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×26 (24h) → ログ/DB確認
@@ -23,15 +23,15 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×40  [2026-10-02T19:10:16]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×50  [2026-10-02T19:10:16]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×40  [2026-10-02T19:10:16]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×50  [2026-10-02T19:10:16]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×40  [2026-10-02T19:10:16]
+### 🔴 STRATEGY_CI_FAIL  ×50  [2026-10-02T19:10:16]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 14.79MB / last modified 2026-10-02T19:49:38.113991+09:00
+- DB: 14.79MB / last modified 2026-10-02T19:59:30.931959+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,33 +151,31 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-5000
-2026-10-02 19:48:05,131 [INFO] predictor: Models loaded OK
-2026-10-02 19:48:05,262 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-02 19:49:04,319 [INFO] run_cycle: === run_cycle 19:49:04 ===
-2026-10-02 19:49:04,319 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-02 19:49:04,319 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-02 19:49:04,386 [INFO] predictor: Models loaded OK
-2026-10-02 19:49:15,455 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=6&jcd=24&hd=20261002: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-10-02 19:49:26,980 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-02 19:49:28,191 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-02 19:49:29,301 [INFO] scraper: odds2t: 29/30 parsed
-2026-10-02 19:49:29,302 [INFO] scraper: odds2f: 14/15 parsed
-2026-10-02 19:49:30,414 [INFO] scraper: odds_win: 5/6 parsed
-2026-10-02 19:49:30,414 [INFO] scraper: fetch_race 24/6: boats=6 odds=188/191
-2026-10-02 19:49:30,418 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-02 19:49:30,418 [INFO] predictor: combos: {'win': 5, '2t': 29, '3t': 120}
-2026-10-02 19:49:30,422 [INFO] run_cycle: fetched 24/6 [scan]: 154 combos
-2026-10-02 19:49:33,908 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-02 19:49:35,081 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-02 19:49:36,176 [INFO] scraper: odds2t: 30/30 parsed
-2026-10-02 19:49:36,177 [INFO] scraper: odds2f: 14/15 parsed
-2026-10-02 19:49:37,257 [INFO] scraper: odds_win: 6/6 parsed
-2026-10-02 19:49:37,258 [INFO] scraper: fetch_race 12/11: boats=6 odds=190/191
-2026-10-02 19:49:37,267 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-02 19:49:37,269 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-10-02 19:49:37,278 [INFO] run_cycle: fetched 12/11 [scan]: 156 combos
-2026-10-02 19:49:37,435 [INFO] run_cycle: run_cycle done: 0 notifications
+: odds_win: 5/6 parsed
+2026-10-02 19:58:19,406 [INFO] scraper: fetch_race 15/11: boats=6 odds=190/191
+2026-10-02 19:58:19,410 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-02 19:58:19,410 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-10-02 19:58:19,414 [INFO] run_cycle: fetched 15/11 [scan]: 155 combos
+2026-10-02 19:58:19,522 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-02 19:59:03,668 [INFO] run_cycle: === run_cycle 19:59:03 ===
+2026-10-02 19:59:03,668 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-02 19:59:03,668 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-02 19:59:03,702 [INFO] predictor: Models loaded OK
+2026-10-02 19:59:14,794 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=11&jcd=12&hd=20261002: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-10-02 19:59:27,174 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-02 19:59:28,273 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-02 19:59:29,375 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-02 19:59:29,376 [INFO] scraper: odds2f: 14/15 parsed
+2026-10-02 19:59:30,476 [INFO] scraper: odds_win: 6/6 parsed
+2026-10-02 19:59:30,476 [INFO] scraper: fetch_race 12/11: boats=6 odds=190/191
+2026-10-02 19:59:30,480 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-02 19:59:30,480 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-10-02 19:59:30,484 [INFO] run_cycle: fetched 12/11 [final]: 156 combos
+2026-10-02 19:59:30,664 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-02 20:00:06,115 [INFO] run_cycle: === run_cycle 20:00:06 ===
+2026-10-02 20:00:06,116 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-02 20:00:06,116 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-02 20:00:06,332 [INFO] predictor: Models loaded OK
 
 ```
 
@@ -246,10 +244,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [19:03:05] CIRCUIT_BREAKER_TRIP: {"cost": 13800, "kind": "CIRCUIT_BREAKER_TRIP", "n": 46, "payout": 7890, "roi_7d": 0.572, "sid": "S00"}
 ```
 
-## 本日残レース: 15件
+## 本日残レース: 14件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 153件 締切済
+- race_schedule: 168件 登録 / 154件 締切済
 - 通知発射: scan=26 nid / final=27 nid / result=17 nid
 - predictions: 17 / うち結果DB記録済: 17
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -343,4 +341,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-02T19:50:01.994957+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-02T20:00:06.101267+09:00_
