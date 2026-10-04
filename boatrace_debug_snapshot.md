@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-04T19:10:02.178775+09:00
+**生成**: 2026-10-04T19:20:01.402171+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×45 (24h)
+- 🟡 FINAL_MISSING×46 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×12 (24h)
 - 🟡 LARGE_ODDS_DRIFT×2 (24h)
@@ -18,15 +18,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×4  [2026-10-04T19:08:40]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×24  [2026-10-04T19:08:40]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×2  [2026-10-04T19:08:40]
+### 🔴 STRATEGY_CI_FAIL  ×12  [2026-10-04T19:08:40]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×30  [2026-10-04T18:40:36]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×40  [2026-10-04T18:40:36]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 14.95MB / last modified 2026-10-04T19:09:19.503497+09:00
+- DB: 14.95MB / last modified 2026-10-04T19:19:05.341979+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,27 +150,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-p/owpc/pc/race/racelist?rno=9&jcd=19&hd=20261004: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-10-04 19:08:25,968 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=19&hd=20261004: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-10-04 19:08:39,055 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=19&hd=20261004: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
-2026-10-04 19:08:39,055 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=9&jcd=19&hd=20261004
-2026-10-04 19:08:39,055 [ERROR] scraper: racelist fetch failed: jcd=19 rno=9
-2026-10-04 19:08:39,055 [WARNING] run_cycle: fetch None: 19/9
-2026-10-04 19:08:39,055 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-04 19:09:04,468 [INFO] run_cycle: === run_cycle 19:09:04 ===
-2026-10-04 19:09:04,468 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-04 19:09:04,468 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-04 19:09:04,502 [INFO] predictor: Models loaded OK
-2026-10-04 19:09:16,021 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-04 19:09:17,139 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-04 19:09:18,244 [INFO] scraper: odds2t: 30/30 parsed
-2026-10-04 19:09:18,245 [INFO] scraper: odds2f: 15/15 parsed
-2026-10-04 19:09:19,317 [INFO] scraper: odds_win: 6/6 parsed
-2026-10-04 19:09:19,317 [INFO] scraper: fetch_race 19/9: boats=6 odds=191/191
-2026-10-04 19:09:19,321 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-04 19:09:19,321 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-10-04 19:09:19,325 [INFO] run_cycle: fetched 19/9 [scan]: 156 combos
-2026-10-04 19:09:19,437 [INFO] run_cycle: run_cycle done: 0 notifications
+FO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-04 19:17:05,226 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-04 19:17:05,302 [INFO] predictor: Models loaded OK
+2026-10-04 19:17:05,447 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-04 19:18:04,819 [INFO] run_cycle: === run_cycle 19:18:04 ===
+2026-10-04 19:18:04,819 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-04 19:18:04,819 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-04 19:18:04,894 [INFO] predictor: Models loaded OK
+2026-10-04 19:18:15,945 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=10&jcd=12&hd=20261004: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-10-04 19:18:28,374 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-04 19:18:29,451 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-04 19:18:30,551 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-04 19:18:30,552 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-04 19:18:31,662 [INFO] scraper: odds_win: 3/6 parsed
+2026-10-04 19:18:31,662 [INFO] scraper: fetch_race 12/10: boats=6 odds=188/191
+2026-10-04 19:18:31,665 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-04 19:18:31,665 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
+2026-10-04 19:18:31,669 [INFO] run_cycle: fetched 12/10 [scan]: 153 combos
+2026-10-04 19:18:31,794 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-04 19:19:04,383 [INFO] run_cycle: === run_cycle 19:19:04 ===
+2026-10-04 19:19:04,383 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-04 19:19:04,383 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-04 19:19:04,430 [INFO] predictor: Models loaded OK
+2026-10-04 19:19:04,551 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -208,7 +211,7 @@ p/owpc/pc/race/racelist?rno=9&jcd=19&hd=20261004: HTTPSConnectionPool(host='www.
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 142
-  FINAL_MISSING: 45
+  FINAL_MISSING: 46
   CIRCUIT_BREAKER_NO_ACTION: 35
   STRATEGY_CI_FAIL: 17
   CIRCUIT_BREAKER_TRIP: 12
@@ -226,6 +229,7 @@ p/owpc/pc/race/racelist?rno=9&jcd=19&hd=20261004: HTTPSConnectionPool(host='www.
 
 ## 直近アラート (24h・新しい順)
 ```
+[19:15:20] FINAL_MISSING: {"deadline": "2026-10-04T11:41:00+09:00", "kind": "FINAL_MISSING", "nid": "2026100405031141", "sid": "S00"}
 [19:08:39] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [19:08:39] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S02_TETSUBAN"}
 [19:08:39] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S00"}
@@ -235,13 +239,12 @@ p/owpc/pc/race/racelist?rno=9&jcd=19&hd=20261004: HTTPSConnectionPool(host='www.
 [18:14:32] FINAL_MISSING: {"deadline": "2026-10-04T11:41:00+09:00", "kind": "FINAL_MISSING", "nid": "2026100405031141", "sid": "S00"}
 [18:08:05] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [18:08:04] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S02_TETSUBAN"}
-[18:08:04] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S00"}
 ```
 
-## 本日残レース: 10件
+## 本日残レース: 9件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 146件 締切済
+- race_schedule: 156件 登録 / 147件 締切済
 - 通知発射: scan=27 nid / final=31 nid / result=21 nid
 - predictions: 22 / うち結果DB記録済: 22
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -335,4 +338,4 @@ p/owpc/pc/race/racelist?rno=9&jcd=19&hd=20261004: HTTPSConnectionPool(host='www.
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-04T19:10:02.178775+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-04T19:20:01.402171+09:00_
