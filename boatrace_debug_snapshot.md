@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-05T14:20:02.032557+09:00
+**生成**: 2026-10-05T14:30:02.219380+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -18,21 +18,21 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×30  [2026-10-05T14:04:21]
-- key: `CIRCUIT_BREAKER_NO_ACTION|`
-- **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
-
-### 🔴 STRATEGY_CI_FAIL  ×15  [2026-10-05T14:04:21]
-- key: `STRATEGY_CI_FAIL|`
-- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
-
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-10-05T13:30:03]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-10-05T14:30:03]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-10-05T13:30:03]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-10-05T14:30:03]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S02_TETSUBAN が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
+
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×50  [2026-10-05T14:04:21]
+- key: `CIRCUIT_BREAKER_NO_ACTION|`
+- **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
+
+### 🔴 STRATEGY_CI_FAIL  ×25  [2026-10-05T14:04:21]
+- key: `STRATEGY_CI_FAIL|`
+- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
 ### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×4  [2026-10-05T12:40:47]
 - key: `ANOMALY_SCAN_FINAL_RATIO|`
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 14.98MB / last modified 2026-10-05T14:19:22.319182+09:00
+- DB: 14.98MB / last modified 2026-10-05T14:29:07.977874+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,33 +150,32 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
- predictor: CALIBRATION_MODE=on
-2026-10-05 14:17:11,915 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-10-05 14:17:11,919 [INFO] run_cycle: fetched 09/9 [scan]: 155 combos
-2026-10-05 14:17:12,051 [INFO] run_cycle: run_cycle done: 1 notifications
-2026-10-05 14:18:04,614 [INFO] run_cycle: === run_cycle 14:18:04 ===
-2026-10-05 14:18:04,614 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-05 14:18:04,614 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-05 14:18:04,694 [INFO] predictor: Models loaded OK
-2026-10-05 14:18:05,034 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-05 14:19:04,836 [INFO] run_cycle: === run_cycle 14:19:04 ===
-2026-10-05 14:19:04,837 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-05 14:19:04,837 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-05 14:19:04,889 [INFO] predictor: Models loaded OK
-2026-10-05 14:19:16,259 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-05 14:19:17,371 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-05 14:19:18,462 [INFO] scraper: odds2t: 30/30 parsed
-2026-10-05 14:19:18,463 [INFO] scraper: odds2f: 15/15 parsed
-2026-10-05 14:19:19,548 [INFO] scraper: odds_win: 5/6 parsed
-2026-10-05 14:19:19,549 [INFO] scraper: fetch_race 11/9: boats=6 odds=190/191
-2026-10-05 14:19:19,552 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-05 14:19:19,552 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-10-05 14:19:19,556 [INFO] run_cycle: fetched 11/9 [final]: 155 combos
-2026-10-05 14:19:20,460 [INFO] race_id: notif: nid=2026100511091422 sid=S00 phase=final rank=
-2026-10-05 14:19:21,009 [INFO] notifier: Discord notify OK (status=204)
-2026-10-05 14:19:21,556 [INFO] notifier: Discord notify OK (status=204)
-2026-10-05 14:19:21,778 [INFO] run_cycle: RETREAT S00 びわこ9R
-2026-10-05 14:19:22,219 [INFO] run_cycle: run_cycle done: 0 notifications
+p', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-10-05 14:28:26,743 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=18&hd=20261005: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-10-05 14:28:41,083 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-05 14:28:42,176 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-05 14:28:43,274 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-05 14:28:43,275 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-05 14:28:44,343 [INFO] scraper: odds_win: 6/6 parsed
+2026-10-05 14:28:44,343 [INFO] scraper: fetch_race 18/12: boats=6 odds=191/191
+2026-10-05 14:28:44,347 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-05 14:28:44,347 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-10-05 14:28:44,351 [INFO] run_cycle: fetched 18/12 [final]: 156 combos
+2026-10-05 14:28:47,928 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-05 14:28:49,014 [INFO] scraper: odds3f: 18/20 parsed
+2026-10-05 14:28:50,122 [INFO] scraper: odds2t: 22/30 parsed
+2026-10-05 14:28:50,123 [INFO] scraper: odds2f: 13/15 parsed
+2026-10-05 14:28:51,247 [INFO] scraper: odds_win: 5/6 parsed
+2026-10-05 14:28:51,247 [INFO] scraper: fetch_race 22/8: boats=6 odds=178/191
+2026-10-05 14:28:51,249 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-05 14:28:51,249 [INFO] predictor: combos: {'win': 5, '2t': 22, '3t': 120}
+2026-10-05 14:28:51,253 [INFO] run_cycle: fetched 22/8 [scan]: 147 combos
+2026-10-05 14:28:51,368 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-05 14:29:03,538 [INFO] run_cycle: === run_cycle 14:29:03 ===
+2026-10-05 14:29:03,538 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-05 14:29:03,538 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-05 14:29:03,592 [INFO] predictor: Models loaded OK
+2026-10-05 14:29:03,709 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -198,18 +197,18 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 71
+    "c": 70
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 71
+    "c": 70
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 27, 'result': 17, 'scan': 27}
+{'final': 27, 'result': 16, 'scan': 27}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -218,7 +217,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   CIRCUIT_BREAKER_NO_ACTION: 34
   STRATEGY_CI_FAIL: 17
   CIRCUIT_BREAKER_TRIP: 15
-  ANOMALY_SCAN_FINAL_RATIO: 5
+  ANOMALY_SCAN_FINAL_RATIO: 4
   ANOMALY_BET_VOLUME_DROP: 2
   LARGE_ODDS_DRIFT: 2
 ```
@@ -244,14 +243,14 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [13:03:37] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S02_TETSUBAN"}
 ```
 
-## 本日残レース: 67件
+## 本日残レース: 63件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 77件 締切済
-- 通知発射: scan=16 nid / final=13 nid / result=7 nid
+- race_schedule: 144件 登録 / 81件 締切済
+- 通知発射: scan=16 nid / final=14 nid / result=7 nid
 - predictions: 8 / うち結果DB記録済: 8
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
-- 🔴 scan後final無しのまま締切: 3件（FINAL_MISSING の温床）
+- 🔴 scan後final無しのまま締切: 4件（FINAL_MISSING の温床）
 
 ## 直近送信失敗 (24h)
 ```
@@ -288,9 +287,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 520.0s |
+| **Latency** (scan→final avg) | 505.7s |
 | **Latency** (scan→final max) | 613.7s |
-| **Traffic** (notifications 24h) | 71 |
+| **Traffic** (notifications 24h) | 70 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 1,500円 used |
 | **Saturation** (S01_NAKAANA1) | 600円 used |
@@ -340,4 +339,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-05T14:20:02.032557+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-05T14:30:02.219380+09:00_
