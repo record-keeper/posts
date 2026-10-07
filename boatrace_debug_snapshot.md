@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-07T09:50:01.308128+09:00
+**生成**: 2026-10-07T10:00:02.009839+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -18,7 +18,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 STRATEGY_CI_FAIL  ×49  [2026-10-07T09:01:05]
+### 🔴 STRATEGY_CI_FAIL  ×59  [2026-10-07T09:01:05]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 15.14MB / last modified 2026-10-07T09:49:03.589334+09:00
+- DB: 15.14MB / last modified 2026-10-07T09:59:44.545876+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,32 +150,29 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-trace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-10-07 09:46:28,085 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-07 09:46:29,259 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-07 09:46:30,373 [INFO] scraper: odds2t: 29/30 parsed
-2026-10-07 09:46:30,375 [INFO] scraper: odds2f: 15/15 parsed
-2026-10-07 09:46:31,489 [INFO] scraper: odds_win: 6/6 parsed
-2026-10-07 09:46:31,489 [INFO] scraper: fetch_race 14/4: boats=6 odds=190/191
-2026-10-07 09:46:31,493 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-07 09:46:31,493 [INFO] predictor: combos: {'win': 6, '2t': 29, '3t': 120}
-2026-10-07 09:46:31,497 [INFO] run_cycle: fetched 14/4 [scan]: 155 combos
-2026-10-07 09:46:31,606 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-07 09:47:03,659 [INFO] run_cycle: === run_cycle 09:47:03 ===
-2026-10-07 09:47:03,659 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-07 09:47:03,659 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-07 09:47:03,706 [INFO] predictor: Models loaded OK
-2026-10-07 09:47:03,801 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-07 09:48:03,862 [INFO] run_cycle: === run_cycle 09:48:03 ===
-2026-10-07 09:48:03,862 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-07 09:48:03,862 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-07 09:48:03,892 [INFO] predictor: Models loaded OK
-2026-10-07 09:48:04,006 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-07 09:49:03,339 [INFO] run_cycle: === run_cycle 09:49:03 ===
-2026-10-07 09:49:03,339 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-07 09:49:03,339 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-07 09:49:03,389 [INFO] predictor: Models loaded OK
-2026-10-07 09:49:03,394 [INFO] run_cycle: run_cycle done: 0 notifications
+dels loaded OK
+2026-10-07 09:57:04,251 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-07 09:58:04,000 [INFO] run_cycle: === run_cycle 09:58:04 ===
+2026-10-07 09:58:04,000 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-07 09:58:04,000 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-07 09:58:04,044 [INFO] predictor: Models loaded OK
+2026-10-07 09:58:04,160 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-07 09:59:03,938 [INFO] run_cycle: === run_cycle 09:59:03 ===
+2026-10-07 09:59:03,938 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-07 09:59:03,938 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-07 09:59:03,986 [INFO] predictor: Models loaded OK
+2026-10-07 09:59:15,070 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=4&jcd=18&hd=20261007: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-10-07 09:59:26,125 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=4&jcd=18&hd=20261007: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-10-07 09:59:40,559 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-07 09:59:41,671 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-07 09:59:42,826 [INFO] scraper: odds2t: 28/30 parsed
+2026-10-07 09:59:42,827 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-07 09:59:43,925 [INFO] scraper: odds_win: 6/6 parsed
+2026-10-07 09:59:43,925 [INFO] scraper: fetch_race 18/4: boats=6 odds=189/191
+2026-10-07 09:59:43,928 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-07 09:59:43,928 [INFO] predictor: combos: {'win': 6, '2t': 28, '3t': 120}
+2026-10-07 09:59:43,932 [INFO] run_cycle: fetched 18/4 [scan]: 154 combos
+2026-10-07 09:59:44,031 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -197,18 +194,18 @@ trace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
   {
     "target": "mirror",
     "ok": 1,
-    "c": 62
+    "c": 61
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 62
+    "c": 61
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 25, 'result': 13, 'scan': 24}
+{'final': 24, 'result': 13, 'scan': 24}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -243,10 +240,10 @@ trace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 [23:09:05] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S00"}
 ```
 
-## 本日残レース: 138件
+## 本日残レース: 137件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 6件 締切済
+- race_schedule: 144件 登録 / 7件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -289,7 +286,7 @@ trace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 |---|---|
 | **Latency** (scan→final avg) | 480.1s |
 | **Latency** (scan→final max) | 611.7s |
-| **Traffic** (notifications 24h) | 62 |
+| **Traffic** (notifications 24h) | 61 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
@@ -337,4 +334,4 @@ trace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-07T09:50:01.308128+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-07T10:00:02.009839+09:00_
