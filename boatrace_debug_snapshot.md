@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-07T08:50:01.950180+09:00
+**生成**: 2026-10-07T09:00:01.752750+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -18,7 +18,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 STRATEGY_CI_FAIL  ×50  [2026-10-07T08:00:46]
+### 🔴 STRATEGY_CI_FAIL  ×60  [2026-10-07T08:00:46]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 15.14MB / last modified 2026-10-07T08:49:05.089216+09:00
+- DB: 15.14MB / last modified 2026-10-07T08:59:39.026145+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,33 +150,26 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-fault=5000
-2026-10-07 08:46:04,426 [INFO] predictor: Models loaded OK
-2026-10-07 08:46:04,428 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-07 08:47:07,163 [INFO] run_cycle: === run_cycle 08:47:07 ===
-2026-10-07 08:47:07,163 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-07 08:47:07,163 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-07 08:47:07,207 [INFO] predictor: Models loaded OK
-2026-10-07 08:47:07,211 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-07 08:48:03,194 [INFO] run_cycle: === run_cycle 08:48:03 ===
-2026-10-07 08:48:03,194 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-07 08:48:03,194 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-07 08:48:03,250 [INFO] predictor: Models loaded OK
-2026-10-07 08:48:14,729 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-07 08:48:15,818 [INFO] scraper: odds3f: 18/20 parsed
-2026-10-07 08:48:16,910 [INFO] scraper: odds2t: 29/30 parsed
-2026-10-07 08:48:16,911 [INFO] scraper: odds2f: 9/15 parsed
-2026-10-07 08:48:18,007 [INFO] scraper: odds_win: 6/6 parsed
-2026-10-07 08:48:18,007 [INFO] scraper: fetch_race 14/2: boats=6 odds=182/191
-2026-10-07 08:48:18,011 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-07 08:48:18,011 [INFO] predictor: combos: {'win': 6, '2t': 29, '3t': 120}
-2026-10-07 08:48:18,014 [INFO] run_cycle: fetched 14/2 [scan]: 155 combos
-2026-10-07 08:48:18,127 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-07 08:49:04,168 [INFO] run_cycle: === run_cycle 08:49:04 ===
-2026-10-07 08:49:04,168 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-07 08:49:04,168 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-07 08:49:04,201 [INFO] predictor: Models loaded OK
-2026-10-07 08:49:04,307 [INFO] run_cycle: run_cycle done: 0 notifications
+0 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-07 08:58:29,629 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-07 08:58:29,630 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-07 08:58:30,712 [INFO] scraper: odds_win: 6/6 parsed
+2026-10-07 08:58:30,712 [INFO] scraper: fetch_race 14/2: boats=6 odds=191/191
+2026-10-07 08:58:30,716 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-07 08:58:30,716 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-10-07 08:58:30,721 [INFO] run_cycle: fetched 14/2 [final]: 156 combos
+2026-10-07 08:58:30,835 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-07 08:59:03,784 [INFO] run_cycle: === run_cycle 08:59:03 ===
+2026-10-07 08:59:03,784 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-07 08:59:03,784 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-07 08:59:03,816 [INFO] predictor: Models loaded OK
+2026-10-07 08:59:14,853 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=14&hd=20261007: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-10-07 08:59:25,888 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=14&hd=20261007: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-10-07 08:59:38,927 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=14&hd=20261007: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
+2026-10-07 08:59:38,927 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=14&hd=20261007
+2026-10-07 08:59:38,927 [ERROR] scraper: racelist fetch failed: jcd=14 rno=2
+2026-10-07 08:59:38,927 [WARNING] run_cycle: fetch None: 14/2
+2026-10-07 08:59:38,928 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -338,4 +331,4 @@ fault=5000
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-07T08:50:01.950180+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-07T09:00:01.752750+09:00_
