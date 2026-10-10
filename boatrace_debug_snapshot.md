@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-10T14:20:02.133988+09:00
+**生成**: 2026-10-10T14:30:02.202206+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×19 (24h) → ログ/DB確認
@@ -17,13 +17,13 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 STRATEGY_CI_FAIL  ×16  [2026-10-10T14:04:04]
-- key: `STRATEGY_CI_FAIL|`
-- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
-
-### 🔴 PSI_DRIFT_DETECTED  ×54  [2026-10-10T13:26:38]
+### 🔴 PSI_DRIFT_DETECTED  ×3  [2026-10-10T14:27:30]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
+
+### 🔴 STRATEGY_CI_FAIL  ×26  [2026-10-10T14:04:04]
+- key: `STRATEGY_CI_FAIL|`
+- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
 ### 🟡 ANOMALY_ODDS_SHIFT  ×1  [2026-10-10T12:02:28]
 - key: `ANOMALY_ODDS_SHIFT|`
@@ -106,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 15.36MB / last modified 2026-10-10T14:19:20.347195+09:00
+- DB: 15.36MB / last modified 2026-10-10T14:29:19.290926+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,35 +149,35 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-ed
-2026-10-10 14:18:19,678 [INFO] scraper: fetch_race 08/9: boats=6 odds=188/191
-2026-10-10 14:18:19,681 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-10 14:18:19,682 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-10-10 14:18:19,685 [INFO] run_cycle: fetched 08/9 [final]: 153 combos
-2026-10-10 14:18:23,288 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-10 14:18:24,385 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-10 14:18:25,489 [INFO] scraper: odds2t: 30/30 parsed
-2026-10-10 14:18:25,490 [INFO] scraper: odds2f: 15/15 parsed
-2026-10-10 14:18:26,602 [INFO] scraper: odds_win: 6/6 parsed
-2026-10-10 14:18:26,603 [INFO] scraper: fetch_race 18/12: boats=6 odds=191/191
-2026-10-10 14:18:26,605 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-10 14:18:26,605 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-10-10 14:18:26,609 [INFO] run_cycle: fetched 18/12 [scan]: 156 combos
-2026-10-10 14:18:26,822 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-10 14:19:03,788 [INFO] run_cycle: === run_cycle 14:19:03 ===
-2026-10-10 14:19:03,788 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-10 14:19:03,788 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-10 14:19:03,834 [INFO] predictor: Models loaded OK
-2026-10-10 14:19:16,593 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-10 14:19:17,712 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-10 14:19:18,830 [INFO] scraper: odds2t: 30/30 parsed
-2026-10-10 14:19:18,831 [INFO] scraper: odds2f: 15/15 parsed
-2026-10-10 14:19:19,926 [INFO] scraper: odds_win: 6/6 parsed
-2026-10-10 14:19:19,926 [INFO] scraper: fetch_race 09/9: boats=6 odds=191/191
-2026-10-10 14:19:19,929 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-10 14:19:19,929 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-10-10 14:19:19,933 [INFO] run_cycle: fetched 09/9 [scan]: 156 combos
-2026-10-10 14:19:20,045 [INFO] run_cycle: run_cycle done: 0 notifications
+sed
+2026-10-10 14:28:29,861 [INFO] scraper: fetch_race 22/8: boats=6 odds=187/191
+2026-10-10 14:28:29,865 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-10 14:28:29,865 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-10-10 14:28:29,871 [INFO] run_cycle: fetched 22/8 [final]: 154 combos
+2026-10-10 14:28:33,547 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-10 14:28:34,647 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-10 14:28:35,826 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-10 14:28:35,827 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-10 14:28:36,939 [INFO] scraper: odds_win: 5/6 parsed
+2026-10-10 14:28:37,021 [INFO] scraper: fetch_race 16/8: boats=6 odds=190/191
+2026-10-10 14:28:37,024 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-10 14:28:37,024 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-10-10 14:28:37,028 [INFO] run_cycle: fetched 16/8 [scan]: 155 combos
+2026-10-10 14:28:37,163 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-10 14:29:03,989 [INFO] run_cycle: === run_cycle 14:29:03 ===
+2026-10-10 14:29:03,989 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-10 14:29:03,989 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-10 14:29:04,038 [INFO] predictor: Models loaded OK
+2026-10-10 14:29:15,495 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-10 14:29:16,617 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-10 14:29:17,725 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-10 14:29:17,726 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-10 14:29:18,823 [INFO] scraper: odds_win: 6/6 parsed
+2026-10-10 14:29:18,823 [INFO] scraper: fetch_race 09/9: boats=6 odds=191/191
+2026-10-10 14:29:18,826 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-10 14:29:18,826 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-10-10 14:29:18,830 [INFO] run_cycle: fetched 09/9 [final]: 156 combos
+2026-10-10 14:29:19,041 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -244,10 +244,10 @@ ed
 [12:32:33] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 313, "n_recent": 92, "psi": 0.316}
 ```
 
-## 本日残レース: 80件
+## 本日残レース: 77件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 76件 締切済
+- race_schedule: 156件 登録 / 79件 締切済
 - 通知発射: scan=11 nid / final=14 nid / result=8 nid
 - predictions: 9 / うち結果DB記録済: 9
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -339,4 +339,4 @@ ed
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-10T14:20:02.133988+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-10T14:30:02.202206+09:00_
