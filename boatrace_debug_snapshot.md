@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-12T15:00:01.579253+09:00
+**生成**: 2026-10-12T15:10:01.723889+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×47 (24h)
+- 🟡 FINAL_MISSING×48 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🔴 PSI_DRIFT_DETECTED×13 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
@@ -18,21 +18,21 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×30  [2026-10-12T14:29:48]
+### 🔴 STRATEGY_CI_FAIL  ×5  [2026-10-12T15:05:36]
+- key: `STRATEGY_CI_FAIL|`
+- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
+
+### 🔴 PSI_DRIFT_DETECTED  ×40  [2026-10-12T14:29:48]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🟡 ANOMALY_BET_VOLUME_SPIKE  ×43  [2026-10-12T14:16:34]
+### 🟡 ANOMALY_BET_VOLUME_SPIKE  ×53  [2026-10-12T14:16:34]
 - key: `ANOMALY_BET_VOLUME_SPIKE|`
 - **FIX**: 本日のbet数が2σ急増。filter logic緩み・戦略追加・race_schedule異常
 
-### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×53  [2026-10-12T14:06:35]
+### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×56  [2026-10-12T14:06:35]
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
 - **FIX**: 直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS
-
-### 🔴 STRATEGY_CI_FAIL  ×55  [2026-10-12T14:04:38]
-- key: `STRATEGY_CI_FAIL|`
-- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
 ### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-10-12T13:30:03]
 - key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 4 件 (閾値 3)`
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 15.61MB / last modified 2026-10-12T15:00:04.404205+09:00
+- DB: 15.61MB / last modified 2026-10-12T15:09:26.588187+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,34 +150,35 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
- run_cycle 14:58:03 ===
-2026-10-12 14:58:03,553 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-12 14:58:03,553 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-12 14:58:03,582 [INFO] predictor: Models loaded OK
-2026-10-12 14:58:03,786 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-12 14:59:04,142 [INFO] run_cycle: === run_cycle 14:59:04 ===
-2026-10-12 14:59:04,143 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-12 14:59:04,143 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-12 14:59:04,188 [INFO] predictor: Models loaded OK
-2026-10-12 14:59:16,610 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-12 14:59:17,778 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-12 14:59:18,898 [INFO] scraper: odds2t: 30/30 parsed
-2026-10-12 14:59:18,899 [INFO] scraper: odds2f: 14/15 parsed
-2026-10-12 14:59:19,991 [INFO] scraper: odds_win: 4/6 parsed
-2026-10-12 14:59:19,991 [INFO] scraper: fetch_race 11/10: boats=6 odds=188/191
-2026-10-12 14:59:19,994 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-12 14:59:19,994 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
-2026-10-12 14:59:19,998 [INFO] run_cycle: fetched 11/10 [final]: 154 combos
-2026-10-12 14:59:23,436 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-12 14:59:24,570 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-12 14:59:25,656 [INFO] scraper: odds2t: 30/30 parsed
-2026-10-12 14:59:25,658 [INFO] scraper: odds2f: 15/15 parsed
-2026-10-12 14:59:26,729 [INFO] scraper: odds_win: 2/6 parsed
-2026-10-12 14:59:26,729 [INFO] scraper: fetch_race 16/9: boats=6 odds=187/191
-2026-10-12 14:59:26,731 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-12 14:59:26,731 [INFO] predictor: combos: {'win': 2, '2t': 30, '3t': 120}
-2026-10-12 14:59:26,735 [INFO] run_cycle: fetched 16/9 [scan]: 152 combos
-2026-10-12 14:59:26,938 [INFO] run_cycle: run_cycle done: 0 notifications
+d
+2026-10-12 15:08:19,027 [INFO] scraper: fetch_race 02/10: boats=6 odds=191/191
+2026-10-12 15:08:19,031 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-12 15:08:19,031 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-10-12 15:08:19,035 [INFO] run_cycle: fetched 02/10 [scan]: 156 combos
+2026-10-12 15:08:19,156 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-12 15:09:04,447 [INFO] run_cycle: === run_cycle 15:09:04 ===
+2026-10-12 15:09:04,447 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-12 15:09:04,447 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-12 15:09:04,486 [INFO] predictor: Models loaded OK
+2026-10-12 15:09:16,059 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-12 15:09:17,140 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-12 15:09:18,226 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-12 15:09:18,227 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-12 15:09:19,396 [INFO] scraper: odds_win: 4/6 parsed
+2026-10-12 15:09:19,396 [INFO] scraper: fetch_race 01/1: boats=6 odds=189/191
+2026-10-12 15:09:19,400 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-12 15:09:19,400 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-10-12 15:09:19,404 [INFO] run_cycle: fetched 01/1 [scan]: 154 combos
+2026-10-12 15:09:23,107 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-12 15:09:24,181 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-12 15:09:25,281 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-12 15:09:25,282 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-12 15:09:26,348 [INFO] scraper: odds_win: 6/6 parsed
+2026-10-12 15:09:26,349 [INFO] scraper: fetch_race 03/10: boats=6 odds=191/191
+2026-10-12 15:09:26,351 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-12 15:09:26,351 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-10-12 15:09:26,355 [INFO] run_cycle: fetched 03/10 [scan]: 156 combos
+2026-10-12 15:09:26,482 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -210,15 +211,15 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 39, 'result': 23, 'scan': 31}
+{'final': 38, 'result': 23, 'scan': 32}
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 208
-  FINAL_MISSING: 47
+  ANOMALY_SCRAPER_FAILURE_BURST: 211
+  FINAL_MISSING: 48
   STRATEGY_CI_FAIL: 17
   PSI_DRIFT_DETECTED: 13
-  ANOMALY_BET_VOLUME_SPIKE: 11
+  ANOMALY_BET_VOLUME_SPIKE: 12
   ANOMALY_BET_VOLUME_DROP: 1
   ANOMALY_SCAN_FINAL_RATIO: 1
   LARGE_ODDS_DRIFT: 1
@@ -233,23 +234,23 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[15:05:33] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
+[15:04:29] FINAL_MISSING: {"deadline": "2026-10-12T12:33:00+09:00", "kind": "FINAL_MISSING", "nid": "2026101216041233", "sid": "S00"}
+[15:02:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1038}
+[15:01:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1061}
+[15:00:35] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1059}
+[15:00:35] ANOMALY_BET_VOLUME_SPIKE: {"baseline_mean": 8.6, "baseline_n_days": 7, "baseline_stdev": 2.8, "hour": 15, "kind": "ANOMALY_BET_VOLUME_SPIKE", "today_so_far": 16, "z_score": 2.63}
 [14:59:26] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1041}
 [14:58:03] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1056}
 [14:57:19] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1052}
 [14:56:27] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 4, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1054}
-[14:54:20] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 4, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1037}
-[14:53:44] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 4, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1036}
-[14:52:26] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 4, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1044}
-[14:51:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 4, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1048}
-[14:50:21] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 4, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1049}
-[14:49:33] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 4, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 1043}
 ```
 
-## 本日残レース: 71件
+## 本日残レース: 68件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 97件 締切済
-- 通知発射: scan=20 nid / final=25 nid / result=16 nid
+- race_schedule: 168件 登録 / 100件 締切済
+- 通知発射: scan=21 nid / final=25 nid / result=16 nid
 - predictions: 16 / うち結果DB記録済: 16
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - 🔴 scan後final無しのまま締切: 2件（FINAL_MISSING の温床）
@@ -341,4 +342,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-12T15:00:01.579253+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-12T15:10:01.723889+09:00_
