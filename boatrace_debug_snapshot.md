@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-16T08:40:01.982281+09:00
+**生成**: 2026-10-16T08:50:01.512256+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
@@ -23,11 +23,11 @@
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×39  [2026-10-16T08:01:02]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×49  [2026-10-16T08:01:02]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×39  [2026-10-16T08:01:02]
+### 🔴 STRATEGY_CI_FAIL  ×49  [2026-10-16T08:01:02]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 15.88MB / last modified 2026-10-16T08:39:05.226248+09:00
+- DB: 15.88MB / last modified 2026-10-16T08:49:19.609236+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,32 +151,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-10-16 08:36:30,732 [INFO] run_cycle: fetched 21/1 [scan]: 156 combos
-2026-10-16 08:36:30,837 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-16 08:37:04,718 [INFO] run_cycle: === run_cycle 08:37:04 ===
-2026-10-16 08:37:04,718 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-16 08:37:04,718 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-16 08:37:04,750 [INFO] predictor: Models loaded OK
-2026-10-16 08:37:04,873 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-16 08:38:04,020 [INFO] run_cycle: === run_cycle 08:38:04 ===
-2026-10-16 08:38:04,020 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-16 08:38:04,020 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-16 08:38:04,108 [INFO] predictor: Models loaded OK
-2026-10-16 08:38:16,668 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-16 08:38:17,830 [INFO] scraper: odds3f: 19/20 parsed
-2026-10-16 08:38:18,910 [INFO] scraper: odds2t: 28/30 parsed
-2026-10-16 08:38:18,911 [INFO] scraper: odds2f: 13/15 parsed
-2026-10-16 08:38:19,984 [INFO] scraper: odds_win: 5/6 parsed
-2026-10-16 08:38:19,985 [INFO] scraper: fetch_race 10/1: boats=6 odds=185/191
-2026-10-16 08:38:19,988 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-16 08:38:19,988 [INFO] predictor: combos: {'win': 5, '2t': 28, '3t': 120}
-2026-10-16 08:38:19,992 [INFO] run_cycle: fetched 10/1 [scan]: 153 combos
-2026-10-16 08:38:20,113 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-16 08:39:04,713 [INFO] run_cycle: === run_cycle 08:39:04 ===
-2026-10-16 08:39:04,713 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-16 08:39:04,713 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-16 08:39:04,784 [INFO] predictor: Models loaded OK
-2026-10-16 08:39:04,897 [INFO] run_cycle: run_cycle done: 0 notifications
+al]: 156 combos
+2026-10-16 08:48:35,249 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-16 08:48:36,360 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-16 08:48:37,521 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-16 08:48:37,522 [INFO] scraper: odds2f: 14/15 parsed
+2026-10-16 08:48:38,728 [INFO] scraper: odds_win: 4/6 parsed
+2026-10-16 08:48:38,728 [INFO] scraper: fetch_race 14/2: boats=6 odds=188/191
+2026-10-16 08:48:38,731 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-16 08:48:38,731 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-10-16 08:48:38,736 [INFO] run_cycle: fetched 14/2 [scan]: 154 combos
+2026-10-16 08:48:38,885 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-16 08:49:04,274 [INFO] run_cycle: === run_cycle 08:49:04 ===
+2026-10-16 08:49:04,274 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-16 08:49:04,274 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-16 08:49:04,317 [INFO] predictor: Models loaded OK
+2026-10-16 08:49:15,760 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-16 08:49:16,869 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-16 08:49:18,105 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-16 08:49:18,106 [INFO] scraper: odds2f: 14/15 parsed
+2026-10-16 08:49:19,262 [INFO] scraper: odds_win: 6/6 parsed
+2026-10-16 08:49:19,262 [INFO] scraper: fetch_race 10/1: boats=6 odds=190/191
+2026-10-16 08:49:19,266 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-16 08:49:19,267 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-10-16 08:49:19,271 [INFO] run_cycle: fetched 10/1 [final]: 156 combos
+2026-10-16 08:49:19,517 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-16 08:50:05,535 [INFO] run_cycle: === run_cycle 08:50:05 ===
+2026-10-16 08:50:05,535 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-16 08:50:05,535 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
 
 ```
 
@@ -245,10 +247,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [22:47:05] FINAL_MISSING: {"deadline": "2026-10-15T17:15:00+09:00", "kind": "FINAL_MISSING", "nid": "2026101524051715", "sid": "S00"}
 ```
 
-## 本日残レース: 155件
+## 本日残レース: 154件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 1件 締切済
+- race_schedule: 156件 登録 / 2件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -340,4 +342,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-16T08:40:01.982281+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-16T08:50:01.512256+09:00_
