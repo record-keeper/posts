@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-22T08:40:01.976865+09:00
+**生成**: 2026-10-22T08:50:01.345305+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -17,7 +17,7 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 STRATEGY_CI_FAIL  ×40  [2026-10-22T08:00:38]
+### 🔴 STRATEGY_CI_FAIL  ×51  [2026-10-22T08:00:38]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 16.38MB / last modified 2026-10-22T08:39:04.193540+09:00
+- DB: 16.38MB / last modified 2026-10-22T08:49:03.538417+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,29 +149,32 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-dels loaded OK
-2026-10-22 08:37:15,324 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=18&hd=20261022: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-10-22 08:37:26,379 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=18&hd=20261022: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-10-22 08:37:39,818 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-22 08:37:40,923 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-22 08:37:42,023 [INFO] scraper: odds2t: 30/30 parsed
-2026-10-22 08:37:42,024 [INFO] scraper: odds2f: 10/15 parsed
-2026-10-22 08:37:43,122 [INFO] scraper: odds_win: 5/6 parsed
-2026-10-22 08:37:43,122 [INFO] scraper: fetch_race 18/1: boats=6 odds=185/191
-2026-10-22 08:37:43,125 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-22 08:37:43,125 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-10-22 08:37:43,129 [INFO] run_cycle: fetched 18/1 [scan]: 155 combos
-2026-10-22 08:37:43,228 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-22 08:38:03,725 [INFO] run_cycle: === run_cycle 08:38:03 ===
-2026-10-22 08:38:03,725 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-22 08:38:03,725 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-22 08:38:03,765 [INFO] predictor: Models loaded OK
-2026-10-22 08:38:03,856 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-22 08:39:03,748 [INFO] run_cycle: === run_cycle 08:39:03 ===
-2026-10-22 08:39:03,748 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-22 08:39:03,749 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-22 08:39:03,777 [INFO] predictor: Models loaded OK
-2026-10-22 08:39:03,861 [INFO] run_cycle: run_cycle done: 0 notifications
+48:03,993 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-22 08:48:03,993 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-22 08:48:04,035 [INFO] predictor: Models loaded OK
+2026-10-22 08:48:15,504 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-22 08:48:16,616 [INFO] scraper: odds3f: 19/20 parsed
+2026-10-22 08:48:17,699 [INFO] scraper: odds2t: 25/30 parsed
+2026-10-22 08:48:17,700 [INFO] scraper: odds2f: 14/15 parsed
+2026-10-22 08:48:18,818 [INFO] scraper: odds_win: 5/6 parsed
+2026-10-22 08:48:18,818 [INFO] scraper: fetch_race 14/2: boats=6 odds=183/191
+2026-10-22 08:48:18,821 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-22 08:48:18,822 [INFO] predictor: combos: {'win': 5, '2t': 25, '3t': 120}
+2026-10-22 08:48:18,825 [INFO] run_cycle: fetched 14/2 [scan]: 150 combos
+2026-10-22 08:48:18,862 [INFO] race_id: notif: nid=2026102214020901 sid=S00 phase=scan rank=SSS
+2026-10-22 08:48:19,334 [INFO] notifier: Discord notify OK (status=204)
+2026-10-22 08:48:19,715 [INFO] notifier: Discord notify OK (status=204)
+2026-10-22 08:48:19,756 [INFO] run_cycle: SCAN S00 鳴門2R SSS
+2026-10-22 08:48:19,855 [INFO] run_cycle: run_cycle done: 1 notifications
+2026-10-22 08:49:03,344 [INFO] run_cycle: === run_cycle 08:49:03 ===
+2026-10-22 08:49:03,344 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-22 08:49:03,344 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-22 08:49:03,371 [INFO] predictor: Models loaded OK
+2026-10-22 08:49:03,470 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-22 08:50:05,092 [INFO] run_cycle: === run_cycle 08:50:05 ===
+2026-10-22 08:50:05,092 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-22 08:50:05,092 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-22 08:50:05,123 [INFO] predictor: Models loaded OK
 
 ```
 
@@ -193,18 +196,18 @@ dels loaded OK
   {
     "target": "mirror",
     "ok": 1,
-    "c": 56
+    "c": 57
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 56
+    "c": 57
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 20, 'result': 14, 'scan': 22}
+{'final': 20, 'result': 14, 'scan': 23}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -237,11 +240,11 @@ dels loaded OK
 [22:44:04] FINAL_MISSING: {"deadline": "2026-10-21T11:07:00+09:00", "kind": "FINAL_MISSING", "nid": "2026102123021107", "sid": "S00"}
 ```
 
-## 本日残レース: 167件
+## 本日残レース: 166件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 1件 締切済
-- 通知発射: scan=0 nid / final=0 nid / result=0 nid
+- race_schedule: 168件 登録 / 2件 締切済
+- 通知発射: scan=1 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - ✅ scan後final無しのまま締切: 0件（FINAL_MISSING の温床）
@@ -283,7 +286,7 @@ dels loaded OK
 |---|---|
 | **Latency** (scan→final avg) | 482.3s |
 | **Latency** (scan→final max) | 650.9s |
-| **Traffic** (notifications 24h) | 56 |
+| **Traffic** (notifications 24h) | 57 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
@@ -333,4 +336,4 @@ dels loaded OK
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-22T08:40:01.976865+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-22T08:50:01.345305+09:00_
