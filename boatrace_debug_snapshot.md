@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-22T10:50:01.303692+09:00
+**生成**: 2026-10-22T11:00:01.731800+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×51 (24h)
+- 🟡 FINAL_MISSING×50 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
@@ -21,7 +21,7 @@
 - key: `ANOMALY_SCAN_FINAL_RATIO|`
 - **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
 
-### 🔴 STRATEGY_CI_FAIL  ×48  [2026-10-22T10:02:20]
+### 🔴 STRATEGY_CI_FAIL  ×58  [2026-10-22T10:02:20]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 16.38MB / last modified 2026-10-22T10:49:53.605418+09:00
+- DB: 16.38MB / last modified 2026-10-22T11:00:02.615313+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,35 +149,35 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-49:37,557 [INFO] scraper: odds2f: 15/15 parsed
-2026-10-22 10:49:38,629 [INFO] scraper: odds_win: 6/6 parsed
-2026-10-22 10:49:38,629 [INFO] scraper: fetch_race 14/6: boats=6 odds=191/191
-2026-10-22 10:49:38,631 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-22 10:49:38,631 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-10-22 10:49:38,635 [INFO] run_cycle: fetched 14/6 [final]: 156 combos
-2026-10-22 10:49:38,640 [INFO] race_id: notif: nid=2026102214061052 sid=S01_NAKAANA1 phase=final rank=
-2026-10-22 10:49:38,982 [INFO] notifier: Discord notify OK (status=204)
-2026-10-22 10:49:39,450 [INFO] notifier: Discord notify OK (status=204)
-2026-10-22 10:49:39,455 [INFO] run_cycle: RETREAT S01_NAKAANA1 鳴門6R
-2026-10-22 10:49:43,180 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-22 10:49:44,288 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-22 10:49:45,393 [INFO] scraper: odds2t: 28/30 parsed
-2026-10-22 10:49:45,394 [INFO] scraper: odds2f: 15/15 parsed
-2026-10-22 10:49:46,493 [INFO] scraper: odds_win: 4/6 parsed
-2026-10-22 10:49:46,493 [INFO] scraper: fetch_race 16/1: boats=6 odds=187/191
-2026-10-22 10:49:46,495 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-22 10:49:46,495 [INFO] predictor: combos: {'win': 4, '2t': 28, '3t': 120}
-2026-10-22 10:49:46,499 [INFO] run_cycle: fetched 16/1 [scan]: 152 combos
-2026-10-22 10:49:50,099 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-22 10:49:51,230 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-22 10:49:52,346 [INFO] scraper: odds2t: 30/30 parsed
-2026-10-22 10:49:52,347 [INFO] scraper: odds2f: 14/15 parsed
-2026-10-22 10:49:53,430 [INFO] scraper: odds_win: 6/6 parsed
-2026-10-22 10:49:53,430 [INFO] scraper: fetch_race 18/6: boats=6 odds=190/191
-2026-10-22 10:49:53,433 [INFO] predictor: CALIBRATION_MODE=on
-2026-10-22 10:49:53,433 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-10-22 10:49:53,436 [INFO] run_cycle: fetched 18/6 [scan]: 156 combos
-2026-10-22 10:49:53,549 [INFO] run_cycle: run_cycle done: 1 notifications
+rsed
+2026-10-22 10:58:25,980 [INFO] scraper: fetch_race 13/2: boats=6 odds=188/191
+2026-10-22 10:58:25,982 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-22 10:58:25,982 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
+2026-10-22 10:58:25,987 [INFO] run_cycle: fetched 13/2 [scan]: 153 combos
+2026-10-22 10:58:26,188 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-22 10:59:03,951 [INFO] run_cycle: === run_cycle 10:59:03 ===
+2026-10-22 10:59:03,951 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-22 10:59:03,951 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-22 10:59:03,985 [INFO] predictor: Models loaded OK
+2026-10-22 10:59:16,462 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-22 10:59:17,589 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-22 10:59:18,709 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-22 10:59:18,710 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-22 10:59:19,817 [INFO] scraper: odds_win: 6/6 parsed
+2026-10-22 10:59:19,818 [INFO] scraper: fetch_race 18/6: boats=6 odds=191/191
+2026-10-22 10:59:19,821 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-22 10:59:19,821 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-10-22 10:59:19,825 [INFO] run_cycle: fetched 18/6 [final]: 156 combos
+2026-10-22 10:59:23,450 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-22 10:59:24,558 [INFO] scraper: odds3f: 19/20 parsed
+2026-10-22 10:59:25,686 [INFO] scraper: odds2t: 28/30 parsed
+2026-10-22 10:59:25,687 [INFO] scraper: odds2f: 12/15 parsed
+2026-10-22 10:59:26,793 [INFO] scraper: odds_win: 4/6 parsed
+2026-10-22 10:59:26,793 [INFO] scraper: fetch_race 17/3: boats=6 odds=183/191
+2026-10-22 10:59:26,796 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-22 10:59:26,796 [INFO] predictor: combos: {'win': 4, '2t': 28, '3t': 120}
+2026-10-22 10:59:26,799 [INFO] run_cycle: fetched 17/3 [scan]: 152 combos
+2026-10-22 10:59:26,908 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -199,24 +199,24 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 62
+    "c": 59
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 62
+    "c": 59
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 23, 'result': 15, 'scan': 24}
+{'final': 22, 'result': 15, 'scan': 22}
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 64
-  FINAL_MISSING: 51
-  ANOMALY_SCAN_FINAL_RATIO: 21
+  ANOMALY_SCRAPER_FAILURE_BURST: 55
+  FINAL_MISSING: 50
+  ANOMALY_SCAN_FINAL_RATIO: 19
   STRATEGY_CI_FAIL: 17
   LARGE_ODDS_DRIFT: 1
 ```
@@ -225,7 +225,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | sid | n | hits | cost | payout | PL | ROI |
 |---|---|---|---|---|---|---|
 | S00 | 43 | 14 | 12,900 | 10,980 | -1,920 | 0.851 |
-| S01_NAKAANA1 | 48 | 16 | 9,600 | 7,800 | -1,800 | 0.812 |
+| S01_NAKAANA1 | 47 | 16 | 9,400 | 7,800 | -1,600 | 0.83 |
 | S02_TETSUBAN | 14 | 9 | 2,800 | 3,780 | +980 | 1.35 |
 
 ## 直近アラート (24h・新しい順)
@@ -242,10 +242,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:56:03] FINAL_MISSING: {"deadline": "2026-10-21T14:21:00+09:00", "kind": "FINAL_MISSING", "nid": "2026102116081421", "sid": "S00"}
 ```
 
-## 本日残レース: 150件
+## 本日残レース: 146件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 18件 締切済
+- race_schedule: 168件 登録 / 22件 締切済
 - 通知発射: scan=4 nid / final=4 nid / result=1 nid
 - predictions: 2 / うち結果DB記録済: 1
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -286,9 +286,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 483.3s |
+| **Latency** (scan→final avg) | 497.2s |
 | **Latency** (scan→final max) | 650.9s |
-| **Traffic** (notifications 24h) | 62 |
+| **Traffic** (notifications 24h) | 59 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S01_NAKAANA1) | 400円 used |
 
@@ -297,12 +297,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ### bt別: 予測確率 vs 実的中率
 | bt | n | 予測avg | 実的中率 | 校正誤差 | 過信度 | Brier |
 |---|---|---|---|---|---|---|
-| win | 445 | 0.4788 | 0.3573 | +0.1215 | 🟡+25% | 0.2429 |
+| win | 444 | 0.4799 | 0.3581 | +0.1218 | 🟡+25% | 0.2434 |
 
 ### 戦略別: 校正精度 + Brier Skill Score
 | sid | bt | n | pred | actual | Brier | BSS | ROI |
 |---|---|---|---|---|---|---|---|
-| S00 | win | 185 | 0.4406 | 0.2811 | 0.2371 | 🔴-0.17 | 0.757 |
+| S00 | win | 184 | 0.4429 | 0.2826 | 0.2384 | 🔴-0.18 | 0.761 |
 | S01_NAKAANA1 | win | 176 | 0.4927 | 0.3580 | 0.2422 | 🔴-0.05 | 0.974 |
 | S02_TETSUBAN | win | 84 | 0.5341 | 0.5238 | 0.2569 | 🔴-0.03 | 0.962 |
 
@@ -339,4 +339,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-22T10:50:01.303692+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-22T11:00:01.731800+09:00_
