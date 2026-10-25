@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-25T21:10:01.476086+09:00
+**生成**: 2026-10-25T21:20:01.265599+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×50 (24h) → ログ/DB確認
@@ -18,15 +18,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×6  [2026-10-25T21:07:16]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×26  [2026-10-25T21:07:16]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×6  [2026-10-25T21:07:16]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×26  [2026-10-25T21:07:16]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×3  [2026-10-25T21:07:16]
+### 🔴 STRATEGY_CI_FAIL  ×13  [2026-10-25T21:07:16]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 16.81MB / last modified 2026-10-25T21:09:16.480074+09:00
+- DB: 16.81MB / last modified 2026-10-25T21:19:05.187441+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,31 +150,31 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-TPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-10-25 21:06:25,894 [WARNING] scraper: beforeinfo parse failed: jcd=20 rno=8
-2026-10-25 21:06:25,894 [WARNING] run_cycle: fetch None: 20/8
-2026-10-25 21:06:25,894 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-25 21:07:04,971 [INFO] run_cycle: === run_cycle 21:07:04 ===
-2026-10-25 21:07:04,971 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-25 21:07:04,971 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-25 21:07:05,042 [INFO] predictor: Models loaded OK
-2026-10-25 21:07:16,304 [WARNING] scraper: beforeinfo parse failed: jcd=20 rno=8
-2026-10-25 21:07:16,304 [WARNING] run_cycle: fetch None: 20/8
-2026-10-25 21:07:16,304 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-25 21:08:04,083 [INFO] run_cycle: === run_cycle 21:08:04 ===
-2026-10-25 21:08:04,083 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-25 21:08:04,083 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-25 21:08:04,197 [INFO] predictor: Models loaded OK
-2026-10-25 21:08:14,455 [WARNING] scraper: beforeinfo parse failed: jcd=20 rno=8
-2026-10-25 21:08:14,455 [WARNING] run_cycle: fetch None: 20/8
-2026-10-25 21:08:14,456 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-25 21:09:05,126 [INFO] run_cycle: === run_cycle 21:09:05 ===
-2026-10-25 21:09:05,126 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-25 21:09:05,126 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-25 21:09:05,156 [INFO] predictor: Models loaded OK
-2026-10-25 21:09:16,402 [WARNING] scraper: beforeinfo parse failed: jcd=20 rno=8
-2026-10-25 21:09:16,402 [WARNING] run_cycle: fetch None: 20/8
-2026-10-25 21:09:16,402 [INFO] run_cycle: run_cycle done: 0 notifications
+ch_race 20/8: boats=6 odds=191/191
+2026-10-25 21:15:20,037 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-25 21:15:20,037 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-10-25 21:15:20,041 [INFO] run_cycle: fetched 20/8 [final]: 156 combos
+2026-10-25 21:15:20,169 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-25 21:16:04,349 [INFO] run_cycle: === run_cycle 21:16:04 ===
+2026-10-25 21:16:04,349 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-25 21:16:04,349 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-25 21:16:04,389 [INFO] predictor: Models loaded OK
+2026-10-25 21:16:04,411 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-25 21:17:04,764 [INFO] run_cycle: === run_cycle 21:17:04 ===
+2026-10-25 21:17:04,765 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-25 21:17:04,765 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-25 21:17:04,835 [INFO] predictor: Models loaded OK
+2026-10-25 21:17:04,839 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-25 21:18:04,358 [INFO] run_cycle: === run_cycle 21:18:04 ===
+2026-10-25 21:18:04,358 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-25 21:18:04,358 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-25 21:18:04,432 [INFO] predictor: Models loaded OK
+2026-10-25 21:18:04,436 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-25 21:19:04,834 [INFO] run_cycle: === run_cycle 21:19:04 ===
+2026-10-25 21:19:04,834 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-25 21:19:04,834 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-25 21:19:04,878 [INFO] predictor: Models loaded OK
+2026-10-25 21:19:04,881 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -196,18 +196,18 @@ TPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeo
   {
     "target": "mirror",
     "ok": 1,
-    "c": 64
+    "c": 65
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 64
+    "c": 65
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 27, 'result': 11, 'scan': 26}
+{'final': 28, 'result': 11, 'scan': 26}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -225,7 +225,7 @@ TPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeo
 |---|---|---|---|---|---|---|
 | S00 | 41 | 11 | 12,300 | 7,890 | -4,410 | 0.641 |
 | S01_NAKAANA1 | 49 | 11 | 9,800 | 4,140 | -5,660 | 0.422 |
-| S02_TETSUBAN | 10 | 5 | 2,000 | 2,340 | +340 | 1.17 |
+| S02_TETSUBAN | 11 | 5 | 2,200 | 2,340 | +140 | 1.064 |
 
 ## 直近アラート (24h・新しい順)
 ```
@@ -241,12 +241,12 @@ TPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeo
 [20:35:21] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 609}
 ```
 
-## 本日残レース: 5件
+## 本日残レース: 4件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 163件 締切済
-- 通知発射: scan=25 nid / final=26 nid / result=11 nid
-- predictions: 11 / うち結果DB記録済: 11
+- race_schedule: 168件 登録 / 164件 締切済
+- 通知発射: scan=25 nid / final=27 nid / result=11 nid
+- predictions: 12 / うち結果DB記録済: 11
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - 🔴 scan後final無しのまま締切: 7件（FINAL_MISSING の温床）
 
@@ -257,6 +257,7 @@ TPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeo
 ## 最新 predictions サンプル (計算spot-check用)
 | sid | race | bt | combo | p | odds | ev | bet | at |
 |---|---|---|---|---|---|---|---|---|
+| S02_TETSUBAN | 208R | win | 1 | 0.6026 | 2.8 | 1.69 | 200 | scan=- drift=- | 21:14:20 |
 | S01_NAKAANA1 | 248R | win | 1 | 0.4111 | 3.6 | 1.48 | 200 | scan=- drift=- | 18:23:20 |
 | S00 | 0810R | win | 1 | 0.5990 | 6.6 | 3.95 | 300 | scan=29.2 drift=-77.4% | 14:46:18 |
 | S01_NAKAANA1 | 089R | win | 1 | 0.5891 | 3.3 | 1.94 | 200 | scan=- drift=- | 14:17:26 |
@@ -266,7 +267,6 @@ TPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeo
 | S01_NAKAANA1 | 114R | win | 1 | 0.5334 | 3.1 | 1.65 | 200 | scan=- drift=- | 11:48:31 |
 | S00 | 174R | win | 1 | 0.5719 | 6.7 | 3.83 | 300 | scan=- drift=- | 11:42:20 |
 | S00 | 041R | win | 1 | 0.4989 | 4.0 | 2.00 | 300 | scan=4.5 drift=-11.1% | 10:49:45 |
-| S01_NAKAANA1 | 082R | win | 1 | 0.5686 | 3.7 | 2.10 | 200 | scan=- drift=- | 10:46:28 |
 
 ## オッズドリフト統計 (7日)
 
@@ -287,10 +287,11 @@ TPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeo
 |---|---|
 | **Latency** (scan→final avg) | 465.3s |
 | **Latency** (scan→final max) | 648.0s |
-| **Traffic** (notifications 24h) | 64 |
+| **Traffic** (notifications 24h) | 65 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 1,800円 used |
 | **Saturation** (S01_NAKAANA1) | 1,000円 used |
+| **Saturation** (S02_TETSUBAN) | 200円 used |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
 
@@ -338,4 +339,4 @@ TPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeo
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-25T21:10:01.476086+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-25T21:20:01.265599+09:00_
