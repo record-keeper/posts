@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-26T08:50:01.829693+09:00
+**生成**: 2026-10-26T09:00:01.877292+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×50 (24h) → ログ/DB確認
@@ -18,15 +18,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×100  [2026-10-26T08:00:51]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×120  [2026-10-26T08:00:51]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×100  [2026-10-26T08:00:51]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×120  [2026-10-26T08:00:51]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×50  [2026-10-26T08:00:51]
+### 🔴 STRATEGY_CI_FAIL  ×60  [2026-10-26T08:00:51]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 16.85MB / last modified 2026-10-26T08:49:05.944360+09:00
+- DB: 16.85MB / last modified 2026-10-26T08:59:18.282416+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,25 +150,34 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-0, 'A': 200, 'B': 100} default=100
-2026-10-26 08:48:03,806 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-26 08:48:03,833 [INFO] predictor: Models loaded OK
-2026-10-26 08:48:14,871 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=21&hd=20261026: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-10-26 08:48:25,902 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=21&hd=20261026: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-10-26 08:48:39,018 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=21&hd=20261026: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
-2026-10-26 08:48:39,019 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=21&hd=20261026
-2026-10-26 08:48:39,019 [ERROR] scraper: racelist fetch failed: jcd=21 rno=2
-2026-10-26 08:48:39,019 [WARNING] run_cycle: fetch None: 21/2
-2026-10-26 08:48:39,019 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-26 08:49:03,901 [INFO] run_cycle: === run_cycle 08:49:03 ===
-2026-10-26 08:49:03,901 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-26 08:49:03,901 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-26 08:49:03,947 [INFO] predictor: Models loaded OK
-2026-10-26 08:49:04,076 [INFO] race_id: notif: nid=2026102621020901 sid=S02_TETSUBAN phase=scan rank=B
-2026-10-26 08:49:04,504 [INFO] notifier: Discord notify OK (status=204)
-2026-10-26 08:49:05,751 [INFO] notifier: Discord notify OK (status=204)
-2026-10-26 08:49:05,757 [INFO] run_cycle: SCAN S02_TETSUBAN 芦屋2R B
-2026-10-26 08:49:05,841 [INFO] run_cycle: run_cycle done: 1 notifications
+8:14,983 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-26 08:58:16,060 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-26 08:58:17,382 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-26 08:58:17,383 [INFO] scraper: odds2f: 13/15 parsed
+2026-10-26 08:58:18,486 [INFO] scraper: odds_win: 4/6 parsed
+2026-10-26 08:58:18,486 [INFO] scraper: fetch_race 21/2: boats=6 odds=187/191
+2026-10-26 08:58:18,490 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-26 08:58:18,490 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-10-26 08:58:18,494 [INFO] run_cycle: fetched 21/2 [final]: 154 combos
+2026-10-26 08:58:18,982 [INFO] race_id: notif: nid=2026102621020901 sid=S02_TETSUBAN phase=final rank=
+2026-10-26 08:58:19,391 [INFO] notifier: Discord notify OK (status=204)
+2026-10-26 08:58:19,804 [INFO] notifier: Discord notify OK (status=204)
+2026-10-26 08:58:19,918 [INFO] run_cycle: RETREAT S02_TETSUBAN 芦屋2R
+2026-10-26 08:58:20,019 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-26 08:59:03,243 [INFO] run_cycle: === run_cycle 08:59:03 ===
+2026-10-26 08:59:03,244 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-26 08:59:03,244 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-26 08:59:03,272 [INFO] predictor: Models loaded OK
+2026-10-26 08:59:14,664 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-26 08:59:15,762 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-26 08:59:16,860 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-26 08:59:16,861 [INFO] scraper: odds2f: 13/15 parsed
+2026-10-26 08:59:17,958 [INFO] scraper: odds_win: 4/6 parsed
+2026-10-26 08:59:17,958 [INFO] scraper: fetch_race 21/2: boats=6 odds=187/191
+2026-10-26 08:59:17,962 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-26 08:59:17,962 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-10-26 08:59:17,966 [INFO] run_cycle: fetched 21/2 [final]: 154 combos
+2026-10-26 08:59:18,073 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -190,18 +199,18 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   {
     "target": "mirror",
     "ok": 1,
-    "c": 65
+    "c": 66
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 65
+    "c": 66
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 27, 'result': 12, 'scan': 26}
+{'final': 28, 'result': 12, 'scan': 26}
 
 ## アラート件数 (24h・種類別)
 ```
@@ -239,7 +248,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 本日nidレジャー（ID単位完遂突合せ）
 - race_schedule: 144件 登録 / 2件 締切済
-- 通知発射: scan=1 nid / final=0 nid / result=0 nid
+- 通知発射: scan=1 nid / final=1 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - ✅ scan後final無しのまま締切: 0件（FINAL_MISSING の温床）
@@ -279,9 +288,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 | Signal | Value |
 |---|---|
-| **Latency** (scan→final avg) | 469.3s |
+| **Latency** (scan→final avg) | 473.8s |
 | **Latency** (scan→final max) | 648.0s |
-| **Traffic** (notifications 24h) | 65 |
+| **Traffic** (notifications 24h) | 66 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 
 ## 信ぴょう性メトリクス（予測精度の証拠）
@@ -330,4 +339,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-26T08:50:01.829693+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-26T09:00:01.877292+09:00_
