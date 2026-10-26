@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T18:10:01.616038+09:00",
+  "generated_at": "2026-10-26T18:20:01.276907+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -33,9 +33,9 @@
       "calibration_applied": true,
       "crontab": "# boatrace_v2 - managed by めう/Claude\nSHELL=/bin/bash\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n\n# 1分毎: 統合サイクル (run_cycle.py, flock で並行実行防止)\n* 8-23 * * * cd /opt/boatrace_v2 && flock -n /var/lock/run_cycle.lock /opt/boatrace/venv/bin/python3 run_cycle.py >> logs/run_cycle.log 2>&1\n\n# 10分毎: pending alert flush\n*/10 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 dispatch_pending.py >> logs/dispatch.log 2>&1\n\n# 10分毎: snapshot 生成 + GitHub 同期 (Claude 次セッション用)\n*/10 * * * * cd /opt/boatrace_v2 && bash sync_snapshot_to_github.sh >> logs/sync_snapshot.log 2>&1\n\n# 5分毎: 結果取得\n*/5 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 record_results.py >> logs/results.log 2>&1\n\n# 30分毎: health check\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 health.py >> logs/health.log 2>&1\n\n# 6時: 日次総合検査\n0 6 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 verify_all.py >> logs/verify_all.log 2>&1\n\n# 0時: 日次集計\n5 0 * * *  cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 daily_summary.py >> logs/daily.log 2>&1\n0 3 * * * find /opt -maxdepth 1 -name \"boatrace_v2.bak_*\" -mtime +7 -exec rm -rf {} \\; # backup cleanup\n\n# 30分毎: コード/DB anti-pattern 検査→alert 流入（HOOK level 自動検出）\n*/30 * * * * cd /opt/boatrace_v2 && /opt/boatrace/venv/bin/python3 tools/audit_and_emit_alerts.py >> logs/audit.log 2>&1",
       "db_size_mb": 16.9,
-      "db_mtime": "2026-10-26T18:09:05.139203+09:00",
-      "run_cycle_log_mtime": "2026-10-26T18:09:04.432195+09:00",
-      "log_tail": "bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:04:03,976 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:04:04,030 [INFO] predictor: Models loaded OK\n2026-10-26 18:04:04,129 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-10-26 18:05:04,434 [INFO] run_cycle: === run_cycle 18:05:04 ===\n2026-10-26 18:05:04,434 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:05:04,434 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:05:04,471 [INFO] predictor: Models loaded OK\n2026-10-26 18:05:04,573 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-10-26 18:06:04,384 [INFO] run_cycle: === run_cycle 18:06:04 ===\n2026-10-26 18:06:04,384 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:06:04,384 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:06:04,432 [INFO] predictor: Models loaded OK\n2026-10-26 18:06:16,897 [INFO] scraper: odds3t: 120/120 parsed\n2026-10-26 18:06:18,024 [INFO] scraper: odds3f: 20/20 parsed\n2026-10-26 18:06:19,160 [INFO] scraper: odds2t: 30/30 parsed\n2026-10-26 18:06:19,161 [INFO] scraper: odds2f: 15/15 parsed\n2026-10-26 18:06:20,324 [INFO] scraper: odds_win: 6/6 parsed\n2026-10-26 18:06:20,324 [INFO] scraper: fetch_race 01/7: boats=6 odds=191/191\n2026-10-26 18:06:20,328 [INFO] predictor: CALIBRATION_MODE=on\n2026-10-26 18:06:20,328 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-10-26 18:06:20,331 [INFO] run_cycle: fetched 01/7 [scan]: 156 combos\n2026-10-26 18:06:20,449 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-10-26 18:07:04,636 [INFO] run_cycle: === run_cycle 18:07:04 ===\n2026-10-26 18:07:04,636 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:07:04,636 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:07:04,665 [INFO] predictor: Models loaded OK\n2026-10-26 18:07:04,787 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-10-26 18:08:04,465 [INFO] run_cycle: === run_cycle 18:08:04 ===\n2026-10-26 18:08:04,465 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:08:04,465 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:08:04,535 [INFO] predictor: Models loaded OK\n2026-10-26 18:08:04,662 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-10-26 18:09:04,350 [INFO] run_cycle: === run_cycle 18:09:04 ===\n2026-10-26 18:09:04,350 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:09:04,350 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:09:04,430 [INFO] predictor: Models loaded OK\n2026-10-26 18:09:04,432 [INFO] run_cycle: run_cycle done: 0 notifications\n"
+      "db_mtime": "2026-10-26T18:19:04.934028+09:00",
+      "run_cycle_log_mtime": "2026-10-26T18:20:05.850723+09:00",
+      "log_tail": "cle: === run_cycle 18:15:05 ===\n2026-10-26 18:15:05,213 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:15:05,214 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:15:05,257 [INFO] predictor: Models loaded OK\n2026-10-26 18:15:05,383 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-10-26 18:16:04,102 [INFO] run_cycle: === run_cycle 18:16:04 ===\n2026-10-26 18:16:04,102 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:16:04,102 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:16:04,147 [INFO] predictor: Models loaded OK\n2026-10-26 18:16:16,834 [INFO] scraper: odds3t: 120/120 parsed\n2026-10-26 18:16:18,295 [INFO] scraper: odds3f: 20/20 parsed\n2026-10-26 18:16:19,413 [INFO] scraper: odds2t: 30/30 parsed\n2026-10-26 18:16:19,414 [INFO] scraper: odds2f: 15/15 parsed\n2026-10-26 18:16:20,495 [INFO] scraper: odds_win: 6/6 parsed\n2026-10-26 18:16:20,495 [INFO] scraper: fetch_race 15/8: boats=6 odds=191/191\n2026-10-26 18:16:20,498 [INFO] predictor: CALIBRATION_MODE=on\n2026-10-26 18:16:20,498 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}\n2026-10-26 18:16:20,502 [INFO] run_cycle: fetched 15/8 [scan]: 156 combos\n2026-10-26 18:16:20,614 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-10-26 18:17:04,553 [INFO] run_cycle: === run_cycle 18:17:04 ===\n2026-10-26 18:17:04,553 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:17:04,553 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:17:04,619 [INFO] predictor: Models loaded OK\n2026-10-26 18:17:04,738 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-10-26 18:18:03,882 [INFO] run_cycle: === run_cycle 18:18:03 ===\n2026-10-26 18:18:03,883 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:18:03,883 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:18:03,930 [INFO] predictor: Models loaded OK\n2026-10-26 18:18:04,036 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-10-26 18:19:04,446 [INFO] run_cycle: === run_cycle 18:19:04 ===\n2026-10-26 18:19:04,446 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:19:04,446 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:19:04,533 [INFO] predictor: Models loaded OK\n2026-10-26 18:19:04,535 [INFO] run_cycle: run_cycle done: 0 notifications\n2026-10-26 18:20:05,733 [INFO] run_cycle: === run_cycle 18:20:05 ===\n2026-10-26 18:20:05,733 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100\n2026-10-26 18:20:05,733 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000\n2026-10-26 18:20:05,851 [INFO] predictor: Models loaded OK\n"
     },
     "strategies_active": [
       {
@@ -131,7 +131,7 @@
       },
       {
         "kind": "CIRCUIT_BREAKER_TRIP",
-        "c": 41
+        "c": 40
       },
       {
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
@@ -244,10 +244,10 @@
         "detected_at": "2026-10-26T17:20:07.646285+09:00"
       }
     ],
-    "races_remaining_today": 16,
+    "races_remaining_today": 15,
     "nid_ledger_today": {
       "scheduled_total": 144,
-      "scheduled_deadline_passed": 128,
+      "scheduled_deadline_passed": 129,
       "scan_unique_nids": 20,
       "final_unique_nids": 27,
       "result_unique_nids": 14,
@@ -416,7 +416,7 @@
         "kind": "CIRCUIT_BREAKER_TRIP",
         "severity": "CRITICAL",
         "key": "CIRCUIT_BREAKER_TRIP|",
-        "count": 3,
+        "count": 13,
         "last_at": "2026-10-26T18:07:04",
         "fix_hint": "7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認"
       },
@@ -424,7 +424,7 @@
         "kind": "CIRCUIT_BREAKER_NO_ACTION",
         "severity": "CRITICAL",
         "key": "CIRCUIT_BREAKER_NO_ACTION|",
-        "count": 6,
+        "count": 26,
         "last_at": "2026-10-26T18:07:04",
         "fix_hint": "CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認"
       },
@@ -432,7 +432,7 @@
         "kind": "STRATEGY_CI_FAIL",
         "severity": "CRITICAL",
         "key": "STRATEGY_CI_FAIL|",
-        "count": 3,
+        "count": 13,
         "last_at": "2026-10-26T18:07:04",
         "fix_hint": "grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認"
       },
@@ -440,7 +440,7 @@
         "kind": "ANOMALY_SCAN_FINAL_RATIO",
         "severity": "WARN",
         "key": "ANOMALY_SCAN_FINAL_RATIO|",
-        "count": 28,
+        "count": 38,
         "last_at": "2026-10-26T17:42:20",
         "fix_hint": "scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング"
       },
@@ -448,7 +448,7 @@
         "kind": "SEND_WITHOUT_DBREC",
         "severity": "CRITICAL",
         "key": "SEND_WITHOUT_DBREC|",
-        "count": 28,
+        "count": 38,
         "last_at": "2026-10-26T17:42:20",
         "fix_hint": "record_notification の例外→DB書込エラー原因特定（WAL、ロック）"
       },
