@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-28T06:20:01.547039+09:00",
+  "generated_at": "2026-10-28T06:30:02.014136+09:00",
   "sections": {
     "environment": {
       "git_sha": "<error: Command '['git', '-C', '/opt/boa",
@@ -401,6 +401,14 @@
     ],
     "ai_debug_queue": [
       {
+        "kind": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION",
+        "severity": "CRITICAL",
+        "key": "CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま",
+        "count": 1,
+        "last_at": "2026-10-28T06:30:02",
+        "fix_hint": "CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に"
+      },
+      {
         "kind": "INSUFFICIENT_SAMPLE",
         "severity": "INFO",
         "key": "INSUFFICIENT_SAMPLE|S00: n=195<300 — v17 要件未達、ROI判定保留",
@@ -788,14 +796,6 @@
         "kind": "PAYOUT_RATIO_WEIRD",
         "severity": "WARN",
         "key": "PAYOUT_RATIO_WEIRD|pid=3162 bet=300 odds=11.2 payout=690 ratio=0.21",
-        "count": 1,
-        "last_at": "2026-10-28T06:00:20",
-        "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
-      },
-      {
-        "kind": "PAYOUT_RATIO_WEIRD",
-        "severity": "WARN",
-        "key": "PAYOUT_RATIO_WEIRD|pid=3163 bet=300 odds=18.7 payout=930 ratio=0.17",
         "count": 1,
         "last_at": "2026-10-28T06:00:20",
         "fix_hint": "同着分割 or 直前オッズ崩落の実現象。CRITICAL ではない、件数のみ監視"
