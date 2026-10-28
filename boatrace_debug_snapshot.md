@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-29T08:20:02.247108+09:00
+**生成**: 2026-10-29T08:30:01.752197+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×38 (24h) → ログ/DB確認
@@ -18,23 +18,23 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×36  [2026-10-29T08:03:33]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×50  [2026-10-29T08:03:33]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×36  [2026-10-29T08:03:33]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×50  [2026-10-29T08:03:33]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×18  [2026-10-29T08:03:33]
+### 🔴 STRATEGY_CI_FAIL  ×25  [2026-10-29T08:03:33]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-10-29T08:00:03]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-10-29T08:00:03]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-10-29T08:00:03]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-10-29T08:00:03]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 17.05MB / last modified 2026-10-29T08:19:07.477775+09:00
+- DB: 17.05MB / last modified 2026-10-29T08:30:04.331799+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,29 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-68 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-29 08:16:04,568 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-29 08:16:04,634 [INFO] predictor: Models loaded OK
-2026-10-29 08:16:04,636 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-29 08:17:05,368 [INFO] run_cycle: === run_cycle 08:17:05 ===
-2026-10-29 08:17:05,369 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-29 08:17:05,369 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-29 08:17:05,447 [INFO] predictor: Models loaded OK
-2026-10-29 08:17:05,450 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-29 08:18:04,347 [INFO] run_cycle: === run_cycle 08:18:04 ===
-2026-10-29 08:18:04,347 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-29 08:18:04,347 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-29 08:18:04,422 [INFO] predictor: Models loaded OK
-2026-10-29 08:18:04,424 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-29 08:19:05,439 [INFO] run_cycle: === run_cycle 08:19:05 ===
-2026-10-29 08:19:05,439 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-29 08:19:05,439 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-29 08:19:05,476 [INFO] predictor: Models loaded OK
-2026-10-29 08:19:05,514 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-10-29 08:20:05,741 [INFO] run_cycle: === run_cycle 08:20:05 ===
-2026-10-29 08:20:05,742 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-29 08:20:05,742 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-29 08:20:05,831 [INFO] predictor: Models loaded OK
-2026-10-29 08:20:05,835 [INFO] run_cycle: run_cycle done: 0 notifications
+=10), retry in 3s
+2026-10-29 08:26:56,200 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-29 08:27:07,212 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=1&jcd=14&hd=20261029: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-10-29 08:27:17,553 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-29 08:27:28,565 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=1&jcd=14&hd=20261029: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-10-29 08:27:37,779 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-29 08:27:37,780 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-29 08:27:46,858 [INFO] scraper: odds_win: 4/6 parsed
+2026-10-29 08:27:46,858 [INFO] scraper: fetch_race 14/1: boats=6 odds=189/191
+2026-10-29 08:27:46,862 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-29 08:27:46,862 [INFO] predictor: combos: {'win': 4, '2t': 30, '3t': 120}
+2026-10-29 08:27:46,866 [INFO] run_cycle: fetched 14/1 [scan]: 154 combos
+2026-10-29 08:27:46,982 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-29 08:28:04,661 [INFO] run_cycle: === run_cycle 08:28:04 ===
+2026-10-29 08:28:04,661 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-29 08:28:04,661 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-29 08:28:04,742 [INFO] predictor: Models loaded OK
+2026-10-29 08:28:04,876 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-10-29 08:29:04,521 [INFO] run_cycle: === run_cycle 08:29:04 ===
+2026-10-29 08:29:04,521 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-29 08:29:04,521 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-29 08:29:04,549 [INFO] predictor: Models loaded OK
+2026-10-29 08:29:04,715 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -336,4 +335,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-29T08:20:02.247108+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-29T08:30:01.752197+09:00_
