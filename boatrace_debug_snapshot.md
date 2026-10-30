@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-10-31T08:40:01.839885+09:00
+**生成**: 2026-10-31T08:50:02.137397+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CIRCUIT_BREAKER_TRIP×26 (24h) → ログ/DB確認
@@ -17,15 +17,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CIRCUIT_BREAKER_TRIP  ×29  [2026-10-31T08:04:37]
+### 🔴 CIRCUIT_BREAKER_TRIP  ×34  [2026-10-31T08:04:37]
 - key: `CIRCUIT_BREAKER_TRIP|`
 - **FIX**: 7日ROI<0.7→戦略を enabled:false にして原因調査。校正ドリフトか市場変化を確認
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×58  [2026-10-31T08:04:37]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×68  [2026-10-31T08:04:37]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×29  [2026-10-31T08:04:37]
+### 🔴 STRATEGY_CI_FAIL  ×34  [2026-10-31T08:04:37]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -106,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 17.25MB / last modified 2026-10-31T08:37:05.677094+09:00
+- DB: 17.25MB / last modified 2026-10-31T08:47:04.376065+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,20 +149,23 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-10-31 08:38:04,520 [INFO] run_cycle: === run_cycle 08:38:04 ===
-2026-10-31 08:38:04,520 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-10-31 08:38:04,520 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-10-31 08:38:04,549 [INFO] predictor: Models loaded OK
-2026-10-31 08:38:15,765 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=18&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-10-31 08:38:35,928 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/beforeinfo?rno=1&jcd=18&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-10-31 08:38:47,017 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/beforeinfo?rno=1&jcd=18&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-10-31 08:39:09,359 [INFO] scraper: odds3t: 120/120 parsed
-2026-10-31 08:39:19,447 [INFO] scraper: odds3f: 20/20 parsed
-2026-10-31 08:39:30,459 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=1&jcd=18&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-10-31 08:39:39,607 [INFO] scraper: odds2t: 30/30 parsed
-2026-10-31 08:39:39,608 [INFO] scraper: odds2f: 15/15 parsed
-2026-10-31 08:39:50,620 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/oddstf?rno=1&jcd=18&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-10-31 08:40:01,675 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/oddstf?rno=1&jcd=18&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+y_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-10-31 08:48:04,534 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-10-31 08:48:04,561 [INFO] predictor: Models loaded OK
+2026-10-31 08:48:15,641 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=1&jcd=18&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-10-31 08:48:47,043 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3t?rno=1&jcd=18&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-10-31 08:48:58,105 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/odds3t?rno=1&jcd=18&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-10-31 08:49:09,298 [INFO] scraper: odds3t: 120/120 parsed
+2026-10-31 08:49:18,400 [INFO] scraper: odds3f: 20/20 parsed
+2026-10-31 08:49:30,094 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=1&jcd=18&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-10-31 08:49:40,206 [INFO] scraper: odds2t: 30/30 parsed
+2026-10-31 08:49:40,207 [INFO] scraper: odds2f: 15/15 parsed
+2026-10-31 08:49:50,277 [INFO] scraper: odds_win: 6/6 parsed
+2026-10-31 08:49:50,277 [INFO] scraper: fetch_race 18/1: boats=6 odds=191/191
+2026-10-31 08:49:50,281 [INFO] predictor: CALIBRATION_MODE=on
+2026-10-31 08:49:50,281 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-10-31 08:49:50,285 [INFO] run_cycle: fetched 18/1 [final]: 156 combos
+2026-10-31 08:50:01,400 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=14&hd=20261031: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 
 ```
 
@@ -199,7 +202,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 211
+  ANOMALY_SCRAPER_FAILURE_BURST: 206
   FINAL_MISSING: 125
   CIRCUIT_BREAKER_NO_ACTION: 34
   CIRCUIT_BREAKER_TRIP: 26
@@ -229,10 +232,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:59:05] FINAL_MISSING: {"deadline": "2026-10-30T12:06:00+09:00", "kind": "FINAL_MISSING", "nid": "2026103023081206", "sid": "S00"}
 ```
 
-## 本日残レース: 143件
+## 本日残レース: 142件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 1件 締切済
+- race_schedule: 144件 登録 / 2件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -324,4 +327,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-10-31T08:40:01.839885+09:00_
+_auto-generated by claude_snapshot.py at 2026-10-31T08:50:02.137397+09:00_
