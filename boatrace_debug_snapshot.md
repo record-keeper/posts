@@ -2,16 +2,16 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-11-03T22:10:01.234933+09:00
+**生成**: 2026-11-03T22:20:02.008295+09:00
 
 ### 次に取るべきアクション
-> RED最優先: CALIBRATION_DRIFT×37 (24h) → ログ/DB確認
+> RED最優先: CALIBRATION_DRIFT×38 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×69 (24h)
-- 🔴 CALIBRATION_DRIFT×37 (24h)
+- 🟡 FINAL_MISSING×68 (24h)
+- 🔴 CALIBRATION_DRIFT×38 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×31 (24h)
-- 🔴 STRATEGY_CI_FAIL×17 (24h)
+- 🔴 STRATEGY_CI_FAIL×16 (24h)
 - 🔴 PSI_DRIFT_DETECTED×2 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
@@ -20,15 +20,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CALIBRATION_DRIFT  ×32  [2026-11-03T21:33:12]
+### 🔴 CALIBRATION_DRIFT  ×40  [2026-11-03T21:33:12]
 - key: `CALIBRATION_DRIFT|`
 - **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×64  [2026-11-03T21:33:12]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×80  [2026-11-03T21:33:12]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×32  [2026-11-03T21:33:12]
+### 🔴 STRATEGY_CI_FAIL  ×40  [2026-11-03T21:33:12]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -109,7 +109,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 17.51MB / last modified 2026-11-03T22:09:05.934327+09:00
+- DB: 17.51MB / last modified 2026-11-03T22:19:08.757751+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -152,25 +152,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-tch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=11&jcd=19&hd=20261103: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-03 22:07:36,061 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/beforeinfo?rno=11&jcd=19&hd=20261103: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-03 22:07:55,307 [INFO] scraper: odds3t: 120/120 parsed
-2026-11-03 22:08:04,409 [INFO] scraper: odds3f: 20/20 parsed
-2026-11-03 22:08:15,451 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=11&jcd=19&hd=20261103: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-03 22:08:26,499 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=11&jcd=19&hd=20261103: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-11-03 22:08:38,604 [INFO] scraper: odds2t: 30/30 parsed
-2026-11-03 22:08:38,605 [INFO] scraper: odds2f: 15/15 parsed
-2026-11-03 22:08:48,720 [INFO] scraper: odds_win: 6/6 parsed
-2026-11-03 22:08:48,720 [INFO] scraper: fetch_race 19/11: boats=6 odds=191/191
-2026-11-03 22:08:48,724 [INFO] predictor: CALIBRATION_MODE=on
-2026-11-03 22:08:48,724 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-11-03 22:08:48,728 [INFO] run_cycle: fetched 19/11 [scan]: 156 combos
-2026-11-03 22:08:48,835 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-03 22:09:05,007 [INFO] run_cycle: === run_cycle 22:09:05 ===
-2026-11-03 22:09:05,007 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-03 22:09:05,007 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-03 22:09:05,036 [INFO] predictor: Models loaded OK
-2026-11-03 22:09:05,207 [INFO] run_cycle: run_cycle done: 0 notifications
+t=5000
+2026-11-03 22:15:06,304 [INFO] predictor: Models loaded OK
+2026-11-03 22:15:06,501 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-03 22:16:04,126 [INFO] run_cycle: === run_cycle 22:16:04 ===
+2026-11-03 22:16:04,127 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-03 22:16:04,127 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-03 22:16:04,187 [INFO] predictor: Models loaded OK
+2026-11-03 22:16:04,189 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-03 22:17:05,802 [INFO] run_cycle: === run_cycle 22:17:05 ===
+2026-11-03 22:17:05,802 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-03 22:17:05,802 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-03 22:17:05,835 [INFO] predictor: Models loaded OK
+2026-11-03 22:17:34,354 [INFO] scraper: odds3t: 120/120 parsed
+2026-11-03 22:17:44,444 [INFO] scraper: odds3f: 20/20 parsed
+2026-11-03 22:17:54,527 [INFO] scraper: odds2t: 30/30 parsed
+2026-11-03 22:17:54,528 [INFO] scraper: odds2f: 15/15 parsed
+2026-11-03 22:18:03,624 [INFO] scraper: odds_win: 6/6 parsed
+2026-11-03 22:18:03,624 [INFO] scraper: fetch_race 19/11: boats=6 odds=191/191
+2026-11-03 22:18:03,628 [INFO] predictor: CALIBRATION_MODE=on
+2026-11-03 22:18:03,628 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-11-03 22:18:03,632 [INFO] run_cycle: fetched 19/11 [final]: 156 combos
+2026-11-03 22:18:03,735 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-03 22:19:05,382 [INFO] run_cycle: === run_cycle 22:19:05 ===
+2026-11-03 22:19:05,382 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-03 22:19:05,382 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-03 22:19:05,426 [INFO] predictor: Models loaded OK
+2026-11-03 22:19:05,432 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -207,12 +215,12 @@ tch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=11&jcd=19&hd=
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 302
-  FINAL_MISSING: 69
-  CALIBRATION_DRIFT: 37
+  ANOMALY_SCRAPER_FAILURE_BURST: 295
+  FINAL_MISSING: 68
+  CALIBRATION_DRIFT: 38
   CIRCUIT_BREAKER_TRIP: 31
   CIRCUIT_BREAKER_NO_ACTION: 29
-  STRATEGY_CI_FAIL: 17
+  STRATEGY_CI_FAIL: 16
   ANOMALY_SCAN_FINAL_RATIO: 2
   PSI_DRIFT_DETECTED: 2
   ANOMALY_BET_VOLUME_DROP: 1
@@ -228,6 +236,8 @@ tch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=11&jcd=19&hd=
 
 ## 直近アラート (24h・新しい順)
 ```
+[22:14:38] CALIBRATION_DRIFT: {"avg_actual": 0.2083, "avg_pred": 0.4708, "bt": "win", "kind": "CALIBRATION_DRIFT", "n": 48, "overconf_pct": 55.7}
+[22:14:38] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S01_NAKAANA1"}
 [21:59:04] FINAL_MISSING: {"deadline": "2026-11-03T11:21:00+09:00", "kind": "FINAL_MISSING", "nid": "2026110304021121", "sid": "S00"}
 [21:57:05] FINAL_MISSING: {"deadline": "2026-11-03T12:14:00+09:00", "kind": "FINAL_MISSING", "nid": "2026110317051214", "sid": "S00"}
 [21:57:05] FINAL_MISSING: {"deadline": "2026-11-03T11:08:00+09:00", "kind": "FINAL_MISSING", "nid": "2026110310061108", "sid": "S00"}
@@ -236,14 +246,12 @@ tch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=11&jcd=19&hd=
 [21:33:04] FINAL_MISSING: {"deadline": "2026-11-03T11:53:00+09:00", "kind": "FINAL_MISSING", "nid": "2026110309041153", "sid": "S00"}
 [21:33:04] CIRCUIT_BREAKER_NO_ACTION: {"kind": "CIRCUIT_BREAKER_NO_ACTION", "sid": "S00"}
 [21:16:05] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 410}
-[21:15:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 412}
-[21:13:41] CALIBRATION_DRIFT: {"avg_actual": 0.2083, "avg_pred": 0.4708, "bt": "win", "kind": "CALIBRATION_DRIFT", "n": 48, "overconf_pct": 55.7}
 ```
 
-## 本日残レース: 2件
+## 本日残レース: 1件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 132件 登録 / 130件 締切済
+- race_schedule: 132件 登録 / 131件 締切済
 - 通知発射: scan=9 nid / final=7 nid / result=6 nid
 - predictions: 6 / うち結果DB記録済: 6
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -336,4 +344,4 @@ tch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=11&jcd=19&hd=
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-11-03T22:10:01.234933+09:00_
+_auto-generated by claude_snapshot.py at 2026-11-03T22:20:02.008295+09:00_
