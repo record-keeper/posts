@@ -2,13 +2,13 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-11-03T22:00:01.615434+09:00
+**生成**: 2026-11-03T22:10:01.234933+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CALIBRATION_DRIFT×37 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×70 (24h)
+- 🟡 FINAL_MISSING×69 (24h)
 - 🔴 CALIBRATION_DRIFT×37 (24h)
 - 🔴 CIRCUIT_BREAKER_TRIP×31 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
@@ -20,23 +20,23 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 CALIBRATION_DRIFT  ×23  [2026-11-03T21:33:12]
+### 🔴 CALIBRATION_DRIFT  ×32  [2026-11-03T21:33:12]
 - key: `CALIBRATION_DRIFT|`
 - **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
 
-### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×46  [2026-11-03T21:33:12]
+### 🔴 CIRCUIT_BREAKER_NO_ACTION  ×64  [2026-11-03T21:33:12]
 - key: `CIRCUIT_BREAKER_NO_ACTION|`
 - **FIX**: CIRCUIT_BREAKER_TRIP 発動済なのに strategies.json で enabled のまま。enabled:false に切替 or 復旧条件満たしたか確認
 
-### 🔴 STRATEGY_CI_FAIL  ×23  [2026-11-03T21:33:12]
+### 🔴 STRATEGY_CI_FAIL  ×32  [2026-11-03T21:33:12]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-11-03T21:30:03]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-11-03T21:30:03]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S00 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
-### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×1  [2026-11-03T21:30:03]
+### 🔴 CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION  ×2  [2026-11-03T21:30:03]
 - key: `CODE_AUDIT_CIRCUIT_BREAKER_NO_ACTION|戦略 S01_NAKAANA1 が TRIP してるが enabled のまま`
 - **FIX**: CIRCUIT_BREAKER_TRIP 戦略が enabled のまま。enabled:false に
 
@@ -109,7 +109,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 17.51MB / last modified 2026-11-03T21:59:09.618665+09:00
+- DB: 17.51MB / last modified 2026-11-03T22:09:05.934327+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -152,30 +152,25 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-26 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-03 21:55:05,926 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-03 21:55:05,955 [INFO] predictor: Models loaded OK
-2026-11-03 21:55:05,957 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-03 21:56:04,219 [INFO] run_cycle: === run_cycle 21:56:04 ===
-2026-11-03 21:56:04,219 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-03 21:56:04,219 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-03 21:56:04,284 [INFO] predictor: Models loaded OK
-2026-11-03 21:56:04,286 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-03 21:57:04,923 [INFO] run_cycle: === run_cycle 21:57:04 ===
-2026-11-03 21:57:04,924 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-03 21:57:04,924 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-03 21:57:04,986 [INFO] predictor: Models loaded OK
-2026-11-03 21:57:04,988 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-03 21:58:04,727 [INFO] run_cycle: === run_cycle 21:58:04 ===
-2026-11-03 21:58:04,727 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-03 21:58:04,727 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-03 21:58:04,793 [INFO] predictor: Models loaded OK
-2026-11-03 21:58:04,795 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-03 21:59:04,104 [INFO] run_cycle: === run_cycle 21:59:04 ===
-2026-11-03 21:59:04,104 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-03 21:59:04,105 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-03 21:59:04,175 [INFO] predictor: Models loaded OK
-2026-11-03 21:59:04,177 [INFO] run_cycle: run_cycle done: 0 notifications
+tch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=11&jcd=19&hd=20261103: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-11-03 22:07:36,061 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/beforeinfo?rno=11&jcd=19&hd=20261103: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-11-03 22:07:55,307 [INFO] scraper: odds3t: 120/120 parsed
+2026-11-03 22:08:04,409 [INFO] scraper: odds3f: 20/20 parsed
+2026-11-03 22:08:15,451 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=11&jcd=19&hd=20261103: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-11-03 22:08:26,499 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=11&jcd=19&hd=20261103: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-11-03 22:08:38,604 [INFO] scraper: odds2t: 30/30 parsed
+2026-11-03 22:08:38,605 [INFO] scraper: odds2f: 15/15 parsed
+2026-11-03 22:08:48,720 [INFO] scraper: odds_win: 6/6 parsed
+2026-11-03 22:08:48,720 [INFO] scraper: fetch_race 19/11: boats=6 odds=191/191
+2026-11-03 22:08:48,724 [INFO] predictor: CALIBRATION_MODE=on
+2026-11-03 22:08:48,724 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-11-03 22:08:48,728 [INFO] run_cycle: fetched 19/11 [scan]: 156 combos
+2026-11-03 22:08:48,835 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-03 22:09:05,007 [INFO] run_cycle: === run_cycle 22:09:05 ===
+2026-11-03 22:09:05,007 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-03 22:09:05,007 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-03 22:09:05,036 [INFO] predictor: Models loaded OK
+2026-11-03 22:09:05,207 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -212,8 +207,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 305
-  FINAL_MISSING: 70
+  ANOMALY_SCRAPER_FAILURE_BURST: 302
+  FINAL_MISSING: 69
   CALIBRATION_DRIFT: 37
   CIRCUIT_BREAKER_TRIP: 31
   CIRCUIT_BREAKER_NO_ACTION: 29
@@ -341,4 +336,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-11-03T22:00:01.615434+09:00_
+_auto-generated by claude_snapshot.py at 2026-11-03T22:10:01.234933+09:00_
