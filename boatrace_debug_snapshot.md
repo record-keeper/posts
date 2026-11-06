@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-11-06T23:10:01.954245+09:00
+**生成**: 2026-11-06T23:20:01.819601+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×27 (24h) → ログ/DB確認
@@ -18,11 +18,11 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×49  [2026-11-06T22:21:06]
+### 🔴 PSI_DRIFT_DETECTED  ×59  [2026-11-06T22:21:06]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×49  [2026-11-06T22:21:06]
+### 🔴 STRATEGY_CI_FAIL  ×59  [2026-11-06T22:21:06]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 17.59MB / last modified 2026-11-06T23:09:05.738959+09:00
+- DB: 17.59MB / last modified 2026-11-06T23:19:04.352814+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-00 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-06 23:05:03,300 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-06 23:05:03,334 [INFO] predictor: Models loaded OK
-2026-11-06 23:05:03,336 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-06 23:06:04,020 [INFO] run_cycle: === run_cycle 23:06:04 ===
-2026-11-06 23:06:04,020 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-06 23:06:04,021 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-06 23:06:04,052 [INFO] predictor: Models loaded OK
-2026-11-06 23:06:04,054 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-06 23:07:04,215 [INFO] run_cycle: === run_cycle 23:07:04 ===
-2026-11-06 23:07:04,215 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-06 23:07:04,215 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-06 23:07:04,246 [INFO] predictor: Models loaded OK
-2026-11-06 23:07:04,248 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-06 23:08:04,279 [INFO] run_cycle: === run_cycle 23:08:04 ===
-2026-11-06 23:08:04,280 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-06 23:08:04,280 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-06 23:08:04,314 [INFO] predictor: Models loaded OK
-2026-11-06 23:08:04,316 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-06 23:09:03,593 [INFO] run_cycle: === run_cycle 23:09:03 ===
-2026-11-06 23:09:03,593 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-06 23:09:03,593 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-06 23:09:03,622 [INFO] predictor: Models loaded OK
-2026-11-06 23:09:03,624 [INFO] run_cycle: run_cycle done: 0 notifications
+15 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-06 23:15:03,816 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-06 23:15:03,848 [INFO] predictor: Models loaded OK
+2026-11-06 23:15:03,850 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-06 23:16:04,082 [INFO] run_cycle: === run_cycle 23:16:04 ===
+2026-11-06 23:16:04,082 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-06 23:16:04,082 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-06 23:16:04,112 [INFO] predictor: Models loaded OK
+2026-11-06 23:16:04,115 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-06 23:17:04,737 [INFO] run_cycle: === run_cycle 23:17:04 ===
+2026-11-06 23:17:04,737 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-06 23:17:04,737 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-06 23:17:04,807 [INFO] predictor: Models loaded OK
+2026-11-06 23:17:04,810 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-06 23:18:03,600 [INFO] run_cycle: === run_cycle 23:18:03 ===
+2026-11-06 23:18:03,601 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-06 23:18:03,601 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-06 23:18:03,633 [INFO] predictor: Models loaded OK
+2026-11-06 23:18:03,635 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-06 23:19:03,478 [INFO] run_cycle: === run_cycle 23:19:03 ===
+2026-11-06 23:19:03,479 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-06 23:19:03,479 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-06 23:19:03,516 [INFO] predictor: Models loaded OK
+2026-11-06 23:19:03,518 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -336,4 +336,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-11-06T23:10:01.954245+09:00_
+_auto-generated by claude_snapshot.py at 2026-11-06T23:20:01.819601+09:00_
