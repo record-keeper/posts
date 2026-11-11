@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-11-12T06:00:01.734178+09:00
+**生成**: 2026-11-12T06:10:01.715490+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
@@ -19,85 +19,85 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×34  [2026-11-11T23:26:06]
-- key: `PSI_DRIFT_DETECTED|`
-- **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
-
-### 🔴 STRATEGY_CI_FAIL  ×34  [2026-11-11T23:26:06]
-- key: `STRATEGY_CI_FAIL|`
-- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
-
-### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×3  [2026-11-11T20:39:05]
-- key: `ANOMALY_SCRAPER_FAILURE_BURST|`
-- **FIX**: 直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS
-
-### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-11T20:30:04]
-- key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 5 件 (閾値 3)`
-- **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
-
-### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-11T20:00:03]
-- key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 6 件 (閾値 3)`
-- **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
-
-### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-11T19:00:03]
-- key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 4 件 (閾値 3)`
-- **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
-
-### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-11T16:00:02]
-- key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 10 件 (閾値 3)`
-- **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
-
-### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-11T15:30:02]
-- key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 12 件 (閾値 3)`
-- **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
-
-### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-11T14:30:02]
-- key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 8 件 (閾値 3)`
-- **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
-
-### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-11T13:30:02]
-- key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 7 件 (閾値 3)`
-- **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
-
-### 🟡 ANOMALY_SCAN_FINAL_RATIO  ×7  [2026-11-11T11:14:27]
-- key: `ANOMALY_SCAN_FINAL_RATIO|`
-- **FIX**: scan→final成立率が7日baselineから2σ逸脱。scan/final window設定・odds取得タイミング
-
-### 🟡 ANOMALY_BET_VOLUME_SPIKE  ×1  [2026-11-11T10:58:35]
-- key: `ANOMALY_BET_VOLUME_SPIKE|`
-- **FIX**: 本日のbet数が2σ急増。filter logic緩み・戦略追加・race_schedule異常
-
-### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-11-11T06:00:12]
-- key: `INSUFFICIENT_SAMPLE|S01_NAKAANA1: n=144<300 — v17 要件未達、ROI判定保留`
+### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-11-12T06:00:27]
+- key: `INSUFFICIENT_SAMPLE|S02_TETSUBAN: n=53<300 — v17 要件未達、ROI判定保留`
 - **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
 
-### 🟡 ORPHAN_SCAN  ×1  [2026-11-11T06:00:12]
-- key: `ORPHAN_SCAN|196 件の scan に final/retreat 追従無し`
-- **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
+### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-11-12T06:00:27]
+- key: `INSUFFICIENT_SAMPLE|S01_NAKAANA1: n=141<300 — v17 要件未達、ROI判定保留`
+- **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
 
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-11T06:00:12]
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-12T06:00:27]
 - key: `CALIBRATION_LIVE|decile 0.15-0.20: n=8 pred=0.1878 actual=0.0000 gap=+0.1878`
 - **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
 
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-11T06:00:12]
-- key: `CALIBRATION_LIVE|decile 0.20-0.30: n=8 pred=0.2290 actual=0.1250 gap=+0.1040`
-- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
-
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-11T06:00:12]
-- key: `CALIBRATION_LIVE|decile 0.30-0.40: n=29 pred=0.3219 actual=0.1034 gap=+0.2185`
-- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
-
-### ℹ️ ROI_STAT  ×1  [2026-11-11T06:00:12]
-- key: `ROI_STAT|S00: n=135 hit%=26.7% hit_CI[Bonf]=[17.3,38.8]% ROI=0.70 ROI_boot95=[0.49,0.94]`
+### ℹ️ ROI_STAT  ×1  [2026-11-12T06:00:27]
+- key: `ROI_STAT|S00: n=128 hit%=28.9% hit_CI[Bonf]=[18.9,41.5]% ROI=0.78 ROI_boot95=[0.55,1.04]`
 - **FIX**: 統計サマリ情報。判定ではなく参照用
 
-### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-11-11T06:00:12]
-- key: `INSUFFICIENT_SAMPLE|S00: n=135<300 — v17 要件未達、ROI判定保留`
+### ℹ️ INSUFFICIENT_SAMPLE  ×1  [2026-11-12T06:00:27]
+- key: `INSUFFICIENT_SAMPLE|S00: n=128<300 — v17 要件未達、ROI判定保留`
 - **FIX**: N<300→運用継続でサンプル蓄積、数週間は判定保留
 
-### ℹ️ ROI_STAT  ×1  [2026-11-11T06:00:12]
-- key: `ROI_STAT|S01_NAKAANA1: n=144 hit%=31.2% hit_CI[Bonf]=[21.4,43.2]% ROI=0.77 ROI_boot95=[0.`
+### ℹ️ ROI_STAT  ×1  [2026-11-12T06:00:27]
+- key: `ROI_STAT|S01_NAKAANA1: n=141 hit%=30.5% hit_CI[Bonf]=[20.7,42.5]% ROI=0.74 ROI_boot95=[0.`
 - **FIX**: 統計サマリ情報。判定ではなく参照用
+
+### ℹ️ ROI_STAT  ×1  [2026-11-12T06:00:27]
+- key: `ROI_STAT|S02_TETSUBAN: n=53 hit%=47.2% hit_CI[Bonf]=[29.1,66.0]% ROI=1.09 ROI_boot95=[0.6`
+- **FIX**: 統計サマリ情報。判定ではなく参照用
+
+### 🟡 ORPHAN_SCAN  ×1  [2026-11-12T06:00:27]
+- key: `ORPHAN_SCAN|201 件の scan に final/retreat 追従無し`
+- **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
+
+### ℹ️ DRIFT_BUCKET  ×1  [2026-11-12T06:00:27]
+- key: `DRIFT_BUCKET|drift -30%〜-10%: n=29 hit%=27.6% ROI=0.87 (コスト 6,500/回収 5,680)`
+- **FIX**: ドリフト帯別 ROI 分析の情報。対策検討の材料
+
+### ℹ️ DRIFT_BUCKET  ×1  [2026-11-12T06:00:27]
+- key: `DRIFT_BUCKET|drift -10%〜+10%: n=65 hit%=49.2% ROI=1.29 (コスト 15,000/回収 19,330)`
+- **FIX**: ドリフト帯別 ROI 分析の情報。対策検討の材料
+
+### ℹ️ DRIFT_BUCKET  ×1  [2026-11-12T06:00:27]
+- key: `DRIFT_BUCKET|drift +10%〜+30%: n=40 hit%=25.0% ROI=0.78 (コスト 9,600/回収 7,500)`
+- **FIX**: ドリフト帯別 ROI 分析の情報。対策検討の材料
+
+### ℹ️ DRIFT_BUCKET  ×1  [2026-11-12T06:00:27]
+- key: `DRIFT_BUCKET|drift ≥+30%: n=31 hit%=16.1% ROI=0.48 (コスト 8,300/回収 4,010)`
+- **FIX**: ドリフト帯別 ROI 分析の情報。対策検討の材料
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-12T06:00:27]
+- key: `CALIBRATION_LIVE|bt=win: n=322 pred=0.4739 actual=0.3261 error=+0.1478 (+31%) brier=0.2291 [OVERC`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-12T06:00:27]
+- key: `CALIBRATION_LIVE|S00(win): n=128 pred=0.4284 hit=0.2891 cal_err=+0.1393 brier=0.2088 BSS=-0.02 RO`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-12T06:00:27]
+- key: `CALIBRATION_LIVE|S01_NAKAANA1(win): n=141 pred=0.4858 hit=0.3050 cal_err=+0.1808 brier=0.2356 BSS`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-12T06:00:27]
+- key: `CALIBRATION_LIVE|S02_TETSUBAN(win): n=53 pred=0.5522 hit=0.4717 cal_err=+0.0805 brier=0.2606 BSS=`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-12T06:00:27]
+- key: `CALIBRATION_LIVE|decile 0.20-0.30: n=7 pred=0.2290 actual=0.1429 gap=+0.0862`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-12T06:00:27]
+- key: `CALIBRATION_LIVE|decile 0.30-0.40: n=28 pred=0.3221 actual=0.1071 gap=+0.2149`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-12T06:00:27]
+- key: `CALIBRATION_LIVE|decile 0.40-0.50: n=93 pred=0.4418 actual=0.3441 gap=+0.0977`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
+
+### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-12T06:00:27]
+- key: `CALIBRATION_LIVE|decile 0.50+: n=182 pred=0.5442 actual=0.3791 gap=+0.1651`
+- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
 
 
 以下、詳細セクション（通常読み飛ばし可）
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 17.86MB / last modified 2026-11-12T05:30:07.570758+09:00
+- DB: 17.86MB / last modified 2026-11-12T06:00:42.110286+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -230,6 +230,8 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[06:00:11] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
+[06:00:11] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 290, "n_recent": 32, "psi": 1.049}
 [23:41:04] FINAL_MISSING: {"deadline": "2026-11-11T16:08:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111107031608", "sid": "S00"}
 [23:39:04] FINAL_MISSING: {"deadline": "2026-11-11T10:55:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111121061055", "sid": "S01_NAKAANA1"}
 [23:33:04] FINAL_MISSING: {"deadline": "2026-11-11T11:42:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111116031142", "sid": "S00"}
@@ -238,8 +240,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [23:02:04] FINAL_MISSING: {"deadline": "2026-11-11T12:16:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111122041216", "sid": "S00"}
 [23:02:04] FINAL_MISSING: {"deadline": "2026-11-11T11:15:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111122021115", "sid": "S00"}
 [23:02:04] FINAL_MISSING: {"deadline": "2026-11-11T17:28:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111107061728", "sid": "S00"}
-[23:02:04] FINAL_MISSING: {"deadline": "2026-11-11T11:19:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111104021119", "sid": "S00"}
-[22:41:03] FINAL_MISSING: {"deadline": "2026-11-11T16:08:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111107031608", "sid": "S00"}
 ```
 
 ## 本日残レース: 0件
@@ -337,4 +337,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-11-12T06:00:01.734178+09:00_
+_auto-generated by claude_snapshot.py at 2026-11-12T06:10:01.715490+09:00_
