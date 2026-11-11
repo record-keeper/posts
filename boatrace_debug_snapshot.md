@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-11-11T09:10:01.987069+09:00
+**生成**: 2026-11-11T09:20:02.074107+09:00
 
 ### 次に取るべきアクション
 > RED最優先: CRITICAL_ODDS_COLLAPSE×1 (24h) → ログ/DB確認
@@ -19,11 +19,11 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×4  [2026-11-11T09:06:28]
+### 🔴 PSI_DRIFT_DETECTED  ×11  [2026-11-11T09:06:28]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×4  [2026-11-11T09:06:28]
+### 🔴 STRATEGY_CI_FAIL  ×11  [2026-11-11T09:06:28]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -108,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 17.82MB / last modified 2026-11-11T09:09:11.268065+09:00
+- DB: 17.82MB / last modified 2026-11-11T09:18:06.523501+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -151,31 +151,27 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-s3f?rno=2&jcd=10&hd=20261111: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-11 09:06:05,740 [INFO] scraper: odds3f: 20/20 parsed
-2026-11-11 09:06:14,897 [INFO] scraper: odds2t: 30/30 parsed
-2026-11-11 09:06:14,898 [INFO] scraper: odds2f: 15/15 parsed
-2026-11-11 09:06:24,007 [INFO] scraper: odds_win: 3/6 parsed
-2026-11-11 09:06:24,007 [INFO] scraper: fetch_race 10/2: boats=6 odds=188/191
-2026-11-11 09:06:24,011 [INFO] predictor: CALIBRATION_MODE=on
-2026-11-11 09:06:24,011 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-11-11 09:06:24,015 [INFO] run_cycle: fetched 10/2 [scan]: 153 combos
-2026-11-11 09:06:24,154 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-11 09:07:05,136 [INFO] run_cycle: === run_cycle 09:07:05 ===
-2026-11-11 09:07:05,136 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-11 09:07:05,136 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-11 09:07:05,201 [INFO] predictor: Models loaded OK
-2026-11-11 09:07:05,428 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-11 09:08:04,811 [INFO] run_cycle: === run_cycle 09:08:04 ===
-2026-11-11 09:08:04,811 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-11 09:08:04,811 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-11 09:08:04,843 [INFO] predictor: Models loaded OK
-2026-11-11 09:08:05,028 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-11 09:09:04,608 [INFO] run_cycle: === run_cycle 09:09:04 ===
-2026-11-11 09:09:04,608 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-11 09:09:04,608 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-11 09:09:04,637 [INFO] predictor: Models loaded OK
-2026-11-11 09:09:04,639 [INFO] run_cycle: run_cycle done: 0 notifications
+{'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-11 09:16:05,227 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-11 09:16:05,289 [INFO] predictor: Models loaded OK
+2026-11-11 09:16:05,429 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-11 09:17:05,489 [INFO] run_cycle: === run_cycle 09:17:05 ===
+2026-11-11 09:17:05,490 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-11 09:17:05,490 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-11 09:17:05,522 [INFO] predictor: Models loaded OK
+2026-11-11 09:17:05,695 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-11 09:18:04,089 [INFO] run_cycle: === run_cycle 09:18:04 ===
+2026-11-11 09:18:04,089 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-11 09:18:04,089 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-11 09:18:04,118 [INFO] predictor: Models loaded OK
+2026-11-11 09:18:04,286 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-11 09:19:05,182 [INFO] run_cycle: === run_cycle 09:19:05 ===
+2026-11-11 09:19:05,183 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-11 09:19:05,183 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-11 09:19:05,212 [INFO] predictor: Models loaded OK
+2026-11-11 09:19:16,257 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=3&jcd=21&hd=20261111: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-11-11 09:19:46,658 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3t?rno=3&jcd=21&hd=20261111: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-11-11 09:19:56,832 [INFO] scraper: odds3t: 120/120 parsed
 
 ```
 
@@ -212,7 +208,7 @@ s3f?rno=2&jcd=10&hd=20261111: HTTPSConnectionPool(host='www.boatrace.jp', port=4
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 225
+  ANOMALY_SCRAPER_FAILURE_BURST: 224
   FINAL_MISSING: 78
   PSI_DRIFT_DETECTED: 29
   STRATEGY_CI_FAIL: 17
@@ -242,10 +238,10 @@ s3f?rno=2&jcd=10&hd=20261111: HTTPSConnectionPool(host='www.boatrace.jp', port=4
 [23:49:03] FINAL_MISSING: {"deadline": "2026-11-10T11:53:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111021081153", "sid": "S00"}
 ```
 
-## 本日残レース: 141件
+## 本日残レース: 140件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 3件 締切済
+- race_schedule: 144件 登録 / 4件 締切済
 - 通知発射: scan=1 nid / final=1 nid / result=0 nid
 - predictions: 1 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -338,4 +334,4 @@ s3f?rno=2&jcd=10&hd=20261111: HTTPSConnectionPool(host='www.boatrace.jp', port=4
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-11-11T09:10:01.987069+09:00_
+_auto-generated by claude_snapshot.py at 2026-11-11T09:20:02.074107+09:00_
