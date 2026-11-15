@@ -2,15 +2,16 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-11-15T15:50:01.434013+09:00
+**生成**: 2026-11-15T16:00:02.362216+09:00
 
 ### 次に取るべきアクション
-> RED最優先: PSI_DRIFT_DETECTED×38 (24h) → ログ/DB確認
+> RED最優先: PSI_DRIFT_DETECTED×39 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×125 (24h)
-- 🔴 PSI_DRIFT_DETECTED×38 (24h)
+- 🟡 FINAL_MISSING×127 (24h)
+- 🔴 PSI_DRIFT_DETECTED×39 (24h)
 - 🔴 STRATEGY_CI_FAIL×17 (24h)
+- 🔴 CALIBRATION_DRIFT×1 (24h)
 - 🟡 LARGE_ODDS_DRIFT×1 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
 
@@ -18,19 +19,27 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
+### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-15T16:00:04]
+- key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 10 件 (閾値 3)`
+- **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
+
+### 🔴 CALIBRATION_DRIFT  ×3  [2026-11-15T15:51:42]
+- key: `CALIBRATION_DRIFT|`
+- **FIX**: 予測確率が実的中率から50%以上乖離→isotonic_calibration.json 再生成 or モデル再学習が必要。EV計算が膨張中
+
 ### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-15T15:30:16]
 - key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 8 件 (閾値 3)`
 - **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
 
-### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×8  [2026-11-15T15:16:49]
+### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×11  [2026-11-15T15:16:49]
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
 - **FIX**: 直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS
 
-### 🔴 PSI_DRIFT_DETECTED  ×8  [2026-11-15T15:16:49]
+### 🔴 PSI_DRIFT_DETECTED  ×11  [2026-11-15T15:16:49]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×8  [2026-11-15T15:16:49]
+### 🔴 STRATEGY_CI_FAIL  ×11  [2026-11-15T15:16:49]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -44,10 +53,6 @@
 
 ### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×2  [2026-11-15T14:00:06]
 - key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 6 件 (閾値 3)`
-- **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
-
-### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-15T13:00:03]
-- key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 10 件 (閾値 3)`
 - **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
 
 ### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-15T12:00:03]
@@ -94,10 +99,6 @@
 - key: `ORPHAN_SCAN|226 件の scan に final/retreat 追従無し`
 - **FIX**: scan 後 final も retreat も無い→当該レースの final 窓が短すぎ/fetch 失敗
 
-### ℹ️ DRIFT_BUCKET  ×1  [2026-11-15T06:00:23]
-- key: `DRIFT_BUCKET|drift -30%〜-10%: n=25 hit%=28.0% ROI=0.91 (コスト 5,500/回収 4,990)`
-- **FIX**: ドリフト帯別 ROI 分析の情報。対策検討の材料
-
 
 以下、詳細セクション（通常読み飛ばし可）
 
@@ -107,7 +108,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 18.12MB / last modified 2026-11-15T15:45:58.316244+09:00
+- DB: 18.12MB / last modified 2026-11-15T16:00:04.719338+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,20 +151,24 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=12&jcd=02&hd=20261115: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-15 15:48:52,156 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=12&jcd=02&hd=20261115: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-11-15 15:49:05,271 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=12&jcd=02&hd=20261115: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
-2026-11-15 15:49:05,272 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/odds3f?rno=12&jcd=02&hd=20261115
-2026-11-15 15:49:16,369 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=12&jcd=02&hd=20261115: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-15 15:49:27,438 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=12&jcd=02&hd=20261115: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-11-15 15:49:39,603 [INFO] scraper: odds2t: 30/30 parsed
-2026-11-15 15:49:39,604 [INFO] scraper: odds2f: 15/15 parsed
-2026-11-15 15:49:50,619 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/oddstf?rno=12&jcd=02&hd=20261115: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-15 15:49:59,968 [INFO] scraper: odds_win: 6/6 parsed
-2026-11-15 15:49:59,968 [INFO] scraper: fetch_race 02/12: boats=6 odds=171/191
-2026-11-15 15:49:59,971 [INFO] predictor: CALIBRATION_MODE=on
-2026-11-15 15:49:59,971 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
-2026-11-15 15:49:59,974 [INFO] run_cycle: fetched 02/12 [scan]: 156 combos
+ConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-11-15 15:57:49,292 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=13&hd=20261115: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-11-15 15:58:02,345 [WARNING] scraper: fetch error (3/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=13&hd=20261115: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 9s
+2026-11-15 15:58:02,345 [ERROR] scraper: fetch failed after 3 retries: https://www.boatrace.jp/owpc/pc/race/racelist?rno=12&jcd=13&hd=20261115
+2026-11-15 15:58:02,345 [ERROR] scraper: racelist fetch failed: jcd=13 rno=12
+2026-11-15 15:58:02,345 [WARNING] run_cycle: fetch None: 13/12
+2026-11-15 15:58:31,777 [INFO] scraper: odds3t: 120/120 parsed
+2026-11-15 15:58:42,789 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=3&jcd=20&hd=20261115: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-11-15 15:58:53,879 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=3&jcd=20&hd=20261115: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-11-15 15:59:05,028 [INFO] scraper: odds3f: 20/20 parsed
+2026-11-15 15:59:14,118 [INFO] scraper: odds2t: 30/30 parsed
+2026-11-15 15:59:14,119 [INFO] scraper: odds2f: 13/15 parsed
+2026-11-15 15:59:24,214 [INFO] scraper: odds_win: 6/6 parsed
+2026-11-15 15:59:24,215 [INFO] scraper: fetch_race 20/3: boats=6 odds=189/191
+2026-11-15 15:59:24,217 [INFO] predictor: CALIBRATION_MODE=on
+2026-11-15 15:59:24,217 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-11-15 15:59:24,221 [INFO] run_cycle: fetched 20/3 [scan]: 156 combos
+2026-11-15 15:59:24,369 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -185,27 +190,28 @@ scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=12&j
   {
     "target": "mirror",
     "ok": 1,
-    "c": 37
+    "c": 38
   },
   {
     "target": "primary",
     "ok": 1,
-    "c": 37
+    "c": 38
   }
 ]
 ```
 
 ## Phase別通知記録 (24h)
-{'final': 12, 'result': 6, 'scan': 19}
+{'final': 12, 'result': 7, 'scan': 19}
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 194
-  FINAL_MISSING: 125
-  PSI_DRIFT_DETECTED: 38
+  ANOMALY_SCRAPER_FAILURE_BURST: 195
+  FINAL_MISSING: 127
+  PSI_DRIFT_DETECTED: 39
   STRATEGY_CI_FAIL: 17
   ANOMALY_SCAN_FINAL_RATIO: 11
   ANOMALY_BET_VOLUME_DROP: 1
+  CALIBRATION_DRIFT: 1
   LARGE_ODDS_DRIFT: 1
 ```
 
@@ -218,24 +224,24 @@ scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=12&j
 
 ## 直近アラート (24h・新しい順)
 ```
+[15:59:24] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 10, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 480}
+[15:55:12] FINAL_MISSING: {"deadline": "2026-11-15T10:05:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111523041005", "sid": "S00"}
+[15:55:12] FINAL_MISSING: {"deadline": "2026-11-15T13:18:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111508071318", "sid": "S00"}
+[15:55:12] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 8, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 482}
+[15:51:41] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 240, "n_recent": 38, "psi": 0.802}
+[15:51:41] CALIBRATION_DRIFT: {"avg_actual": 0.2368, "avg_pred": 0.4812, "bt": "win", "kind": "CALIBRATION_DRIFT", "n": 38, "overconf_pct": 50.8}
+[15:51:41] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 8, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 485}
 [15:45:57] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 8, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 480}
 [15:40:12] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 8, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 483}
 [15:36:35] FINAL_MISSING: {"deadline": "2026-11-15T13:58:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111511081358", "sid": "S02_TETSUBAN"}
-[15:36:35] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 8, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 479}
-[15:30:00] PSI_DRIFT_DETECTED: {"bt": "win", "kind": "PSI_DRIFT_DETECTED", "n_baseline": 241, "n_recent": 38, "psi": 0.798}
-[15:30:00] FINAL_MISSING: {"deadline": "2026-11-15T12:48:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111522051248", "sid": "S01_NAKAANA1"}
-[15:30:00] FINAL_MISSING: {"deadline": "2026-11-15T12:50:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111516051250", "sid": "S00"}
-[15:30:00] FINAL_MISSING: {"deadline": "2026-11-15T10:41:00+09:00", "kind": "FINAL_MISSING", "nid": "2026111516011041", "sid": "S00"}
-[15:30:00] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 7, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 493}
-[15:26:24] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 8, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 490}
 ```
 
-## 本日残レース: 39件
+## 本日残レース: 35件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 144件 登録 / 105件 締切済
-- 通知発射: scan=15 nid / final=7 nid / result=3 nid
-- predictions: 5 / うち結果DB記録済: 4
+- race_schedule: 144件 登録 / 109件 締切済
+- 通知発射: scan=15 nid / final=7 nid / result=4 nid
+- predictions: 5 / うち結果DB記録済: 5
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
 - 🔴 scan後final無しのまま締切: 11件（FINAL_MISSING の温床）
 
@@ -276,7 +282,7 @@ scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=12&j
 |---|---|
 | **Latency** (scan→final avg) | 498.9s |
 | **Latency** (scan→final max) | 591.6s |
-| **Traffic** (notifications 24h) | 37 |
+| **Traffic** (notifications 24h) | 38 |
 | **Errors** (send fail rate) | ✅ 0.0% |
 | **Saturation** (S00) | 600円 used |
 | **Saturation** (S01_NAKAANA1) | 600円 used |
@@ -286,13 +292,13 @@ scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=12&j
 ### bt別: 予測確率 vs 実的中率
 | bt | n | 予測avg | 実的中率 | 校正誤差 | 過信度 | Brier |
 |---|---|---|---|---|---|---|
-| win | 277 | 0.4784 | 0.2816 | +0.1968 | 🟡+41% | 0.2316 |
+| win | 278 | 0.4785 | 0.2806 | +0.1979 | 🟡+41% | 0.2317 |
 
 ### 戦略別: 校正精度 + Brier Skill Score
 | sid | bt | n | pred | actual | Brier | BSS | ROI |
 |---|---|---|---|---|---|---|---|
 | S00 | win | 106 | 0.4349 | 0.2264 | 0.2108 | 🔴-0.20 | 0.592 |
-| S01_NAKAANA1 | win | 124 | 0.4876 | 0.2742 | 0.2367 | 🔴-0.19 | 0.671 |
+| S01_NAKAANA1 | win | 125 | 0.4878 | 0.2720 | 0.2369 | 🔴-0.20 | 0.666 |
 | S02_TETSUBAN | win | 47 | 0.5522 | 0.4255 | 0.2653 | 🔴-0.09 | 1.079 |
 
 ### 確率デシル別: 校正カーブ
@@ -301,7 +307,7 @@ scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=12&j
 | 0.15-0.20 | 5 | 0.1878 | 0.0000 | 🔴+0.1878 |
 | 0.20-0.30 | 5 | 0.2290 | 0.0000 | 🔴+0.2290 |
 | 0.30-0.50 | 104 | 0.4106 | 0.2404 | 🔴+0.1702 |
-| 0.50+ | 161 | 0.5443 | 0.3292 | 🔴+0.2151 |
+| 0.50+ | 162 | 0.5441 | 0.3272 | 🔴+0.2170 |
 
 ## Settlement Ratio データ品質
 
@@ -327,4 +333,4 @@ scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3f?rno=12&j
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-11-15T15:50:01.434013+09:00_
+_auto-generated by claude_snapshot.py at 2026-11-15T16:00:02.362216+09:00_
