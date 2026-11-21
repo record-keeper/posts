@@ -2,20 +2,28 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-11-21T21:30:01.786940+09:00
+**生成**: 2026-11-21T21:40:01.841442+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×35 (24h) → ログ/DB確認
 
 ### 検出された問題
-- 🟡 FINAL_MISSING×100 (24h)
+- 🟡 FINAL_MISSING×102 (24h)
 - 🔴 PSI_DRIFT_DETECTED×35 (24h)
-- 🔴 STRATEGY_CI_FAIL×16 (24h)
+- 🔴 STRATEGY_CI_FAIL×17 (24h)
 - 🔴 alert_manager dispatch 失敗確定 1件（手動確認必要）
 
 ---
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
+
+### 🔴 PSI_DRIFT_DETECTED  ×9  [2026-11-21T21:31:07]
+- key: `PSI_DRIFT_DETECTED|`
+- **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
+
+### 🔴 STRATEGY_CI_FAIL  ×9  [2026-11-21T21:31:07]
+- key: `STRATEGY_CI_FAIL|`
+- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
 ### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-21T21:30:07]
 - key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 5 件 (閾値 3)`
@@ -28,14 +36,6 @@
 ### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×40  [2026-11-21T20:30:41]
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
 - **FIX**: 直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS
-
-### 🔴 PSI_DRIFT_DETECTED  ×56  [2026-11-21T20:30:41]
-- key: `PSI_DRIFT_DETECTED|`
-- **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
-
-### 🔴 STRATEGY_CI_FAIL  ×56  [2026-11-21T20:30:41]
-- key: `STRATEGY_CI_FAIL|`
-- **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
 ### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×2  [2026-11-21T20:00:04]
 - key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 7 件 (閾値 3)`
@@ -106,7 +106,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 18.38MB / last modified 2026-11-21T21:30:06.292551+09:00
+- DB: 18.38MB / last modified 2026-11-21T21:39:04.993907+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -149,30 +149,30 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-57 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-21 21:25:04,657 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-21 21:25:04,687 [INFO] predictor: Models loaded OK
-2026-11-21 21:25:04,689 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-21 21:26:04,998 [INFO] run_cycle: === run_cycle 21:26:04 ===
-2026-11-21 21:26:04,998 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-21 21:26:04,998 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-21 21:26:05,086 [INFO] predictor: Models loaded OK
-2026-11-21 21:26:05,090 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-21 21:27:05,641 [INFO] run_cycle: === run_cycle 21:27:05 ===
-2026-11-21 21:27:05,642 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-21 21:27:05,642 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-21 21:27:05,709 [INFO] predictor: Models loaded OK
-2026-11-21 21:27:05,711 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-21 21:28:04,400 [INFO] run_cycle: === run_cycle 21:28:04 ===
-2026-11-21 21:28:04,400 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-21 21:28:04,400 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-21 21:28:04,435 [INFO] predictor: Models loaded OK
-2026-11-21 21:28:04,437 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-21 21:29:06,095 [INFO] run_cycle: === run_cycle 21:29:06 ===
-2026-11-21 21:29:06,095 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-21 21:29:06,095 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-21 21:29:06,196 [INFO] predictor: Models loaded OK
-2026-11-21 21:29:06,201 [INFO] run_cycle: run_cycle done: 0 notifications
+24 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-21 21:35:04,724 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-21 21:35:04,796 [INFO] predictor: Models loaded OK
+2026-11-21 21:35:04,799 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-21 21:36:04,816 [INFO] run_cycle: === run_cycle 21:36:04 ===
+2026-11-21 21:36:04,817 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-21 21:36:04,817 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-21 21:36:04,881 [INFO] predictor: Models loaded OK
+2026-11-21 21:36:04,884 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-21 21:37:05,541 [INFO] run_cycle: === run_cycle 21:37:05 ===
+2026-11-21 21:37:05,541 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-21 21:37:05,541 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-21 21:37:05,615 [INFO] predictor: Models loaded OK
+2026-11-21 21:37:05,617 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-21 21:38:05,398 [INFO] run_cycle: === run_cycle 21:38:05 ===
+2026-11-21 21:38:05,399 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-21 21:38:05,399 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-21 21:38:05,438 [INFO] predictor: Models loaded OK
+2026-11-21 21:38:05,477 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-21 21:39:04,681 [INFO] run_cycle: === run_cycle 21:39:04 ===
+2026-11-21 21:39:04,681 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-21 21:39:04,681 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-21 21:39:04,711 [INFO] predictor: Models loaded OK
+2026-11-21 21:39:04,713 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -210,11 +210,11 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ## アラート件数 (24h・種類別)
 ```
   ANOMALY_SCRAPER_FAILURE_BURST: 207
-  FINAL_MISSING: 100
+  FINAL_MISSING: 102
   PSI_DRIFT_DETECTED: 35
-  STRATEGY_CI_FAIL: 16
+  STRATEGY_CI_FAIL: 17
   ANOMALY_BET_VOLUME_SPIKE: 5
-  ANOMALY_SCAN_FINAL_RATIO: 3
+  ANOMALY_SCAN_FINAL_RATIO: 2
   ANOMALY_BET_VOLUME_DROP: 1
 ```
 
@@ -227,6 +227,9 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ## 直近アラート (24h・新しい順)
 ```
+[21:35:04] FINAL_MISSING: {"deadline": "2026-11-21T11:49:00+09:00", "kind": "FINAL_MISSING", "nid": "2026112122031149", "sid": "S00"}
+[21:35:04] FINAL_MISSING: {"deadline": "2026-11-21T12:52:00+09:00", "kind": "FINAL_MISSING", "nid": "2026112105061252", "sid": "S01_NAKAANA1"}
+[21:31:05] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 [21:23:04] FINAL_MISSING: {"deadline": "2026-11-21T15:47:00+09:00", "kind": "FINAL_MISSING", "nid": "2026112101021547", "sid": "S00"}
 [21:12:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 379}
 [21:11:03] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 3, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 384}
@@ -234,9 +237,6 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [21:09:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 5, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 388}
 [21:08:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 5, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 394}
 [21:07:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 5, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 396}
-[21:06:04] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 5, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 397}
-[21:05:04] FINAL_MISSING: {"deadline": "2026-11-21T12:17:00+09:00", "kind": "FINAL_MISSING", "nid": "2026112122041217", "sid": "S01_NAKAANA1"}
-[21:05:04] FINAL_MISSING: {"deadline": "2026-11-21T12:22:00+09:00", "kind": "FINAL_MISSING", "nid": "2026112117061222", "sid": "S00"}
 ```
 
 ## 本日残レース: 0件
@@ -335,4 +335,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-11-21T21:30:01.786940+09:00_
+_auto-generated by claude_snapshot.py at 2026-11-21T21:40:01.841442+09:00_
