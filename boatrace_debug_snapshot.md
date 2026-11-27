@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-11-27T09:30:01.743567+09:00
+**生成**: 2026-11-27T09:40:01.288547+09:00
 
 ### 次に取るべきアクション
 > RED最優先: PSI_DRIFT_DETECTED×38 (24h) → ログ/DB確認
@@ -18,15 +18,15 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
-### 🔴 PSI_DRIFT_DETECTED  ×20  [2026-11-27T09:06:00]
+### 🔴 PSI_DRIFT_DETECTED  ×27  [2026-11-27T09:06:00]
 - key: `PSI_DRIFT_DETECTED|`
 - **FIX**: ml_prob 分布の PSI>0.25→モデル入力の分布シフト。校正テーブル再生成 or モデル再学習を検討
 
-### 🔴 STRATEGY_CI_FAIL  ×20  [2026-11-27T09:06:00]
+### 🔴 STRATEGY_CI_FAIL  ×27  [2026-11-27T09:06:00]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
-### 🟡 ANOMALY_BET_VOLUME_DROP  ×23  [2026-11-27T09:01:30]
+### 🟡 ANOMALY_BET_VOLUME_DROP  ×30  [2026-11-27T09:01:30]
 - key: `ANOMALY_BET_VOLUME_DROP|`
 - **FIX**: 本日のbet数が7日baselineから2σ低下。戦略filter/ scan fix/run_cycle停止を疑え
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 18.77MB / last modified 2026-11-27T09:30:04.612660+09:00
+- DB: 18.77MB / last modified 2026-11-27T09:39:04.634215+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,28 +150,33 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-st='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-27 09:27:04,147 [INFO] scraper: odds3f: 19/20 parsed
-2026-11-27 09:27:15,159 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=3&jcd=23&hd=20261127: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-27 09:27:26,217 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=3&jcd=23&hd=20261127: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
-2026-11-27 09:27:38,333 [INFO] scraper: odds2t: 26/30 parsed
-2026-11-27 09:27:38,335 [INFO] scraper: odds2f: 14/15 parsed
-2026-11-27 09:27:48,414 [INFO] scraper: odds_win: 6/6 parsed
-2026-11-27 09:27:48,414 [INFO] scraper: fetch_race 23/3: boats=6 odds=185/191
-2026-11-27 09:27:48,418 [INFO] predictor: CALIBRATION_MODE=on
-2026-11-27 09:27:48,418 [INFO] predictor: combos: {'win': 6, '2t': 26, '3t': 120}
-2026-11-27 09:27:48,422 [INFO] run_cycle: fetched 23/3 [scan]: 152 combos
-2026-11-27 09:27:48,527 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-27 09:28:04,033 [INFO] run_cycle: === run_cycle 09:28:04 ===
-2026-11-27 09:28:04,033 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-27 09:28:04,033 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-27 09:28:04,083 [INFO] predictor: Models loaded OK
-2026-11-27 09:28:04,201 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-27 09:29:04,406 [INFO] run_cycle: === run_cycle 09:29:04 ===
-2026-11-27 09:29:04,406 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-27 09:29:04,406 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-27 09:29:04,453 [INFO] predictor: Models loaded OK
-2026-11-27 09:29:04,596 [INFO] run_cycle: run_cycle done: 0 notifications
+ault=5000
+2026-11-27 09:35:05,009 [INFO] predictor: Models loaded OK
+2026-11-27 09:35:34,412 [INFO] scraper: odds3t: 120/120 parsed
+2026-11-27 09:35:44,519 [INFO] scraper: odds3f: 20/20 parsed
+2026-11-27 09:35:54,594 [INFO] scraper: odds2t: 30/30 parsed
+2026-11-27 09:35:54,595 [INFO] scraper: odds2f: 15/15 parsed
+2026-11-27 09:36:03,682 [INFO] scraper: odds_win: 5/6 parsed
+2026-11-27 09:36:03,683 [INFO] scraper: fetch_race 18/3: boats=6 odds=190/191
+2026-11-27 09:36:03,751 [INFO] predictor: CALIBRATION_MODE=on
+2026-11-27 09:36:03,751 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
+2026-11-27 09:36:03,755 [INFO] run_cycle: fetched 18/3 [scan]: 155 combos
+2026-11-27 09:36:03,888 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-27 09:37:04,116 [INFO] run_cycle: === run_cycle 09:37:04 ===
+2026-11-27 09:37:04,116 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-27 09:37:04,116 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-27 09:37:04,148 [INFO] predictor: Models loaded OK
+2026-11-27 09:37:04,291 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-27 09:38:03,778 [INFO] run_cycle: === run_cycle 09:38:03 ===
+2026-11-27 09:38:03,778 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-27 09:38:03,778 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-27 09:38:03,808 [INFO] predictor: Models loaded OK
+2026-11-27 09:38:03,924 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-27 09:39:04,424 [INFO] run_cycle: === run_cycle 09:39:04 ===
+2026-11-27 09:39:04,424 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-27 09:39:04,424 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-27 09:39:04,495 [INFO] predictor: Models loaded OK
+2026-11-27 09:39:04,501 [INFO] run_cycle: run_cycle done: 0 notifications
 
 ```
 
@@ -208,7 +213,7 @@ st='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 
 ## アラート件数 (24h・種類別)
 ```
-  ANOMALY_SCRAPER_FAILURE_BURST: 220
+  ANOMALY_SCRAPER_FAILURE_BURST: 217
   FINAL_MISSING: 122
   PSI_DRIFT_DETECTED: 38
   STRATEGY_CI_FAIL: 17
@@ -238,10 +243,10 @@ st='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 [23:50:05] FINAL_MISSING: {"deadline": "2026-11-26T11:01:00+09:00", "kind": "FINAL_MISSING", "nid": "2026112605021101", "sid": "S02_TETSUBAN"}
 ```
 
-## 本日残レース: 152件
+## 本日残レース: 151件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 156件 登録 / 4件 締切済
+- race_schedule: 156件 登録 / 5件 締切済
 - 通知発射: scan=0 nid / final=0 nid / result=0 nid
 - predictions: 0 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -331,4 +336,4 @@ st='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-11-27T09:30:01.743567+09:00_
+_auto-generated by claude_snapshot.py at 2026-11-27T09:40:01.288547+09:00_
