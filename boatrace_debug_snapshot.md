@@ -2,7 +2,7 @@
 
 ## 🔴 現状: RED
 
-**生成**: 2026-11-28T10:50:01.894613+09:00
+**生成**: 2026-11-28T11:00:02.116856+09:00
 
 ### 次に取るべきアクション
 > RED最優先: STRATEGY_CI_FAIL×17 (24h) → ログ/DB確認
@@ -18,15 +18,19 @@
 
 ## 🔧 AI デバッグキュー（このClaudeが対処）
 
+### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-28T11:00:03]
+- key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 7 件 (閾値 3)`
+- **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
+
 ### 🟡 CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH  ×1  [2026-11-28T10:30:04]
 - key: `CODE_AUDIT_SCRAPER_FAILURE_RATE_HIGH|直近 500 log行 で 3-retry 全敗 8 件 (閾値 3)`
 - **FIX**: scraper 3-retry 全敗多発。boatrace.jp timeout or IP ban 疑い
 
-### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×12  [2026-11-28T10:08:41]
+### 🟡 ANOMALY_SCRAPER_FAILURE_BURST  ×14  [2026-11-28T10:08:41]
 - key: `ANOMALY_SCRAPER_FAILURE_BURST|`
 - **FIX**: 直近1h でscraper 3-retry 全敗多発。boatrace.jp 側timeout / IP ban / DDoS
 
-### 🔴 STRATEGY_CI_FAIL  ×14  [2026-11-28T10:04:03]
+### 🔴 STRATEGY_CI_FAIL  ×16  [2026-11-28T10:04:03]
 - key: `STRATEGY_CI_FAIL|`
 - **FIX**: grid戦略のOOS CI下限<1.0→論文基準で赤字リスク。strategies.json確認
 
@@ -94,10 +98,6 @@
 - key: `CALIBRATION_LIVE|decile 0.40-0.50: n=48 pred=0.4436 actual=0.3750 gap=+0.0686`
 - **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
 
-### ℹ️ CALIBRATION_LIVE  ×1  [2026-11-28T06:00:06]
-- key: `CALIBRATION_LIVE|decile 0.50+: n=95 pred=0.5442 actual=0.3474 gap=+0.1969`
-- **FIX**: bt別の予測確率vs実的中率の定期報告。判定ではなく参照用
-
 
 以下、詳細セクション（通常読み飛ばし可）
 
@@ -107,7 +107,7 @@
 - strategies.json md5: `06b22dd935785e7947bf9c0f170b69a3`
 - numpy=2.4.4 lightgbm=4.6.0 scipy=1.17.1
 - **calibration_applied**: True ← predictor.py が校正を呼んでるか
-- DB: 18.84MB / last modified 2026-11-28T10:48:49.748822+09:00
+- DB: 18.84MB / last modified 2026-11-28T11:00:03.605757+09:00
 
 ### データファイル存在確認
 | file | exists | md5 | size |
@@ -150,30 +150,27 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 ### 直近 run_cycle ログ (末尾)
 ```
-
-2026-11-28 10:47:23,376 [INFO] predictor: combos: {'win': 5, '2t': 30, '3t': 120}
-2026-11-28 10:47:23,381 [INFO] run_cycle: fetched 14/6 [final]: 155 combos
-2026-11-28 10:47:34,635 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=06&hd=20261128: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-28 10:48:02,110 [INFO] scraper: odds3t: 120/120 parsed
-2026-11-28 10:48:11,188 [INFO] scraper: odds3f: 20/20 parsed
-2026-11-28 10:48:21,279 [INFO] scraper: odds2t: 30/30 parsed
-2026-11-28 10:48:21,280 [INFO] scraper: odds2f: 15/15 parsed
-2026-11-28 10:48:30,358 [INFO] scraper: odds_win: 3/6 parsed
-2026-11-28 10:48:30,358 [INFO] scraper: fetch_race 06/2: boats=6 odds=188/191
-2026-11-28 10:48:30,360 [INFO] predictor: CALIBRATION_MODE=on
-2026-11-28 10:48:30,361 [INFO] predictor: combos: {'win': 3, '2t': 30, '3t': 120}
-2026-11-28 10:48:30,364 [INFO] run_cycle: fetched 06/2 [scan]: 153 combos
-2026-11-28 10:48:49,685 [WARNING] scraper: beforeinfo parse failed: jcd=03 rno=1
-2026-11-28 10:48:49,685 [WARNING] run_cycle: fetch None: 03/1
-2026-11-28 10:48:49,685 [INFO] run_cycle: run_cycle done: 0 notifications
-2026-11-28 10:49:03,092 [INFO] run_cycle: === run_cycle 10:49:03 ===
-2026-11-28 10:49:03,092 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
-2026-11-28 10:49:03,092 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
-2026-11-28 10:49:03,125 [INFO] predictor: Models loaded OK
-2026-11-28 10:49:22,417 [WARNING] scraper: beforeinfo parse failed: jcd=03 rno=1
-2026-11-28 10:49:22,417 [WARNING] run_cycle: fetch None: 03/1
-2026-11-28 10:49:33,429 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/racelist?rno=2&jcd=13&hd=20261128: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
-2026-11-28 10:50:02,887 [INFO] scraper: odds3t: 120/120 parsed
+1-28 10:57:44,540 [INFO] predictor: CALIBRATION_MODE=on
+2026-11-28 10:57:44,540 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-11-28 10:57:44,543 [INFO] run_cycle: fetched 23/6 [scan]: 156 combos
+2026-11-28 10:57:44,667 [INFO] run_cycle: run_cycle done: 0 notifications
+2026-11-28 10:58:03,357 [INFO] run_cycle: === run_cycle 10:58:03 ===
+2026-11-28 10:58:03,357 [INFO] run_cycle: bet_amount_by_trust={'S': 300, 'A': 200, 'B': 100} default=100
+2026-11-28 10:58:03,357 [INFO] run_cycle: daily_limit_by_trust={'S': 15000, 'A': 6000, 'B': 1500} default=5000
+2026-11-28 10:58:03,391 [INFO] predictor: Models loaded OK
+2026-11-28 10:58:33,720 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds3t?rno=2&jcd=13&hd=20261128: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-11-28 10:58:44,759 [WARNING] scraper: fetch error (2/3): https://www.boatrace.jp/owpc/pc/race/odds3t?rno=2&jcd=13&hd=20261128: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 3s
+2026-11-28 10:58:55,914 [INFO] scraper: odds3t: 120/120 parsed
+2026-11-28 10:59:05,003 [INFO] scraper: odds3f: 20/20 parsed
+2026-11-28 10:59:16,015 [WARNING] scraper: fetch error (1/3): https://www.boatrace.jp/owpc/pc/race/odds2tf?rno=2&jcd=13&hd=20261128: HTTPSConnectionPool(host='www.boatrace.jp', port=443): Read timed out. (read timeout=10), retry in 1s
+2026-11-28 10:59:25,141 [INFO] scraper: odds2t: 30/30 parsed
+2026-11-28 10:59:25,142 [INFO] scraper: odds2f: 13/15 parsed
+2026-11-28 10:59:34,227 [INFO] scraper: odds_win: 6/6 parsed
+2026-11-28 10:59:34,227 [INFO] scraper: fetch_race 13/2: boats=6 odds=189/191
+2026-11-28 10:59:34,231 [INFO] predictor: CALIBRATION_MODE=on
+2026-11-28 10:59:34,231 [INFO] predictor: combos: {'win': 6, '2t': 30, '3t': 120}
+2026-11-28 10:59:34,234 [INFO] run_cycle: fetched 13/2 [final]: 156 combos
+2026-11-28 11:00:02,914 [INFO] scraper: odds3t: 120/120 parsed
 
 ```
 
@@ -223,11 +220,13 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | sid | n | hits | cost | payout | PL | ROI |
 |---|---|---|---|---|---|---|
 | S00 | 15 | 3 | 4,500 | 2,190 | -2,310 | 0.487 |
-| S01_NAKAANA1 | 27 | 12 | 5,400 | 6,220 | +820 | 1.152 |
+| S01_NAKAANA1 | 26 | 11 | 5,200 | 5,800 | +600 | 1.115 |
 | S02_TETSUBAN | 11 | 6 | 2,200 | 3,560 | +1,360 | 1.618 |
 
 ## 直近アラート (24h・新しい順)
 ```
+[10:57:44] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 7, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 492}
+[10:50:53] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 6, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 480}
 [10:48:49] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 6, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 478}
 [10:45:29] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 6, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 472}
 [10:34:57] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 6, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 470}
@@ -236,14 +235,12 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [10:22:05] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 7, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 462}
 [10:15:28] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 5, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 458}
 [10:13:34] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 5, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 451}
-[10:08:41] ANOMALY_SCRAPER_FAILURE_BURST: {"failures_1h": 4, "kind": "ANOMALY_SCRAPER_FAILURE_BURST", "log_lines_1h": 435}
-[10:04:03] STRATEGY_CI_FAIL: {"ci_lo": null, "kind": "STRATEGY_CI_FAIL", "sid": "S02_TETSUBAN"}
 ```
 
-## 本日残レース: 146件
+## 本日残レース: 143件
 
 ## 本日nidレジャー（ID単位完遂突合せ）
-- race_schedule: 168件 登録 / 22件 締切済
+- race_schedule: 168件 登録 / 25件 締切済
 - 通知発射: scan=1 nid / final=1 nid / result=0 nid
 - predictions: 1 / うち結果DB記録済: 0
 - ✅ 結果DBあるが通知未発射: 0件 `tools/backfill_result_notifications.py` で救済可
@@ -334,4 +331,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 | 3f | ∞ | ⚠️fallback | 0 | 0.25 |
 
 ---
-_auto-generated by claude_snapshot.py at 2026-11-28T10:50:01.894613+09:00_
+_auto-generated by claude_snapshot.py at 2026-11-28T11:00:02.116856+09:00_
